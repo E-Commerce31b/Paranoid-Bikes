@@ -1,8 +1,8 @@
-const { carsModel } = require("../models");
+const {bikeModel } = require("../models");
 const axios = require('axios')
 
 
-const getCarsApi = async (req, res)=>{
+const getBikesApi = async (req, res)=>{
     try {
         console.log('entre al ge')
         const cars = await axios.get("https://fakestoreapi.com/products", {headers: { "Accept-Encoding": "gzip,deflate,compress" }} )
@@ -17,4 +17,4 @@ const getCarsApi = async (req, res)=>{
     
 }
 
-module.exports = {getCarsApi}
+module.exports = {getBikesApi}
