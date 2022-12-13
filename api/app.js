@@ -19,6 +19,6 @@ app.use(
 
 app.use("/api", require("./routes"))
 
-app.listen(PORT, ()=> console.log("Server escuchando en puerto 3001"))
+app.listen(PORT, ()=> console.log("Server listening on port " + PORT ))
 
 dbConnect()
