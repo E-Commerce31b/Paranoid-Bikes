@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express();
 
-const {getCarsApi} = require("../controllers/cars")
+const {getBikesApi} = require("../controllers/bikes")
 
-router.get("/", getCarsApi)
+router.get("/", getBikesApi)
 
 module.exports = router

@@ -1,5 +1,5 @@
 const models = {
-    carModel: require('./nosql/CarModel'),
+    bikeModel: require('./nosql/BikeModel'),
   
   
   }
