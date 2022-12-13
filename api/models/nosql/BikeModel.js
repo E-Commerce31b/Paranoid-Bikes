@@ -4,25 +4,19 @@ const { Schema } = require('mongoose')
 const BikeScheme = new mongoose.Schema(
   {
     id : {
-      type : String,
+      type : mongoose.Types.ObjectId,
       },
     name : {
-      type : String
-    },
-    makerId : {
       type : String
     },
     maker: {
       type: String
     },
     image: {
-      type: String
+      type: String,
     },
     year: {
       type: Number
-    },
-    model: {
-      type: String
     },
     category: {
       type: String
@@ -31,7 +25,7 @@ const BikeScheme = new mongoose.Schema(
       type: Boolean,
       default: false
     },
-  }
+     }
 )
 
 module.exports = mongoose.model("Bike", BikeScheme)
