@@ -54,7 +54,7 @@ const bikesToDb = async() => {
   } catch(err) {
     console.log('entre a catch bikesToDb')
     console.log(err)
-    console.log('entre a catch bikesToDb')
+    console.log('entre a catch bikesToDb')//
   }
 }
 

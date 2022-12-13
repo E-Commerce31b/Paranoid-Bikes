@@ -19,7 +19,7 @@ router.get("/", async(req, res) => {
             res.status(200).send(found) :
             res.status(404).send('Bike not found...')
         } else {
-            res.status(200).send(total.flat())
+            res.status(200).send(total.flat())//
         }
     } catch(err) {
         console.log(err)
