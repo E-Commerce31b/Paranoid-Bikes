@@ -1,13 +1,12 @@
-const {bikeModel } = require("../models");
+const { bikeModel } = require("../models");
 const axios = require('axios')
 
 
-const APY_TOKEN = process.env.APY_TOKEN
 
 const getBikesApi = async ()=>{
     try {
         const allBikes = await axios.get("https://api.99spokes.com/v1/bikes?include=thumbnailUrl&limit=150", {headers: { "Accept-Encoding": "gzip,deflate,compress",
-        "Authorization": APY_TOKEN
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TmFtZSI6InNlYmFzdGlhbmFndWlhciIsInZlcnNpb24iOjEsImlhdCI6MTY3MDg3NDExNn0.wc8J_dYxAP9s7GBrcIf1dN6CVPMP-TrqEu5TD9JTUWY"
       }} )
         const bikes = allBikes?.data?.items?.map(b => {
           return {
@@ -20,29 +19,51 @@ const getBikesApi = async ()=>{
         })
         return bikes
         } catch(err) {
+          console.log("catch getBikesApi")
           console.log(err)
-          
+          console.log("catch getBikesApi")
     }
     
 }
 
+const getBikesDb = async () => {
+  try {
+    const db = await bikeModel.find({})
+    return db
+  } catch (err) {
+      console.log("catch getBikesDb")
+      console.log(err)
+      console.log("catch getBikesDb")
+  }
+} 
+
 const bikesToDb = async() => {
   try {
-    const bikes = await getBikesApi()
-    console.log(bikes.length)
-    await bikeModel.insertMany(bikes)
-    res.send(bikes)
-    
+    const allBikes = await bikeModel.find({})
+    // console.log("antes del if",allBikes.length)
+    if(allBikes.length === 0) {
+      const bikes = await getBikesApi()
+      // console.log(bikes.length)
+      await bikeModel.insertMany(bikes)
+    } 
+
+    // allBikes = await bikeModel.find({})
+    // console.log("despues del if",allBikes.length)
+    return allBikes
     // console.log("despues del if",bikes)
   } catch(err) {
-
-    res.send(err)
+    console.log('entre a catch bikesToDb')
     console.log(err)
+    console.log('entre a catch bikesToDb')//
   }
-  }
+}
 
 
 
 
 
-module.exports = {getBikesApi, bikesToDb}
+module.exports = {
+  getBikesApi, 
+  bikesToDb, 
+  getBikesDb
+}
