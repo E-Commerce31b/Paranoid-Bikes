@@ -5,7 +5,7 @@ const axios = require('axios')
 
 const getBikesApi = async ()=>{
     try {
-        const allBikes = await axios.get("https://api.99spokes.com/v1/bikes?include=thumbnailUrl&limit=150", {headers: { "Accept-Encoding": "gzip,deflate,compress",
+        const allBikes = await axios.get("https://api.99spokes.com/v1/bikes?include=thumbnailUrl,prices&limit=150", {headers: { "Accept-Encoding": "gzip,deflate,compress",
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TmFtZSI6InNlYmFzdGlhbmFndWlhciIsInZlcnNpb24iOjEsImlhdCI6MTY3MDg3NDExNn0.wc8J_dYxAP9s7GBrcIf1dN6CVPMP-TrqEu5TD9JTUWY"
       }} )
         const bikes = allBikes?.data?.items?.map(b => {
@@ -14,7 +14,11 @@ const getBikesApi = async ()=>{
             image: b.thumbnailUrl,
             year: b.year,
             category: b.category,
-            isEBike: b.isEbike
+            isEBike: b.isEbike,
+            maker: b.maker,
+            gender: b.gender,
+            priceCurrency: b.prices?.map(p => p.currency),
+            priceAmount: b.prices?.map(p => p.amount)
           }
         })
         return bikes
@@ -43,7 +47,7 @@ const bikesToDb = async() => {
     // console.log("antes del if",allBikes.length)
     if(allBikes.length === 0) {
       const bikes = await getBikesApi()
-      // console.log(bikes.length)
+      console.log(bikes)
       await bikeModel.insertMany(bikes)
     } 
 
