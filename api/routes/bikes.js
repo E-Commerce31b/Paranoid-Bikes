@@ -48,7 +48,9 @@ router.post("/", async(req, res) => {
             image,
             year,
             category,
-            isEBike
+            isEBike,
+            gender,
+            prices
         } = req.body;
 
         console.log(
@@ -57,7 +59,9 @@ router.post("/", async(req, res) => {
             image,
             year,
             category,
-            isEBike
+            isEBike,
+            gender,
+            prices
         )
         const createdBike = await bikeModel.create({
             name,
@@ -65,7 +69,9 @@ router.post("/", async(req, res) => {
             image,
             year,
             category,
-            isEBike
+            isEBike,
+            gender,
+            prices
         })
 
         res.status(200).send(createdBike)
