@@ -22,7 +22,9 @@ router.get("/", async(req, res) => {
             res.status(200).send(total.flat())//
         }
     } catch(err) {
+        console.log('error en get bicis')
         console.log(err)
+        console.log('error en get bicis')
     }
 } )
 
@@ -32,7 +34,45 @@ router.get("/:id", async(req, res) => {
         const data = await bikeModel.findById(id)
         res.status(200).send(data)
     } catch (err) {
+        console.log('error en get bicis por id')
         console.log(err)
+        console.log('error en get bicis por id')
+    }
+})
+
+router.post("/", async(req, res) => {
+    try {
+        const {
+            name,
+            maker,
+            image,
+            year,
+            category,
+            isEBike
+        } = req.body;
+
+        console.log(
+            name,
+            maker,
+            image,
+            year,
+            category,
+            isEBike
+        )
+        const createdBike = await bikeModel.create({
+            name,
+            maker,
+            image,
+            year,
+            category,
+            isEBike
+        })
+
+        res.status(200).send(createdBike)
+    } catch (err) {
+        console.log('error en post bicis')
+        console.log(err)
+        console.log('error en post bicis')
     }
 })
 
