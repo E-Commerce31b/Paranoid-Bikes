@@ -1,5 +1,5 @@
-
-
+const express = require('express');
+const router = express();
 const {getBikesApi, getBikesDb, bikesToDb} = require("../controllers/bikes");
 const { bikeModel } = require('../models');
 
@@ -24,6 +24,7 @@ router.get("/", async(req, res) => {
         console.log('error en get bicis')
         console.log(err)
         console.log('error en get bicis')
+        res.status(404).send("not found D:")
     }
 } )
 
@@ -36,6 +37,7 @@ router.get("/:id", async(req, res) => {
         console.log('error en get bicis por id')
         console.log(err)
         console.log('error en get bicis por id')
+        res.status(404).send("not found D:")
     }
 })
 
@@ -82,6 +84,7 @@ router.post("/", async(req, res) => {
         console.log('error en post bicis')
         console.log(err)
         console.log('error en post bicis')
+        res.status(404).send("can't post D:")
     }
 })
 

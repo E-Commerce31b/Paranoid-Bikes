@@ -22,6 +22,35 @@ router.get('/', async(req, res) => {
         console.log('error en get usuario')
         console.log(err)
         console.log('error en get usuario')
+        res.status(404).send("not found D:")
+    }
+})
+
+router.get('/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await userModel.findById(id)
+        res.status(200).send(data)
+    } catch (err) {
+        console.log('error en get user id')
+        console.log(err)
+        console.log('error en get user id')
+        res.status(404).send("not found D:")
+    }
+
+})
+
+router.put('/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const { ...body } = req.body
+        const data = await userModel.findByIdAndUpdate(id, body)
+        res.status(200).send(data)
+    } catch (err) {
+        console.log('error en put users')
+        console.log(err)
+        console.log('error en put users')
+        res.status(400).send("cant't modify")
     }
 })
 
@@ -76,6 +105,7 @@ router.post('/', async(req, res) => {
         console.log('error en post user')
         console.log(err)
         console.log('error en post user')
+        res.status(404).send("can't post D:")
     }
 })
 
