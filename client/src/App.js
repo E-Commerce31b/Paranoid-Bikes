@@ -1,9 +1,13 @@
 import Stripe from "./components/Stripe/Stripe";
-
+import CardDetails from "./components/CardDetails/CardDetails";
 
 function App() {
   return (
-<Stripe/>  );
+    <>
+      <Stripe />
+      <CardDetails />
+    </>
+  );
 }
 
 export default App;
