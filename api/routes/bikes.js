@@ -1,5 +1,4 @@
-const express = require('express')
-const router = express();
+
 
 const {getBikesApi, getBikesDb, bikesToDb} = require("../controllers/bikes");
 const { bikeModel } = require('../models');
@@ -42,6 +41,7 @@ router.get("/:id", async(req, res) => {
 
 router.post("/", async(req, res) => {
     try {
+        console.log(req.body)
         const {
             name,
             maker,
@@ -50,19 +50,21 @@ router.post("/", async(req, res) => {
             category,
             isEBike,
             gender,
-            prices
+            priceCurrency,
+            priceAmount
         } = req.body;
 
-        console.log(
-            name,
-            maker,
-            image,
-            year,
-            category,
-            isEBike,
-            gender,
-            prices
-        )
+        // console.log(
+        //     name,
+        //     maker,
+        //     image,
+        //     year,
+        //     category,
+        //     isEBike,
+        //     gender,
+        //     priceCurrency,
+        //     priceAmount
+        // )
         const createdBike = await bikeModel.create({
             name,
             maker,
@@ -71,7 +73,8 @@ router.post("/", async(req, res) => {
             category,
             isEBike,
             gender,
-            prices
+            priceCurrency: priceCurrency,
+            priceAmount: priceAmount
         })
 
         res.status(200).send(createdBike)

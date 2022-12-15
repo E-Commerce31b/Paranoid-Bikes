@@ -14,6 +14,7 @@ const BikeScheme = new mongoose.Schema(
     },
     image: {
       type: String,
+      default: "https://www.santafixie.com/blog/wp-content/uploads/2020/09/niss-bike-9_1427885375_1427885381-920x470.jpg"
     },
     year: {
       type: Number
@@ -33,13 +34,13 @@ const BikeScheme = new mongoose.Schema(
       default:"unisex"
     },
     priceCurrency: {
-      type: [String],
+      type: String,
       enum: ["USD", "AUD", "CAD", "EUR", "GBP", "NZD"],
-      default: ["USD"]
+      default: "USD"
     },
     priceAmount: {
-        type: [Number],
-        default: [0]
+        type: Number,
+        default: 0
     }
   }
 )
