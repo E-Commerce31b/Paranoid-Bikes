@@ -1,6 +1,5 @@
-const express = require('express')
+const express = require('express');
 const router = express();
-
 const {getBikesApi, getBikesDb, bikesToDb} = require("../controllers/bikes");
 const { bikeModel } = require('../models');
 
@@ -25,6 +24,7 @@ router.get("/", async(req, res) => {
         console.log('error en get bicis')
         console.log(err)
         console.log('error en get bicis')
+        res.status(404).send("not found D:")
     }
 } )
 
@@ -37,11 +37,13 @@ router.get("/:id", async(req, res) => {
         console.log('error en get bicis por id')
         console.log(err)
         console.log('error en get bicis por id')
+        res.status(404).send("not found D:")
     }
 })
 
 router.post("/", async(req, res) => {
     try {
+        console.log(req.body)
         const {
             name,
             maker,
@@ -50,19 +52,21 @@ router.post("/", async(req, res) => {
             category,
             isEBike,
             gender,
-            prices
+            priceCurrency,
+            priceAmount
         } = req.body;
 
-        console.log(
-            name,
-            maker,
-            image,
-            year,
-            category,
-            isEBike,
-            gender,
-            prices
-        )
+        // console.log(
+        //     name,
+        //     maker,
+        //     image,
+        //     year,
+        //     category,
+        //     isEBike,
+        //     gender,
+        //     priceCurrency,
+        //     priceAmount
+        // )
         const createdBike = await bikeModel.create({
             name,
             maker,
@@ -71,7 +75,8 @@ router.post("/", async(req, res) => {
             category,
             isEBike,
             gender,
-            prices
+            priceCurrency: priceCurrency,
+            priceAmount: priceAmount
         })
 
         res.status(200).send(createdBike)
@@ -79,6 +84,7 @@ router.post("/", async(req, res) => {
         console.log('error en post bicis')
         console.log(err)
         console.log('error en post bicis')
+        res.status(404).send("can't post D:")
     }
 })
 

@@ -17,8 +17,8 @@ const getBikesApi = async ()=>{
             isEBike: b.isEbike,
             maker: b.maker,
             gender: b.gender,
-            priceCurrency: b.prices?.map(p => p.currency),
-            priceAmount: b.prices?.map(p => p.amount)
+            priceCurrency: b.prices?.map(p => p.currency)[0],
+            priceAmount: b.prices?.map(p => p.amount)[0]
           }
         })
         return bikes
