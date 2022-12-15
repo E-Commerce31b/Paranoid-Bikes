@@ -17,10 +17,10 @@ export const productsSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
     builder 
-        .addMatcher(
-            (action) => action.type.startsWith("products/") && action.type.endsWith("/pending"),
-            (state) => {state.status = 'loading'}
-        )
+        // .addMatcher(
+        //     (action) => action.type.startsWith("products/") && action.type.endsWith("/pending"),
+        //     (state) => {state.status = 'loading'}
+        // )
         .addMatcher(
             (action) => action.type.startsWith("products/getProducts") && action.type.endsWith("/fulfilled"),
             (state, action) => {
