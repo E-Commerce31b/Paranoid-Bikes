@@ -2,7 +2,7 @@ const express = require('express');
 const router = express();
 const {getBikesApi, getBikesDb, bikesToDb} = require("../controllers/bikes");
 const { bikeModel } = require('../models');
-
+// 
 router.get("/", async(req, res) => {
     // console.log('entre a get')
     const { name } = req.query;

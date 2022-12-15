@@ -1,7 +1,7 @@
 const express = require('express');
 const {userModel} = require('../models/index')
 const router = express();
-
+// 
 
 router.get('/', async(req, res) => {
     const {first_name, last_name} = req.query
