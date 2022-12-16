@@ -7,6 +7,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Header />} />
+      <Route path="/home" element={<Home/>} />
       <Route path="/stripe" element={<Stripe />} />
     </Routes>
 
