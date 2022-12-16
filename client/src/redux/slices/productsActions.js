@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk('products/getProducts', async () => 
             return {
                 id:q._id,
                 name: q.name,
-                // category: q.category,
+                category: q.category,
                 maker: q.maker, 
                 created: q.year,
                 gender: q.gender,
