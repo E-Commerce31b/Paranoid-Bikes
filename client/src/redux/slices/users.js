@@ -8,8 +8,8 @@ const initialState = {
     error: ""
 }
 
-export const clientsSlice = createSlice({
-    name: 'clientsSlice',
+export const usersSlice = createSlice({
+    name: 'usersSlice',
     initialState: initialState,
     reducers: {
         loggedUser: (state, {payload}) => {
@@ -26,18 +26,18 @@ export const clientsSlice = createSlice({
             (action) => action.type.startsWith("users/getUsers") && action.type.endsWith("/fulfilled"),
             (state, action) => {
                 state.status = 'succeeded'
-                state.clients = action.payload
+                state.users = action.payload
             }
             )
             // .addMatcher(
             //   (action) => action.type.startsWith("users/getUser") && action.type.endsWith("/fulfilled"),
             //   (state, action) => {
             //     state.status = 'succeeded'
-            //     state.client = action.payload
+            //     state.user = action.payload
             //   }
             // )
             .addMatcher(
-            (action) => action.type.startsWith("users/postUser"||"clients/putUser") && action.type.endsWith("/fulfilled"),
+            (action) => action.type.startsWith("users/postUser"||"users/putUser") && action.type.endsWith("/fulfilled"),
             (state) => {
                 state.status = 'succeeded'
             }
@@ -46,7 +46,7 @@ export const clientsSlice = createSlice({
             (action) => action.type.startsWith("users/deleteUser") && action.type.endsWith("/fulfilled"),
             (state, action) => {
                 state.status = 'succeeded'
-                state.clients = state.clients.filter(p => p.id !== action.payload.id)
+                state.users = state.users.filter(p => p.id !== action.payload.id)
             }
             )
             .addMatcher(
@@ -66,6 +66,6 @@ export const pacient = (state) => state.user
 export const pacientStatus = (state) => state.status
 export const pacientError = (state) => state.error
 
-export const { loggedUser } = clientsSlice.actions
+export const { loggedUser } = usersSlice.actions
 
-export default clientsSlice.reducer
+export default usersSlice.reducer

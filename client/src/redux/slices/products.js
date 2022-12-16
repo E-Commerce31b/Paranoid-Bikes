@@ -17,15 +17,15 @@ export const productsSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
     builder 
-        // .addMatcher(
-        //     (action) => action.type.startsWith("products/") && action.type.endsWith("/pending"),
-        //     (state) => {state.status = 'loading'}
-        // )
+        .addMatcher(
+            (action) => action.type.startsWith("products/") && action.type.endsWith("/pending"),
+            (state) => {state.status = 'loading'}
+        )
         .addMatcher(
             (action) => action.type.startsWith("products/getProducts") && action.type.endsWith("/fulfilled"),
             (state, action) => {
                 state.status = 'succeeded'
-                state.queries = action.payload
+                state.products = action.payload
                 // const today = `0${new Date().getDate()}`
                 // const tomorrow = `0${new Date().getDate()}` + 1
                 // const tomorrowAfter = `0${new Date().getDate()}` + 2
@@ -69,11 +69,11 @@ export const productsSlice = createSlice({
     }, 
 });
 
-export const queries = (state) => state.products
-export const queriesStatus = (state) => state.status
-export const queriesError = (state) => state.error
-export const querie = (state) => state.product
-export const querieStatus = (state) => state.status
-export const querieError = (state) => state.error
+// export const queries = (state) => state.products
+// export const queriesStatus = (state) => state.status
+// export const queriesError = (state) => state.error
+// export const querie = (state) => state.product
+// export const querieStatus = (state) => state.status
+// export const querieError = (state) => state.error
 
 export default productsSlice.reducer
