@@ -1,11 +1,11 @@
 import React from 'react'
-// import Stripe from "./components/Stripe/Stripe";
-// import { Route } from 'react-router'
-import ComponenteRedux from './components/componenteRedux.jsx'
+import { Route } from 'react-router'
 
 function App() {
   return (
-        <ComponenteRedux/>
+    <Route>
+      
+    </Route>
 );
 }
 
