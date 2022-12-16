@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk('products/getProducts', async () => 
             return {
                 id:q._id,
                 name: q.name,
-                // category: q.category,
+                category: q.category,
                 maker: q.maker, 
                 created: q.year,
                 gender: q.gender,
@@ -33,7 +33,7 @@ export const getProduct = createAsyncThunk('products/getProductById', async (id)
     try {
         // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`)
         const response = await axios.get(`http://localhost:3001/api/bikes/${id}`)
-        const data = response.data.data
+        const data = response.data
                     return {
                         id:data._id,
                         name: data.name,
@@ -56,7 +56,7 @@ export const postProduct = createAsyncThunk('products/postProduct', async (newBi
     try {
         // const response = await axios.post('https://api-paranoid-bikes-production.up.railway.app/api/bikes', newBike)
         const response = await axios.post('http://localhost:3001/api/bikes', newBike)
-        return response.data.data
+        return response.data
     } catch (error) {
         return error.message
     }        
@@ -66,7 +66,7 @@ export const putProduct = createAsyncThunk('products/putProduct', async ({_id, .
     try {
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, query)
         const response = await axios.put(`http://192.168.0.215:3001/api/bikes/${_id}`, query)
-        return response.data.data
+        return response.data
     } catch (error) {
         return error.message
     }        
@@ -76,7 +76,7 @@ export const deleteProduct = createAsyncThunk('products/deleteProduct', async (i
     try {
         // const response = axios.delete(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`) 
         const response = axios.delete(`http://192.168.0.215:3001/api/bikes/${id}`) 
-        return response.data.data
+        return response.data
     } catch (error) {
         return error.message
     }        
