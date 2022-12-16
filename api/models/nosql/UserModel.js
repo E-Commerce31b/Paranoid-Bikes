@@ -41,6 +41,10 @@ const UserScheme = new mongoose.Schema(
     },
     DNI: {
         type: Number
+    },
+    softDelete: {
+      type: Boolean,
+      default: false
     }
   }
 )
