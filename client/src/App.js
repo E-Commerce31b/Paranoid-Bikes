@@ -1,16 +1,18 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/reusable/Header";
+import Home from "./components/Home";
 import Stripe from "./components/Stripe/Stripe";
 import "./App.js";
 
 function App() {
   return (
+    <>
     <Routes>
       <Route path="/" element={<Header />} />
       <Route path="/home" element={<Home/>} />
       <Route path="/stripe" element={<Stripe />} />
     </Routes>
-
+    </>
   );
 }
 

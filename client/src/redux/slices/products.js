@@ -5,7 +5,8 @@ const initialState = {
     productsOffers: [],
     newProducts: [],
     product: {},
-    categories: ["road", "urban", "BMX", "mountain", "youth"],
+    // categories: ["road", "urban", "BMX", "mountain", "youth"],
+    categories: [],
     payments: ["Transferencia", "Tarjeta de crédito"],
     favourites: [],
     filtered: [],
@@ -52,8 +53,8 @@ export const productsSlice = createSlice({
         }
         },
         cleanProduct: (state) => {
-        state.professional = {}
-        }
+            state.professional = {}
+        },
     },
     extraReducers(builder) {
     builder 
@@ -66,6 +67,8 @@ export const productsSlice = createSlice({
             (state, action) => {
                 state.status = 'succeeded'
                 state.products = action.payload
+                let categories = state.products.map(p => p.category)
+                state.categories = [...new Set(categories)]
                 // const today = `0${new Date().getDate()}`
                 // const tomorrow = `0${new Date().getDate()}` + 1
                 // const tomorrowAfter = `0${new Date().getDate()}` + 2
