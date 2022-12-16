@@ -9,6 +9,7 @@ router.get("/", async(req, res) => {
     // console.log(name)
     try {
         let total = await getBikesDb()
+        total = total.filter(e => e.softDelete !== true)
         if(name) {
             let found = total.filter(
                 f => f?.name?.toLowerCase().includes(name?.toLowerCase())
@@ -32,12 +33,30 @@ router.get("/:id", async(req, res) => {
     const { id } = req.params
     try {
         const data = await bikeModel.findById(id)
-        res.status(200).send(data)
+        if(data.softDelete === true) {
+            res.status(404).send('not found D:')
+        } else {
+            res.status(200).send(data)
+        }
     } catch (err) {
         console.log('error en get bicis por id')
         console.log(err)
         console.log('error en get bicis por id')
         res.status(404).send("not found D:")
+    }
+})
+
+router.put('/:id', async(req, res) => {
+    const { id } = req.params
+    try {
+        const { ...body } = req.body;
+        const data = await bikeModel.findByIdAndUpdate(id, body)
+        res.status(200).send(data)
+    } catch (err) {
+        console.log('error en put bicis')
+        console.log(err)
+        console.log('error en put bicis')
+        res.status(400).send("cant't modify")
     }
 })
 
@@ -85,6 +104,19 @@ router.post("/", async(req, res) => {
         console.log(err)
         console.log('error en post bicis')
         res.status(404).send("can't post D:")
+    }
+})
+
+router.delete('/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await bikeModel.findByIdAndDelete(id)
+        res.status(200).send(data)
+    } catch (err) {
+        console.log('error en delete bikes')
+        console.log(err)
+        console.log('error en delete bikes')
+        res.status(400).send("Can't delete")
     }
 })
 
