@@ -7,6 +7,7 @@ router.get('/', async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})
+        AllUsers = AllUsers.filter(e => e.softDelete !== true)
         if(last_name || first_name) {
             let found = []
             last_name ? 
@@ -30,7 +31,12 @@ router.get('/:id', async(req, res) => {
     const { id } = req.params;
     try {
         const data = await userModel.findById(id)
-        res.status(200).send(data)
+        if(data.softDelete === true) {
+            res.status(404).send('user not found D:')
+        } else {
+            res.status(200).send(data)
+        }
+        
     } catch (err) {
         console.log('error en get user id')
         console.log(err)
@@ -106,6 +112,19 @@ router.post('/', async(req, res) => {
         console.log(err)
         console.log('error en post user')
         res.status(404).send("can't post D:")
+    }
+})
+
+router.delete('/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await userModel.findByIdAndDelete(id)
+        res.status(200).send(data)
+    } catch (err) {
+        console.log('error en delete users')
+        console.log(err)
+        console.log('error en delete users')
+        res.status(400).send("Can't delete")
     }
 })
 

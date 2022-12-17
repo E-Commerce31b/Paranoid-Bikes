@@ -41,6 +41,10 @@ const BikeScheme = new mongoose.Schema(
     priceAmount: {
         type: Number,
         default: 0
+    },
+    softDelete: {
+      type: Boolean,
+      default: false
     }
   }
 )
