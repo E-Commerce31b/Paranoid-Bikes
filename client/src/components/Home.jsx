@@ -4,6 +4,7 @@ import ProductCard from './ProductCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts } from '../redux/slices/productsActions'
+import ListProducts from './ListProducts/ListProducts'
 
 const Home = () => {
 
@@ -18,6 +19,7 @@ const Home = () => {
         <div style={{display:"flex", flexDirection:"row", backgroundColor:`${color}`}}>
             {/* <div><MainOffers /></div> */}
             {categories ? categories.map((c,i) => {return (<div key={i}><ProductCard category={c}/></div>)}) : <div>Loading...</div>}
+            <ListProducts/>
         </div>
     )
 }
