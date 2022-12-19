@@ -9,6 +9,7 @@ import ListProducts from './ListProducts/ListProducts'
 const Home = () => {
 
     const categories = useSelector((state) => state.products.categories)
+    const products = useSelector((state) => state.products)
     const dispatch = useDispatch()
 
     useEffect(() => {dispatch(getProducts())}, [dispatch])
@@ -19,7 +20,8 @@ const Home = () => {
         <div style={{display:"flex", flexDirection:"row", backgroundColor:`${color}`}}>
             {/* <div><MainOffers /></div> */}
             {categories ? categories.map((c,i) => {return (<div key={i}><ProductCard category={c}/></div>)}) : <div>Loading...</div>}
-            <ListProducts/>
+            {products ? products.map((p,i) => {return (<div key={i}><ListProducts product={p}/></div>)}) : <div>Loading...</div>}
+            
         </div>
     )
 }
