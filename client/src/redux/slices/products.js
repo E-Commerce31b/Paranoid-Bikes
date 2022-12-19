@@ -1,17 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-<<<<<<< HEAD
-  products: [],
-  productsOffers: [],
-  newProducts: [],
-  product: {},
-  categories: ["road", "urban", "BMX", "mountain", "youth"],
-  payments: ["Transferencia", "Tarjeta de crédito"],
-  status: "",
-  error: "",
-};
-=======
     products: [],
     productsOffers: [],
     newProducts: [],
@@ -24,7 +13,6 @@ const initialState = {
     status: "",
     error: ""
 }
->>>>>>> 1132828bdb22098a48bda5072eb0979bd9e45148
 
 const handleFavourites = (state, payload) => {
     for (const favourite of state.favourites) {
@@ -37,19 +25,6 @@ const handleFavourites = (state, payload) => {
 }
 
 export const productsSlice = createSlice({
-<<<<<<< HEAD
-  name: "productsSlice",
-  initialState: initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/") &&
-          action.type.endsWith("/pending"),
-        (state) => {
-          state.status = "loading";
-=======
     name: 'productsSlice',
     initialState: initialState,
     reducers: {
@@ -132,7 +107,6 @@ export const productsSlice = createSlice({
             (state, action) => {
             state.status = 'failed'
             state.error = action.error.message
->>>>>>> 1132828bdb22098a48bda5072eb0979bd9e45148
         }
       )
       .addMatcher(
