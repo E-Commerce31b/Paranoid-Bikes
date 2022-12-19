@@ -1,17 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-<<<<<<< HEAD
-  products: [],
-  productsOffers: [],
-  newProducts: [],
-  product: {},
-  categories: ["road", "urban", "BMX", "mountain", "youth"],
-  payments: ["Transferencia", "Tarjeta de crédito"],
-  status: "",
-  error: "",
-};
-=======
     products: [],
     productsOffers: [],
     newProducts: [],
@@ -24,7 +13,6 @@ const initialState = {
     status: "",
     error: ""
 }
->>>>>>> 1132828bdb22098a48bda5072eb0979bd9e45148
 
 const handleFavourites = (state, payload) => {
     for (const favourite of state.favourites) {
@@ -37,19 +25,6 @@ const handleFavourites = (state, payload) => {
 }
 
 export const productsSlice = createSlice({
-<<<<<<< HEAD
-  name: "productsSlice",
-  initialState: initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/") &&
-          action.type.endsWith("/pending"),
-        (state) => {
-          state.status = "loading";
-=======
     name: 'productsSlice',
     initialState: initialState,
     reducers: {
@@ -82,57 +57,13 @@ export const productsSlice = createSlice({
         },
     },
     extraReducers(builder) {
-    builder 
+      builder
         .addMatcher(
-            (action) => action.type.startsWith("products/") && action.type.endsWith("/pending"),
-            (state) => {state.status = 'loading'}
-        )
-        .addMatcher(
-            (action) => action.type.startsWith("products/getProducts") && action.type.endsWith("/fulfilled"),
-            (state, action) => {
-                state.status = 'succeeded'
-                state.products = action.payload
-                let categories = state.products.map(p => p.category)
-                state.categories = [...new Set(categories)]
-                // const today = `0${new Date().getDate()}`
-                // const tomorrow = `0${new Date().getDate()}` + 1
-                // const tomorrowAfter = `0${new Date().getDate()}` + 2
-                // const month = new Date().getMonth() + 1
-                // const year = new Date().getFullYear()
-                // const fullToday = year + '/' + month + '/' + today
-                // const fullTomorrow = year + '/' + month + '/' + tomorrow
-                // const fullTomorrowAfter = year + '/' + month + '/' + tomorrowAfter
-                // state.todayQueries = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
-                // state.tomorrowQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
-                // state.tomorrowAfterQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
-            }
-        )
-        .addMatcher(
-            (action) => action.type.startsWith("products/getProductById") && action.type.endsWith("/fulfilled"),
-            (state, action) => {
-                state.status = 'succeeded'
-                state.query = action.payload
-            }
-        )
-        .addMatcher(
-            (action) => action.type.startsWith("products/postProduct"||"queries/putProduct") && action.type.endsWith("/fulfilled"),
-            (state) => {
-                state.status = 'succeeded'
-            }
-        )
-        .addMatcher(
-            (action) => action.type.startsWith("products/deleteProduct") && action.type.endsWith("/fulfilled"),
-            (state, action) => {
-                state.status = 'succeeded'
-                state.queries = state.queries.filter(p => p.id !== action.payload)
-            }
-        )
-        .addMatcher(
-            (action) => action.type.startsWith("products/") && action.type.endsWith("/rejected"),
-            (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message
->>>>>>> 1132828bdb22098a48bda5072eb0979bd9e45148
+          (action) =>
+            action.type.startsWith("products/") &&
+            action.type.endsWith("/pending"),
+          (state) => {
+            state.status = "loading";  
         }
       )
       .addMatcher(
