@@ -5,26 +5,65 @@ const initialState = {
   productsOffers: [],
   newProducts: [],
   product: {},
-  categories: ["road", "urban", "BMX", "mountain", "youth"],
+  // categories: ["road", "urban", "BMX", "mountain", "youth"],
+  categories: [],
   payments: ["Transferencia", "Tarjeta de crédito"],
+  favourites: [],
+  filtered: [],
   status: "",
   error: "",
 };
- 
+
 const handleFavourites = (state, payload) => {
-    for (const favourite of state.favourites) {
-        if(favourite._id === payload._id) {
-        state.favourites = state.favourites.filter((f) => f._id !== payload._id)
-        return state.favourites
-        }}
-    state.favourites.push(payload)
-    return state.favourites
-}
+  for (const favourite of state.favourites) {
+    if (favourite._id === payload._id) {
+      state.favourites = state.favourites.filter((f) => f._id !== payload._id);
+      return state.favourites;
+    }
+  }
+  state.favourites.push(payload);
+  return state.favourites;
+};
 
 export const productsSlice = createSlice({
   name: "productsSlice",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setFiltered: (state, action) => {
+      state.filtered = action.payload;
+    },
+    equalFilters: (state, action) => {
+      state.filters = action.payload;
+    },
+    replaceFilters: (state, action) => {
+      let filter = state.filters.find(
+        (filter) => Object.keys(filter)[0] === Object.keys(action.payload)[0]
+      );
+      if (filter) {
+        filter = action.payload;
+      }
+    },
+    filterProducts: (state, { payload }) => {
+      state.filtered = state.professionals.filter((p) =>
+        payload.every((f) => p[Object.keys(f)[0]] === Object.values(f)[0])
+      );
+    },
+    handleFavourite: (state, { payload }) => {
+      if (state.favourites.length === 0) {
+        state.favourites = [payload];
+      } else if (
+        state.favourites.length === 1 &&
+        state.favourites[0]._id === payload._id
+      ) {
+        state.favourites = [];
+      } else {
+        handleFavourites(state, payload);
+      }
+    },
+    cleanProduct: (state) => {
+      state.professional = {};
+    },
+  },
   extraReducers(builder) {
     builder
       .addMatcher(
