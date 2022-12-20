@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setFiltered, filterProducts } from "../../redux/slices/products";
 import { getProducts } from '../../redux/slices/productsActions';
 import { addFilter, filtersSelectors } from "../../redux/slices/filters";
+import Header from '../reusable/Header'
 import ProductCard from '../ProductCard';
 
 const ProductsList = () => {
@@ -68,6 +69,7 @@ const ProductsList = () => {
 
     return (
         <div>
+            <Header/>
             {
             pricesAmounts.length > 0 ? (
                 <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>

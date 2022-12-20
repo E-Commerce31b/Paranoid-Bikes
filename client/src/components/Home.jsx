@@ -1,5 +1,6 @@
 import React from "react";
 // import MainOffers from './MainOffers'
+import Header from './reusable/Header'
 import CategoryCard from './CategoryCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -20,26 +21,29 @@ const Home = () => {
     const color = `rgba(0, 10, 82, 1)`;
 
     return (
-        <div
-        style={{
-            display: "flex",
-            flexDirection: "row",
-            backgroundColor: `${color}`,
-        }}
-        >
-        {/* <div><MainOffers /></div>  */}
-        {categories ? (
-            categories.map((c, i) => {
-            return (
-                <div key={i}>
-                <CategoryCard category={c} />
+            <div>
+                <Header/>
+                <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    backgroundColor: `${color}`,
+                }}
+                >
+                {/* <div><MainOffers /></div>  */}
+                {categories ? (
+                    categories.map((c, i) => {
+                    return (
+                        <div key={i}>
+                        <CategoryCard category={c} />
+                        </div>
+                    );
+                    })
+                ) : (
+                    <div>Loading...</div>
+                )}
                 </div>
-            );
-            })
-        ) : (
-            <div>Loading...</div>
-        )}
-        </div>
+            </div>
     )
 }
 
