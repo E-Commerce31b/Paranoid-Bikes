@@ -47,7 +47,7 @@ export const productsSlice = createSlice({
       }
     },
     filterProducts: (state, { payload }) => {
-      state.filtered = state.professionals.filter((p) =>
+      state.filtered = state.products.filter((p) =>
         payload.every((f) => p[Object.keys(f)[0]] === Object.values(f)[0])
       );
     },
