@@ -32,16 +32,13 @@ const ProductsList = () => {
                 <text>Loading...</text>
             );
         }, [products, category, dispatch]);
-        
-            
-        
 
     useEffect(() => {
-        if (price.length > 0) {
+        if (pricesAmounts.length > 0) {
             dispatch(addFilter({ id: 1, price: price }));
         }
         // setRender(true);
-    }, [priceAmount, dispatch]);
+    }, [pricesAmounts, price, dispatch]);
 
     useEffect(() => {
         if (maker.length > 0) {
@@ -65,7 +62,7 @@ const ProductsList = () => {
             if (filters[3]) arr.push({ gender: filters[3]["gender"] });
             dispatch(filterProducts(arr));
         }
-    }, [filters, dispatch]);
+    }, [filters, filtersIds, dispatch]);
 
     return (
         <div>
