@@ -1,27 +1,49 @@
-import React from 'react'
+import React from "react";
 // import MainOffers from './MainOffers'
-import ProductCard from './ProductCard'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { getProducts } from '../redux/slices/productsActions'
-import ListProducts from './ListProducts/ListProducts'
+import ProductCard from "./ProductCard";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../redux/slices/productsActions";
+import ListProducts from "./ListProducts/ListProducts";
 
 const Home = () => {
+  const categories = useSelector((state) => state.products.categories);
+  console.log("categories", categories);
+  const dispatch = useDispatch();
 
-    const categories = useSelector((state) => state.products.categories)
-    const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
-    useEffect(() => {dispatch(getProducts())}, [dispatch])
+  const color = `rgba(0, 10, 82, 1)`;
 
-    const color = `rgba(0, 10, 82, 1)`
+  return (
+    /*     <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: `${color}`,
+      }}
+    >
+       <div><MainOffers /></div> 
+      {categories ? (
+        categories.map((c, i) => {
+          return (
+            <div key={i}>
+              <ProductCard category={c} />
+            </div>
+          );
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
+      <ListProducts />
+    </div> */
 
-    return (
-        <div style={{display:"flex", flexDirection:"row", backgroundColor:`${color}`}}>
-            {/* <div><MainOffers /></div> */}
-            {categories ? categories.map((c,i) => {return (<div key={i}><ProductCard category={c}/></div>)}) : <div>Loading...</div>}
-            <ListProducts/>
-        </div>
-    )
-}
+    <div>
+      <h1>hola</h1>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
