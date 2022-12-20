@@ -1,4 +1,19 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Baumans&family=Lobster&family=Poppins&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities; */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap');
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.font_family {
+  font-family: 'Audiowide', cursive;
+}
+.flex_direction {
+  flex-direction: row;
+}
+
+.paddingTop {
+  padding-top: 2rem;
+}
+.textDecoration {
+  text-decoration: none;
+}

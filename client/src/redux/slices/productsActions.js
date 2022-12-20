@@ -7,16 +7,17 @@ export const getProducts = createAsyncThunk(
     try {
       // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/bikes')
       const response = await axios.get("http://localhost:3001/api/bikes");
+
       const data = response.data.sort(function (a, b) {
         if (a.name < b.name) return -1;
         if (a.name > b.name) return 1;
         return 0;
       });
-      return data.map((q) => {
+      const mapeo = data.map((q) => {
         return {
           id: q._id,
           name: q.name,
-          // category: q.category,
+          category: q.category,
           maker: q.maker,
           created: q.year,
           gender: q.gender,
@@ -27,6 +28,8 @@ export const getProducts = createAsyncThunk(
           // isEBike: q.isEBike,
         };
       });
+      console.log(mapeo);
+      return mapeo;
     } catch (error) {
       return error.message;
     }
@@ -39,16 +42,18 @@ export const getProduct = createAsyncThunk(
       // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`)
       const response = await axios.get(`http://localhost:3001/api/bikes/${id}`);
       const data = response.data;
-      console.log(data);
+
       return {
         id: data._id,
         name: data.name,
         type: data.type,
+
         created: data.year,
         genre: data.gender,
         maker: data.maker,
         size: data.size,
         price: data.priceAmount,
+
         image: data.image,
         // isExpanded: false,
       };

@@ -2,11 +2,15 @@
 @charset "utf-8";
 @import "../node_modules/bulma/sass/base/_all.sass";
 @import "../node_modules/bulma/bulma.sass";
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap');
+
 // @import "../sass/utilities/initial-variables";
 // @import "../sass/utilities/functions";
 
 //cambios en Navbar
-$navbar-background-color: #ffb3b3;
+
+$navbar-item-img-max-height: 3rem;
+
 
 //importaciones de bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";

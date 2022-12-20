@@ -1,19 +1,29 @@
 import React from "react";
+import logo from "../../assets/Logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
     // <div className="bg-[#0B409C]">
     //   <div className="font-['Lobster']">Paronoid Bikes Shop</div>
     // </div>
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
-          <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-          />
-        </a>
+    <nav
+      className="navbar font_family is-size-7"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div className="navbar-brand ">
+        <div className="navbar-item ">
+          <NavLink to="/home " className="textDecoration">
+            <img src={logo} width="112" height="80" />
+            <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
+              <h1 className="flex has-text-right ">
+                <span>Paranoid </span>
+                <span>Bikes</span>
+              </h1>
+            </div>
+          </NavLink>
+        </div>
 
         <a
           role="button"
@@ -29,30 +39,60 @@ export default function Header() {
       </div>
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">Home</a>
+          <a className="navbar-item">Más vendidos</a>
 
-          <a className="navbar-item">Documentation</a>
+          <a className="navbar-item">Ofertas</a>
+          <a className="navbar-item">Historial</a>
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">More</a>
+            <a className="navbar-link">Novedades</a>
 
             <div className="navbar-dropdown">
-              <a className="navbar-item">About</a>
-              <a className="navbar-item">Jobs</a>
-              <a className="navbar-item">Contact</a>
+              <a className="navbar-item">Sobre Nosotros</a>
+              <a className="navbar-item">Contactarnos</a>
               <hr className="navbar-divider" />
-              <a className="navbar-item">Report an issue</a>
+              <a className="navbar-item">Reportar un error</a>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="field has-addons paddingTop">
+            <p className="control has-icons-left is-expanded">
+              <input
+                className="input is-small"
+                type="text"
+                /* onChange={(el) => handleChange(el)} */
+                /* placeholder={props.theText} */
+              />
+              <span className="icon is-left">
+                <i className="fas fa-search" aria-hidden="true"></i>
+              </span>
+            </p>
+
+            <p className="control">
+              <button
+                /* onClick={(el) => handleSubmit(el)} */ className="button is-small"
+              >
+                🔍
+              </button>
+            </p>
+            <p className="control pl-6">
+              <button
+                /* onClick={(el) => handleSubmit(el)} */ className="button is-small"
+              >
+                🛒
+              </button>
+            </p>
           </div>
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
+              <a className="button is-primary is-small">
+                <strong>Ingresar</strong>
               </a>
-              <a className="button is-light">Log in</a>
+              <a className="button is-warning is-small">Registrarse</a>
             </div>
           </div>
         </div>
