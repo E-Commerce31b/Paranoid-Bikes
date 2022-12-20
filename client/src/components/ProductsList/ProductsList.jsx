@@ -38,7 +38,7 @@ const ProductsList = () => {
         }, [products, category, dispatch]);
 
     useEffect(() => {
-        if (pricesAmounts.length > 0) {
+        if (price.length > 0) {
             dispatch(addFilter({ id: 1, price: price }));
         }
         setRender(true);
@@ -78,6 +78,7 @@ const ProductsList = () => {
             {
             pricesAmounts.length > 0 ? (
                 <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>
+                    <option value="" selected>Precio</option>
                     {
                     pricesAmounts.map((pa, i) => 
                         <option 
@@ -92,8 +93,9 @@ const ProductsList = () => {
             )
             }
             {
-            maker.length > 0 ? (
+            makers.length > 0 ? (
                 <select id="makers" onChange={(e) => setMaker(e.target.value)}>
+                    <option value="" selected>Marca</option>
                     {
                     makers.map((m, i) => 
                         <option 
@@ -110,6 +112,7 @@ const ProductsList = () => {
             {
             genders.length > 0 ? (
                 <select id="genders" onChange={(e) => setGender(e.target.value)}>
+                    <option value="" selected>Género</option>
                     {
                     genders.map((g, i) => 
                         <option 
