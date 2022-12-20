@@ -18,6 +18,8 @@ const ProductsList = () => {
     const products = useSelector((state) => state.products.products);
     const filtered = useSelector((state) => state.professionals.filtered);
     const pricesAmounts = useSelector ((state) => state.products.pricesAmounts);
+    const makers = useSelector ((state) => state.products.makers);
+    const genders = useSelector ((state) => state.products.genders);
     const dispatch = useDispatch();
 
     const filters = useSelector(filtersSelectors.selectEntities);
@@ -68,12 +70,15 @@ const ProductsList = () => {
         <div>
             {
             pricesAmounts.length > 0 ? (
-                <select>
-                    {pricesAmounts.map((pa, i) => 
-                        <option className="option" 
+                <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>
+                    {
+                    pricesAmounts.map((pa, i) => 
+                        <option 
+                            className="option" 
                             value={pa} 
                             key={i}>{pa}</option>
-                            )}
+                            )
+                    }
                 </select>
             ) : (
                 <p>Loading...</p>
@@ -81,12 +86,31 @@ const ProductsList = () => {
             }
             {
             maker.length > 0 ? (
-                <select>
-                    {maker.map((m, i) => 
-                        <option className="option" 
+                <select id="makers" onChange={(e) => setMaker(e.target.value)}>
+                    {
+                    makers.map((m, i) => 
+                        <option 
+                            className="option" 
                             value={m} 
                             key={i}>{m}</option>
-                            )}
+                            )
+                    }
+                </select>
+            ) : (
+                <p>Loading...</p>
+            )
+            }
+            {
+            genders.length > 0 ? (
+                <select id="genders" onChange={(e) => setGender(e.target.value)}>
+                    {
+                    genders.map((g, i) => 
+                        <option 
+                            className="option" 
+                            value={g} 
+                            key={i}>{g}</option>
+                            )
+                    }
                 </select>
             ) : (
                 <p>Loading...</p>
