@@ -42,16 +42,18 @@ export const getProduct = createAsyncThunk(
       // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`)
       const response = await axios.get(`http://localhost:3001/api/bikes/${id}`);
       const data = response.data;
+
       return {
         id: data._id,
         name: data.name,
         type: data.type,
-        created: data.createdDate,
-        genre: data.genre,
+
+        created: data.year,
+        genre: data.gender,
         maker: data.maker,
         size: data.size,
-        price: data.price,
-        stock: data.stock,
+        price: data.priceAmount,
+
         image: data.image,
         // isExpanded: false,
       };
