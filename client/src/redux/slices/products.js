@@ -81,6 +81,8 @@ export const productsSlice = createSlice({
         (state, action) => {
           state.status = "succeeded";
           state.products = action.payload;
+          let categories = state.products.map(p => p.category)
+          state.categories = [...new Set(categories)]
           // const today = `0${new Date().getDate()}`
           // const tomorrow = `0${new Date().getDate()}` + 1
           // const tomorrowAfter = `0${new Date().getDate()}` + 2
@@ -89,9 +91,9 @@ export const productsSlice = createSlice({
           // const fullToday = year + '/' + month + '/' + today
           // const fullTomorrow = year + '/' + month + '/' + tomorrow
           // const fullTomorrowAfter = year + '/' + month + '/' + tomorrowAfter
-          // state.todayQueries = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
-          // state.tomorrowQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
-          // state.tomorrowAfterQueries = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
+          // state.todayProducts = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
+          // state.tomorrowProducts = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
+          // state.tomorrowAfterProducts = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
         }
       )
       .addMatcher(
@@ -100,13 +102,13 @@ export const productsSlice = createSlice({
           action.type.endsWith("/fulfilled"),
         (state, action) => {
           state.status = "succeeded";
-          state.query = action.payload;
+          state.product = action.payload;
         }
       )
       .addMatcher(
         (action) =>
           action.type.startsWith(
-            "products/postProduct" || "queries/putProduct"
+            "products/postProduct" || "products/putProduct"
           ) && action.type.endsWith("/fulfilled"),
         (state) => {
           state.status = "succeeded";
@@ -118,7 +120,7 @@ export const productsSlice = createSlice({
           action.type.endsWith("/fulfilled"),
         (state, action) => {
           state.status = "succeeded";
-          state.queries = state.queries.filter((p) => p.id !== action.payload);
+          state.products = state.products.filter((p) => p.id !== action.payload);
         }
       )
       .addMatcher(
@@ -133,11 +135,11 @@ export const productsSlice = createSlice({
   },
 });
 
-// export const queries = (state) => state.products
-// export const queriesStatus = (state) => state.status
-// export const queriesError = (state) => state.error
-// export const querie = (state) => state.product
-// export const querieStatus = (state) => state.status
-// export const querieError = (state) => state.error
+// export const products = (state) => state.products
+// export const productsStatus = (state) => state.status
+// export const productsError = (state) => state.error
+// export const product = (state) => state.product
+// export const productStatus = (state) => state.status
+// export const productError = (state) => state.error
 
 export default productsSlice.reducer;

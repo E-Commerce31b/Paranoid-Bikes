@@ -73,10 +73,10 @@ export const postProduct = createAsyncThunk(
 
 export const putProduct = createAsyncThunk(
   "products/putProduct",
-  async ({ _id, ...query }) => {
+  async ({ _id, ...product }) => {
     try {
-        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, query)
-        const response = await axios.put(`http://192.168.0.215:3001/api/bikes/${_id}`, query)
+        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
+        const response = await axios.put(`http://192.168.0.215:3001/api/bikes/${_id}`, product)
         return response.data
     } catch (error) {
       return error.message;
