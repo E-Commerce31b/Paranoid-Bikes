@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     products: [],
     productsOffers: [],
+    pricesAmounts: [],
     newProducts: [],
     product: {},
     // categories: ["road", "urban", "BMX", "mountain", "youth"],
@@ -84,6 +85,8 @@ export const productsSlice = createSlice({
           state.products = action.payload;
           let categories = state.products.map((p) => p.category);
           state.categories = [...new Set(categories)];
+          let prices = state.products.map((p) => p.priceAmount);
+          state.pricesAmounts = [...new Set(prices)];
           // const today = `0${new Date().getDate()}`
           // const tomorrow = `0${new Date().getDate()}` + 1
           // const tomorrowAfter = `0${new Date().getDate()}` + 2
@@ -133,64 +136,6 @@ export const productsSlice = createSlice({
           state.error = action.error.message;
         }
       )
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/getProducts") &&
-          action.type.endsWith("/fulfilled"),
-        (state, action) => {
-          state.status = "succeeded";
-          state.products = action.payload;
-          let categories = state.products.map(p => p.category)
-          state.categories = [...new Set(categories)]
-          // const today = `0${new Date().getDate()}`
-          // const tomorrow = `0${new Date().getDate()}` + 1
-          // const tomorrowAfter = `0${new Date().getDate()}` + 2
-          // const month = new Date().getMonth() + 1
-          // const year = new Date().getFullYear()
-          // const fullToday = year + '/' + month + '/' + today
-          // const fullTomorrow = year + '/' + month + '/' + tomorrow
-          // const fullTomorrowAfter = year + '/' + month + '/' + tomorrowAfter
-          // state.todayProducts = action.payload.filter(q => q.date.slice(0, 10) === fullToday)
-          // state.tomorrowProducts = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrow)
-          // state.tomorrowAfterProducts = action.payload.filter(q => q.date.slice(0, 10) === fullTomorrowAfter)
-        }
-      )
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/getProductById") &&
-          action.type.endsWith("/fulfilled"),
-        (state, action) => {
-          state.status = "succeeded";
-          state.product = action.payload;
-        }
-      )
-      .addMatcher(
-        (action) =>
-          action.type.startsWith(
-            "products/postProduct" || "products/putProduct"
-          ) && action.type.endsWith("/fulfilled"),
-        (state) => {
-          state.status = "succeeded";
-        }
-      )
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/deleteProduct") &&
-          action.type.endsWith("/fulfilled"),
-        (state, action) => {
-          state.status = "succeeded";
-          state.products = state.products.filter((p) => p.id !== action.payload);
-        }
-      )
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/") &&
-          action.type.endsWith("/rejected"),
-        (state, action) => {
-          state.status = "failed";
-          state.error = action.error.message;
-        }
-      );
   },
 });
 
@@ -201,4 +146,5 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
+export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct } = productsSlice.actions
 export default productsSlice.reducer;
