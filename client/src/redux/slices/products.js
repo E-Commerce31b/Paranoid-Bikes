@@ -9,6 +9,7 @@ const initialState = {
     categories: [],
     pricesAmounts: [],
     makers: [],
+    genders: [],
     payments: ["Transferencia", "Tarjeta de crédito"],
     favourites: [],
     filtered: [],
@@ -86,12 +87,17 @@ export const productsSlice = createSlice({
           state.products = action.payload;
           let categories = state.products.map((p) => p.category);
           state.categories = [...new Set(categories)];
-          let prices = state.products.map((p) => p.priceAmount);
+          let prices = state.products.map((p) => p.price);
+          prices.sort(function (a, b) {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+          });
           state.pricesAmounts = [...new Set(prices)];
           let makers = state.products.map((p) => p.maker);
-          state.pricesAmounts = [...new Set(makers)];
+          state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
-          state.pricesAmounts = [...new Set(genders)];
+          state.genders = [...new Set(genders)];
           // const today = `0${new Date().getDate()}`
           // const tomorrow = `0${new Date().getDate()}` + 1
           // const tomorrowAfter = `0${new Date().getDate()}` + 2
