@@ -1,11 +1,9 @@
-import React from 'react'
-import ProductsList from './ProductsList/ProductsList';
+import { Link } from 'react-router-dom'
 
 const ProductCard = ({category}) => {
     
     const color = `rgba(255, 255, 255, 1)`
-    const handleClick = () =>{
-    }
+
     return (
         <Link to={`/list/${category}`}>
             <div style={{borderRadius:5, backgroundColor:`${color}`, margin:10, height:260, width:400, borderWidth:2, borderColor:"black", display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center", textAlign:"center"}}>
