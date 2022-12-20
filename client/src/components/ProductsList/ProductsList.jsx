@@ -13,11 +13,11 @@ const ProductsList = () => {
     const [price, setPrice] = useState("");
     const [maker, setMaker] = useState("");
     const [gender, setGender] = useState("");
-    // const [render, setRender] = useState(false);
+    const [render, setRender] = useState(false);
 
     const {category} = useParams()
     const products = useSelector((state) => state.products.products);
-    const filtered = useSelector((state) => state.professionals.filtered);
+    const filtered = useSelector((state) => state.products.filtered);
     const pricesAmounts = useSelector ((state) => state.products.pricesAmounts);
     const makers = useSelector ((state) => state.products.makers);
     const genders = useSelector ((state) => state.products.genders);
@@ -30,6 +30,7 @@ const ProductsList = () => {
     
     useEffect(() => {
         products?.length ?
+            // console.log(products.map(p => console.log(p.category)))
             dispatch(setFiltered(products.filter((item) => item.category === category)))
             : (
                 <text>Loading...</text>
@@ -40,21 +41,21 @@ const ProductsList = () => {
         if (pricesAmounts.length > 0) {
             dispatch(addFilter({ id: 1, price: price }));
         }
-        // setRender(true);
+        setRender(true);
     }, [pricesAmounts, price, dispatch]);
 
     useEffect(() => {
         if (maker.length > 0) {
             dispatch(addFilter({ id: 2, maker: maker }));
         }
-        // setRender(true);
+        setRender(true);
     }, [maker, dispatch]);
 
     useEffect(() => {
         if (gender.length > 0) {
             dispatch(addFilter({ id: 3, gender: gender }));
         }
-        // setRender(true);
+        setRender(true);
     }, [gender, dispatch]);
     
     useEffect(() => {
@@ -67,6 +68,10 @@ const ProductsList = () => {
         }
     }, [filters, filtersIds, dispatch]);
 
+    useEffect(() => {
+        if (render === true) setRender(false);
+    }, [render]);
+    
     return (
         <div>
             <Header/>
