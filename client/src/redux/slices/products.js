@@ -5,8 +5,11 @@ const initialState = {
   productsOffers: [],
   newProducts: [],
   product: {},
-  categories: ["road", "urban", "BMX", "mountain", "youth"],
+  // categories: ["road", "urban", "BMX", "mountain", "youth"],
+  categories: [],
   payments: ["Transferencia", "Tarjeta de crédito"],
+  favourites: [],
+  filtered: [],
   status: "",
   error: "",
 };
@@ -69,6 +72,7 @@ export const productsSlice = createSlice({
           action.type.endsWith("/pending"),
         (state) => {
           state.status = "loading";
+
         }
       )
       .addMatcher(
