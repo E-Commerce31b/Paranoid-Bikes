@@ -14,7 +14,6 @@ const initialState = {
     favourites: [],
     filtered: [],
     currentPage: [],
-    render: false,
     status: "",
     error: ""
 }
@@ -68,29 +67,16 @@ export const productsSlice = createSlice({
     cleanProduct: (state) => {
       state.professional = {};
     },
-    // currentPage, filtered, pages
     pagination: (state, {payload}) => {
-      console.log(payload)
-      console.log(payload.page)
-      console.log(!isNaN(payload.page))
       if(payload.page === 'posteriores' && payload.filtered.length > payload.currentPage + 17)
             {let movePage = payload.currentPage + 16
-              console.log(movePage)
-              state.currentPage = movePage
-              state.render = true}
+              state.currentPage = movePage}
         if(!isNaN(payload.page)) 
             {let movePage = 0 + 16 * (payload.page - 1)
-              console.log(movePage)
-              state.currentPage = movePage
-              state.render = true}
+              state.currentPage = movePage}
         if(payload.page === 'anteriores' && payload.currentPage > 0) 
             {let movePage = payload.currentPage - 16
-              console.log(movePage)
-              state.currentPage = movePage
-              state.render = true}    
-    },
-    render: (state) => {
-      state.render = false
+              state.currentPage = movePage}
     }
   },
   extraReducers(builder) {
@@ -173,7 +159,7 @@ export const productsSlice = createSlice({
           state.error = action.error.message;
         }
       )
-  },
+    },
 });
 
 // export const products = (state) => state.products
@@ -183,5 +169,5 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
-export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination, render } = productsSlice.actions
+export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination } = productsSlice.actions
 export default productsSlice.reducer;
