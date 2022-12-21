@@ -15,9 +15,22 @@
   padding-top: 2rem;
 }
 .textDecoration {
-  text-decoration: none;
+
+  color: black;
 }
- .widthImageLanding{
-  
-  
- }
+
+.backgroundbody {
+background-color: #000952;
+height: 100vh;
+}
+
+.nothing::before {
+  content: '';
+  position: fixed;
+  background: #000000;
+  width: 105%;
+  height: 30%;
+  opacity: 0.6;
+  margin-left: -40px;
+background-size: 50%;
+}

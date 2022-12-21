@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./reusable/Header";
 import ImageDiscounts from "../assets/Imagedescuentos.png";
 import CategoryCard from './CategoryCard'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
 import { getProducts } from '../redux/slices/productsActions'
 
 export default function Landing() {
 
-      const categories = useSelector((state) => state.products.categories);
+    const categories = useSelector((state) => state.products.categories);
 
     const dispatch = useDispatch();
 
@@ -18,11 +17,11 @@ export default function Landing() {
     }, [dispatch]);
 
 
-    const color = `rgba(0, 10, 82, 1)`;
+    const color = `#0e0476`;
 
   return (
     <div>
-      <div>
+      <div className="backgroundbody">
         <Header />
       <img className="widthImageLanding" src={ImageDiscounts} alt='not found' />
         <div
