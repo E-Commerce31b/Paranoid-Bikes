@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import style from './Pagination.module.css'
+import { pagination } from "../redux/slices/products";
 
-export default function Pagination({currentPage, filtered, pagination, dispatch}) {
+export default function Pagination({currentPage, filtered }) {
 
     const [pages, setPages] = useState([])
     const [actualPage, setActualPage] = useState(1)
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
             let totalPages = (Math.ceil(filtered.length / 16))
