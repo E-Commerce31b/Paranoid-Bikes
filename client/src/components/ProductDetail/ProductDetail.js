@@ -18,7 +18,7 @@ const ProductDetail = (props) => {
       setLoading(false);
     };
     data();
-  }, []);
+  }, [dispatch, id]);
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -31,7 +31,7 @@ const ProductDetail = (props) => {
             <img
               src={bike.image}
               style={{ width: "500px", height: "auto" }}
-              alt="Placeholder image"
+              alt="not found"
             />
           </figure>
         </div>

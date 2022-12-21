@@ -8,9 +8,10 @@ const filtersSlice = createSlice({
     initialState: filtersAdapter.getInitialState(),
     reducers: {
     addFilter: filtersAdapter.upsertOne,
+    removeFilter: filtersAdapter.removeOne,
     }
 });
 
-export const { addFilter } = filtersSlice.actions
+export const { addFilter, removeFilter } = filtersSlice.actions
 
 export default filtersSlice.reducer

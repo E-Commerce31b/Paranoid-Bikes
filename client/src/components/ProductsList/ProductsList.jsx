@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { setFiltered, filterProducts } from "../../redux/slices/products";
 import { getProducts } from '../../redux/slices/productsActions';
-import { addFilter, filtersSelectors } from "../../redux/slices/filters";
+import { addFilter, removeFilter, filtersSelectors } from "../../redux/slices/filters";
 import Header from '../reusable/Header'
 import ProductCard from '../ProductCard';
 
@@ -27,38 +27,40 @@ const ProductsList = () => {
     const filtersIds = useSelector(filtersSelectors.selectIds);
 
     useEffect(() => {dispatch(getProducts())}, [dispatch]);
-    
-    useEffect(() => {
-        products?.length ?
-            // console.log(products.map(p => console.log(p.category)))
-            dispatch(setFiltered(products.filter((item) => item.category === category)))
-            : (
-                <text>Loading...</text>
-            );
-        }, [products, category, dispatch]);
 
     useEffect(() => {
-        if (price.length > 0) {
+        if (price === "clean") {
+            dispatch(removeFilter(1))
+        } else if (price.length > 0) {
             dispatch(addFilter({ id: 1, price: price }));
         }
         setRender(true);
     }, [pricesAmounts, price, dispatch]);
 
     useEffect(() => {
-        if (maker.length > 0) {
+        if (maker === "clean") {
+            dispatch(removeFilter(2))
+        } else if (maker.length > 0) {
             dispatch(addFilter({ id: 2, maker: maker }));
         }
         setRender(true);
     }, [maker, dispatch]);
 
     useEffect(() => {
-        if (gender.length > 0) {
+        if (gender === "clean") {
+            dispatch(removeFilter(3))
+        } else if (gender.length > 0) {
             dispatch(addFilter({ id: 3, gender: gender }));
         }
         setRender(true);
     }, [gender, dispatch]);
     
     useEffect(() => {
+        products?.length ?
+            dispatch(setFiltered(products.filter((item) => item.category === category)))
+            : (
+                <text>Loading...</text>
+            );
         if (filtersIds.length > 0) {
             let arr = [];
             if (filters[1]) arr.push({ price: filters[1]["price"] });
@@ -66,7 +68,7 @@ const ProductsList = () => {
             if (filters[3]) arr.push({ gender: filters[3]["gender"] });
             dispatch(filterProducts(arr));
         }
-    }, [filters, filtersIds, dispatch]);
+    }, [products, category, filters, filtersIds, dispatch]);
 
     useEffect(() => {
         if (render === true) setRender(false);
@@ -78,7 +80,7 @@ const ProductsList = () => {
             {
             pricesAmounts.length > 0 ? (
                 <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>
-                    <option value="" selected>Precio</option>
+                    <option value="clean" selected>Precio</option>
                     {
                     pricesAmounts.map((pa, i) => 
                         <option 
@@ -95,7 +97,7 @@ const ProductsList = () => {
             {
             makers.length > 0 ? (
                 <select id="makers" onChange={(e) => setMaker(e.target.value)}>
-                    <option value="" selected>Marca</option>
+                    <option value="clean" selected>Marca</option>
                     {
                     makers.map((m, i) => 
                         <option 
@@ -112,7 +114,7 @@ const ProductsList = () => {
             {
             genders.length > 0 ? (
                 <select id="genders" onChange={(e) => setGender(e.target.value)}>
-                    <option value="" selected>Género</option>
+                    <option value="clean" selected>Género</option>
                     {
                     genders.map((g, i) => 
                         <option 
