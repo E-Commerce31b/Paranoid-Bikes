@@ -1,8 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { pagination } from "../redux/slices/products";
 import { getProducts } from '../redux/slices/productsActions';
 import Header from './reusable/Header';
 import Filters from './Filters'
@@ -11,7 +9,6 @@ import Pagination from './Pagination'
 
 const ProductsList = () => {
 
-    const {category} = useParams()
     const filtered = useSelector((state) => state.products.filtered);
     const currentPage = useSelector(state => state.products.currentPage);
     const dispatch = useDispatch();
@@ -31,9 +28,9 @@ const ProductsList = () => {
     return (
         <div>
             <div><Header/></div>
-            <div><Filters category={category}/></div>
+            <div><Filters/></div>
             <div><RenderProducts slicedProducts={slicedProducts}/></div>
-			<div><Pagination currentPage={currentPage} filtered={filtered} pagination={pagination}/></div>
+			<div><Pagination currentPage={currentPage} filtered={filtered}/></div>
         </div>
     )
 };

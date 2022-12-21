@@ -1,6 +1,7 @@
 import React from "react";
 // import MainOffers from './MainOffers'
 import Header from './reusable/Header'
+import ImageDiscounts from "../assets/Imagedescuentos.png";
 import CategoryCard from './CategoryCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
