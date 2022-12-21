@@ -39,10 +39,15 @@ export default function Header() {
       </div>
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">Más vendidos</a>
-
-          <a className="navbar-item">Ofertas</a>
-          <a className="navbar-item">Historial</a>
+          <NavLink to="/BestSellers" className="navbar-item">
+            <div>Más vendidos</div>
+          </NavLink>
+          <NavLink to="/Offers" className="navbar-item">
+            <div>Ofertas</div>
+          </NavLink>
+          <NavLink to="/Record" className="navbar-item">
+            <div>Historial</div>
+          </NavLink>
 
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">Novedades</a>
@@ -89,10 +94,16 @@ export default function Header() {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-primary is-small">
-                <strong>Ingresar</strong>
-              </a>
-              <a className="button is-warning is-small">Registrarse</a>
+              <NavLink to="/Record" className="button is-primary is-small">
+                <div>
+                  <strong>Ingresar</strong>
+                </div>
+              </NavLink>
+              <NavLink to="/SingUp" className="button is-warning is-small">
+                <div>
+                  <strong>Registrarse</strong>
+                </div>
+              </NavLink>
             </div>
           </div>
         </div>
