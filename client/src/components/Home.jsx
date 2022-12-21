@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 // import MainOffers from './MainOffers'
 import Header from "./reusable/Header";
 import CategoryCard from "./CategoryCard";

@@ -25,6 +25,9 @@ const ProductsList = () => {
 
     const filters = useSelector(filtersSelectors.selectEntities);
     const filtersIds = useSelector(filtersSelectors.selectIds);
+    
+    const color = `rgba(0, 10, 82, 1)`
+
 
     useEffect(() => {dispatch(getProducts())}, [dispatch]);
 
@@ -128,14 +131,14 @@ const ProductsList = () => {
                 <p>Loading...</p>
             )
             }
-            {
-            filtered ? filtered.map((p,i) => {
-                return (<div key={i}>
+            <div style={{display:"flex", flexWrap:"wrap", backgroundColor:`${color}`,alignItems:'center', gridGap:'10px'}}>
+                {filtered ? filtered.map((p,i) => {
+                    return (<div key={i}>
                     <ProductCard product={p}/></div>)}
-            ) : (
-                <p>Loading...</p>
-            )
-            }
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+            </div>
         </div>
     )
 };
