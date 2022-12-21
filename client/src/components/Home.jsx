@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react'
 // import MainOffers from './MainOffers'
 import Header from './reusable/Header'
 import CategoryCard from './CategoryCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts } from '../redux/slices/productsActions'
-
 
 const Home = () => {
     const categories = useSelector((state) => state.products.categories);
@@ -43,7 +42,7 @@ const Home = () => {
                     <div>Loading...</div>
                 )}
                 </div>
-            </div>
+        </div>
     )
 }
 
