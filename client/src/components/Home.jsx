@@ -9,7 +9,7 @@ import { getProducts } from '../redux/slices/productsActions'
 
 const Home = () => {
     const categories = useSelector((state) => state.products.categories);
-    console.log("categories", categories);
+
     const dispatch = useDispatch();
 
 
