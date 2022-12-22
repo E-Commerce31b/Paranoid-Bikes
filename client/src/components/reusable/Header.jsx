@@ -94,15 +94,16 @@ export default function Header() {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <NavLink to="/Record" className="button is-primary is-small">
-                <div>
+
+              <NavLink to="/login">
+                <p className="button is-primary is-small">
                   <strong>Ingresar</strong>
-                </div>
+                </p>
               </NavLink>
-              <NavLink to="/SingUp" className="button is-warning is-small">
-                <div>
-                  <strong>Registrarse</strong>
-                </div>
+
+              <NavLink to="/signup">
+                <p className="button is-warning is-small">Registrarse</p>
+
               </NavLink>
             </div>
           </div>
