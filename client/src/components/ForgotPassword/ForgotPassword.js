@@ -33,7 +33,7 @@ const ForgotPassword = () => {
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
-              <img src={logo} width="112" height="80" />
+              <img src={logo} width="112" height="80" alt="logo" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">
                   <span>Paranoid </span>

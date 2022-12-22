@@ -38,7 +38,7 @@ export default function Signup() {
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
-              <img src={logo} width="112" height="80" />
+              <img src={logo} alt="logo" width="112" height="80" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">
                   <span>Paranoid </span>
@@ -97,7 +97,7 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className="buttons v">
+          <div className="buttons has-text-centered">
             <button className="button is-primary font_family" type="submit">
               Registrarse
             </button>

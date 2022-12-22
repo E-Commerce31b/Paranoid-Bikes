@@ -51,7 +51,7 @@ const Login = () => {
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
-        <form on onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
             <input className="input" type="email" ref={emailRef}></input>
