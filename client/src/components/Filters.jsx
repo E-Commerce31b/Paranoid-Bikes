@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { setFiltered, filterProducts } from "../../redux/slices/products";
-import { getProducts } from '../../redux/slices/productsActions';
-import { addFilter, removeFilter, filtersSelectors } from "../../redux/slices/filters";
-import Header from '../reusable/Header'
-import ProductCard from '../ProductCard';
+import { useSelector, useDispatch } from 'react-redux'
+import { addFilter, removeFilter, filtersSelectors } from "../redux/slices/filters";
+import { setFiltered, filterProducts } from "../redux/slices/products";
 
-const ProductsList = () => {
+const Filters = () => {
 
     const [price, setPrice] = useState("");
     const [maker, setMaker] = useState("");
     const [gender, setGender] = useState("");
-    const [render, setRender] = useState(false);
 
-    const {category} = useParams()
-    const products = useSelector((state) => state.products.products);
-    const filtered = useSelector((state) => state.products.filtered);
     const pricesAmounts = useSelector ((state) => state.products.pricesAmounts);
     const makers = useSelector ((state) => state.products.makers);
     const genders = useSelector ((state) => state.products.genders);
+    const products = useSelector((state) => state.products.products);
+    const {category} = useParams()
     const dispatch = useDispatch();
 
     const filters = useSelector(filtersSelectors.selectEntities);
     const filtersIds = useSelector(filtersSelectors.selectIds);
-
-    useEffect(() => {dispatch(getProducts())}, [dispatch]);
 
     useEffect(() => {
         if (price === "clean") {
@@ -34,7 +26,6 @@ const ProductsList = () => {
         } else if (price.length > 0) {
             dispatch(addFilter({ id: 1, price: price }));
         }
-        setRender(true);
     }, [pricesAmounts, price, dispatch]);
 
     useEffect(() => {
@@ -43,7 +34,7 @@ const ProductsList = () => {
         } else if (maker.length > 0) {
             dispatch(addFilter({ id: 2, maker: maker }));
         }
-        setRender(true);
+        
     }, [maker, dispatch]);
 
     useEffect(() => {
@@ -52,7 +43,6 @@ const ProductsList = () => {
         } else if (gender.length > 0) {
             dispatch(addFilter({ id: 3, gender: gender }));
         }
-        setRender(true);
     }, [gender, dispatch]);
     
     useEffect(() => {
@@ -70,14 +60,8 @@ const ProductsList = () => {
         }
     }, [products, category, filters, filtersIds, dispatch]);
 
-    useEffect(() => {
-        if (render === true) setRender(false);
-    }, [render]);
-    
     return (
-        <div>
-            <Header/>
-            {
+        <div>{
             pricesAmounts.length > 0 ? (
                 <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>
                     <option value="clean" selected>Precio</option>
@@ -127,17 +111,8 @@ const ProductsList = () => {
             ) : (
                 <p>Loading...</p>
             )
-            }
-            {
-            filtered ? filtered.map((p,i) => {
-                return (<div key={i}>
-                    <ProductCard product={p}/></div>)}
-            ) : (
-                <p>Loading...</p>
-            )
-            }
-        </div>
+            }</div>
     )
-};
+}
 
-export default ProductsList;
+export default Filters

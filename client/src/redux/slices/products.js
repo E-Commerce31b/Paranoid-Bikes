@@ -13,6 +13,7 @@ const initialState = {
     payments: ["Transferencia", "Tarjeta de crédito"],
     favourites: [],
     filtered: [],
+    currentPage: [],
     status: "",
     error: ""
 }
@@ -66,6 +67,17 @@ export const productsSlice = createSlice({
     cleanProduct: (state) => {
       state.professional = {};
     },
+    pagination: (state, {payload}) => {
+      if(payload.page === 'posteriores' && payload.filtered.length > payload.currentPage + 17)
+            {let movePage = payload.currentPage + 16
+              state.currentPage = movePage}
+        if(!isNaN(payload.page)) 
+            {let movePage = 0 + 16 * (payload.page - 1)
+              state.currentPage = movePage}
+        if(payload.page === 'anteriores' && payload.currentPage > 0) 
+            {let movePage = payload.currentPage - 16
+              state.currentPage = movePage}
+    }
   },
   extraReducers(builder) {
     builder
@@ -147,7 +159,7 @@ export const productsSlice = createSlice({
           state.error = action.error.message;
         }
       )
-  },
+    },
 });
 
 // export const products = (state) => state.products
@@ -157,5 +169,5 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
-export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct } = productsSlice.actions
+export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination } = productsSlice.actions
 export default productsSlice.reducer;

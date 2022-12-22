@@ -1,8 +1,9 @@
 const { bikeModel } = require("../models");
 const axios = require('axios')
+const backup = require("../utils/backup")
 
 
-
+ 
 const getBikesApi = async ()=>{
     try {
         const allBikes = await axios.get("https://api.99spokes.com/v1/bikes?include=thumbnailUrl,prices&limit=150", {headers: { "Accept-Encoding": "gzip,deflate,compress",
@@ -18,7 +19,8 @@ const getBikesApi = async ()=>{
             maker: b.maker,
             gender: b.gender,
             priceCurrency: b.prices?.map(p => p.currency)[0],
-            priceAmount: b.prices?.map(p => p.amount)[0]
+            priceAmount: b.prices?.map(p => p.amount)[0],
+            softDeleted: b.softDeleted
           }
         })
         return bikes
@@ -47,8 +49,9 @@ const bikesToDb = async() => {
     // console.log("antes del if",allBikes.length)
     if(allBikes.length === 0) {
       const bikes = await getBikesApi()
-      console.log(bikes)
-      await bikeModel.insertMany(bikes)
+      const allBikes = bikes.concat(backup)
+      // console.log(bikes)
+      await bikeModel.insertMany(allBikes)
     } 
 
     // allBikes = await bikeModel.find({})
