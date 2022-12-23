@@ -3,11 +3,15 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import logo from "../../assets/Logo.png";
 import "../../index.css";
+import emailjs from "emailjs-com";
 
 export default function Signup() {
+  const form = useRef();
+
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+
   const { signup } = useAuth();
 
   const [error, setError] = useState("");
@@ -21,11 +25,30 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
+
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
+
+      emailjs
+        .sendForm(
+          "service_ev9mv2j",
+          "template_hzyfavr",
+          form.current,
+          "gYTIZ320UzKrK9phD"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+
+      e.target.reset();
       navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
@@ -62,14 +85,19 @@ export default function Signup() {
       >
         {error && <p>{error}</p>}
 
-        <form on onSubmit={handleSubmit}>
+        <form ref={form} onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Nombre</label>
-            <input className="input" type="text"></input>
+            <input className="input" type="text" name="name"></input>
           </div>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
-            <input className="input" type="email" ref={emailRef}></input>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              ref={emailRef}
+            ></input>
           </div>
 
           <div className="field">
@@ -86,9 +114,9 @@ export default function Signup() {
             ></input>
           </div>
 
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
+          <div className="field">
+            <div className="control">
+              <label className="checkbox">
                 <input type="checkbox" />
                 <a href="#" className="font_family">
                   Acepto los terminos y condiciones
