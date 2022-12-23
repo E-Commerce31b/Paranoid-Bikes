@@ -16,12 +16,19 @@ export default function Signup() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [boxState, setBoxState] = useState(false);
   const navigate = useNavigate();
+
+  const changeState = () => {
+    setBoxState(true);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
-      return setError("Contrasena no coincide");
+      return setError("Contraseña no coincide");
+
+    if (!boxState) return setError("Por favor aceptar terminos y condiciones");
     try {
       setError("");
       setLoading(true);
@@ -49,6 +56,7 @@ export default function Signup() {
         );
 
       e.target.reset();
+      setBoxState(false);
       navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
@@ -83,7 +91,7 @@ export default function Signup() {
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
-        {error && <p>{error}</p>}
+        {error && <p className="notification is-danger is-light">{error}</p>}
 
         <form ref={form} onSubmit={handleSubmit}>
           <div className="field">
@@ -101,12 +109,12 @@ export default function Signup() {
           </div>
 
           <div className="field">
-            <label className="label font_family">Contrasena</label>
+            <label className="label font_family">Contraseña</label>
             <input className="input" type="password" ref={passwordRef}></input>
           </div>
 
           <div className="field">
-            <label className="label font_family">Confirmar contrasena</label>
+            <label className="label font_family">Confirmar contraseña</label>
             <input
               className="input"
               type="password"
@@ -117,7 +125,7 @@ export default function Signup() {
           <div className="field">
             <div className="control">
               <label className="checkbox">
-                <input type="checkbox" />
+                <input type="checkbox" onChange={changeState} />
                 <a href="#" className="font_family">
                   Acepto los terminos y condiciones
                 </a>
