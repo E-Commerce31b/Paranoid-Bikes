@@ -47,26 +47,27 @@ const ForgotPassword = () => {
 
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <strong className="font_family fontColor">Rstaurar Contrasena</strong>
+          <strong className="font_family fontColor">
+            Restaurar Contraseña
+          </strong>
         </h1>
       </div>
       <div
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
-        {message && <p>{message}</p>}
+        {message && <p className="notification is-primary">{message}</p>}
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
             <input className="input" type="email" ref={emailRef}></input>
           </div>
+          <div className="buttons has-text-centered m-2">
+            <button className="button is-primary font_family" type="submit">
+              Restaurar contrasena
+            </button>
+          </div>
         </form>
-
-        <div className="buttons has-text-centered m-2">
-          <button className="button is-primary font_family" type="submit">
-            Restaurar contrasena
-          </button>
-        </div>
 
         <div className="m-2 font_family">
           <Link to="/login">Iniciar Sesion</Link>
