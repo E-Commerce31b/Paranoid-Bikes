@@ -13,8 +13,10 @@ const Filters = () => {
     const pricesAmounts = useSelector ((state) => state.products.pricesAmounts);
     const makers = useSelector ((state) => state.products.makers);
     const genders = useSelector ((state) => state.products.genders);
-    const products = useSelector((state) => state.products.products);
-    const {category} = useParams()
+    // const products = useSelector((state) => state.products.products);
+    // const someProducts = useSelector((state) => state.products.someProducts);
+    // const {category} = useParams()
+    // const {name} = useParams()
     const dispatch = useDispatch();
 
     const filters = useSelector(filtersSelectors.selectEntities);
@@ -46,11 +48,16 @@ const Filters = () => {
     }, [gender, dispatch]);
     
     useEffect(() => {
-        products?.length ?
-            dispatch(setFiltered(products.filter((item) => item.category === category)))
-            : (
-                <text>Loading...</text>
-            );
+        // category?.length ?
+        //     dispatch(setFiltered(products.filter((item) => item.category === category)))
+        //     : (
+        //         <text>Loading...</text>
+        //     );
+        // name?.length ?
+        //     dispatch(setFiltered(someProducts))
+        //     : (
+        //         <text>Loading...</text>
+        //     );
         if (filtersIds.length > 0) {
             let arr = [];
             if (filters[1]) arr.push({ price: filters[1]["price"] });
@@ -58,7 +65,7 @@ const Filters = () => {
             if (filters[3]) arr.push({ gender: filters[3]["gender"] });
             dispatch(filterProducts(arr));
         }
-    }, [products, category, filters, filtersIds, dispatch]);
+    }, [filters, filtersIds, dispatch]);
 
     return (
         <div>{

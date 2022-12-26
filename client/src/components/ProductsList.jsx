@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../redux/slices/productsActions';
+// import { useEffect } from 'react';
+import { useSelector } from 'react-redux'
+// import { getProducts } from '../redux/slices/productsActions';
 import Header from './reusable/Header';
 import Filters from './Filters'
 import RenderProducts from './RenderProducts';
@@ -11,11 +11,6 @@ const ProductsList = () => {
 
     const filtered = useSelector((state) => state.products.filtered);
     const currentPage = useSelector(state => state.products.currentPage);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
 
     const slicedProducts = () => {
 		// if(product) return product;

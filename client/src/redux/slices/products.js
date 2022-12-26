@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     products: [],
     productsOffers: [],
+    someProducts: [],
     newProducts: [],
     product: {},
     // categories: ["road", "urban", "BMX", "mountain", "youth"],
@@ -77,17 +78,30 @@ export const productsSlice = createSlice({
         if(payload.page === 'anteriores' && payload.currentPage > 0) 
             {let movePage = payload.currentPage - 16
               state.currentPage = movePage}
-    }
+    },
+    // product | products
+    getProduct: (state, {payload}) => {
+      if(/\d+/.test(payload)) {
+          state.product = state.products.find(p => p.id === payload)
+          state.filtered = state.products.find(p => p.id === payload)
+      } else {
+        state.someProducts = state.products.filter(p => p.name.includes(payload) )
+        state.filtered = state.products.filter(p => p.name.includes(payload))
+      }
+    },
+    getProductsByCategory: (state, {payload}) => {
+            state.someProducts = state.products.filter(p => p.category === payload)
+            state.filtered = state.products.filter(p => p.category === payload)
+    },
   },
-  extraReducers(builder) {
-    builder
-      .addMatcher(
-        (action) =>
-          action.type.startsWith("products/") &&
-          action.type.endsWith("/pending"),
-        (state) => {
-          state.status = "loading";
-
+    extraReducers(builder) {
+      builder
+        .addMatcher(
+          (action) =>
+            action.type.startsWith("products/") &&
+            action.type.endsWith("/pending"),
+          (state) => {
+            state.status = "loading";
         }
       )
       .addMatcher(
@@ -129,7 +143,7 @@ export const productsSlice = createSlice({
           action.type.endsWith("/fulfilled"),
         (state, action) => {
           state.status = "succeeded";
-          state.query = action.payload;
+          state.product = action.payload;
         }
       )
       .addMatcher(
@@ -169,5 +183,5 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
-export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination } = productsSlice.actions
+export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination, getProduct, getProductsByCategory } = productsSlice.actions
 export default productsSlice.reducer;
