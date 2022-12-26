@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { addFilter, removeFilter, filtersSelectors } from "../redux/slices/filters";
-import { setFiltered, filterProducts } from "../redux/slices/products";
+import { filterProducts } from "../redux/slices/products";
 
 const Filters = () => {
 
@@ -13,10 +12,6 @@ const Filters = () => {
     const pricesAmounts = useSelector ((state) => state.products.pricesAmounts);
     const makers = useSelector ((state) => state.products.makers);
     const genders = useSelector ((state) => state.products.genders);
-    // const products = useSelector((state) => state.products.products);
-    // const someProducts = useSelector((state) => state.products.someProducts);
-    // const {category} = useParams()
-    // const {name} = useParams()
     const dispatch = useDispatch();
 
     const filters = useSelector(filtersSelectors.selectEntities);
@@ -48,16 +43,6 @@ const Filters = () => {
     }, [gender, dispatch]);
     
     useEffect(() => {
-        // category?.length ?
-        //     dispatch(setFiltered(products.filter((item) => item.category === category)))
-        //     : (
-        //         <text>Loading...</text>
-        //     );
-        // name?.length ?
-        //     dispatch(setFiltered(someProducts))
-        //     : (
-        //         <text>Loading...</text>
-        //     );
         if (filtersIds.length > 0) {
             let arr = [];
             if (filters[1]) arr.push({ price: filters[1]["price"] });
