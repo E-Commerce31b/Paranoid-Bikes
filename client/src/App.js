@@ -3,7 +3,6 @@ import Home from "./components/Home";
 import Stripe from "./components/Stripe";
 import ProductDetail from "./components/ProductDetail";
 import ProductsList from "./components/ProductsList";
-import "./App.js";
 import Landing from "./components/Landing";
 import BestSellers from "./components/BestSellers";
 import Offers from "./components/Offers";
@@ -13,6 +12,7 @@ import Signup from "./components/Signup/Signup";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 import { AuthProvider } from "./context/AuthContext";
+
 function App() {
   return (
     <AuthProvider>
@@ -29,6 +29,7 @@ function App() {
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
+        <Route path="/list/:name" element={<ProductsList />} />
       </Routes>
     </AuthProvider>
   );

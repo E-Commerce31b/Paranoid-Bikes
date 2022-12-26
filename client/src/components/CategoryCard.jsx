@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { getProductsByCategory } from '../redux/slices/products'
 
-const ProductCard = ({ category }) => {
+const CategoryCard = ({ category }) => {
   const color = `rgba(255, 255, 255, 1)`;
 
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
+  const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(getProductsByCategory(category))
+        navigate(`/list/${category}`)
+  }
   return (
-    <Link to={`/list/${category}`}>
-      <div
+      <button onClick={handleClick}
         style={{
           borderRadius: 5,
           backgroundColor: `${color}`,
@@ -29,9 +39,8 @@ const ProductCard = ({ category }) => {
         <div style={{ font: "Audiowide", fontSize: 24, width: "40%" }}>
           {category}
         </div>
-      </div>
-    </Link>
+      </button>
   );
 };
 
-export default ProductCard;
+export default CategoryCard;
