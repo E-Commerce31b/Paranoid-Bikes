@@ -42,6 +42,9 @@ const UserScheme = new mongoose.Schema(
     DNI: {
         type: Number
     },
+    password: {
+      type: String
+    },
     softDelete: {
       type: Boolean,
       default: false
