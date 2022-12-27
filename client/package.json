@@ -10,7 +10,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
+    "bootstrap": "^5.2.3",
     "bulma": "^0.9.4",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.15.0",
     "fs": "^0.0.1-security",
     "react": "^18.2.0",
@@ -19,6 +21,7 @@
     "react-router": "^6.4.5",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
+    "reactstrap": "^9.1.5",
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"
   },

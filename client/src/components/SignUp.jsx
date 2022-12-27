@@ -1,31 +1,63 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import logo from "../../assets/Logo.png";
-import "../../index.css";
+import { useAuth } from "../context/AuthContext";
+import logo from "../assets/Logo.png";
+import "../index.css";
+// import emailjs from "emailjs-com";
+
 
 export default function Signup() {
+  const form = useRef();
+
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+
   const { signup } = useAuth();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [boxState, setBoxState] = useState(false);
   const navigate = useNavigate();
+
+  const changeState = () => {
+    setBoxState(true);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
-      return setError("Contrasena no coincide");
+      return setError("Contraseña no coincide");
+
+    if (!boxState) return setError("Por favor aceptar terminos y condiciones");
     try {
       setError("");
       setLoading(true);
+
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
+
+      // emailjs
+      //   .sendForm(
+      //     "service_ev9mv2j",
+      //     "template_hzyfavr",
+      //     form.current,
+      //     "gYTIZ320UzKrK9phD"
+      //   )
+        // .then(
+        //   (result) => {
+        //     console.log(result.text);
+        //   },
+        //   (error) => {
+        //     console.log(error.text);
+        //   }
+        // );
+
+      e.target.reset();
+      setBoxState(false);
       navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
@@ -60,25 +92,30 @@ export default function Signup() {
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
-        {error && <p>{error}</p>}
+        {error && <p className="notification is-danger is-light">{error}</p>}
 
-        <form on onSubmit={handleSubmit}>
+        <form ref={form} onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Nombre</label>
-            <input className="input" type="text"></input>
+            <input className="input" type="text" name="name"></input>
           </div>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
-            <input className="input" type="email" ref={emailRef}></input>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              ref={emailRef}
+            ></input>
           </div>
 
           <div className="field">
-            <label className="label font_family">Contrasena</label>
+            <label className="label font_family">Contraseña</label>
             <input className="input" type="password" ref={passwordRef}></input>
           </div>
 
           <div className="field">
-            <label className="label font_family">Confirmar contrasena</label>
+            <label className="label font_family">Confirmar contraseña</label>
             <input
               className="input"
               type="password"
@@ -86,10 +123,10 @@ export default function Signup() {
             ></input>
           </div>
 
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" />
+          <div className="field">
+            <div className="control">
+              <label className="checkbox">
+                <input type="checkbox" onChange={changeState} />
                 <a href="#" className="font_family">
                   Acepto los terminos y condiciones
                 </a>

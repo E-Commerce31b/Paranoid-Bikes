@@ -1,10 +1,12 @@
 import React from "react";
-import Header from './reusable/Header'
+import HomeIcons from "./reusable/homeIcons/HomeIcons";
+import ImgCarousel from "../components/reusable/imagecarousel/ImgCarousel";
 
-const Home = () => {return (
-            <div>
-                <Header/>
-            </div>
-    )
+export default function Home() {
+  return (
+    <div>
+      <HomeIcons />
+      <ImgCarousel />
+    </div>
+  );
 }
-export default Home;
