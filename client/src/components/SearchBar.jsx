@@ -6,7 +6,6 @@ import { getProduct } from '../redux/slices/products';
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar () {
-    // const products = useSelector(state => state.products.products)
     const dispatch = useDispatch()
     const [newProduct, setNewProduct] = useState("")
 
