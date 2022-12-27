@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from '../redux/slices/products';
 // import style from '../../assets/styles/SearchBar.module.css';
 // import logo from '../../assets/images/lupa.png'
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function SearchBar () {
     // const products = useSelector(state => state.products.products)
     const dispatch = useDispatch()
     const [newProduct, setNewProduct] = useState("")
 
-    const navigate = useNavigate();
-
     const handleSubmit = (e) => {
+        e.preventDefault()
         dispatch(getProduct(newProduct))
-        console.log(/\d+/.test(newProduct))
-        if(/\d+/.test(newProduct)) {
-            navigate(`/details/${newProduct}`)
-        } else {
-            navigate(`/list/${newProduct}`)
-        }
         setNewProduct("")
     }
     return (
@@ -43,6 +36,7 @@ export default function SearchBar () {
                     <i className="fas fa-search" aria-hidden="true"></i>
                 </span>
                 </p>
+                <Link to='/list/:name'>
                 <button
                     onClick={(e) => handleSubmit(e)} 
                     className="button is-small"
@@ -50,6 +44,7 @@ export default function SearchBar () {
                 >
                     🔍
                 </button>
+                </Link>
             </form>
         </div>
     )
