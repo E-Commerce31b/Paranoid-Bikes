@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import logo from "../../assets/Logo.png";
-import "../../index.css";
+import { useAuth } from "../context/AuthContext";
+import logo from "../assets/Logo.png";
+import "../index.css";
 // import emailjs from "emailjs-com";
+
 
 export default function Signup() {
   const form = useRef();
