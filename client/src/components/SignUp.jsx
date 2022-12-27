@@ -2,7 +2,9 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/Logo.png";
-import emailjs from "emailjs-com";
+import "../index.css";
+// import emailjs from "emailjs-com";
+
 
 export default function Signup() {
   const form = useRef();
@@ -38,21 +40,21 @@ export default function Signup() {
         passwordConfirmRef.current.value
       );
 
-      emailjs
-        .sendForm(
-          "service_ev9mv2j",
-          "template_hzyfavr",
-          form.current,
-          "gYTIZ320UzKrK9phD"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      // emailjs
+      //   .sendForm(
+      //     "service_ev9mv2j",
+      //     "template_hzyfavr",
+      //     form.current,
+      //     "gYTIZ320UzKrK9phD"
+      //   )
+        // .then(
+        //   (result) => {
+        //     console.log(result.text);
+        //   },
+        //   (error) => {
+        //     console.log(error.text);
+        //   }
+        // );
 
       e.target.reset();
       setBoxState(false);
