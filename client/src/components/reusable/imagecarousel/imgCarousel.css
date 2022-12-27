@@ -1,0 +1,10 @@
+.img_container {
+  display: flex;
+  background-color: aqua;
+  flex-direction: row;
+}
+
+.img {
+  width: 100%;
+  height: 300px;
+}

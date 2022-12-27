@@ -11,7 +11,7 @@ const ProductCard = ({ category }) => {
           backgroundColor: `${color}`,
           margin: 10,
           height: 260,
-          width: 390,
+          width: 400,
           borderWidth: 2,
           borderColor: "black",
           display: "flex",

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../../assets/Logo.png";
-import { useAuth } from "../../context/AuthContext";
+import logo from "../assets/Logo.png";
+import { useAuth } from "../context/AuthContext";
 
 const UpdateProfile = () => {
   const emailRef = useRef();

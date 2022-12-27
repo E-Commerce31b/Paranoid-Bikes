@@ -1,44 +1,36 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import logo from "../../assets/Logo.png";
-import "../../index.css";
 
-export default function Signup() {
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
-
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (passwordConfirmRef.current.value !== passwordRef.current.value)
-      return setError("Contrasena no coincide");
     try {
       setError("");
       setLoading(true);
-      await signup(
-        emailRef.current.value,
-        passwordRef.current.value,
-        passwordConfirmRef.current.value
-      );
+      await login(emailRef.current.value, passwordRef.current.value);
       navigate("/"); /// cambiar a ruta user
     } catch {
-      setError("Error al crear la cuenta");
+      setError("Error al inicial sesion, intente nuevamente");
     }
+    setLoading(false);
   }
-
   return (
     <div className="backgroundColor">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
-              <img src={logo} alt="logo" width="112" height="80" />
+              <img src={logo} width="112" height="80" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">
                   <span>Paranoid </span>
@@ -52,21 +44,14 @@ export default function Signup() {
 
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <strong className="font_family fontColor">CREAR USUARIO</strong>
+          <strong className="font_family fontColor">INICIAR SESION</strong>
         </h1>
       </div>
-
       <div
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
-        {error && <p>{error}</p>}
-
-        <form on onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label font_family">Nombre</label>
-            <input className="input" type="text"></input>
-          </div>
+        <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
             <input className="input" type="email" ref={emailRef}></input>
@@ -76,45 +61,22 @@ export default function Signup() {
             <label className="label font_family">Contrasena</label>
             <input className="input" type="password" ref={passwordRef}></input>
           </div>
-
-          <div className="field">
-            <label className="label font_family">Confirmar contrasena</label>
-            <input
-              className="input"
-              type="password"
-              ref={passwordConfirmRef}
-            ></input>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" />
-                <a href="#" className="font_family">
-                  Acepto los terminos y condiciones
-                </a>
-              </label>
-            </div>
-          </div>
-
           <div className="buttons has-text-centered">
             <button className="button is-primary font_family" type="submit">
-              Registrarse
+              Iniciar sesion
             </button>
-
-            <Link to="/">
-              <button className="button is-light font_family" type="submit">
-                Cancelar
-              </button>
-            </Link>
           </div>
         </form>
-        <br />
-        <div className="font_family">
-          Ya tiene una cuenta con nosotros?{" "}
-          <Link to="/login">Iniciar Sesion</Link>
+
+        <div className="m-2 font_family">
+          <Link to="/forgot-password">Olvido la contrasena?</Link>
+        </div>
+        <div className="m-2 font_family">
+          Crear cuenta nueva <Link to="/signup">Registrarse</Link>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
