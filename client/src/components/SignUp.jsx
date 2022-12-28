@@ -5,6 +5,7 @@ import logo from "../assets/Logo.png";
 import "../index.css";
 // import emailjs from "emailjs-com";
 
+
 export default function Signup() {
   const form = useRef();
 
@@ -12,7 +13,9 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
+
   const { signup, googleSignUp } = useAuth();
+
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -46,6 +49,7 @@ export default function Signup() {
       //     form.current,
       //     "gYTIZ320UzKrK9phD"
       //   )
+
       // .then(
       //   (result) => {
       //     console.log(result.text);
@@ -71,6 +75,7 @@ export default function Signup() {
       setLoading(true);
       await googleSignUp();
       navigate("/user"); /// cambiar a ruta user
+
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -167,6 +172,7 @@ export default function Signup() {
         >
           Registrarse con Google
         </button>
+
         <div className="font_family">
           Ya tiene una cuenta con nosotros?{" "}
           <Link to="/login">Iniciar Sesion</Link>

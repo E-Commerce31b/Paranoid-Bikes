@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/Logo.png";
 import { NavLink } from "react-router-dom";
+import SearchBar from '../SearchBar'
 
 export default function Header() {
   return (
@@ -62,25 +63,26 @@ export default function Header() {
         </div>
         <div className="row">
           <div className="field has-addons paddingTop">
-            <p className="control has-icons-left is-expanded">
+            {/* <p className="control has-icons-left is-expanded">
               <input
                 className="input is-small"
                 type="text"
-                /* onChange={(el) => handleChange(el)} */
-                /* placeholder={props.theText} */
+                onChange={(el) => handleChange(el)} 
+                placeholder={props.theText}
               />
               <span className="icon is-left">
                 <i className="fas fa-search" aria-hidden="true"></i>
               </span>
             </p>
 
-            <p className="control">
-              <button
-                /* onClick={(el) => handleSubmit(el)} */ className="button is-small"
-              >
-                🔍
-              </button>
-            </p>
+            <p className="control"> */}
+              <SearchBar/>
+              {/* <button
+                onClick={(el) => handleSubmit(el)} className="button is-small"
+              > */}
+                {/* 🔍 */}
+              {/* </button> */}
+            {/* </p> */}
             <p className="control pl-6">
               <button
                 /* onClick={(el) => handleSubmit(el)} */ className="button is-small"
