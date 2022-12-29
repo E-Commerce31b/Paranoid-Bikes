@@ -33,6 +33,10 @@ const BikeScheme = new mongoose.Schema(
       enum: ["unisex", "womens", "boys", "girls"],
       default:"unisex"
     },
+    count: {
+      type: Number,
+      default: 0
+    },
     priceCurrency: {
       type: String,
       enum: ["USD", "AUD", "CAD", "EUR", "GBP", "NZD"],
