@@ -9,7 +9,7 @@ const ProductDetail = (props) => {
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
-  console.log(bike);
+
   useEffect(() => {
     const data = async () => {
       setLoading(true);

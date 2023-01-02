@@ -7,12 +7,12 @@ router.get('/', async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})
-        AllUsers = AllUsers.filter(e => e.softDelete !== true)
+        users = AllUsers.filter(e => e.softDelete !== true)
         if(last_name || first_name) {
             let found = []
             last_name ? 
-            found = AllUsers.filter(u => u?.last_name?.toLowerCase().includes(last_name?.toLowerCase())) :
-            found = AllUsers.filter(u => u?.first_name?.toLowerCase().includes(first_name?.toLowerCase()))
+            found = users.filter(u => u?.last_name?.toLowerCase().includes(last_name?.toLowerCase())) :
+            found = users.filter(u => u?.first_name?.toLowerCase().includes(first_name?.toLowerCase()))
             console.log(found)
             res.status(200).send(found)
         } else {
