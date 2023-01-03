@@ -112,7 +112,7 @@ const UserHome = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <h1>UserName: {currentUser.email}</h1>
+                <p>UserName: {currentUser.email}</p>
 
                 <button
                   className="button is-warning is-small"

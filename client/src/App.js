@@ -14,6 +14,8 @@ import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/reusable/Header";
 import "./App.js";
+import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
+import UserHome from "./components/UserHome";
 
 function App() {
   return (
@@ -33,6 +35,14 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoutes>
+              <UserHome />
+            </PrivateRoutes>
+          }
+        ></Route>
       </Routes>
     </AuthProvider>
   );
