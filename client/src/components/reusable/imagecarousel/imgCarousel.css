@@ -1,6 +1,5 @@
 .img_container {
   display: flex;
-  background-color: aqua;
   flex-direction: row;
 }
 
