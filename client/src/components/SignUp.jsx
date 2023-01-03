@@ -13,7 +13,9 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { signup } = useAuth();
+
+  const { signup, googleSignUp } = useAuth();
+
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,18 +49,33 @@ export default function Signup() {
       //     form.current,
       //     "gYTIZ320UzKrK9phD"
       //   )
-        // .then(
-        //   (result) => {
-        //     console.log(result.text);
-        //   },
-        //   (error) => {
-        //     console.log(error.text);
-        //   }
-        // );
+
+      // .then(
+      //   (result) => {
+      //     console.log(result.text);
+      //   },
+      //   (error) => {
+      //     console.log(error.text);
+      //   }
+      // );
 
       e.target.reset();
       setBoxState(false);
-      navigate("/"); /// cambiar a ruta user
+      navigate("/user"); /// cambiar a ruta user
+    } catch {
+      setError("Error al crear la cuenta");
+    }
+  }
+
+  async function googleSubmit(e) {
+    e.preventDefault();
+    if (!boxState) return setError("Por favor aceptar terminos y condiciones");
+    try {
+      setError("");
+      setLoading(true);
+      await googleSignUp();
+      navigate("/user"); /// cambiar a ruta user
+
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -147,6 +164,15 @@ export default function Signup() {
           </div>
         </form>
         <br />
+
+        <button
+          className="button is-warning font_family"
+          type="submit"
+          onClick={googleSubmit}
+        >
+          Registrarse con Google
+        </button>
+
         <div className="font_family">
           Ya tiene una cuenta con nosotros?{" "}
           <Link to="/login">Iniciar Sesion</Link>
