@@ -21,11 +21,11 @@ export const getProducts = createAsyncThunk(
           maker: q.maker,
           created: q.year,
           gender: q.gender,
-          // size: q.size,
-          price: q.priceAmount,
+          count: q.count,
+          price: `${q.priceAmount} ${q.priceCurrency}`,
           // stock: q.stock,
           image: q.image,
-          // isEBike: q.isEBike,
+          isEBike: q.isEBike,
         };
       });
       console.log(mapeo);
