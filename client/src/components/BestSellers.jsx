@@ -6,13 +6,13 @@ import RenderProducts from "./RenderProducts";
 
 export default function BestSellers() {
 
-  const filtered = useSelector((state) => state.products);
+  const bestSellers = useSelector((state) => state.products.bestSellers);
   const currentPage = useSelector(state => state.products.currentPage);
 
   const slicedProducts = () =>{
-    if(filtered) {
+    if(bestSellers) {
       // console.log(filtered.products);
-      return filtered.products.slice(currentPage, currentPage + 16);
+      return bestSellers.slice(currentPage, currentPage + 16);
     }
   }
 
@@ -22,7 +22,7 @@ export default function BestSellers() {
             <h1>Más Vendidos</h1>
           </div>
           <div><RenderProducts slicedProducts={slicedProducts}/></div>
-    <div><Pagination currentPage={currentPage} filtered={filtered}/></div>
+    <div><Pagination currentPage={currentPage} filtered={bestSellers}/></div>
       </div>
   )
 };
