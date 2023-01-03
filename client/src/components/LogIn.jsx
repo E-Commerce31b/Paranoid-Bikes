@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/Logo.png";
 
 const Login = () => {
   const emailRef = useRef();
@@ -27,19 +26,7 @@ const Login = () => {
   return (
     <div className="backgroundColor">
       <div style={{ backgroundColor: "white" }}>
-        <div className="navbar-brand ">
-          <div className="navbar-item ">
-            <NavLink to="/home " className="textDecoration">
-              <img src={logo} width="112" height="80" />
-              <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
-                <h1 className="flex has-text-right ">
-                  <span>Paranoid </span>
-                  <span>Bikes</span>
-                </h1>
-              </div>
-            </NavLink>
-          </div>
-        </div>
+        <div className="navbar-brand "></div>
       </div>
 
       <div style={{ margin: "80px" }}>
