@@ -115,6 +115,12 @@ const UserScheme = new mongoose.Schema(
     password: {
       type: String
     },
+    cart: {
+      type: Array
+    },
+    favorites:{
+      type: Array
+    },
     softDelete: {
       type: Boolean,
       default: false
