@@ -5,6 +5,28 @@ import logo from "../assets/Logo.png";
 import "../index.css";
 // import emailjs from "emailjs-com";
 
+export const validate = (input) => {
+  let errors = {};
+
+  if (!input.email) {
+    errors.email = "Ingrese email";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
+    errors.email = "Ingrese email valido";
+  }
+
+  if (!input.password) {
+    errors.password = "Ingrese password";
+  } else if (
+    !input.password.match(/[A-Z]/) ||
+    !input.password.match(/[a-z]/) ||
+    !input.password.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ||
+    !(input.password.length > 7)
+  ) {
+    errors.password =
+      "Password debe tener(Un caracter en mayuscula, mas de 8 caracteres, caracteres especiales )";
+  }
+  return errors;
+};
 
 export default function Signup() {
   const form = useRef();
@@ -13,17 +35,30 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-
   const { signup, googleSignUp } = useAuth();
-
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [boxState, setBoxState] = useState(false);
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
   const changeState = () => {
     setBoxState(true);
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const property = e.target.name;
+    setInput({ ...input, [property]: value });
+    setFormErrors(validate({ ...input, [property]: value }));
   };
 
   async function handleSubmit(e) {
@@ -75,7 +110,6 @@ export default function Signup() {
       setLoading(true);
       await googleSignUp();
       navigate("/user"); /// cambiar a ruta user
-
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -110,12 +144,15 @@ export default function Signup() {
         style={{ width: "50%", marginTop: "50px" }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
-
+        {formErrors.email && (
+          <p className="notification is-danger is-light">{formErrors.email}</p>
+        )}
+        {formErrors.password && (
+          <p className="notification is-danger is-light">
+            {formErrors.password}
+          </p>
+        )}
         <form ref={form} onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label font_family">Nombre</label>
-            <input className="input" type="text" name="name"></input>
-          </div>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
             <input
@@ -123,12 +160,19 @@ export default function Signup() {
               type="email"
               name="email"
               ref={emailRef}
+              onChange={handleInputChange}
             ></input>
           </div>
 
           <div className="field">
             <label className="label font_family">Contraseña</label>
-            <input className="input" type="password" ref={passwordRef}></input>
+            <input
+              className="input"
+              type="password"
+              ref={passwordRef}
+              onChange={handleInputChange}
+              name="password"
+            ></input>
           </div>
 
           <div className="field">
