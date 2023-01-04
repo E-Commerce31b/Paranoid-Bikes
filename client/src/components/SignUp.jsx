@@ -11,11 +11,11 @@ export const validate = (input) => {
   if (!input.email) {
     errors.email = "Ingrese email";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
-    errors.email = "Ingrese email valido";
+    errors.email = "Ingrese correo electrónico válido";
   }
 
   if (!input.password) {
-    errors.password = "Ingrese password";
+    errors.password = "Ingrese contrasena";
   } else if (
     !input.password.match(/[A-Z]/) ||
     !input.password.match(/[a-z]/) ||
@@ -23,7 +23,7 @@ export const validate = (input) => {
     !(input.password.length > 7)
   ) {
     errors.password =
-      "Password debe tener(Un caracter en mayuscula, mas de 8 caracteres, caracteres especiales )";
+      "Contraseña debe tener(Un carácter en mayúscula, más de 8 caracteres, caracteres especiales)";
   }
   return errors;
 };
@@ -66,7 +66,7 @@ export default function Signup() {
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
       return setError("Contraseña no coincide");
 
-    if (!boxState) return setError("Por favor aceptar terminos y condiciones");
+    if (!boxState) return setError("Por favor aceptar términos y condiciones");
     try {
       setError("");
       setLoading(true);
@@ -104,14 +104,14 @@ export default function Signup() {
 
   async function googleSubmit(e) {
     e.preventDefault();
-    if (!boxState) return setError("Por favor aceptar terminos y condiciones");
+    if (!boxState) return setError("Por favor aceptar términos y condiciones");
     try {
       setError("");
       setLoading(true);
       await googleSignUp();
       navigate("/user"); /// cambiar a ruta user
     } catch {
-      setError("Error al crear la cuenta");
+      setError("Error al crear la cuenta, intente nuevamente por favor");
     }
   }
 
@@ -154,7 +154,7 @@ export default function Signup() {
         )}
         <form ref={form} onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label font_family">Correo electronico</label>
+            <label className="label font_family">Correo electrónico</label>
             <input
               className="input"
               type="email"
@@ -189,7 +189,7 @@ export default function Signup() {
               <label className="checkbox">
                 <input type="checkbox" onChange={changeState} />
                 <a href="#" className="font_family">
-                  Acepto los terminos y condiciones
+                  Acepto los términos y condiciones
                 </a>
               </label>
             </div>
@@ -218,8 +218,8 @@ export default function Signup() {
         </button>
 
         <div className="font_family">
-          Ya tiene una cuenta con nosotros?{" "}
-          <Link to="/login">Iniciar Sesion</Link>
+          ¿Ya tiene una cuenta con nosotros?
+          <Link to="/login">Iniciar Sesión</Link>
         </div>
       </div>
     </div>

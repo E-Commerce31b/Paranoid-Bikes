@@ -9,11 +9,11 @@ export const validate = (input) => {
   if (!input.email) {
     errors.email = "Ingrese email";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
-    errors.email = "Ingrese email valido";
+    errors.email = "Ingrese email válido";
   }
 
   if (!input.password) {
-    errors.password = "Ingrese password";
+    errors.password = "Ingrese contraseña";
   }
   return errors;
 };
@@ -59,7 +59,7 @@ const Login = () => {
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
-              <img src={logo} width="112" height="80" />
+              <img src={logo} width="112" height="80" alt="logo" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">
                   <span>Paranoid </span>
@@ -73,7 +73,7 @@ const Login = () => {
 
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <strong className="font_family fontColor">INICIAR SESION</strong>
+          <strong className="font_family fontColor">INICIAR SESIÓN</strong>
         </h1>
       </div>
       <div
@@ -91,7 +91,7 @@ const Login = () => {
         )}
         <form onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label font_family">Correo electronico</label>
+            <label className="label font_family">Correo electrónico</label>
             <input
               className="input"
               type="email"
@@ -102,7 +102,7 @@ const Login = () => {
           </div>
 
           <div className="field">
-            <label className="label font_family">Contrasena</label>
+            <label className="label font_family">Contraseña</label>
             <input
               className="input"
               type="password"
@@ -113,13 +113,13 @@ const Login = () => {
           </div>
           <div className="buttons has-text-centered">
             <button className="button is-primary font_family" type="submit">
-              Iniciar sesion
+              Iniciar Sesión
             </button>
           </div>
         </form>
 
         <div className="m-2 font_family">
-          <Link to="/forgot-password">Olvido la contrasena?</Link>
+          <Link to="/forgot-password">¿Olvido la contraseña?</Link>
         </div>
         <div className="m-2 font_family">
           Crear cuenta nueva <Link to="/signup">Registrarse</Link>
