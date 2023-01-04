@@ -3,6 +3,20 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/Logo.png";
 
+export const validate = (input) => {
+  let errors = {};
+
+  if (!input.email) {
+    errors.email = "Ingrese email";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
+    errors.email = "Ingrese email valido";
+  }
+
+  if (!input.password) {
+    errors.password = "Ingrese password";
+  }
+  return errors;
+};
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -10,8 +24,23 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const property = e.target.name;
+    setInput({ ...input, [property]: value });
+    setFormErrors(validate({ ...input, [property]: value }));
+  };
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -51,15 +80,36 @@ const Login = () => {
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
+        {error && <p className="notification is-danger is-light">{error}</p>}
+        {formErrors.email && (
+          <p className="notification is-danger is-light">{formErrors.email}</p>
+        )}
+        {formErrors.password && (
+          <p className="notification is-danger is-light">
+            {formErrors.password}
+          </p>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label font_family">Correo electronico</label>
-            <input className="input" type="email" ref={emailRef}></input>
+            <input
+              className="input"
+              type="email"
+              ref={emailRef}
+              name="email"
+              onChange={handleInputChange}
+            ></input>
           </div>
 
           <div className="field">
             <label className="label font_family">Contrasena</label>
-            <input className="input" type="password" ref={passwordRef}></input>
+            <input
+              className="input"
+              type="password"
+              ref={passwordRef}
+              name="password"
+              onChange={handleInputChange}
+            ></input>
           </div>
           <div className="buttons has-text-centered">
             <button className="button is-primary font_family" type="submit">
