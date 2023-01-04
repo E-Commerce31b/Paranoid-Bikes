@@ -15,6 +15,7 @@ const initialState = {
     favourites: [],
     filtered: [],
     currentPage: [],
+    bestSellers: [],
     status: "",
     error: ""
 }
@@ -124,6 +125,12 @@ export const productsSlice = createSlice({
           state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
           state.genders = [...new Set(genders)];
+          let sellers = state.products.sort(function (a, b) {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+          }).slice(1, 5);
+          state.bestSellers = sellers
           // const today = `0${new Date().getDate()}`
           // const tomorrow = `0${new Date().getDate()}` + 1
           // const tomorrowAfter = `0${new Date().getDate()}` + 2

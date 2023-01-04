@@ -68,7 +68,6 @@ UserScheme.pre("save", function (next) {
     });
   } else {
     next();
-
     const UserScheme = new mongoose.Schema({
       id: {
         type: mongoose.Types.ObjectId,

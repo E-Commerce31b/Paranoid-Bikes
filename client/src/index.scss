@@ -2,7 +2,7 @@
 @charset "utf-8";
 @import "../node_modules/bulma/sass/base/_all.sass";
 @import "../node_modules/bulma/bulma.sass";
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap");
 
 // @import "../sass/utilities/initial-variables";
 // @import "../sass/utilities/functions";
@@ -10,7 +10,7 @@
 //cambios en Navbar
 
 $navbar-item-img-max-height: 3rem;
-$container-max-width:1344px + (2 * $gap);
+$container-max-width: 1344px + (2 * $gap);
 $gap: 5px;
 
 

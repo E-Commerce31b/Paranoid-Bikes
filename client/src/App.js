@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Stripe from "./components/Stripe";
+import Stripe from "./components/paymentmethod/Stripe";
 import ProductDetail from "./components/ProductDetail";
 import ProductsList from "./components/ProductsList";
 import Landing from "./components/Landing";
@@ -13,10 +13,15 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/reusable/Header";
-import PaymentMethod from "./components/PaymentMethod";
+import PaymentMethod from "./components/paymentmethod/PaymentMethod";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import "./App.js";
+
+import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
+import UserHome from "./components/UserHome";
+import UserProfile from "./components/UserProfile";
+
 import Footer from "./components/reusable/imagecarousel/Footer";
 
 function App() {
@@ -24,7 +29,7 @@ function App() {
     <AuthProvider>
       <Header />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/Landing" element={<Landing />} />
         <Route path="/details/:id" element={<ProductDetail />} />
         <Route path="/home" element={<Home />} />
         <Route path="/bestsellers" element={<BestSellers />} />
@@ -37,6 +42,22 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoutes>
+              <UserHome />
+            </PrivateRoutes>
+          }
+        ></Route>
+        <Route
+          path="/user-profile"
+          element={
+            <PrivateRoutes>
+              <UserProfile />
+            </PrivateRoutes>
+          }
+        ></Route>
         <Route path="/paymentmethod" element={<PaymentMethod />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />

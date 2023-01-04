@@ -77,22 +77,6 @@ router.post('/', async(req, res) => {
             birthday,
             DNI
         } = req.body
-
-        // console.log(
-        //     first_name,
-        //     last_name,
-        //     history,
-        //     type,
-        //     purchased,
-        //     email,
-        //     country,
-        //     city,
-        //     state,
-        //     address,
-        //     birthday,
-        //     DNI
-        // )
-
         const createdUser = userModel.create({
             first_name,
             password,
@@ -108,7 +92,7 @@ router.post('/', async(req, res) => {
             birthday,
             DNI
         })
-        res.status(200).send(createdUser)
+        res.status(200).send("Usuario Creado")
     } catch (err) {
         console.log('error en post user')
         console.log(err)

@@ -75,6 +75,9 @@ export default function Header() {
           </div>
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
+              <NavLink to="/Landing" className="navbar-item">
+                <div>Inicio</div>
+              </NavLink>
               <NavLink to="/BestSellers" className="navbar-item">
                 <div>Más vendidos</div>
               </NavLink>
