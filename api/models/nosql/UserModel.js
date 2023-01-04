@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 // const mongooseDelete = require('mongoose-delete')
@@ -69,6 +70,7 @@ UserScheme.pre("save", function (next) {
   } else {
     next();
 
+
     const UserScheme = new mongoose.Schema({
       id: {
         type: mongoose.Types.ObjectId,
@@ -123,6 +125,7 @@ UserScheme.pre("save", function (next) {
         default: false,
       },
     });
+
   }
 });
 
