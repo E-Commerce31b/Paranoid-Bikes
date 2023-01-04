@@ -7,8 +7,8 @@ export default function Footer() {
   return (
     <div className="position_footer">
       <footer class="footer p-5">
-        <div className=" ">
-          <div className=" column is-half is-offset-one-quarter ">
+        <div className="container">
+          <div className=" flex is-flex-direction-row is-justify-content-center is-justify-content-space-between ">
             <a href="https://www.facebook.com/">
               <img src={facebook} width="20" height="20" />
             </a>
