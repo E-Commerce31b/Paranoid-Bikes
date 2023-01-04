@@ -64,6 +64,7 @@ router.post('/', async(req, res) => {
     try {
         const {
             first_name,
+            password,
             last_name,
             history,
             type,
@@ -76,24 +77,9 @@ router.post('/', async(req, res) => {
             birthday,
             DNI
         } = req.body
-
-        // console.log(
-        //     first_name,
-        //     last_name,
-        //     history,
-        //     type,
-        //     purchased,
-        //     email,
-        //     country,
-        //     city,
-        //     state,
-        //     address,
-        //     birthday,
-        //     DNI
-        // )
-
         const createdUser = userModel.create({
             first_name,
+            password,
             last_name,
             history,
             type,
@@ -106,7 +92,7 @@ router.post('/', async(req, res) => {
             birthday,
             DNI
         })
-        res.status(200).send(createdUser)
+        res.status(200).send("Usuario Creado")
     } catch (err) {
         console.log('error en post user')
         console.log(err)
@@ -115,6 +101,28 @@ router.post('/', async(req, res) => {
     }
 })
 
+router.post("/login", (req, res) => {
+    const { email, password } = req.body;
+    userModel.findOne({ email: email }, (err, user) => {
+      if (err) {
+        res.status(500).send("Error al autenticar al usuario");
+      }
+      if (!user) {
+        res.status(500).send("El usuario no existe");
+      } else {
+        user.isCorrectPassword(password, (err, result) => {
+          if (err) {
+            res.status(500).send("Error al autenticar");
+          } else if (result) {
+            res.status(200).send("Usuario autenticado correctamente");
+          } else {
+            res.status(500).send("Usuario o contranseña incorrecta");
+          }
+        });
+      }
+    });
+  });
+  
 router.delete('/:id', async(req, res) => {
     const { id } = req.params;
     try {
