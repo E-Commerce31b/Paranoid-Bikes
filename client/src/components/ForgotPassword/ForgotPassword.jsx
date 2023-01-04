@@ -20,10 +20,10 @@ const ForgotPassword = () => {
       setLoading(true);
       await resetPassword(emailRef.current.value);
       setMessage(
-        "Por favor revisar la bandeja de entrada de su correo electronico para reiniciar contrasena"
+        "Por favor revisar la bandeja de entrada de su correo electrónico para reiniciar contraseña"
       );
     } catch {
-      setError("Error al reiniciar contrasena");
+      setError("Error al reiniciar contraseña, validar correo electrónico");
     }
     setLoading(false);
   }
@@ -56,21 +56,22 @@ const ForgotPassword = () => {
         className="container box"
         style={{ width: "50%", marginTop: "50px" }}
       >
+        {error && <p className="notification is-danger is-light">{error}</p>}
         {message && <p className="notification is-primary">{message}</p>}
         <form onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label font_family">Correo electronico</label>
+            <label className="label font_family">Correo electrónico</label>
             <input className="input" type="email" ref={emailRef}></input>
           </div>
           <div className="buttons has-text-centered m-2">
             <button className="button is-primary font_family" type="submit">
-              Restaurar contrasena
+              Restaurar contraseña
             </button>
           </div>
         </form>
 
         <div className="m-2 font_family">
-          <Link to="/login">Iniciar Sesion</Link>
+          <Link to="/login">Iniciar Sesión</Link>
         </div>
         <div className="m-2 font_family">
           Crear cuenta nueva <Link to="/signup">Registrarse</Link>
