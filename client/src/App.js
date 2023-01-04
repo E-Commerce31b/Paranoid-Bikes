@@ -16,6 +16,7 @@ import Header from "./components/reusable/Header";
 import "./App.js";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
@@ -35,11 +36,20 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
+
         <Route
           path="/user"
           element={
             <PrivateRoutes>
               <UserHome />
+            </PrivateRoutes>
+          }
+        ></Route>
+        <Route
+          path="/user-profile"
+          element={
+            <PrivateRoutes>
+              <UserProfile />
             </PrivateRoutes>
           }
         ></Route>
