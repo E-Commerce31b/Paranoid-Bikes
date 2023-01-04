@@ -17,7 +17,13 @@ import PaymentMethod from "./components/PaymentMethod";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import "./App.js";
+
+import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
+import UserHome from "./components/UserHome";
+import UserProfile from "./components/UserProfile";
+
 import Footer from "./components/reusable/imagecarousel/Footer";
+
 
 function App() {
   return (
@@ -37,9 +43,26 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoutes>
+              <UserHome />
+            </PrivateRoutes>
+          }
+        ></Route>
+        <Route
+          path="/user-profile"
+          element={
+            <PrivateRoutes>
+              <UserProfile />
+            </PrivateRoutes>
+          }
+        ></Route>
         <Route path="/paymentmethod" element={<PaymentMethod />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
+
       </Routes>
       <Footer />
     </AuthProvider>

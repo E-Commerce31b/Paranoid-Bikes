@@ -17,7 +17,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/"); /// cambiar a ruta user
+      navigate("/user"); /// cambiar a ruta user
     } catch {
       setError("Error al inicial sesion, intente nuevamente");
     }
