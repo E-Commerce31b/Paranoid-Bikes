@@ -37,6 +37,8 @@ class ImgCarousel extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
+  publicity() {}
+
   onExiting() {
     this.animating = true;
   }

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/Logo.png";
 
 export const validate = (input) => {
   let errors = {};
@@ -56,6 +55,7 @@ const Login = () => {
   return (
     <div className="backgroundColor">
       <div style={{ backgroundColor: "white" }}>
+
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
@@ -69,6 +69,7 @@ const Login = () => {
             </NavLink>
           </div>
         </div>
+
       </div>
 
       <div style={{ margin: "80px" }}>
