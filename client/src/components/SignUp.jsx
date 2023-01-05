@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions";
-// import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 export const validate = (input) => {
   let errors = {};
@@ -77,35 +77,36 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
-      {
-        dispatch(postUser(input));
-        alert("Usuario creado con exito!");
-        setInput({
-          email: "",
-          password: "",
-        });
-      }
 
-      // emailjs
-      //   .sendForm(
-      //     "service_ev9mv2j",
-      //     "template_hzyfavr",
-      //     form.current,
-      //     "gYTIZ320UzKrK9phD"
-      //   )
 
-      // .then(
-      //   (result) => {
-      //     console.log(result.text);
-      //   },
-      //   (error) => {
-      //     console.log(error.text);
-      //   }
-      // );
+      dispatch(postUser(input));
+      alert("Usuario creado con exito!");
+      setInput({
+        email: "",
+        password: "",
+      });
+
+      emailjs
+        .sendForm(
+          "service_ev9mv2j",
+          "template_hzyfavr",
+          form.current,
+          "gYTIZ320UzKrK9phD"
+        )
+
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+
 
       e.target.reset();
       setBoxState(false);
-      navigate("/user"); /// cambiar a ruta user
+      navigate("/user");
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -125,8 +126,14 @@ export default function Signup() {
   }
 
   return (
-    <div className="backgroundColor">
-      <div>
+
+    <div className="backgroundColor mb-5">
+      <div style={{ backgroundColor: "white" }}>
+        <div className="navbar-brand "></div>
+      </div>
+
+      <div style={{ margin: "80px" }}>
+
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <h1 className="title is-3 font_family mt-3">Crear usuario</h1>
         </h1>
