@@ -14,6 +14,7 @@ $container-max-width: 1344px + (2 * $gap);
 $gap: 5px;
 $title-color: white;
 
+
 //importaciones de bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "bulma/sass/grid/columns.sass";

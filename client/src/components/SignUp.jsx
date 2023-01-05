@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
+import {useDispatch} from 'react-redux'
+import { postUser } from "../redux/slices/usersActions";
 // import emailjs from "emailjs-com";
 
 export const validate = (input) => {
@@ -30,7 +32,7 @@ export const validate = (input) => {
 
 export default function Signup() {
   const form = useRef();
-
+  const dispatch = useDispatch()
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -76,6 +78,15 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
+      {dispatch(postUser(input))
+        alert("Usuario creado con exito!")
+        setInput({
+          email: "",
+          password: "",
+           
+    
+        })}
+        
 
       // emailjs
       //   .sendForm(
