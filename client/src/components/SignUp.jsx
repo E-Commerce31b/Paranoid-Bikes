@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions";
 // import emailjs from "emailjs-com";
 
@@ -29,10 +29,9 @@ export const validate = (input) => {
   return errors;
 };
 
-
 export default function Signup() {
   const form = useRef();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -78,15 +77,14 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
-      {dispatch(postUser(input))
-        alert("Usuario creado con exito!")
+      {
+        dispatch(postUser(input));
+        alert("Usuario creado con exito!");
         setInput({
           email: "",
           password: "",
-           
-    
-        })}
-        
+        });
+      }
 
       // emailjs
       //   .sendForm(
@@ -128,19 +126,15 @@ export default function Signup() {
 
   return (
     <div className="backgroundColor">
-      <div style={{ backgroundColor: "white" }}>
-        <div className="navbar-brand "></div>
-      </div>
-
-      <div style={{ margin: "80px" }}>
+      <div>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <strong className="font_family fontColor">CREAR USUARIO</strong>
+          <h1 className="title is-3 font_family mt-3">Crear usuario</h1>
         </h1>
       </div>
 
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "50px" }}
+        style={{ width: "50%", marginTop: "20px", marginBottom: "20px" }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
         {formErrors.email && (
@@ -216,7 +210,7 @@ export default function Signup() {
           Registrarse con Google
         </button>
 
-        <div className="font_family">
+        <div className="font_family" style={{ marginTop: "20px" }}>
           ¿Ya tiene una cuenta con nosotros?
           <Link to="/login">Iniciar Sesión</Link>
         </div>
