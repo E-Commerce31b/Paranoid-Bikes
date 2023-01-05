@@ -13,7 +13,6 @@ const UserHome = () => {
 
   async function handleLogout() {
     setError("");
-    console.log("holaaa");
     try {
       await logout();
       navigate("/home");
@@ -32,7 +31,7 @@ const UserHome = () => {
         <div className="navbar-brand ">
           <div className="navbar-item ">
             <NavLink to="/home " className="textDecoration">
-              <img src={logo} width="112" height="80" />
+              <img src={logo} width="112" height="80" alt="logo" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">
                   <span>Paranoid </span>
@@ -112,7 +111,7 @@ const UserHome = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <p>UserName: {currentUser.email}</p>
+                <p className="m-5">Usuario: {currentUser.email}</p>
 
                 <button
                   className="button is-warning is-small"

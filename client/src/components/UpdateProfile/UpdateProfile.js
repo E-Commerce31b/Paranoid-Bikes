@@ -63,25 +63,22 @@ const UpdateProfile = () => {
         </h1>
       </div>
 
-      <div
-        className="container box "
-        style={{ width: "50%", marginTop: "30px", marginBotton: "30px" }}
-      >
+      <div className="container box mb-5" style={{ width: "50%" }}>
         {error && <p>{error}</p>}
 
-        <form on onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label font_family">Correo electronico</label>
+            <label className="label font_family">Confirmar correo electrónico</label>
             <input className="input" type="email" ref={emailRef}></input>
           </div>
 
           <div className="field">
-            <label className="label font_family">Contrasena</label>
+            <label className="label font_family">Contraseña</label>
             <input className="input" type="password" ref={passwordRef}></input>
           </div>
 
           <div className="field">
-            <label className="label font_family">Confirmar contrasena</label>
+            <label className="label font_family">Confirmar contraseña</label>
             <input
               className="input"
               type="password"
@@ -90,11 +87,11 @@ const UpdateProfile = () => {
           </div>
 
           <div className="buttons has-text-centered">
-            <button className="button is-primary font_family" type="submit">
+            <button className="button is-primary" type="submit">
               Actualizar
             </button>
 
-            <Link to="/">
+            <Link to="/user-profile">
               <button className="button is-light font_family" type="submit">
                 Cancelar
               </button>

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export const validate = (input) => {
@@ -53,8 +53,7 @@ const Login = () => {
     setLoading(false);
   }
   return (
-    <div className="backgroundColor">
-
+    <div className="backgroundColor mb-5">
       <div>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <h1 className="title is-3 font_family mt-3">Iniciar sesión</h1>

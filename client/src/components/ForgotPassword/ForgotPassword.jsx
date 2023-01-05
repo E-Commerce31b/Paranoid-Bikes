@@ -28,7 +28,7 @@ const ForgotPassword = () => {
     setLoading(false);
   }
   return (
-    <div className="backgroundColor">
+    <div className="backgroundColor mb-5">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand ">
           <div className="navbar-item ">
