@@ -32,7 +32,6 @@ const CheckoutForm = () => {
           amount: 10000,
         }
       );
-      console.log(data);
     }
   };
 
