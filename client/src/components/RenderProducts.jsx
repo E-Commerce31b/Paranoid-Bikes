@@ -1,10 +1,11 @@
 import React from 'react'
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCard/ProductCard'
 
 const RenderProducts = ({slicedProducts}) => {
-    
+    const color = `#000952`;
     return (
-        <div style={{display:"flex", flexWrap:"wrap", alignItems:"center", gap:"10px"}}>{
+        <div style={{background:`${color}`,display: 'flex', flexFlow: 'wrap',padding: 10,
+        justifyContent:'space-evenly', gap: '10px'}}>{
             slicedProducts().map((p,i) => {
                 return (<div key={i}>
                     <ProductCard product={p}/></div>)})
@@ -12,4 +13,4 @@ const RenderProducts = ({slicedProducts}) => {
     )
 }
 
-export default RenderProducts
+export default RenderProducts;
