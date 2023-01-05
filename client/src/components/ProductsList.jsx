@@ -22,9 +22,6 @@ const ProductsList = () => {
   return (
     <div>
       <div>
-        <Header />
-      </div>
-      <div>
         <Filters />
       </div>
       <div>
