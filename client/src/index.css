@@ -2,14 +2,18 @@
 body {
  display: flex;
  flex-direction: column; 
- font-family: "Audiowide", cursive !important;
+ font-family: "Audiowide", cursive;
  background-color: #000952 !important;
+ height: 100vh;
 }
 .flex {
   display: flex;
   flex-direction: column;
 }
 
+.font_family {
+  font-family: "Audiowide", cursive;
+}
 .flex_direction {
   flex-direction: row;
 }
@@ -22,6 +26,16 @@ body {
   color: black;
 }
 
+.backgroundbody {
+background-color: #000952;
+height: 100vh;
+}
+
+
+.backgroundColor {
+  background-color: #000952;
+  height: 100vh;
+}
 .fontColor {
   color: white;
 }

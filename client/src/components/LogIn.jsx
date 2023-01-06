@@ -53,7 +53,9 @@ const Login = () => {
     setLoading(false);
   }
   return (
+
     <div className="backgroundColor mb-5">
+
       <div>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <h1 className="title is-3 font_family mt-3">Iniciar sesión</h1>
@@ -61,7 +63,7 @@ const Login = () => {
       </div>
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "20px" }}
+        style={{ width: "50%", marginTop: "20px", marginBottom: "20px" }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
         {formErrors.email && (

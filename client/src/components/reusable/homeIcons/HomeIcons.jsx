@@ -10,27 +10,24 @@ export default function HomeIcons() {
       title: "Metodo de pago",
 
       a: "/PaymentMethod",
-
     },
     {
       src: require("../../../assets/pedidos.png"),
       title: "Tus pedidos",
       a: "/Orders",
-
     },
     {
       src: require("../../../assets/perfil.png"),
       title: "Tu perfil",
 
       a: "/user-profile",
-
     },
   ];
   return (
     <div className="container_icons">
       {icons.map((icon, id) => {
         return (
-          <div className="container_cards">
+          <div className="container_card">
             <NavLink to={icon.a}>
               <button>
                 <img src={icon.src} className="card_img" />

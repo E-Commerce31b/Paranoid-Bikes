@@ -12,13 +12,13 @@ export default function BestSellers() {
   const slicedProducts = () =>{
     if(bestSellers) {
       // console.log(filtered.products);
-      return bestSellers.slice(currentPage, currentPage + 16);
+      return bestSellers.slice(currentPage, currentPage + 5);
     }
   }
 
   return (
       <div>
-          <div style={{font:"Audiowide", fontSize:24, width:"40%", display:"flex", textAlign:"center"}}>
+          <div class="content has-text-centered mt-3">
             <h1>Más Vendidos</h1>
           </div>
           <div><RenderProducts slicedProducts={slicedProducts}/></div>

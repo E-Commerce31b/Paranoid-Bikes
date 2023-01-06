@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const RenderProducts = ({ slicedProducts }) => {
+  const color = `#000952`;
   return (
     <div
       style={{
@@ -15,7 +16,6 @@ const RenderProducts = ({ slicedProducts }) => {
         return (
           <div key={i}>
             <ProductCard product={p} />
-            {console.log(p)}
           </div>
         );
       })}

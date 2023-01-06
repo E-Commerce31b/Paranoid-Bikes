@@ -11,9 +11,10 @@
   padding-inline-end: 100%;
 }
 
-.container_cards {
+.container_cards_payment {
   width: 600px;
   height: 400px;
   background-color: white;
   border-radius: 20px;
+  margin: 3rem;
 }

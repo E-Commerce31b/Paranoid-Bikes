@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})
-        users = AllUsers.filter(e => e.softDelete !== true)
+        const users = AllUsers.filter(e => e.softDelete !== true)
         if(last_name || first_name) {
             let found = []
             last_name ? 

@@ -8,8 +8,8 @@ router.get("/", async(req, res) => {
     const { name } = req.query;
     // console.log(name)
     try {
-        let total = await getBikesDb()
-        total = total.filter(e => e.softDelete !== true)
+        const bikes = await getBikesDb()
+        const total = bikes.filter(e => e.softDelete !== true)
         if(name) {
             let found = total.filter(
                 f => f?.name?.toLowerCase().includes(name?.toLowerCase())
