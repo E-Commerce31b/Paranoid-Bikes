@@ -15,7 +15,7 @@ const UserHome = () => {
     setError("");
     try {
       await logout();
-      navigate("/home");
+      navigate("/login");
     } catch (error) {
       setError(error);
     }
