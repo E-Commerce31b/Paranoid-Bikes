@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
 import Stripe from "./components/paymentmethod/Stripe";
 import ProductDetail from "./components/ProductDetail";
 import ProductsList from "./components/ProductsList";
@@ -29,9 +28,9 @@ function App() {
     <AuthProvider>
       <Header />
       <Routes>
-        <Route path="/Landing" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/details/:id" element={<ProductDetail />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<UserHome />} />
         <Route path="/bestsellers" element={<BestSellers />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/record" element={<Record />} />
