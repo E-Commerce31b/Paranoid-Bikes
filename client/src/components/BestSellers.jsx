@@ -19,7 +19,7 @@ export default function BestSellers() {
   return (
       <div>
           <div class="content has-text-centered mt-3">
-            <h1>Más Vendidos</h1>
+            <h1 style={{color:'white'}}>Más Vendidos</h1>
           </div>
           <div><RenderProducts slicedProducts={slicedProducts}/></div>
     <div><Pagination currentPage={currentPage} filtered={bestSellers}/></div>
