@@ -78,7 +78,6 @@ export default function Signup() {
         passwordConfirmRef.current.value
       );
 
-
       dispatch(postUser(input));
       alert("Usuario creado con exito!");
       setInput({
@@ -103,7 +102,6 @@ export default function Signup() {
           }
         );
 
-
       e.target.reset();
       setBoxState(false);
       navigate("/user");
@@ -126,14 +124,12 @@ export default function Signup() {
   }
 
   return (
-
-    <div className="backgroundColor mb-5">
+    <div className=" mb-5">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand "></div>
       </div>
 
       <div style={{ margin: "80px" }}>
-
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <h1 className="title is-3 font_family mt-3">Crear usuario</h1>
         </h1>
