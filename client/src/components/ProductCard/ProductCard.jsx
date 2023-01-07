@@ -1,12 +1,11 @@
 import React from 'react';
 import './productCard.css';
+import { Link } from "react-router-dom";
 
 const ProductCard = ({product}) => {
-    
-    const color = `rgba(255, 255, 255, 1)`
 
     return (
-        
+        <Link to={`/details/${product.id}`}>
         <div className='box'>
             <div className='box-image'>
             <img src={product.image} alt="Not found" />
@@ -16,6 +15,7 @@ const ProductCard = ({product}) => {
                 <p>{product.name}</p>
                 <p>$ {product.price}</p></div>
         </div>
+        </Link>
     )
 }
 
