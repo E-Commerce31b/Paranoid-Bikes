@@ -5,6 +5,7 @@ import ProductsList from "./components/ProductsList";
 import Landing from "./components/Landing";
 import BestSellers from "./components/BestSellers";
 import Offers from "./components/Offers";
+import AboutUs from "./components/AboutUs";
 import Record from "./components/Record";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/bestsellers" element={<BestSellers />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/record" element={<Record />} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

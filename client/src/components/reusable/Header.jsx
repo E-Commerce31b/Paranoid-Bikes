@@ -61,7 +61,9 @@ export default function Header() {
                 <a className="navbar-link">Novedades</a>
 
                 <div className="navbar-dropdown">
-                  <a className="navbar-item">Sobre Nosotros</a>
+                  <NavLink to="/about" className="navbar-item">
+                    <a className="navbar-item">Sobre Nosotros</a>
+                  </NavLink>
                   <a className="navbar-item">Contactarnos</a>
                   <hr className="navbar-divider" />
                   <a className="navbar-item">Reportar un error</a>
