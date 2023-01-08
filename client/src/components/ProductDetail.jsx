@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { useParams } from "react-router-dom";
-
+import "../index.css";
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -25,24 +25,14 @@ const ProductDetail = (props) => {
   }
   return (
     <>
-      <div className="card column is-two-fifths">
-        <div className="card-image">
-          <figure>
-            <img
-              src={bike.image}
-              style={{ width: "500px", height: "auto" }}
-              alt="not found"
-            />
-          </figure>
-        </div>
-        <div className="card-content">
-          <div className="media">
-            <div className="media-content">
-              <p className="primary title is-4 is-Info">{bike.name}</p>
-              <p className="subtitle is-6 is-Info">{bike.maker}</p>
-            </div>
+    <div style={{color:'white',textAlign:'center', fontSize:28, paddingTop:10}}>Detalles del Producto</div>
+    <div className="container" style={{background:'white', borderRadius:25, width:800, padding:10,marginBottom:70}}>
+    <div className='columns is is-align-items-center'>
+      <div className="column is-align-items-center">
+            <div className="card-header-title is-align-content-flex-start">
+              <p className="card-">{bike.name} - {bike.maker}</p>
           </div>
-          <div className="content">
+          <div className="card-content" >
             <p>Modelo: {bike.created} </p>
             <p>Fabricante: {bike.maker} </p>
             <p>Genero: {bike.genre ? bike.genre : "Sin Genero"}</p>
@@ -52,8 +42,19 @@ const ProductDetail = (props) => {
             <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
           </div>
         </div>
+        <div className="column is is-align-items-center">
+        <div style={{ width: "280px", height: "auto"}}>
+          <figure>
+            <img
+              src={bike.image}
+              alt="not found"
+              />
+          </figure>
+        </div>
       </div>
-    </>
+    </div>
+    </div>
+  </>
   );
 };
 

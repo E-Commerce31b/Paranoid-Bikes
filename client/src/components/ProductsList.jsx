@@ -15,7 +15,7 @@ const ProductsList = () => {
     // if(product) return product;
     if (filtered) {
       // return filtered.slice(currentPage, currentPage ? currentPage + 16 : 0);
-      return filtered.slice(currentPage, currentPage + 16);
+      return filtered.slice(currentPage, currentPage + 15);
     }
   };
 
