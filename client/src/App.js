@@ -21,7 +21,9 @@ import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
 import Footer from "./components/reusable/imagecarousel/Footer";
-import ConfirmPurchase from "./components/ConfirmPurchase";
+
+import Error404 from "./components/Error404";
+
 
 function App() {
   return (
@@ -62,6 +64,7 @@ function App() {
         <Route path="/paymentmethod" element={<PaymentMethod />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<Error404/>} />
       </Routes>
       <Footer />
     </AuthProvider>
