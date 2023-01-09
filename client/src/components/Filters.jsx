@@ -5,7 +5,7 @@ import { filterProducts } from "../redux/slices/products";
 
 const Filters = () => {
 
-    const [price, setPrice] = useState("");
+    // const [price, setPrice] = useState("");
     const [maker, setMaker] = useState("");
     const [gender, setGender] = useState("");
 
@@ -17,13 +17,13 @@ const Filters = () => {
     const filters = useSelector(filtersSelectors.selectEntities);
     const filtersIds = useSelector(filtersSelectors.selectIds);
 
-    useEffect(() => {
-        if (price === "clean") {
-            dispatch(removeFilter(1))
-        } else if (price.length > 0) {
-            dispatch(addFilter({ id: 1, price: price }));
-        }
-    }, [pricesAmounts, price, dispatch]);
+    // useEffect(() => {
+    //     if (price === "clean") {
+    //         dispatch(removeFilter(1))
+    //     } else if (price.length > 0) {
+    //         dispatch(addFilter({ id: 1, price: price }));
+    //     }
+    // }, [pricesAmounts, price, dispatch]);
 
     useEffect(() => {
         if (maker === "clean") {
@@ -53,7 +53,8 @@ const Filters = () => {
     }, [filters, filtersIds, dispatch]);
 
     return (
-        <div>{
+        <div>
+            {/* {
             pricesAmounts.length > 0 ? (
                 <select id="pricesAmounts" onChange={(e) => setPrice(e.target.value)}>
                     <option value="clean" selected>Precio</option>
@@ -68,8 +69,8 @@ const Filters = () => {
                 </select>
             ) : (
                 <p>Loading...</p>
-            )
-            }
+            ) */}
+            {/* } */}
             {
             makers.length > 0 ? (
                 <select id="makers" onChange={(e) => setMaker(e.target.value)}>

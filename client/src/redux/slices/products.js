@@ -94,6 +94,36 @@ export const productsSlice = createSlice({
             state.someProducts = state.products.filter(p => p.category === payload)
             state.filtered = state.products.filter(p => p.category === payload)
     },
+    sortByName: (state, {payload}) => {
+      if(payload === 'asc') {
+        state.filtered = state.filtered.sort(function(a,b) {
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0
+        })
+    } else {
+      state.filtered = state.filtered.sort(function(a,b) {
+            if(b.name < a.name) return -1;
+            if(b.name > a.name) return 1;
+            return 0
+        })
+    }
+    },
+    sortByPrice: (state, {payload}) => {
+      if(payload === 'asc') {
+        state.filtered = state.filtered.sort(function(a,b) {
+            if(a.price < b.price) return -1;
+            if(a.price > b.price) return 1;
+            return 0
+        })
+    } else {
+      state.filtered = state.filtered.sort(function(a,b) {
+            if(b.price < a.price) return -1;
+            if(b.price > a.price) return 1;
+            return 0
+        })
+    }
+    },
   },
     extraReducers(builder) {
       builder
@@ -190,5 +220,5 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
-export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination, getProduct, getProductsByCategory } = productsSlice.actions
+export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination, getProduct, getProductsByCategory, sortByName, sortByPrice } = productsSlice.actions
 export default productsSlice.reducer;
