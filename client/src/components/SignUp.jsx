@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 
 export const validate = (input) => {
   let errors = {};
@@ -42,10 +42,14 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [boxState, setBoxState] = useState(false);
   const [input, setInput] = useState({
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState({
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
   });
@@ -77,34 +81,35 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
+      {
+        dispatch(postUser(input));
+        alert("Usuario creado con exito!");
+        setInput({
+          email: "",
+          password: "",
+        });
+      }
 
-      dispatch(postUser(input));
-      alert("Usuario creado con exito!");
-      setInput({
-        email: "",
-        password: "",
-      });
+      // emailjs
+      //   .sendForm(
+      //     "service_ev9mv2j",
+      //     "template_hzyfavr",
+      //     form.current,
+      //     "gYTIZ320UzKrK9phD"
+      //   )
 
-      emailjs
-        .sendForm(
-          "service_ev9mv2j",
-          "template_hzyfavr",
-          form.current,
-          "gYTIZ320UzKrK9phD"
-        )
-
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      // .then(
+      //   (result) => {
+      //     console.log(result.text);
+      //   },
+      //   (error) => {
+      //     console.log(error.text);
+      //   }
+      // );
 
       e.target.reset();
       setBoxState(false);
-      navigate("/user");
+      navigate("/user"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -124,20 +129,20 @@ export default function Signup() {
   }
 
   return (
-    <div className=" mb-5">
+    <div className="backgroundColor">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand "></div>
       </div>
 
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <h1 className="title is-3 font_family mt-3">Crear usuario</h1>
+          <strong className="font_family fontColor">CREAR USUARIO</strong>
         </h1>
       </div>
 
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "20px", marginBottom: "20px" }}
+        style={{ width: "50%", marginTop: "50px" }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
         {formErrors.email && (
@@ -149,6 +154,26 @@ export default function Signup() {
           </p>
         )}
         <form ref={form} onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label font_family">Nombre</label>
+            <input
+              className="input"
+              type="first_name"
+              name="first_name"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Apellido</label>
+            <input
+              className="input"
+              type="last_name"
+              name="last_name"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
           <div className="field">
             <label className="label font_family">Correo electrónico</label>
             <input
@@ -213,7 +238,7 @@ export default function Signup() {
           Registrarse con Google
         </button>
 
-        <div className="font_family" style={{ marginTop: "20px" }}>
+        <div className="font_family">
           ¿Ya tiene una cuenta con nosotros?
           <Link to="/login">Iniciar Sesión</Link>
         </div>
