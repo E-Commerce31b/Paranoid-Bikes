@@ -8,19 +8,19 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [newProduct, setNewProduct] = useState("");
-
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
+  
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getProduct(newProduct));
-    if (/\d+/.test(newProduct)) {
-      navigate(`details/${newProduct}`);
-    } else {
-      navigate(`/list/${newProduct}`);
-    }
-    setNewProduct("");
-  };
+    dispatch(getProduct(newProduct))
+            if(/\d+/.test(newProduct)) {
+                navigate(`details/${newProduct}`)
+            } else {
+                navigate(`/list/${newProduct}`)
+            }
+            setNewProduct("")
+        }
+
   return (
     <div>
       {/*    //uso un mismo estado product para detail y para searchbar (y en el back

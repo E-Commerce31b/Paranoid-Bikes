@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 // import { getProducts } from '../redux/slices/productsActions';
 import Header from "./reusable/Header";
 import Filters from "./Filters";
+import Sorters from "./Sorters";
 import RenderProducts from "./RenderProducts";
 import Pagination from "../components/pagination/Pagination";
 
@@ -23,6 +24,9 @@ const ProductsList = () => {
     <div>
       <div>
         <Filters />
+      </div>
+      <div>
+        <Sorters />
       </div>
       <div>
         <RenderProducts slicedProducts={slicedProducts} />

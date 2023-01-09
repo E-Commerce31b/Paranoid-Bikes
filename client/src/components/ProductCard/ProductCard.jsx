@@ -10,10 +10,10 @@ const ProductCard = ({product}) => {
             <div className='box-image'>
             <img src={product.image} alt="Not found" />
             </div>
-            <div className='maker'><strong>{product.maker}</strong></div>
+            <div className='maker'><strong>Marca:</strong> {product.maker}</div>
             <div className='name-price'>
-                <p>{product.name}</p>
-                <p>$ {product.price}</p></div>
+                <p><strong>Nombre:</strong> {product.name}</p>
+                <p><strong>Precio:</strong> $ {product.price}</p></div>
         </div>
         </Link>
     )
