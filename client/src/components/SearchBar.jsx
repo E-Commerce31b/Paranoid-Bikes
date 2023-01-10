@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [newProduct, setNewProduct] = useState("");
-
+  
   const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();

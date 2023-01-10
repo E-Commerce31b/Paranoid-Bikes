@@ -30,7 +30,7 @@ const UserProfile = () => {
     return <h2>Loading...</h2>;
   }
   return (
-    <div className="backgroundColor m-5">
+    <div className=" m-5">
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <strong className="font_family fontColor">Tu Perfil</strong>
