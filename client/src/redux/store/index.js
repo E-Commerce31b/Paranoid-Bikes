@@ -4,6 +4,7 @@ import products from "../slices/products";
 import reviews from "../slices/reviews";
 import filters from '../slices/filters'
 import { getProducts } from '../slices/productsActions'
+import { getUsers } from '../slices/usersActions'
 
 export const store = configureStore({
   reducer: {
@@ -15,3 +16,4 @@ export const store = configureStore({
 });
 
 store.dispatch(getProducts())
+store.dispatch(getUsers())
