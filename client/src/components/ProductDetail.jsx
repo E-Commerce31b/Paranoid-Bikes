@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
+import { managePurchased } from "../redux/slices/users.js"
 import { useParams } from "react-router-dom";
 
 const ProductDetail = (props) => {
@@ -9,6 +10,9 @@ const ProductDetail = (props) => {
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const user = useSelector(state => state.users.user)
+  const products = useSelector (state => state.products.products)
 
   useEffect(() => {
     const data = async () => {
@@ -23,6 +27,15 @@ const ProductDetail = (props) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
+
+    const sendToCart = () => {
+    if(user) {
+      dispatch(managePurchased({id, products}))
+      console.log(user)
+      // dispatch(putUser(user._id, user))}
+      }
+    }
+
   return (
     <>
       <div className="card column is-two-fifths">
@@ -52,6 +65,9 @@ const ProductDetail = (props) => {
             <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
           </div>
         </div>
+        <button onClick={() => sendToCart()}>
+              Agregar al carrito
+        </button>
       </div>
     </>
   );

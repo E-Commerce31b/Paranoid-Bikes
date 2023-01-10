@@ -74,6 +74,15 @@ export default function Header() {
               <div className="field has-addons paddingTop">
                 <SearchBar />
               </div>
+              <NavLink to="/cart">
+                <p className="control pl-6">
+                  <button
+                      className="button is-small"
+                  >
+                    🛒
+                  </button>
+                </p>
+                </NavLink>
             </div>
             {currentUser && currentUser.email ? (
               <></>
