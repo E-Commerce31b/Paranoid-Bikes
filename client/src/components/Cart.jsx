@@ -1,14 +1,30 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import RenderProducts from './RenderProducts'
+import { useDispatch } from 'react-redux'
+import { getProduct } from '../redux/slices/productsActions'
 
 const Cart = () => {
 
-    const selected = useSelector(state => state.products.selected)
+    const selected = useSelector(state => state.users.user.purchased)
+    const currentPage = useSelector((state) => state.products.currentPage);
+    const products = useSelector((state) => state.products.products)
 
+    const dispatch = useDispatch()
+
+    // const currentPage = useSelector((state) => state.products.currentPage);
+  
+    const slicedProducts = () => {
+      // if(product) return product;
+      if (selected) {
+        // return filtered.slice(currentPage, currentPage ? currentPage + 16 : 0);
+        return selected
+        // .slice(currentPage, currentPage + 16);
+      }
+    };
     return (
         <div>
-            <RenderProducts slicedProducts={selected} />
+            <RenderProducts slicedProducts={slicedProducts} />
         </div>
     )
 }
