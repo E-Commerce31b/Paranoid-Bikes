@@ -56,8 +56,10 @@ export default function Header() {
               <NavLink to="/Record" className="navbar-item">
                 <div>Historial</div>
               </NavLink>
+
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">Novedades</a>
+
                 <div className="navbar-dropdown">
                   <NavLink to="/about" className="navbar-item">
                     <a className="navbar-item">Sobre Nosotros</a>
@@ -67,23 +69,20 @@ export default function Header() {
                   <a className="navbar-item">Reportar un error</a>
                 </div>
               </div>
-            <div className="navbar-item">
-              {/* <div className="field has-addons paddingTop"> */}
-                <SearchBar />
-              {/* </div> */}
-            <div/>
             </div>
-            <div className="navbar-item">
+            <div className="row">
+              <div className="field has-addons paddingTop">
+                <SearchBar />
+              </div>
               <NavLink to="/cart">
                 <p className="control pl-6">
-                  <div
+                  <button
                       className="button is-small"
                   >
                     🛒
-                  </div>
+                  </button>
                 </p>
-              </NavLink>
-            </div>
+                </NavLink>
             </div>
             {currentUser && currentUser.email ? (
               <></>

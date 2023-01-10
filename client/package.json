@@ -13,7 +13,6 @@
     "bootstrap": "^5.2.3",
     "bulma": "^0.9.4",
     "emailjs-com": "^3.2.0",
-    "fas": "^0.3.6",
     "firebase": "^9.15.0",
     "fs": "^0.0.1-security",
     "react": "^18.2.0",
