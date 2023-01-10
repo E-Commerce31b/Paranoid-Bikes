@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux"
+import { getUser } from "../redux/slices/usersActions"
 
 export const validate = (input) => {
   let errors = {};
@@ -33,7 +35,9 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
+  const users = useSelector(state => state.users.users)
+  
   const handleInputChange = (e) => {
     const value = e.target.value;
     const property = e.target.name;
@@ -42,7 +46,9 @@ const Login = () => {
   };
   async function handleSubmit(e) {
     e.preventDefault();
+    const user = await users.find(u => u.email === emailRef.current.value)
     try {
+      dispatch(getUser(user._id))
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);

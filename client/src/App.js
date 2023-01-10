@@ -17,6 +17,7 @@ import PaymentMethod from "./components/paymentmethod/PaymentMethod";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import "./App.js";
+import Cart from "./components/Cart";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
@@ -44,6 +45,7 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="confirmpurchase" element={<ConfirmPurchase />} />
         <Route
           path="/user"
