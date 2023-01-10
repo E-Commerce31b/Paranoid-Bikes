@@ -20,14 +20,14 @@ export default function SearchBar() {
             }
             setNewProduct("")
         }
+        /*    //uso un mismo estado product para detail y para searchbar (y en el back
+        es dsitinto: una misma función para all y para searchbar) //puedo filtrar
+        products como un filtro más //puedo pisar products, y desmontar al volver
+        a clickear en Home / ir a otra sección //puedo hacer un estado aparte
+        'someProducts' //puedo pisar product, y hacer un filtrado aparte */
   return (
-    <div>
-      {/*    //uso un mismo estado product para detail y para searchbar (y en el back
-      es dsitinto: una misma función para all y para searchbar) //puedo filtrar
-      products como un filtro más //puedo pisar products, y desmontar al volver
-      a clickear en Home / ir a otra sección //puedo hacer un estado aparte
-      'someProducts' //puedo pisar product, y hacer un filtrado aparte */}
-      <p className="control has-icons-left is-expanded">
+    <div class="navbar-item">
+      <div className="field is-grouped has-icons-left is-expanded">
         <input
           className="input is-small"
           type="text"
@@ -35,20 +35,14 @@ export default function SearchBar() {
           value={newProduct}
           onChange={(e) => setNewProduct(e.target.value)}
         />
-        {/* placeholder={props.theText} */}
-        <span className="icon is-left">
-          <i className="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
-      <Link to="/list/:name">
-        <button
-          onClick={(e) => handleSubmit(e)}
-          className="button is-small"
+        <span className="button is-right is-small">
+          <div onClick={(e) => handleSubmit(e)}
           alt="not found"
         >
           🔍
-        </button>
-      </Link>
+          </div>
+        </span>
+      </div>
     </div>
   );
 }
