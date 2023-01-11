@@ -38,7 +38,7 @@ const UserProfile = () => {
       </div>
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "50px" }}
+        style={{ width: "50%", marginTop: "50px", height: "450px" }}
       >
         <figure class="image is-128x128" style={{ float: "right" }}>
           <img src={logoProfile} alt="logpProfile" />

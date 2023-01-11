@@ -41,34 +41,23 @@ const UpdateProfile = () => {
   }
   return (
     <div className="backgroundColor">
-      <div style={{ backgroundColor: "white" }}>
-        <div className="navbar-brand ">
-          <div className="navbar-item ">
-            <NavLink to="/home " className="textDecoration">
-              <img src={logo} alt="logo" width="112" height="80" />
-              <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
-                <h1 className="flex has-text-right ">
-                  <span>Paranoid </span>
-                  <span>Bikes</span>
-                </h1>
-              </div>
-            </NavLink>
-          </div>
-        </div>
-      </div>
-
       <div style={{ margin: "50px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "5px" }}>
           <strong className="font_family fontColor">ACTUALIZAR PERFIL</strong>
         </h1>
       </div>
 
-      <div className="container box mb-5" style={{ width: "50%" }}>
+      <div
+        className="container box "
+        style={{ width: "50%", height: "340px" }}
+      >
         {error && <p>{error}</p>}
 
         <form onSubmit={handleSubmit}>
           <div className="field">
-            <label className="label font_family">Confirmar correo electrónico</label>
+            <label className="label font_family">
+              Confirmar correo electrónico
+            </label>
             <input className="input" type="email" ref={emailRef}></input>
           </div>
 
@@ -87,14 +76,18 @@ const UpdateProfile = () => {
           </div>
 
           <div className="buttons has-text-centered">
-            <button className="button is-primary" type="submit">
+            <p className="button is-primary" type="submit">
               Actualizar
-            </button>
+            </p>
 
             <Link to="/user-profile">
-              <button className="button is-light font_family" type="submit">
+              <p
+                className="button is-light font_family"
+                style={{ textDecoration: "none" }}
+                type="submit"
+              >
                 Cancelar
-              </button>
+              </p>
             </Link>
           </div>
         </form>
