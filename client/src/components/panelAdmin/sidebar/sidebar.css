@@ -53,8 +53,7 @@
 }
 
 .menu .menuItem:last-child {
-  position: absolute;
-  bottom: 2.3rem;
+color: white;
   width: 100%;
 }
 
