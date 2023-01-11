@@ -24,6 +24,7 @@ import UserProfile from "./components/UserProfile";
 import Footer from "./components/reusable/imagecarousel/Footer";
 import ConfirmPurchase from "./components/ConfirmPurchase";
 import Error404 from "./components/Error404";
+import PanelAdmin from "./components/panelAdmin/PanelAdmin";
 
 function App() {
   return (
