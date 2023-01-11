@@ -8,7 +8,7 @@ import { postUser } from "../redux/slices/usersActions";
 
 export const validate = (input) => {
   let errors = {};
-
+  
   if (!input.email) {
     errors.email = "Ingrese email";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
@@ -44,6 +44,9 @@ export default function Signup() {
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
+    country: "",
+    city: "",
+
     email: "",
     password: "",
   });
@@ -85,8 +88,8 @@ export default function Signup() {
         dispatch(postUser(input));
         alert("Usuario creado con exito!");
         setInput({
-          email: "",
-          password: "",
+        /*   email: "",
+          password: "", */
         });
       }
 
@@ -170,6 +173,26 @@ export default function Signup() {
               className="input"
               type="last_name"
               name="last_name"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Pais</label>
+            <input
+              className="input"
+              type="country"
+              name="country"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Ciudad</label>
+            <input
+              className="input"
+              type="city"
+              name="city"
               /*  ref={emailRef} */
               onChange={handleInputChange}
             ></input>
