@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import "../index.css";
 import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions";
-// import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 export const validate = (input) => {
   let errors = {};
@@ -16,7 +16,7 @@ export const validate = (input) => {
   }
 
   if (!input.password) {
-    errors.password = "Ingrese contrasena";
+    errors.password = "Ingrese contraseña";
   } else if (
     !input.password.match(/[A-Z]/) ||
     !input.password.match(/[a-z]/) ||
@@ -24,7 +24,7 @@ export const validate = (input) => {
     !(input.password.length > 7)
   ) {
     errors.password =
-      "Contraseña debe tener(Un carácter en mayúscula, un caracter en minúscula más de 8 caracteres, caracteres especiales)";
+      "Contraseña debe tener(Un carácter en mayúscula yu minúscula, un caracter en minúscula más de 8 caracteres, caracteres especiales)";
   }
   return errors;
 };
@@ -90,22 +90,22 @@ export default function Signup() {
         });
       }
 
-      // emailjs
-      //   .sendForm(
-      //     "service_ev9mv2j",
-      //     "template_hzyfavr",
-      //     form.current,
-      //     "gYTIZ320UzKrK9phD"
-      //   )
+      emailjs
+        .sendForm(
+          "service_ev9mv2j",
+          "template_hzyfavr",
+          form.current,
+          "gYTIZ320UzKrK9phD"
+        )
 
-      // .then(
-      //   (result) => {
-      //     console.log(result.text);
-      //   },
-      //   (error) => {
-      //     console.log(error.text);
-      //   }
-      // );
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
 
       e.target.reset();
       setBoxState(false);
@@ -144,17 +144,19 @@ export default function Signup() {
         className="container box"
         style={{
           width: "50%",
-          heigth: "20%",
+          heigth: "800px",
           marginTop: "20px",
-          paddingBottom: "580px",
+          paddingBottom: "800px",
         }}
       >
-        {error && <p className="notification is-danger is-light">{error}</p>}
+        {error && <p className="notification is-danger is-light ">{error}</p>}
         {formErrors.email && (
-          <p className="notification is-danger is-light">{formErrors.email}</p>
+          <p className="is-size-7-desktop notification is-danger is-light ">
+            {formErrors.email}
+          </p>
         )}
         {formErrors.password && (
-          <p className="notification is-danger is-light">
+          <p className="is-size-7-desktop notification is-danger is-light">
             {formErrors.password}
           </p>
         )}
@@ -227,21 +229,21 @@ export default function Signup() {
             </button>
 
             <Link to="/">
-              <button className="button is-light font_family" type="submit">
+              <p className="button is-light font_family" type="submit">
                 Cancelar
-              </button>
+              </p>
             </Link>
           </div>
         </form>
         <br />
 
-        <button
+        <p
           className="button is-warning font_family"
           type="submit"
           onClick={googleSubmit}
         >
           Registrarse con Google
-        </button>
+        </p>
         <div className="font_family " style={{ marginTop: "20px" }}>
           ¿Ya tiene una cuenta con nosotros?
           <Link to="/login">Iniciar Sesión</Link>
