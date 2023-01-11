@@ -24,7 +24,7 @@ export const validate = (input) => {
     !(input.password.length > 7)
   ) {
     errors.password =
-      "Contraseña debe tener(Un carácter en mayúscula, más de 8 caracteres, caracteres especiales)";
+      "Contraseña debe tener(Un carácter en mayúscula, un caracter en minúscula más de 8 caracteres, caracteres especiales)";
   }
   return errors;
 };
@@ -132,7 +132,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="backgroundColor">
+    <div className=" mb-6 ">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand "></div>
       </div>
@@ -145,7 +145,12 @@ export default function Signup() {
 
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "50px" }}
+        style={{
+          width: "50%",
+          heigth: "20%",
+          marginTop: "20px",
+          paddingBottom: "580px",
+        }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
         {formErrors.email && (
@@ -260,8 +265,7 @@ export default function Signup() {
         >
           Registrarse con Google
         </button>
-
-        <div className="font_family">
+        <div className="font_family " style={{ marginTop: "20px" }}>
           ¿Ya tiene una cuenta con nosotros?
           <Link to="/login">Iniciar Sesión</Link>
         </div>

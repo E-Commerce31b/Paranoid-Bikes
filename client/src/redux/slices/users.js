@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   users: [],
@@ -14,6 +14,14 @@ export const usersSlice = createSlice({
   reducers: {
     loggedUser: (state, { payload }) => {
       state.logged = payload;
+    },
+    managePurchased: (state, { payload }) => {
+      const selected = payload.products.find(p => p.id === payload.id)
+      if(state.user.purchased.some(item => item.id === selected.id)) {
+        state.user.purchased = state.user.purchased.filter(p => p.id !== payload.id);
+      } else {
+        state.user.purchased.push(selected)
+      }
     },
   },
   extraReducers(builder) {
@@ -34,13 +42,15 @@ export const usersSlice = createSlice({
           state.users = action.payload;
         }
       )
-      // .addMatcher(
-      //   (action) => action.type.startsWith("users/getUser") && action.type.endsWith("/fulfilled"),
-      //   (state, action) => {
-      //     state.status = 'succeeded'
-      //     state.user = action.payload
-      //   }
-      // )
+      .addMatcher(
+        (action) =>
+          action.type.startsWith("users/getUser/") &&
+          action.type.endsWith("fulfilled"),
+        (state, action) => {
+          state.status = "succeeded";
+          state.user = action.payload;
+        }
+      )
       .addMatcher(
         (action) =>
           action.type.startsWith("users/postUser" || "users/putUser") &&
@@ -76,6 +86,6 @@ export const pacient = (state) => state.user;
 export const pacientStatus = (state) => state.status;
 export const pacientError = (state) => state.error;
 
-export const { loggedUser } = usersSlice.actions;
+export const { loggedUser, managePurchased } = usersSlice.actions;
 
 export default usersSlice.reducer;

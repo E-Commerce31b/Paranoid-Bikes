@@ -17,11 +17,13 @@ import PaymentMethod from "./components/paymentmethod/PaymentMethod";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import "./App.js";
+import Cart from "./components/Cart";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
 import Footer from "./components/reusable/imagecarousel/Footer";
 import ConfirmPurchase from "./components/ConfirmPurchase";
+import Error404 from "./components/Error404";
 
 function App() {
   return (
@@ -42,7 +44,9 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
-        <Route path="confirmpurchase" element={<ConfirmPurchase />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/confirmpurchase" element={<ConfirmPurchase />} />
+        <Route path="/panel" element={<PanelAdmin />} />
         <Route
           path="/user"
           element={
@@ -62,6 +66,7 @@ function App() {
         <Route path="/paymentmethod" element={<PaymentMethod />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </AuthProvider>

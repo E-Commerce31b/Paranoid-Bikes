@@ -1,6 +1,7 @@
 const express = require('express');
 const {userModel} = require('../models/index')
 const router = express();
+const jwt = require('jsonwebtoken')
 // 
 
 router.get('/', async(req, res) => {
@@ -114,7 +115,8 @@ router.post("/login", (req, res) => {
           if (err) {
             res.status(500).send("Error al autenticar");
           } else if (result) {
-            res.status(200).send("Usuario autenticado correctamente");
+            const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+            res.status(200).send({accessToken: accessToken});
           } else {
             res.status(500).send("Usuario o contranseña incorrecta");
           }
