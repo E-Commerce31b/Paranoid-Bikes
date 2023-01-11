@@ -25,6 +25,10 @@ import Footer from "./components/reusable/imagecarousel/Footer";
 import ConfirmPurchase from "./components/ConfirmPurchase";
 import Error404 from "./components/Error404";
 import PanelAdmin from "./components/panelAdmin/PanelAdmin";
+import MainDash from "./components/panelAdmin/MainDash/MainDash";
+import Products from "./redux/slices/products";
+import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins";
+import Analytics from "./components/panelAdmin/Analitics/Analytics";
 
 function App() {
   return (
@@ -47,7 +51,11 @@ function App() {
         <Route path="/list/:name" element={<ProductsList />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/confirmpurchase" element={<ConfirmPurchase />} />
-        {/* <Route path="/panel" element={<PanelAdmin />} /> */}
+        <Route path="/panel" element={<PanelAdmin />} />
+        <Route path="/dashboard" element={<MainDash />} />
+        <Route path="/productos" element={<Products />} />
+        <Route path="/clientesadmins" element={<ClientsAdmins />} />
+        <Route path="/analytics" element={<Analytics />} />
         <Route
           path="/user"
           element={
