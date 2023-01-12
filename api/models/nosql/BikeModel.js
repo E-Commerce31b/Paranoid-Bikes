@@ -42,6 +42,10 @@ const BikeScheme = new mongoose.Schema(
       enum: ["USD", "AUD", "CAD", "EUR", "GBP", "NZD"],
       default: "USD"
     },
+    stock: {
+      type: Number,
+      default: 5
+    },
     priceAmount: {
         type: Number,
         default: 0

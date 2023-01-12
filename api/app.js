@@ -3,7 +3,7 @@ const cors = require("cors")
 const express = require("express")
 const dbConnect = require('./config/mongo')
 const fileUpload = require("express-fileupload");
-const { bikesToDb } = require("./controllers/bikes");
+const { bikesToDb, changePricesPut } = require("./controllers/bikes");
 
 const PORT = process.env.PORT || 3001
 
@@ -23,5 +23,7 @@ app.use("/api", require("./routes"))
 app.listen(PORT, ()=> console.log("Server listening on port " + PORT ))
 
 bikesToDb()//
+
+changePricesPut()
 
 dbConnect()

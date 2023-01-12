@@ -23,8 +23,15 @@ import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
 // import Payment from "./payment";
 // import Completion from "./completion";
-
 import Footer from "./components/reusable/imagecarousel/Footer";
+import ConfirmPurchase from "./components/ConfirmPurchase";
+import Error404 from "./components/Error404";
+import PanelAdmin from "./components/panelAdmin/PanelAdmin";
+import MainDash from "./components/panelAdmin/MainDash/MainDash";
+import Products from "./components/panelAdmin/PanelProducts/Products";
+import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins";
+import Analytics from "./components/panelAdmin/Analitics/Analytics";
+import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins";
 
 function App() {
   return (
@@ -46,8 +53,6 @@ function App() {
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
         <Route path="/cart" element={<Cart />} />
-        {/* <Route path="/payment" element={<Payment />} />
-        <Route path="/completion" element={<Completion />} /> */}
         <Route
           path="/user"
           element={
@@ -67,6 +72,7 @@ function App() {
         <Route path="/paymentmethod" element={<PaymentMethod />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </AuthProvider>

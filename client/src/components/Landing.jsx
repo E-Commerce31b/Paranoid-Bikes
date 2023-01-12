@@ -10,7 +10,7 @@ export default function Landing() {
 
   return (
     <div>
-      <div className="backgroundbody">
+      <div>
         <div className="overlay">
           <img
             className="widthImageLanding"

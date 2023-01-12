@@ -2,7 +2,6 @@ import React from "react";
 // import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 // import { getProducts } from '../redux/slices/productsActions';
-import Header from "./reusable/Header";
 import Filters from "./Filters";
 import Sorters from "./Sorters";
 import RenderProducts from "./RenderProducts";
@@ -16,7 +15,7 @@ const ProductsList = () => {
     // if(product) return product;
     if (filtered) {
       // return filtered.slice(currentPage, currentPage ? currentPage + 16 : 0);
-      return filtered.slice(currentPage, currentPage + 16);
+      return filtered.slice(currentPage, currentPage + 15);
     }
   };
 

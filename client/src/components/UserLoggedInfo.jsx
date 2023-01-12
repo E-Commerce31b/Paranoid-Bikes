@@ -11,7 +11,7 @@ export default function UserLoggedInfo() {
     setError("");
     try {
       await logout();
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       setError(error);
     }

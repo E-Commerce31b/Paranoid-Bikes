@@ -2,6 +2,80 @@ const { bikeModel } = require("../models");
 const axios = require('axios')
 const backup = require("../utils/backup")
 
+const changePricesForPut = (priceCurrency, priceAmount) => {
+  // console.log(priceCurrency, priceAmount)
+  switch(priceCurrency) {
+    case 'USD':
+      return {
+        priceCurrency,
+        priceAmount
+      };
+    case 'AUD':
+      priceCurrency = 'USD'
+      // console.log(priceAmount)
+      priceAmount = Math.round(priceAmount * 0.690)
+      // console.log("AUD", priceAmount)
+      return {
+        priceCurrency,
+        priceAmount
+      };
+    case 'EUR':
+      priceCurrency = 'USD'
+      priceAmount = Math.round(priceAmount * 1.074);
+      // console.log("EUR", priceAmount)
+      return {
+        priceCurrency,
+        priceAmount
+      };
+    case 'CAD':
+      priceCurrency = 'USD'
+      priceAmount = Math.round(priceAmount * 0.748);
+      // console.log("CAD", priceAmount)
+      return {
+        priceCurrency,
+        priceAmount
+      };
+    case 'GBP':
+      priceCurrency = 'USD'
+      priceAmount = Math.round(priceAmount * 1.219);
+      // console.log("GBP", priceAmount)
+      return {
+        priceCurrency,
+        priceAmount
+      };
+    case 'NZD':
+      priceCurrency = 'USD'
+      priceAmount = Math.round(priceAmount * 0.639) ;
+      // console.log("NZD", priceAmount)
+      return {
+        priceCurrency,
+        priceAmount
+      };
+      default: 
+      return {
+        priceCurrency,
+        priceAmount
+      };
+  }
+}
+
+const changePricesPut = async() => {
+  const allBikes = await bikeModel.find({})
+  if(allBikes) {
+    try {
+      allBikes.map( async b => {
+        const newBike = await axios.put(`http://localhost:3001/api/bikes/${b._id}`, changePricesForPut(b.priceCurrency, b.priceAmount))
+        return newBike
+      })
+    } catch (error) {
+      console.log("catch changePricesPut")
+      console.log(err)
+      console.log("catch changePricesPut")
+    }
+  }
+  return 0
+}
+
 
  
 const getBikesApi = async ()=>{
@@ -72,5 +146,6 @@ const bikesToDb = async() => {
 module.exports = {
   getBikesApi, 
   bikesToDb, 
-  getBikesDb
+  getBikesDb,
+  changePricesPut
 }

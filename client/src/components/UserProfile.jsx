@@ -30,7 +30,7 @@ const UserProfile = () => {
     return <h2>Loading...</h2>;
   }
   return (
-    <div className="backgroundColor m-5">
+    <div className=" m-5">
       <div style={{ margin: "80px" }}>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <strong className="font_family fontColor">Tu Perfil</strong>
@@ -38,7 +38,7 @@ const UserProfile = () => {
       </div>
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "50px" }}
+        style={{ width: "50%", marginTop: "50px", height: "450px" }}
       >
         <figure class="image is-128x128" style={{ float: "right" }}>
           <img src={logoProfile} alt="logpProfile" />

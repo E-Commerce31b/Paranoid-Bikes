@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useDispatch, useSelector } from "react-redux"
-import { getUser } from "../redux/slices/usersActions"
 
 export const validate = (input) => {
   let errors = {};
@@ -35,9 +33,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const users = useSelector(state => state.users.users)
-  
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     const property = e.target.name;
@@ -46,11 +42,11 @@ const Login = () => {
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    const user = await users.find(u => u.email === emailRef.current.value)
+    console.log("clickboton");
     try {
-      dispatch(getUser(user._id))
       setError("");
       setLoading(true);
+
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/user"); /// cambiar a ruta user
     } catch {
@@ -59,9 +55,7 @@ const Login = () => {
     setLoading(false);
   }
   return (
-
-    <div className="backgroundColor mb-5">
-
+    <div className=" mb-5">
       <div>
         <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
           <h1 className="title is-3 font_family mt-3">Iniciar sesión</h1>
@@ -69,7 +63,12 @@ const Login = () => {
       </div>
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "20px", marginBottom: "20px" }}
+        style={{
+          width: "50%",
+          marginTop: "20px",
+          marginBottom: "20px",
+          height: "315px",
+        }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
         {formErrors.email && (
@@ -104,7 +103,7 @@ const Login = () => {
           </div>
           <div className="buttons has-text-centered">
             <button className="button is-primary font_family" type="submit">
-              Iniciar Sesión
+              <p>Iniciar Sesión</p>
             </button>
           </div>
         </form>

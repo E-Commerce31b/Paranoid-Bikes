@@ -1,5 +1,5 @@
 .container_stripe {
-  width: 400px;
+  width: 480px;
   height: 607px;
   background-color: white;
   border-radius: 25px;
@@ -16,5 +16,10 @@
   height: 400px;
   background-color: white;
   border-radius: 20px;
-  margin: 3rem;
+  padding: 40px;
+}
+
+.btn {
+  border: none;
+  padding: 50px;
 }

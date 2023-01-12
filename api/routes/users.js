@@ -1,9 +1,12 @@
 const express = require('express');
 const {userModel} = require('../models/index')
 const router = express();
+const jwt = require('jsonwebtoken')
+const authenticateToken = require('../validators/tokenValidator')
+const { getUsersValidator } = require('../validators/bikeValidator')
 // 
 
-router.get('/', async(req, res) => {
+router.get('/',authenticateToken, async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})
@@ -114,7 +117,8 @@ router.post("/login", (req, res) => {
           if (err) {
             res.status(500).send("Error al autenticar");
           } else if (result) {
-            res.status(200).send("Usuario autenticado correctamente");
+            const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+            res.status(200).send({accessToken: accessToken});
           } else {
             res.status(500).send("Usuario o contranseña incorrecta");
           }

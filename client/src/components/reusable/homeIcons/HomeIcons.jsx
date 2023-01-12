@@ -8,7 +8,6 @@ export default function HomeIcons() {
     {
       src: require("../../../assets/metodo-de-pago.png"),
       title: "Metodo de pago",
-
       a: "/PaymentMethod",
     },
     {
@@ -19,7 +18,6 @@ export default function HomeIcons() {
     {
       src: require("../../../assets/perfil.png"),
       title: "Tu perfil",
-
       a: "/user-profile",
     },
   ];

@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import style from "./Pagination.module.css";
 import { pagination } from "../../redux/slices/products";
+import { cleanCurrentPage } from "../../redux/slices/products";
 
 export default function Pagination({ currentPage, filtered }) {
   const [pages, setPages] = useState([]);
   const [actualPage, setActualPage] = useState(1);
 
   const dispatch = useDispatch();
-
+  /* const cleanCurrent = ()=> {
+  return 
+} */
   useEffect(() => {
     let totalPages = Math.ceil(filtered.length / 16);
     let arrPages = [];
@@ -18,6 +21,11 @@ export default function Pagination({ currentPage, filtered }) {
     }
     setPages(arrPages.reverse());
   }, [filtered]);
+  useEffect(() => {
+    return () => {
+      dispatch(cleanCurrentPage());
+    };
+  }, []);
 
   useEffect(() => {
     setActualPage(currentPage / 16 + 1);

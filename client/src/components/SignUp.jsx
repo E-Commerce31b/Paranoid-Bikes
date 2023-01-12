@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ export const validate = (input) => {
   }
 
   if (!input.password) {
-    errors.password = "Ingrese contrasena";
+    errors.password = "Ingrese contraseña";
   } else if (
     !input.password.match(/[A-Z]/) ||
     !input.password.match(/[a-z]/) ||
@@ -24,7 +24,7 @@ export const validate = (input) => {
     !(input.password.length > 7)
   ) {
     errors.password =
-      "Contraseña debe tener(Un carácter en mayúscula, más de 8 caracteres, caracteres especiales)";
+      "Contraseña debe tener(Un carácter en mayúscula yu minúscula, un caracter en minúscula más de 8 caracteres, caracteres especiales)";
   }
   return errors;
 };
@@ -42,10 +42,17 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [boxState, setBoxState] = useState(false);
   const [input, setInput] = useState({
+    first_name: "",
+    last_name: "",
+    country: "",
+    city: "",
+
     email: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState({
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
   });
@@ -77,14 +84,14 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
-
-
-      dispatch(postUser(input));
-      alert("Usuario creado con exito!");
-      setInput({
-        email: "",
-        password: "",
-      });
+      {
+        dispatch(postUser(input));
+        alert("Usuario creado con exito!");
+        setInput({
+          /*   email: "",
+          password: "", */
+        });
+      }
 
       emailjs
         .sendForm(
@@ -103,10 +110,9 @@ export default function Signup() {
           }
         );
 
-
       e.target.reset();
       setBoxState(false);
-      navigate("/user");
+      navigate("/user"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -126,33 +132,76 @@ export default function Signup() {
   }
 
   return (
-
-    <div className="backgroundColor mb-5">
+    <div className=" mb-6 ">
       <div style={{ backgroundColor: "white" }}>
         <div className="navbar-brand "></div>
       </div>
 
-      <div style={{ margin: "80px" }}>
-
-        <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <h1 className="title is-3 font_family mt-3">Crear usuario</h1>
-        </h1>
+      <div className="column has-text-centered">
+        <h1 className="title is-3 font_family mt-5">Crear Usuario</h1>
       </div>
 
       <div
         className="container box"
-        style={{ width: "50%", marginTop: "20px", marginBottom: "20px" }}
+        style={{
+          width: "50%",
+          heigth: "800px",
+          marginTop: "20px",
+          paddingBottom: "800px",
+        }}
       >
-        {error && <p className="notification is-danger is-light">{error}</p>}
+        {error && <p className="notification is-danger is-light ">{error}</p>}
         {formErrors.email && (
-          <p className="notification is-danger is-light">{formErrors.email}</p>
+          <p className="is-size-7-desktop notification is-danger is-light ">
+            {formErrors.email}
+          </p>
         )}
         {formErrors.password && (
-          <p className="notification is-danger is-light">
+          <p className="is-size-7-desktop notification is-danger is-light">
             {formErrors.password}
           </p>
         )}
         <form ref={form} onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label font_family">Nombre</label>
+            <input
+              className="input"
+              type="first_name"
+              name="first_name"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Apellido</label>
+            <input
+              className="input"
+              type="last_name"
+              name="last_name"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Pais</label>
+            <input
+              className="input"
+              type="country"
+              name="country"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
+          <div className="field">
+            <label className="label font_family">Ciudad</label>
+            <input
+              className="input"
+              type="city"
+              name="city"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+            ></input>
+          </div>
           <div className="field">
             <label className="label font_family">Correo electrónico</label>
             <input
@@ -196,28 +245,27 @@ export default function Signup() {
           </div>
 
           <div className="buttons has-text-centered">
-            <button className="button is-primary font_family" type="submit">
+            <p className="button is-primary font_family" type="submit">
               Registrarse
-            </button>
+            </p>
 
             <Link to="/">
-              <button className="button is-light font_family" type="submit">
+              <p className="button is-light font_family" type="submit">
                 Cancelar
-              </button>
+              </p>
             </Link>
           </div>
         </form>
         <br />
 
-        <button
+        <p
           className="button is-warning font_family"
           type="submit"
           onClick={googleSubmit}
         >
           Registrarse con Google
-        </button>
-
-        <div className="font_family" style={{ marginTop: "20px" }}>
+        </p>
+        <div className="font_family " style={{ marginTop: "20px" }}>
           ¿Ya tiene una cuenta con nosotros?
           <Link to="/login">Iniciar Sesión</Link>
         </div>
