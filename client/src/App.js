@@ -21,6 +21,8 @@ import Cart from "./components/Cart";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
+// import Payment from "./payment";
+// import Completion from "./completion";
 
 import Footer from "./components/reusable/imagecarousel/Footer";
 
@@ -44,6 +46,8 @@ function App() {
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
         <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/payment" element={<Payment />} />
+        <Route path="/completion" element={<Completion />} /> */}
         <Route
           path="/user"
           element={
