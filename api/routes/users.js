@@ -2,9 +2,11 @@ const express = require('express');
 const {userModel} = require('../models/index')
 const router = express();
 const jwt = require('jsonwebtoken')
+const authenticateToken = require('../validators/tokenValidator')
+const { getUsersValidator } = require('../validators/bikeValidator')
 // 
 
-router.get('/', async(req, res) => {
+router.get('/',authenticateToken, async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})
