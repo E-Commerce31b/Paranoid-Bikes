@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    products: [],
-    productsOffers: [],
-    someProducts: [],
-    newProducts: [],
-    product: {},
-    // categories: ["road", "urban", "BMX", "mountain", "youth"],
-    categories: [],
-    pricesAmounts: [],
-    makers: [],
-    genders: [],
-    payments: ["Transferencia", "Tarjeta de crédito"],
-    favourites: [],
-    filtered: [],
-    currentPage: [],
-    bestSellers: [],
-    status: "",
-    error: ""
-}
+  products: [],
+  productsOffers: [],
+  someProducts: [],
+  newProducts: [],
+  product: {},
+  // categories: ["road", "urban", "BMX", "mountain", "youth"],
+  categories: [],
+  pricesAmounts: [],
+  makers: [],
+  genders: [],
+  payments: ["Transferencia", "Tarjeta de crédito"],
+  favourites: [],
+  filtered: [],
+  currentPage: [],
+  bestSellers: [],
+  status: "",
+  error: "",
+};
 
 const handleFavourites = (state, payload) => {
   for (const favourite of state.favourites) {
@@ -69,70 +69,82 @@ export const productsSlice = createSlice({
     cleanProduct: (state) => {
       state.professional = {};
     },
-    pagination: (state, {payload}) => {
-      if(payload.page === 'posteriores' && payload.filtered.length > payload.currentPage + 17)
-            {let movePage = payload.currentPage + 16
-              state.currentPage = movePage}
-        if(!isNaN(payload.page)) 
-            {let movePage = 0 + 16 * (payload.page - 1)
-              state.currentPage = movePage}
-        if(payload.page === 'anteriores' && payload.currentPage > 0) 
-            {let movePage = payload.currentPage - 16
-              state.currentPage = movePage}
-    },
-    // product | products
-    getProduct: (state, {payload}) => {
-      if(/\d+/.test(payload)) {
-          state.product = state.products.find(p => p.id === payload)
-          state.filtered = state.products.find(p => p.id === payload)
-      } else {
-        state.someProducts = state.products.filter(p => p.name.includes(payload) )
-        state.filtered = state.products.filter(p => p.name.includes(payload))
+    pagination: (state, { payload }) => {
+      if (
+        payload.page === "posteriores" &&
+        payload.filtered.length > payload.currentPage + 17
+      ) {
+        let movePage = payload.currentPage + 16;
+        state.currentPage = movePage;
+      }
+      if (!isNaN(payload.page)) {
+        let movePage = 0 + 16 * (payload.page - 1);
+        state.currentPage = movePage;
+      }
+      if (payload.page === "anteriores" && payload.currentPage > 0) {
+        let movePage = payload.currentPage - 16;
+        state.currentPage = movePage;
       }
     },
-    getProductsByCategory: (state, {payload}) => {
-            state.someProducts = state.products.filter(p => p.category === payload)
-            state.filtered = state.products.filter(p => p.category === payload)
+    cleanCurrentPage: (state) => {
+      state.currentPage = 0;
     },
-    sortByName: (state, {payload}) => {
-      if(payload === 'asc') {
-        state.filtered = state.filtered.sort(function(a,b) {
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
-            return 0
-        })
-    } else {
-      state.filtered = state.filtered.sort(function(a,b) {
-            if(b.name < a.name) return -1;
-            if(b.name > a.name) return 1;
-            return 0
-        })
-    }
+    // product | products
+
+    getProduct: (state, { payload }) => {
+      if (/\d+/.test(payload)) {
+        state.product = state.products.find((p) => p.id === payload);
+        state.filtered = state.products.find((p) => p.id === payload);
+      } else {
+        state.someProducts = state.products.filter((p) =>
+          p.name.includes(payload)
+        );
+        state.filtered = state.products.filter((p) => p.name.includes(payload));
+      }
     },
-    sortByPrice: (state, {payload}) => {
-      if(payload === 'asc') {
-        state.filtered = state.filtered.sort(function(a,b) {
-            if(a.price < b.price) return -1;
-            if(a.price > b.price) return 1;
-            return 0
-        })
-    } else {
-      state.filtered = state.filtered.sort(function(a,b) {
-            if(b.price < a.price) return -1;
-            if(b.price > a.price) return 1;
-            return 0
-        })
-    }
+    getProductsByCategory: (state, { payload }) => {
+      state.someProducts = state.products.filter((p) => p.category === payload);
+      state.filtered = state.products.filter((p) => p.category === payload);
+    },
+    sortByName: (state, { payload }) => {
+      if (payload === "asc") {
+        state.filtered = state.filtered.sort(function (a, b) {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });
+      } else {
+        state.filtered = state.filtered.sort(function (a, b) {
+          if (b.name < a.name) return -1;
+          if (b.name > a.name) return 1;
+          return 0;
+        });
+      }
+    },
+    sortByPrice: (state, { payload }) => {
+      if (payload === "asc") {
+        state.filtered = state.filtered.sort(function (a, b) {
+          if (a.price < b.price) return -1;
+          if (a.price > b.price) return 1;
+          return 0;
+        });
+      } else {
+        state.filtered = state.filtered.sort(function (a, b) {
+          if (b.price < a.price) return -1;
+          if (b.price > a.price) return 1;
+          return 0;
+        });
+      }
     },
   },
-    extraReducers(builder) {
-      builder
-        .addMatcher(
-          (action) =>
-            action.type.startsWith("products/") &&
-            action.type.endsWith("/pending"),
-          (state) => {
-            state.status = "loading";
+  extraReducers(builder) {
+    builder
+      .addMatcher(
+        (action) =>
+          action.type.startsWith("products/") &&
+          action.type.endsWith("/pending"),
+        (state) => {
+          state.status = "loading";
         }
       )
       .addMatcher(
@@ -155,12 +167,14 @@ export const productsSlice = createSlice({
           state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
           state.genders = [...new Set(genders)];
-          let sellers = state.products.sort(function (a, b) {
-            if (a < b) return -1;
-            if (a > b) return 1;
-            return 0;
-          }).slice(1, 5);
-          state.bestSellers = sellers
+          let sellers = state.products
+            .sort(function (a, b) {
+              if (a < b) return -1;
+              if (a > b) return 1;
+              return 0;
+            })
+            .slice(1, 5);
+          state.bestSellers = sellers;
           // const today = `0${new Date().getDate()}`
           // const tomorrow = `0${new Date().getDate()}` + 1
           // const tomorrowAfter = `0${new Date().getDate()}` + 2
@@ -198,7 +212,9 @@ export const productsSlice = createSlice({
           action.type.endsWith("/fulfilled"),
         (state, action) => {
           state.status = "succeeded";
-          state.products = state.products.filter((p) => p.id !== action.payload);
+          state.products = state.products.filter(
+            (p) => p.id !== action.payload
+          );
         }
       )
       .addMatcher(
@@ -209,8 +225,8 @@ export const productsSlice = createSlice({
           state.status = "failed";
           state.error = action.error.message;
         }
-      )
-    },
+      );
+  },
 });
 
 // export const products = (state) => state.products
@@ -220,5 +236,18 @@ export const productsSlice = createSlice({
 // export const productStatus = (state) => state.status
 // export const productError = (state) => state.error
 
-export const { setFiltered, equalFilters, replaceFilters, filterProducts, handleFavourite, cleanProduct, pagination, getProduct, getProductsByCategory, sortByName, sortByPrice } = productsSlice.actions
+export const {
+  setFiltered,
+  equalFilters,
+  replaceFilters,
+  filterProducts,
+  handleFavourite,
+  cleanProduct,
+  pagination,
+  getProduct,
+  getProductsByCategory,
+  sortByName,
+  sortByPrice,
+  cleanCurrentPage,
+} = productsSlice.actions;
 export default productsSlice.reducer;

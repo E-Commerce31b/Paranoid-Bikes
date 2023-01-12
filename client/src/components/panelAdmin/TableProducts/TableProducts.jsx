@@ -42,7 +42,7 @@ const makeStyle = (status) => {
   }
 };
 
-export default function BasicTable() {
+export default function TableProducts() {
   return (
     <div className="Table">
       <h3>Recent Orders</h3>

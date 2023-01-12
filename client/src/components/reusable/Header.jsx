@@ -28,7 +28,6 @@ export default function Header() {
               </div>
             </NavLink>
           </div>
-
           <a
             role="button"
             className="navbar-burger"
@@ -57,33 +56,31 @@ export default function Header() {
                 <div>Historial</div>
               </NavLink>
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">Novedades</a>
+                <a className="navbar-link">Ver Más</a>
                 <div className="navbar-dropdown">
                   <NavLink to="/about" className="navbar-item">
                     <a className="navbar-item">Sobre Nosotros</a>
                   </NavLink>
                   <a className="navbar-item">Contactarnos</a>
                   <hr className="navbar-divider" />
-                  <a className="navbar-item">Reportar un error</a>
+                  <NavLink to="/panel">
+                    <a className="navbar-item">Panel Admin</a>
+                  </NavLink>
                 </div>
               </div>
-            <div className="navbar-item">
-              {/* <div className="field has-addons paddingTop"> */}
+              <div className="navbar-item">
+                {/* <div className="field has-addons paddingTop"> */}
                 <SearchBar />
-              {/* </div> */}
-            <div/>
-            </div>
-            <div className="navbar-item">
-              <NavLink to="/cart">
-                <p className="control pl-6">
-                  <div
-                      className="button is-small"
-                  >
-                    🛒
-                  </div>
-                </p>
-              </NavLink>
-            </div>
+                {/* </div> */}
+                <div />
+              </div>
+              <div className="navbar-item">
+                <NavLink to="/cart">
+                  <p className="control pl-6">
+                    <div className="button is-small">🛒</div>
+                  </p>
+                </NavLink>
+              </div>
             </div>
             {currentUser && currentUser.email ? (
               <></>
