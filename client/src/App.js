@@ -29,6 +29,7 @@ import MainDash from "./components/panelAdmin/MainDash/MainDash";
 import Products from "./components/panelAdmin/PanelProducts/Products";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins";
 import Analytics from "./components/panelAdmin/Analitics/Analytics";
+import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/productos" element={<Products />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
         <Route path="/analiticas" element={<Analytics />} />
+        <Route path="/formularioadmin" element={<FormAdmins />} />
         <Route
           path="/user"
           element={

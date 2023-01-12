@@ -23,10 +23,10 @@ const UserHome = () => {
 
   return (
     <>
-      <ImgCarousel />
-      <Landing />
-      {error && <p className="notification is-danger is-light">{error}</p>}
       <HomeIcons />
+      <ImgCarousel />
+      {/* <Landing /> */}
+      {error && <p className="notification is-danger is-light">{error}</p>}
     </>
   );
 };

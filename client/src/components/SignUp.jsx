@@ -8,7 +8,7 @@ import emailjs from "emailjs-com";
 
 export const validate = (input) => {
   let errors = {};
-  
+
   if (!input.email) {
     errors.email = "Ingrese email";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
@@ -88,7 +88,7 @@ export default function Signup() {
         dispatch(postUser(input));
         alert("Usuario creado con exito!");
         setInput({
-        /*   email: "",
+          /*   email: "",
           password: "", */
         });
       }
@@ -137,10 +137,8 @@ export default function Signup() {
         <div className="navbar-brand "></div>
       </div>
 
-      <div style={{ margin: "80px" }}>
-        <h1 className="column has-text-centered" style={{ paddingTop: "10px" }}>
-          <strong className="font_family fontColor">CREAR USUARIO</strong>
-        </h1>
+      <div className="column has-text-centered">
+        <h1 className="title is-3 font_family mt-5">Crear Usuario</h1>
       </div>
 
       <div
@@ -247,9 +245,9 @@ export default function Signup() {
           </div>
 
           <div className="buttons has-text-centered">
-            <button className="button is-primary font_family" type="submit">
+            <p className="button is-primary font_family" type="submit">
               Registrarse
-            </button>
+            </p>
 
             <Link to="/">
               <p className="button is-light font_family" type="submit">
