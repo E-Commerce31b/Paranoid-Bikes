@@ -67,7 +67,7 @@ const Login = () => {
           width: "50%",
           marginTop: "20px",
           marginBottom: "20px",
-          height: "500px",
+          height: "315px",
         }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}

@@ -37,7 +37,7 @@ export const SidebarData = [
   {
     icon: UilPackage,
     heading: "Creación Admin",
-    a: "/forrmularioadmin",
+    a: "/formularioadmin",
   },
   {
     icon: UilChart,
