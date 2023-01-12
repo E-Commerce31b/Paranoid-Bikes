@@ -1,6 +1,6 @@
-import { check } from 'express-validator'
-import { userModel } from '../models';
-import validateResults from '../utils/handleValidator';
+const {check} = require('express-validator')
+const { userModel } = require('../models')
+const validateResults = require('../utils/handleValidator');
 
 const createUserValidator = [
    check('email')
@@ -57,6 +57,16 @@ const createUserValidator = [
    }
 ]
 
+const getUsersValidator = [
+   check('email')
+      .custom(async(value) => {
+         console.log(value)
+      }),
+   (req, res, next) => {
+      return validateResults(req, res, next)
+   }
+]
+
 module.exports = {
-   createUserValidator,
+   createUserValidator, getUsersValidator,
 }

@@ -1,6 +1,6 @@
-import { check } from 'express-validator'
-import { bikeModel } from '../models';
-import validateResults from '../utils/handleValidator';
+const { check } = require('express-validator')
+const { bikeModel } = require('../models')
+const validateResults = require('../utils/handleValidator');
 
 const createBikeValidator = [
    check('name')
