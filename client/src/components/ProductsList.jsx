@@ -2,7 +2,6 @@ import React from "react";
 // import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 // import { getProducts } from '../redux/slices/productsActions';
-import Header from "./reusable/Header";
 import Filters from "./Filters";
 import Sorters from "./Sorters";
 import RenderProducts from "./RenderProducts";

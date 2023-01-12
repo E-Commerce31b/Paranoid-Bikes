@@ -26,7 +26,7 @@ import ConfirmPurchase from "./components/ConfirmPurchase";
 import Error404 from "./components/Error404";
 import PanelAdmin from "./components/panelAdmin/PanelAdmin";
 import MainDash from "./components/panelAdmin/MainDash/MainDash";
-import Products from "./redux/slices/products";
+import Products from "./components/panelAdmin/PanelProducts/Products";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins";
 import Analytics from "./components/panelAdmin/Analitics/Analytics";
 
@@ -55,7 +55,7 @@ function App() {
         <Route path="/dashboard" element={<MainDash />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
-        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/analiticas" element={<Analytics />} />
         <Route
           path="/user"
           element={
