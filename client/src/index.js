@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App.js";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./redux/storejs/index.js";
+
+import { store } from "./redux/store/index.js";
 import "bulma/css/bulma.min.css";
 import "./index.scss";
 
