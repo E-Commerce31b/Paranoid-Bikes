@@ -140,134 +140,137 @@ export default function Signup() {
       <div className="column has-text-centered">
         <h1 className="title is-3 font_family mt-5">Crear Usuario</h1>
       </div>
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div
+          className="column is-6 mt-5 has-background-white"
+          style={{ borderRadius: "10px" }}
+        >
+          <div>
+            {error && (
+              <p className="notification is-danger is-light ">{error}</p>
+            )}
+            {formErrors.email && (
+              <p className="is-size-7-desktop notification is-danger is-light ">
+                {formErrors.email}
+              </p>
+            )}
+            {formErrors.password && (
+              <p className="is-size-7-desktop notification is-danger is-light">
+                {formErrors.password}
+              </p>
+            )}
+            <form ref={form} onSubmit={handleSubmit}>
+              <div className="field">
+                <label className="label font_family">Nombre</label>
+                <input
+                  className="input"
+                  type="first_name"
+                  name="first_name"
+                  /*  ref={emailRef} */
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Apellido</label>
+                <input
+                  className="input"
+                  type="last_name"
+                  name="last_name"
+                  /*  ref={emailRef} */
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Pais</label>
+                <input
+                  className="input"
+                  type="country"
+                  name="country"
+                  /*  ref={emailRef} */
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Ciudad</label>
+                <input
+                  className="input"
+                  type="city"
+                  name="city"
+                  /*  ref={emailRef} */
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Correo electrónico</label>
+                <input
+                  className="input"
+                  type="email"
+                  name="email"
+                  ref={emailRef}
+                  onChange={handleInputChange}
+                ></input>
+              </div>
 
-      <div
-        className="container box"
-        style={{
-          width: "50%",
-          heigth: "800px",
-          marginTop: "20px",
-          paddingBottom: "800px",
-        }}
-      >
-        {error && <p className="notification is-danger is-light ">{error}</p>}
-        {formErrors.email && (
-          <p className="is-size-7-desktop notification is-danger is-light ">
-            {formErrors.email}
-          </p>
-        )}
-        {formErrors.password && (
-          <p className="is-size-7-desktop notification is-danger is-light">
-            {formErrors.password}
-          </p>
-        )}
-        <form ref={form} onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label font_family">Nombre</label>
-            <input
-              className="input"
-              type="first_name"
-              name="first_name"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Apellido</label>
-            <input
-              className="input"
-              type="last_name"
-              name="last_name"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Pais</label>
-            <input
-              className="input"
-              type="country"
-              name="country"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Ciudad</label>
-            <input
-              className="input"
-              type="city"
-              name="city"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Correo electrónico</label>
-            <input
-              className="input"
-              type="email"
-              name="email"
-              ref={emailRef}
-              onChange={handleInputChange}
-            ></input>
-          </div>
+              <div className="field">
+                <label className="label font_family">Contraseña</label>
+                <input
+                  className="input"
+                  type="password"
+                  ref={passwordRef}
+                  onChange={handleInputChange}
+                  name="password"
+                ></input>
+              </div>
 
-          <div className="field">
-            <label className="label font_family">Contraseña</label>
-            <input
-              className="input"
-              type="password"
-              ref={passwordRef}
-              onChange={handleInputChange}
-              name="password"
-            ></input>
-          </div>
+              <div className="field">
+                <label className="label font_family">
+                  Confirmar contraseña
+                </label>
+                <input
+                  className="input"
+                  type="password"
+                  ref={passwordConfirmRef}
+                ></input>
+              </div>
 
-          <div className="field">
-            <label className="label font_family">Confirmar contraseña</label>
-            <input
-              className="input"
-              type="password"
-              ref={passwordConfirmRef}
-            ></input>
-          </div>
+              <div className="field">
+                <div className="control">
+                  <label className="checkbox">
+                    <input type="checkbox" onChange={changeState} />
+                    <a href="#" className="font_family">
+                      Acepto los términos y condiciones
+                    </a>
+                  </label>
+                </div>
+              </div>
 
-          <div className="field">
-            <div className="control">
-              <label className="checkbox">
-                <input type="checkbox" onChange={changeState} />
-                <a href="#" className="font_family">
-                  Acepto los términos y condiciones
-                </a>
-              </label>
+              <div className="buttons has-text-centered">
+                <p className="button is-primary font_family" type="submit">
+                  Registrarse
+                </p>
+
+                <Link to="/">
+                  <p className="button is-light font_family" type="submit">
+                    Cancelar
+                  </p>
+                </Link>
+              </div>
+            </form>
+            <br />
+
+            <p
+              className="button is-warning font_family"
+              type="submit"
+              onClick={googleSubmit}
+            >
+              Registrarse con Google
+            </p>
+            <div className="font_family " style={{ marginTop: "20px" }}>
+              ¿Ya tiene una cuenta con nosotros?
+              <Link to="/login">Iniciar Sesión</Link>
             </div>
           </div>
-
-          <div className="buttons has-text-centered">
-            <p className="button is-primary font_family" type="submit">
-              Registrarse
-            </p>
-
-            <Link to="/">
-              <p className="button is-light font_family" type="submit">
-                Cancelar
-              </p>
-            </Link>
-          </div>
-        </form>
-        <br />
-
-        <p
-          className="button is-warning font_family"
-          type="submit"
-          onClick={googleSubmit}
-        >
-          Registrarse con Google
-        </p>
-        <div className="font_family " style={{ marginTop: "20px" }}>
-          ¿Ya tiene una cuenta con nosotros?
-          <Link to="/login">Iniciar Sesión</Link>
         </div>
       </div>
     </div>
