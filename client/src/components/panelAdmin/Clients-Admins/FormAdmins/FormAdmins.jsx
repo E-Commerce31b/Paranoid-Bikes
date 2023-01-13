@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
+import { useAuth } from "../../../../context/AuthContext.js";
 import { useDispatch } from "react-redux";
-import { postUser } from "../../../../redux/slices/usersActions";
+import { postUser } from "../../../../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 
 export const validate = (input) => {

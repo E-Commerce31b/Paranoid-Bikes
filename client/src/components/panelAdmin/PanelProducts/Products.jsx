@@ -7,8 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
-import Pagination from "../../pagination/Pagination";
-import Stock from "./Stock";
+import Pagination from "../../pagination/Pagination.jsx";
+import Stock from "./Stock.jsx";
 import { NavLink } from "react-router-dom";
 
 export default function Products() {

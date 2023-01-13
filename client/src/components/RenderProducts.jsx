@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./ProductCard/ProductCard";
+import ProductCard from "./ProductCard/ProductCard.jsx";
 
 const RenderProducts = ({ slicedProducts }) => {
   const color = `#000952`;

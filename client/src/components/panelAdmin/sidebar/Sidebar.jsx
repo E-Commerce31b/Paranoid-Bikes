@@ -4,7 +4,7 @@ import Logo from "../../../assets/Logo.png";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
-import { SidebarData } from "../Data/Data";
+import { SidebarData } from "../Data/Data.js";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { getProductsByCategory } from '../redux/slices/products'
+import { getProductsByCategory } from '../redux/slices/products.js'
 
 const CategoryCard = ({ category }) => {
   const color = `rgba(255, 255, 255, 1)`;

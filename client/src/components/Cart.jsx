@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import RenderProducts from './RenderProducts'
+import RenderProducts from './RenderProducts.jsx'
 import { useDispatch } from 'react-redux'
-import { getProduct } from '../redux/slices/productsActions'
+import { getProduct } from '../redux/slices/productsActions.js'
 import { useNavigate } from 'react-router'
 
 const Cart = () => {

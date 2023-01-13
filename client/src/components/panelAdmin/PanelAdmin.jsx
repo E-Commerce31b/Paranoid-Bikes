@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderPanel from "./HeaderPanel";
-import Sidebar from "./sidebar/Sidebar";
-import MainDash from './MainDash/MainDash';
+import HeaderPanel from "./HeaderPanel.jsx";
+import Sidebar from "./sidebar/Sidebar.jsx";
+import MainDash from './MainDash/MainDash.jsx';
 
 export default function PanelAdmin() {
   return (
