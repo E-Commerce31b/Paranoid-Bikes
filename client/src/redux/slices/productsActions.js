@@ -1,7 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import dotenv from "dotenv";
-dotenv.config();
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -9,7 +7,7 @@ export const getProducts = createAsyncThunk(
     try {
       // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/bikes')
       // const response = await axios.get("http://localhost:3001/api/bikes");
-      const response = await axios.get(`${process.env.URL}/api/bikes`);
+      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes`);
 
       const data = response.data.sort(function (a, b) {
         if (a.name < b.name) return -1;
@@ -45,7 +43,7 @@ export const getProduct = createAsyncThunk(
     try {
       // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`)
       // const response = await axios.get(`http://localhost:3001/api/bikes/${id}`);
-      const response = await axios.get(`${process.env.URL}/api/bikes/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes/${id}`);
       const data = response.data;
 
       return {
@@ -73,7 +71,7 @@ export const postProduct = createAsyncThunk(
     try {
         // const response = await axios.post('https://api-paranoid-bikes-production.up.railway.app/api/bikes', newBike)
         // const response = await axios.post('http://localhost:3001/api/bikes', newBike)
-        const response = await axios.post(`${process.env.URL}/api/bikes`, newBike)
+        const response = await axios.post(`${process.env.REACT_APP_URL}/api/bikes`, newBike)
         return response.data
     } catch (error) {
       return error.message;
@@ -87,7 +85,7 @@ export const putProduct = createAsyncThunk(
     try {
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
         // const response = await axios.put(`http://localhost:3001/api/bikes/${_id}`, product)
-        const response = await axios.put(`${process.env.URL}/api/bikes/${id}`, product)
+        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, product)
         return response.data
     } catch (error) {
       return error.message;
@@ -104,7 +102,7 @@ export const count = createAsyncThunk(
       console.log(id)
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
         // const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {count: product.count})
-        const response = await axios.put(`${process.env.URL}/api/bikes/${id}`, {count: product.count})
+        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {count: product.count})
         console.log(response)
         return response.data
     } catch (error) {
@@ -123,7 +121,7 @@ export const reduceStock = createAsyncThunk(
       console.log(id)
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
         // const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {stock: product.stock})
-        const response = await axios.put(`${process.env.URL}/api/bikes/${id}`, {stock: product.stock})
+        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {stock: product.stock})
         return response.data
     } catch (error) {
       return error.message;
@@ -137,7 +135,7 @@ export const deleteProduct = createAsyncThunk(
     try {
         // const response = axios.delete(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`) 
         // const response = axios.delete(`http://localhost:3001/api/bikes/${id}`) 
-        const response = axios.delete(`${process.env.URL}/api/bikes/${id}`) 
+        const response = axios.delete(`${process.env.REACT_APP_URL}/api/bikes/${id}`) 
         return response.data
     } catch (error) {
       return error.message;
