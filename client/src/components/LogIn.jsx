@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../redux/slices/usersActions"
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.js";
+import { getUser } from "../redux/slices/usersActions.js"
 
 export const validate = (input) => {
   let errors = {};

@@ -1,6 +1,6 @@
 import React from "react";
-import Admins from "./Admins/Admins";
-import Clients from "./Clients/Clients";
+import Admins from "./Admins/Admins.jsx";
+import Clients from "./Clients/Clients.jsx";
 
 export default function ClientsAdmins() {
   return (

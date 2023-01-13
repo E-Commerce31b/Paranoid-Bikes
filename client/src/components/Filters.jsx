@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addFilter, removeFilter, filtersSelectors } from "../redux/slices/filters";
-import { filterProducts } from "../redux/slices/products";
+import { addFilter, removeFilter, filtersSelectors } from "../redux/slices/filters.js";
+import { filterProducts } from "../redux/slices/products.js";
 
 const Filters = () => {
 
