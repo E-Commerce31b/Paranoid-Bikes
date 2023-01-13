@@ -21,6 +21,8 @@ import Cart from "./components/Cart";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
 import UserHome from "./components/UserHome";
 import UserProfile from "./components/UserProfile";
+// import Payment from "./payment";
+// import Completion from "./completion";
 import Footer from "./components/reusable/imagecarousel/Footer";
 import ConfirmPurchase from "./components/ConfirmPurchase";
 import Error404 from "./components/Error404";
@@ -51,13 +53,6 @@ function App() {
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/confirmpurchase" element={<ConfirmPurchase />} />
-        <Route path="/panel" element={<PanelAdmin />} />
-        <Route path="/dashboard" element={<MainDash />} />
-        <Route path="/productos" element={<Products />} />
-        <Route path="/clientesadmins" element={<ClientsAdmins />} />
-        <Route path="/analiticas" element={<Analytics />} />
-        <Route path="/formularioadmin" element={<FormAdmins />} />
         <Route
           path="/user"
           element={

@@ -23,7 +23,8 @@ export const getProducts = createAsyncThunk(
           gender: q.gender,
           count: q.count,
           price: `${q.priceAmount} ${q.priceCurrency}`,
-          // stock: q.stock,
+          priceAmount: q.priceAmount,
+          stock: q.stock,
           image: q.image,
           isEBike: q.isEBike,
         };
@@ -51,6 +52,7 @@ export const getProduct = createAsyncThunk(
         genre: data.gender,
         maker: data.maker,
         size: data.size,
+        stock: data.stock,
         price: data.priceAmount,
         image: data.image,
         // isExpanded: false,
@@ -79,7 +81,41 @@ export const putProduct = createAsyncThunk(
   async ({ _id, ...product }) => {
     try {
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        const response = await axios.put(`http://192.168.0.215:3001/api/bikes/${_id}`, product)
+        const response = await axios.put(`http://localhost:3001/api/bikes/${_id}`, product)
+        return response.data
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+export const count = createAsyncThunk(
+  "products/count",
+  async ({id, ...product}) => {
+    try {
+      product.count += 1
+      console.log(product)
+      console.log(product.count)
+      console.log(id)
+        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
+        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, product)
+        console.log(response)
+        return response.data
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+export const reduceStock = createAsyncThunk(
+  "products/reduceStock",
+  // async ({ _id, ...product }) => {
+  async ({id, ...product }) => {
+    try {
+      product.stock = product.stock - 1
+      console.log(product)
+      console.log(product.stock)
+      console.log(id)
+        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
+        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, product)
         return response.data
     } catch (error) {
       return error.message;
@@ -92,7 +128,7 @@ export const deleteProduct = createAsyncThunk(
   async (id) => {
     try {
         // const response = axios.delete(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`) 
-        const response = axios.delete(`http://192.168.0.215:3001/api/bikes/${id}`) 
+        const response = axios.delete(`http://localhost:3001/api/bikes/${id}`) 
         return response.data
     } catch (error) {
       return error.message;
