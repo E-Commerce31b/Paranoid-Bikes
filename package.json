@@ -9,6 +9,6 @@
   }
    "scripts": {
       "build": "cd api && npm install && cd ../client && npm install && npm run build",
-      "start": "node api/app.js"
+      "start": "node client/app.js && node api/app.js"
    }
 }
