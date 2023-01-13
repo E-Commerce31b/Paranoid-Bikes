@@ -1,8 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
+
   try {
     // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/users')
     // const response = await axios.get("http://localhost:3001/api/users");
