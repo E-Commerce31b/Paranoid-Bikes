@@ -1,0 +1,10 @@
+{
+   "name": "ParanoiBikes",
+   "version": "1.0.0",
+   "description": "E-Commerce de bicis",
+   "main": "index.js",
+   "scripts": {
+      "build": "cd api && npm install && cd ../client && npm install && npm run build",
+      "start": "node api/app.js"
+   }
+}
