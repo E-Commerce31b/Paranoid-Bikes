@@ -1,10 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+require("dotenv").config();
 
 export const getReviews = createAsyncThunk("reviews/getReviews", async () => {
   try {
     // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/reviews')
-    const response = await axios.get("http://localhost:3001/api/reviews");
+    // const response = await axios.get("http://localhost:3001/api/reviews");
+    const response = await axios.get(`${process.env.URL}/api/reviews`);
     const data = response.data.sort(function (a, b) {
       if (a.author.first_name < b.author.first_name) return -1;
       if (a.author.first_name > b.author.first_name) return 1;
@@ -22,7 +24,8 @@ export const postReview = createAsyncThunk(
     try {
       // const response = axios.post('https://api-paranoid-bikes-production.up.railway.app/api/reviews', newQuery)
       const response = axios.post(
-        "http://localhost:3001/api/reviews",
+        // "http://localhost:3001/api/reviews",
+        `${process.env.URL}/api/reviews`,
         newReview
       );
       return response.data;
@@ -38,7 +41,8 @@ export const putReview = createAsyncThunk(
     try {
       // const response = axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/reviews/${id}`, query)
       const response = axios.put(
-        `http://localhost:3001/api/reviews/${id}`,
+        // `http://localhost:3001/api/reviews/${id}`,
+        `${process.env.URL}api/reviews/${id}`,
         review
       );
       return response.data;
@@ -53,7 +57,7 @@ export const deleteReview = createAsyncThunk(
   async (id) => {
     try {
       // const response = axios.delete(`https://api-pro-fy-production.up.railway.app/api/reviews/${id}`)
-      const response = axios.delete(`http://localhost:3001/api/reviews/${id}`);
+      const response = axios.delete(`${process.env.URL}/api/reviews/${id}`);
       return response.data;
     } catch (error) {
       return error.message;
