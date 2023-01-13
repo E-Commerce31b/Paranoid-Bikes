@@ -1,6 +1,14 @@
 {
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "path-browserify": "^1.0.1"
+  "name": "ParanoiBikes",
+  "version": "1.0.0",
+  "description": "E-Commerce de bicis",
+  "main": "index.js",
+    "dependencies": {
+   "dotenv": "^16.0.3",
+   "path-browserify": "^1.0.1"
+ },
+  "scripts": {
+     "build": "cd api && npm install && cd ../client && npm install && npm run build",
+     "start": "node client/src/app.js && node api/app.js"
   }
 }
