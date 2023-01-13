@@ -8,6 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import Pagination from "../../pagination/Pagination";
+import Stock from "./Stock";
+import { NavLink } from "react-router-dom";
 
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
@@ -48,15 +50,13 @@ export default function Products() {
                     {bike.name}
                   </TableCell>
                   <TableCell align="left">{bike.id}</TableCell>
-                  <TableCell align="left"></TableCell>
-                  {/* <TableCell align="left">
-                    <span className="status" style={makeStyle(row.status)}>
-                      {row.status}
-                    </span>
-                  </TableCell>  */}
-                  <TableCell align="left" className="Details">
-                    Detalle
+                  <TableCell align="left">
+                    <Stock />
                   </TableCell>
+                  <TableCell align="left" className="Details">
+                    <NavLink to={`/details/${bike.id}`}>Detalle</NavLink>
+                  </TableCell>
+                  {/* <TableCell align="left"></TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
