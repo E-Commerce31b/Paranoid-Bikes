@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 export const getReviews = createAsyncThunk("reviews/getReviews", async () => {
   try {
