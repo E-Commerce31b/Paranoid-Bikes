@@ -92,12 +92,12 @@ export const count = createAsyncThunk(
   "products/count",
   async ({id, ...product}) => {
     try {
-      product.count += 1
+      product.count = product.count + 2
       console.log(product)
       console.log(product.count)
       console.log(id)
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, product)
+        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {count: product.count})
         console.log(response)
         return response.data
     } catch (error) {
@@ -110,12 +110,12 @@ export const reduceStock = createAsyncThunk(
   // async ({ _id, ...product }) => {
   async ({id, ...product }) => {
     try {
-      product.stock = product.stock - 1
+      product.stock = product.stock - 2
       console.log(product)
       console.log(product.stock)
       console.log(id)
         // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, product)
+        const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {stock: product.stock})
         return response.data
     } catch (error) {
       return error.message;
