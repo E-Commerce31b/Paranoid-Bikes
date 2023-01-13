@@ -11,7 +11,7 @@ import LogIn from "./components/LogIn.jsx";
 import SignUp from "./components/SignUp.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
-import { AuthProvider } from "./context/AuthContext.jsx";
+import { AuthProvider } from "./context/AuthContext.js"; 
 import Header from "./components/reusable/Header.jsx";
 import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";

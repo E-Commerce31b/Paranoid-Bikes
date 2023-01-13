@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.js";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 
