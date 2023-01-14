@@ -84,14 +84,13 @@ export default function Signup() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
-      {
-        dispatch(postUser(input));
-        alert("Usuario creado con exito!");
-        setInput({
-          /*   email: "",
-          password: "", */
-        });
-      }
+
+      // dispatch(postUser(input));
+      // alert("Usuario creado con exito!");
+      // setInput({
+      //   /*   email: "",
+      //     password: "", */
+      // });
 
       emailjs
         .sendForm(
@@ -246,9 +245,9 @@ export default function Signup() {
               </div>
 
               <div className="buttons has-text-centered">
-                <p className="button is-primary font_family" type="submit">
+                <button className="button is-primary font_family" type="submit">
                   Registrarse
-                </p>
+                </button>
 
                 <Link to="/">
                   <p className="button is-light font_family" type="submit">
