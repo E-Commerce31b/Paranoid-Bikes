@@ -16,7 +16,7 @@ import Header from "./components/reusable/Header.jsx";
 import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";
 import Orders from "./components/Orders.jsx";
-import "./App.jsx";
+import "./App.js";
 import Cart from "./components/Cart.jsx";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes.js";
 import UserHome from "./components/UserHome.jsx";
