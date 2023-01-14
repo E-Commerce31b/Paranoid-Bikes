@@ -21,7 +21,7 @@
   gap: 1rem;
 }
 .CircularProgressbar {
-  width: 4rem !important;
+  width: 3rem !important;
   overflow: visible;
 }
 .CircularProgressbar-path {

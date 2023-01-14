@@ -8,6 +8,9 @@ import {
   UilSignOutAlt,
 } from "@iconscout/react-unicons";
 
+// Analytics Cards imports
+import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
+
 export const SidebarData = [
   {
     icon: UilEstate,
@@ -37,7 +40,7 @@ export const SidebarData = [
 ];
 
 // Analytics Cards Data
-/* export const cardsData = [
+export const cardsData = [
   {
     title: "Sales",
     color: {
@@ -90,7 +93,7 @@ export const SidebarData = [
 ];
 
 // Recent Update Card Data
-export const UpdatesData = [
+/*export const UpdatesData = [
   {
     img: img1,
     name: "Andrew Thomas",
