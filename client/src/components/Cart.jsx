@@ -1,17 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import RenderProducts from './RenderProducts'
-import { useDispatch } from 'react-redux'
-import { getProduct } from '../redux/slices/productsActions'
 import { useNavigate } from 'react-router'
 
 const Cart = () => {
 
     const selected = useSelector(state => state.users.user.purchased)
     const currentPage = useSelector((state) => state.products.currentPage);
-    const products = useSelector((state) => state.products.products)
-
-    const dispatch = useDispatch()
+    const user = useSelector((state) => state.users.user)
 
     // const currentPage = useSelector((state) => state.products.currentPage);
   
@@ -31,8 +27,12 @@ const Cart = () => {
     };
     return (
         <div>
-            <RenderProducts slicedProducts={slicedProducts} />
-            <button onClick={() => handlePayment()}>Proceder a la compra</button>
+          {
+          user ? 
+            <div><RenderProducts slicedProducts={slicedProducts} />
+            <button onClick={() => handlePayment()}>Proceder a la compra</button></div>
+                : navigate('/login')
+          }
         </div>
     )
 }

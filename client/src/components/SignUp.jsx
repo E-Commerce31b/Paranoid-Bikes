@@ -2,9 +2,10 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../index.css";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions";
 import emailjs from "emailjs-com";
+import { getUser } from "../redux/slices/usersActions"
 
 export const validate = (input) => {
   let errors = {};
@@ -58,6 +59,8 @@ export default function Signup() {
   });
   const navigate = useNavigate();
 
+  const users = useSelector(state => state.users.users)
+  
   const changeState = () => {
     setBoxState(true);
   };
@@ -71,6 +74,8 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const user = await users.find(u => u.email === emailRef.current.value)
+    dispatch(getUser(user._id))
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
       return setError("Contraseña no coincide");
 
