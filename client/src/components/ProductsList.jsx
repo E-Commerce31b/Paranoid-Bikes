@@ -21,16 +21,18 @@ const ProductsList = () => {
 
   return (
     <div>
-      <div>
-        <Filters />
-      </div>
-      <div>
-        <Sorters />
+      <div className="flex is-flex-direction-row  is-justify-content-space-evenly">
+        <div>
+          <Filters />
+        </div>
+        <div>
+          <Sorters />
+        </div>
       </div>
       <div>
         <RenderProducts slicedProducts={slicedProducts} />
       </div>
-      <div>
+      <div className="p-6 flex is-justify-content-center is-flex-direction-row">
         <Pagination currentPage={currentPage} filtered={filtered} />
       </div>
     </div>

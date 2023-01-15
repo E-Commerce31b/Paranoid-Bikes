@@ -9,6 +9,7 @@ export default function Header() {
   const { currentUser, logout } = useAuth();
   const params = useLocation();
   console.log(params.pathname);
+
   return (
     <div>
       <nav

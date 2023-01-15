@@ -11,7 +11,7 @@ import LogIn from "./components/LogIn.jsx";
 import SignUp from "./components/SignUp.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
-import { AuthProvider } from "./context/AuthContext.js"; 
+import { AuthProvider } from "./context/AuthContext.js";
 import Header from "./components/reusable/Header.jsx";
 import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";
@@ -52,7 +52,11 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/panel" element={<PanelAdmin />} />
+        <Route path="/productos" element={<Products />} />
+        <Route path="/FormAdmins" element={<FormAdmins />} />
+        <Route path="/clientesadmins" element={<ClientsAdmins />} />
+        <Route path="/dashboard" element={<MainDash />} />
         <Route
           path="/user"
           element={
