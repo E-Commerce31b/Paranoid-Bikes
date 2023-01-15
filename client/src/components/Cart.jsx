@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import RenderProducts from './RenderProducts'
+import RenderProducts from './RenderProducts.jsx'
 import { useDispatch } from 'react-redux'
-import { getProduct } from '../redux/slices/productsActions'
+import { getProduct } from '../redux/slices/productsActions.js'
+import { useNavigate } from 'react-router'
 
 const Cart = () => {
 
@@ -14,6 +15,12 @@ const Cart = () => {
 
     // const currentPage = useSelector((state) => state.products.currentPage);
   
+    const navigate = useNavigate()
+
+    const handlePayment = () => {
+      navigate('/stripe', {state: {selected: selected}})
+    }
+
     const slicedProducts = () => {
       // if(product) return product;
       if (selected) {
@@ -25,6 +32,7 @@ const Cart = () => {
     return (
         <div>
             <RenderProducts slicedProducts={slicedProducts} />
+            <button onClick={() => handlePayment()}>Proceder a la compra</button>
         </div>
     )
 }

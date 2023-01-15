@@ -2,10 +2,10 @@ import React from "react";
 // import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 // import { getProducts } from '../redux/slices/productsActions';
-import Filters from "./Filters";
-import Sorters from "./Sorters";
-import RenderProducts from "./RenderProducts";
-import Pagination from "../components/pagination/Pagination";
+import Filters from "./Filters.jsx";
+import Sorters from "./Sorters.jsx";
+import RenderProducts from "./RenderProducts.jsx";
+import Pagination from "../components/pagination/Pagination.jsx";
 
 const ProductsList = () => {
   const filtered = useSelector((state) => state.products.filtered);

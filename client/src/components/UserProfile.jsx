@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logoProfile from "../assets/logoProfile.png";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.js";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../redux/slices/usersActions";
+import { getUsers } from "../redux/slices/usersActions.js";
 
 const UserProfile = () => {
   const dispatch = useDispatch();

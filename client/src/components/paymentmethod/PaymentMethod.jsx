@@ -1,6 +1,6 @@
 import React from "react";
 import "./paymentmethod.css";
-import { imgs } from "../PaymentCard";
+import { imgs } from "../PaymentCard.jsx";
 import { NavLink } from "react-router-dom";
 
 export default function PaymentMethod() {

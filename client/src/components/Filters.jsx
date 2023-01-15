@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -6,6 +7,7 @@ import {
   filtersSelectors,
 } from "../redux/slices/filters";
 import { filterProducts } from "../redux/slices/products";
+
 
 const Filters = () => {
   // const [price, setPrice] = useState("");
