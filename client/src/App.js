@@ -53,7 +53,6 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
-        <Route path="/panel" element={<PanelAdmin />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/FormAdmins" element={<FormAdmins />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
@@ -80,6 +79,15 @@ function App() {
           element={
             <PrivateRoutes>
               <UserProfile />
+            </PrivateRoutes>
+          }
+        ></Route>
+
+        <Route
+          path="/panel"
+          element={
+            <PrivateRoutes>
+              <PanelAdmin />
             </PrivateRoutes>
           }
         ></Route>

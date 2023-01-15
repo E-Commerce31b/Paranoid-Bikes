@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logoProfile from "../assets/logoProfile.png";
 import { useAuth } from "../context/AuthContext";
+import { useSelector } from "react-redux";
 // import { useDispatch } from "react-redux";
 // import { getUsers } from "../redux/slices/usersActions";
 import axios from "axios";
@@ -11,6 +12,8 @@ const UserProfile = () => {
   const [user, setUser] = useState([""]);
   const [loading, setLoading] = useState(false);
 
+  const counter = useSelector((state) => state.users.user);
+  console.log(counter);
   useEffect(() => {
     const data = async () => {
       setLoading(true);
