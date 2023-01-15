@@ -1,0 +1,35 @@
+//Variables iniciales
+@charset "utf-8";
+
+//cambios en Navbar
+
+$navbar-item-img-max-height: 3rem;
+$title-color: white;
+
+
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/bulma.sass";
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap");
+
+// @import "../sass/utilities/initial-variables";
+// @import "../sass/utilities/functions";
+
+
+
+//importaciones de bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "bulma/sass/grid/columns.sass";
+
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/elements/image.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/components/panel.sass";
+@import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/layout/section.sass";
+
+
+
+

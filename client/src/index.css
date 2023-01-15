@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap");
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Audiowide", cursive !important;
+  background-color: #000952 !important;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex_direction {
+  flex-direction: row;
+}
+
+.paddingTop {
+  padding-top: 2rem;
+}
+.textDecoration {
+  color: black;
+}
+
+.fontColor {
+  color: white;
+}
+
+.buttonSuccess {
+  background-color: #00e1b5;
+}
+
+.overlay {
+  position: relative;
+}
+.overlay::before {
+  content: "";
+  position: absolute;
+  background: #000000;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-size: 50%;
+}
+.overlay img {
+  width: 100%;
+}
+
+.position_footer {
+  margin-top: auto;
+}
+
+.buttonProfile {
+  border: 2px solid #00e1b5;
+  border-radius: 100%;
+}
+.buttonProfile:hover {
+  border: 2px solid #000952;
+  transform: scale(0.9);
+}

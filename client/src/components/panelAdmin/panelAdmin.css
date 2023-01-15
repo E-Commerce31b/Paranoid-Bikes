@@ -1,0 +1,38 @@
+.panel {
+  /* padding: 0.5rem 3.5rem; */
+  color: var(--black);
+  background: linear-gradient(
+    106.37deg,
+    #2b3999 29.63%,
+    #16206d 51.55%,
+    #39fbdec3 90.85%
+  );
+  height: 100vh;
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+.AppGlass {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background: var(--glass);
+  border-radius: 2rem;
+  gap: 16px;
+  grid-template-columns: 11rem auto 20rem;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .AppGlass{
+    grid-template-columns: 10% 50% auto;
+    overflow-y: scroll;
+  } 
+}
+
+@media screen and (max-width: 768px) {
+  .AppGlass{
+    grid-template-columns: 1fr;
+  } 
+}

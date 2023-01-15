@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Baumans&family=Lobster&family=Poppins&display=swap");
+
+.container_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  object-fit: cover;
+  background-color: #000952;
+}
+
+.card_img {
+  width: 200px;
+  height: 150px;
+  margin: 52px 100px;
+}
+
+.container_card button {
+  background-color: rgb(250, 250, 250);
+  margin: 53px 40px;
+  border-radius: 10px;
+  border: none;
+}
+
+.container_card p {
+  color: rgb(4, 4, 4);
+  font-size: 28px;
+  font-family: "Audiowide", cursive;
+}
+
+button:hover {
+  transform: scale(0.9);
+}

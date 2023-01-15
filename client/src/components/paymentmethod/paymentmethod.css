@@ -1,0 +1,25 @@
+.container_stripe {
+  width: 480px;
+  height: 607px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 40px;
+}
+
+.btn_stripe {
+  width: 100%;
+  padding-inline-end: 100%;
+}
+
+.container_cards_payment {
+  width: 600px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.btn {
+  border: none;
+  padding: 50px;
+}
