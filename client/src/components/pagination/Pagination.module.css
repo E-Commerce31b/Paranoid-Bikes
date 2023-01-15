@@ -3,6 +3,7 @@
     flex-direction: row;
     flex-wrap:wrap;
     height:100px;
+    color: white;
 }
 
 .actualPage {
@@ -20,39 +21,64 @@
 }
 
 .pagination {
-    background-color:rgb(21, 51, 88);
+    background-color:rgba(42, 42, 118, 0.373);;
     border:none;
     height: 75%;
     width:50px;
     border-radius: 10px;
     text-align:center;
     font-size:50px;
-    color:rgb(183, 227, 149);
+    color:white;
+    display: flex;
+    align-items: center;
+}
+.pagination:hover {
+ background-color: rgba(149, 192, 227, 0.5);
 }
 
+.paginationOn {
+    background-color:rgba(149, 192, 227, 0.5);
+    border:none;
+    height: 75%;
+    width:50px;
+    border-radius: 10px;
+    text-align:center;
+    font-size:50px;
+    color:white;
+    display: flex;
+    align-items: center;
+    margin-top: 7px;
+}
+
+
 .page {
-    background:none;
-    height:30px;
+    background:rgba(42, 42, 118, 0.373);
+    padding: 16px;
     border-radius:5px;
     border:none;
     font-size:larger;
     font-weight: bold;
     color:rgb(21, 51, 88);
     margin: 10px;
+    color: white;
 }
 
 .page:hover {
-    background-color:rgb(183, 227, 149, 0.5);
+    background-color:rgba(149, 192, 227, 0.5);
     border-radius:10px;
+ 
 }
 
 .show_arrow {
     font-size: normal;
+    margin-top: 10px ;
+    
 }
 
 .hide_arrow {
     background: none;
     font-size: 0px;
+    margin-top: 10px ;
 }
 
 .page_number {
@@ -60,6 +86,7 @@
     display:flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 
 /* .page_number_image {
@@ -75,3 +102,4 @@
     background-repeat: no-repeat;
     background-size: 60px 40px; */
 }
+

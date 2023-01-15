@@ -41,6 +41,9 @@ body {
   opacity: 0.6;
   background-size: 50%;
 }
+.overlay img {
+  width: 100%;
+}
 
 .position_footer {
   margin-top: auto;

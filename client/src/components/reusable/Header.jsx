@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector } from 'react-redux'
 import logo from "../../assets/Logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
 import UserLoggedInfo from "../UserLoggedInfo.jsx";
 import SearchBar from "../SearchBar.jsx";
@@ -9,6 +10,16 @@ export default function Header() {
   const { currentUser, logout } = useAuth();
   const params = useLocation();
   console.log(params.pathname);
+
+  const user = useSelector((state) => state.users.user)
+  const navigate = useNavigate()
+  const handleCart = () => {
+    if(Object.keys(user).length) {
+      navigate('/cart')
+    } else {
+      navigate('/login')
+    }
+  }
   return (
     <div>
       <nav
@@ -75,11 +86,11 @@ export default function Header() {
                 <div />
               </div>
               <div className="navbar-item">
-                <NavLink to="/cart">
+                {/* <NavLink to="/cart"> */}
                   <p className="control pl-6">
-                    <div className="button is-small">🛒</div>
+                    <button className="button is-small" onClick={() => handleCart()}>🛒</button>
                   </p>
-                </NavLink>
+                {/* </NavLink> */}
               </div>
             </div>
             {currentUser && currentUser.email ? (

@@ -1,24 +1,37 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { sortByName, sortByPrice } from '../redux/slices/products.js'
+import React from "react";
+import { useDispatch } from "react-redux";
+import { sortByName, sortByPrice } from "../redux/slices/products.js";
 
-export default function Sorters () {
+export default function Sorters() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-
-    return (
-            <div >
-                <h3 >Ordenar por...</h3>
-                    <select  id="origins" onChange={(e) => dispatch(sortByName(e.target.value))}>
-                        <option defaultValue hidden>Nombre</option>   
-                        <option value="asc">ascendente</option>
-                        <option value="desc">descendente</option>
-                    </select>
-                    <select  id="weight" onChange={(e) => dispatch(sortByPrice(e.target.value))}>
-                        <option defaultValue hidden>Precio</option>
-                        <option value="asc">ascendente</option>
-                        <option value="desc">descendente</option>
-                    </select>
-            </div>
-    )
+  return (
+    <div className="p-6">
+      <h3 className="p-3 has-text-white">Ordenar por...</h3>
+      <div className="select is-success ">
+        <select
+          id="origins"
+          onChange={(e) => dispatch(sortByName(e.target.value))}
+        >
+          <option defaultValue hidden>
+            Nombre
+          </option>
+          <option value="asc">ascendente</option>
+          <option value="desc">descendente</option>
+        </select>
+      </div>
+      <div className="select is-success ml-4">
+        <select
+          id="weight"
+          onChange={(e) => dispatch(sortByPrice(e.target.value))}
+        >
+          <option defaultValue hidden>
+            Precio
+          </option>
+          <option value="asc">ascendente</option>
+          <option value="desc">descendente</option>
+        </select>
+      </div>
+    </div>
+  );
 }

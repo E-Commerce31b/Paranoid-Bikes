@@ -11,7 +11,7 @@
     height:300; 
     width:250;
 } */
-.box {
+.boxCard {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,4 +38,7 @@
     font:"Audiowide";
     font-size:20;
     width:200px;
+}
+.botones{
+    gap:10px
 }

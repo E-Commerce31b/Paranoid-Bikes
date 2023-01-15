@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { managePurchased } from "../redux/slices/users.js"
 import { useParams } from "react-router-dom";
+import { Button, Box } from '@mui/material';
 import "../index.css";
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -55,16 +56,18 @@ const ProductDetail = (props) => {
             <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
           </div>
         </div>
-        <button onClick={() => sendToCart()}>
-              Agregar al carrito
-        </button>
         <div className="column is is-align-items-center">
         <div style={{ width: "280px", height: "auto"}}>
-          <figure>
-            <img
-              src={bike.image}
-              alt="not found"
-              />
+          <figure style={{display:'flex',flexDirection:'column', justifyContent:'center' ,alignItems:'center'}}>
+              <img
+                src={bike.image}
+                alt="not found"
+                />
+              <Box sx={{p:2}}>
+                  <Button onClick={() => sendToCart()}>
+                        Agregar al carrito
+                  </Button>
+              </Box>
           </figure>
         </div>
       </div>

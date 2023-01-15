@@ -53,7 +53,11 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/panel" element={<PanelAdmin />} />
+        <Route path="/productos" element={<Products />} />
+        <Route path="/FormAdmins" element={<FormAdmins />} />
+        <Route path="/clientesadmins" element={<ClientsAdmins />} />
+        <Route path="/dashboard" element={<MainDash />} />
         <Route
           path="/user"
           element={

@@ -11,14 +11,18 @@ const RenderProducts = ({ slicedProducts }) => {
         flexWrap: "wrap",
         alignItems: "center",
         gap: "10px",
-        padding:'10px',
-        justifyContent: 'space-around'
+        padding: "10px",
+        justifyContent: "space-around",
       }}
     >
       {slicedProducts().map((p, i) => {
         return (
           <div key={i}>
             <ProductCard product={p} />
+            <button>-</button>
+            {/* <p>{p.}</p> */}
+            <button>+</button>
+            <p>{p.price}</p>
           </div>
         );
       })}
