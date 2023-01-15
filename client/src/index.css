@@ -52,5 +52,5 @@ body {
 }
 .buttonProfile:hover {
   border: 2px solid #000952;
-  transform: scale(1.08);
+  transform: scale(0.9);
 }

@@ -11,7 +11,7 @@ import LogIn from "./components/LogIn.jsx";
 import SignUp from "./components/SignUp.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
-import { AuthProvider } from "./context/AuthContext.js"; 
+import { AuthProvider } from "./context/AuthContext.js";
 import Header from "./components/reusable/Header.jsx";
 import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";
@@ -32,6 +32,7 @@ import Products from "./components/panelAdmin/PanelProducts/Products.jsx";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.jsx";
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
 import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins.jsx";
+import GoogleRegister from "./components/GoogleRegister.jsx";
 
 function App() {
   return (
@@ -58,6 +59,15 @@ function App() {
           element={
             <PrivateRoutes>
               <UserHome />
+            </PrivateRoutes>
+          }
+        ></Route>
+
+        <Route
+          path="/googleForm"
+          element={
+            <PrivateRoutes>
+              <GoogleRegister />
             </PrivateRoutes>
           }
         ></Route>

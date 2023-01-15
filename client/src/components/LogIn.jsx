@@ -21,7 +21,7 @@ export const validate = (input) => {
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, googleSignUp } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -60,6 +60,18 @@ const Login = () => {
     }
     setLoading(false);
   }
+
+  async function googleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      setLoading(true);
+      await googleSignUp();
+      navigate("/"); /// cambiar a ruta user
+    } catch {
+      setError("Error al crear la cuenta, intente nuevamente por favor");
+    }
+  }
   return (
     <div className=" mb-5">
       <div>
@@ -73,7 +85,7 @@ const Login = () => {
           width: "50%",
           marginTop: "20px",
           marginBottom: "20px",
-          height: "315px",
+          height: "530px",
         }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
@@ -113,6 +125,15 @@ const Login = () => {
             </button>
           </div>
         </form>
+
+        <br />
+        <p
+          className="button is-warning font_family"
+          type="submit"
+          onClick={googleSubmit}
+        >
+          Iniciar sesión con Google con Google
+        </p>
 
         <div className="m-2 font_family">
           <Link to="/forgot-password">¿Olvido la contraseña?</Link>
