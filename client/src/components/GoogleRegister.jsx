@@ -1,11 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.js";
-import "../index.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
-import { getUser } from "../redux/slices/usersActions"
 
 export const validate = (input) => {
   let errors = {};
@@ -29,19 +26,9 @@ export const validate = (input) => {
   }
   return errors;
 };
-
-export default function Signup() {
+const GoogleRegister = () => {
   const form = useRef();
   const dispatch = useDispatch();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-
-  const { signup, googleSignUp } = useAuth();
-
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [boxState, setBoxState] = useState(false);
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -57,84 +44,44 @@ export default function Signup() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
-
-  const users = useSelector(state => state.users.users)
-  
-  const changeState = () => {
-    setBoxState(true);
-  };
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     const property = e.target.name;
     setInput({ ...input, [property]: value });
     setFormErrors(validate({ ...input, [property]: value }));
   };
-
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    const user = await users.find(u => u.email === emailRef.current.value)
-    dispatch(getUser(user._id))
-    if (passwordConfirmRef.current.value !== passwordRef.current.value)
-      return setError("Contraseña no coincide");
+    console.log("click");
+    // if (input.password !== input.passwordConf)
+    //   return setError("Contraseña no coincide");
 
-    if (!boxState) return setError("Por favor aceptar términos y condiciones");
-    try {
-      setError("");
-      setLoading(true);
+    setError("");
+    dispatch(postUser(input));
+    alert("Usuario creado con exito!");
+    emailjs
+      .sendForm(
+        "service_ev9mv2j",
+        "template_hzyfavr",
+        form.current,
+        "gYTIZ320UzKrK9phD"
+      )
 
-      await signup(
-        emailRef.current.value,
-        passwordRef.current.value,
-        passwordConfirmRef.current.value
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
       );
 
-      dispatch(postUser(input));
-      alert("Usuario creado con exito!");
-      // setInput({
-      //   /*   email: "",
-      //     password: "", */
-      // });
-
-      emailjs
-        .sendForm(
-          "service_ev9mv2j",
-          "template_hzyfavr",
-          form.current,
-          "gYTIZ320UzKrK9phD"
-        )
-
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-
-      e.target.reset();
-      setBoxState(false);
-      navigate("/user"); /// cambiar a ruta user
-    } catch {
-      setError("Error al crear la cuenta");
-    }
+    e.target.reset();
+    navigate("/user");
   }
-
-  async function googleSubmit(e) {
-    e.preventDefault();
-    if (!boxState) return setError("Por favor aceptar términos y condiciones");
-    try {
-      setError("");
-      setLoading(true);
-      await googleSignUp();
-      navigate("/googleForm"); /// cambiar a ruta user
-    } catch {
-      setError("Error al crear la cuenta, intente nuevamente por favor");
-    }
-  }
-
   return (
     <div className=" mb-6 ">
       <div style={{ backgroundColor: "white" }}>
@@ -142,7 +89,7 @@ export default function Signup() {
       </div>
 
       <div className="column has-text-centered">
-        <h1 className="title is-3 font_family mt-5">Crear Usuario</h1>
+        <h1 className="title is-3 font_family mt-5">Registrar</h1>
       </div>
       <div className="columns">
         <div className="column is-3"></div>
@@ -151,7 +98,7 @@ export default function Signup() {
           style={{ borderRadius: "10px" }}
         >
           <div>
-            {error && (
+            {/* {error && (
               <p className="notification is-danger is-light ">{error}</p>
             )}
             {formErrors.email && (
@@ -163,7 +110,7 @@ export default function Signup() {
               <p className="is-size-7-desktop notification is-danger is-light">
                 {formErrors.password}
               </p>
-            )}
+            )} */}
             <form ref={form} onSubmit={handleSubmit}>
               <div className="field">
                 <label className="label font_family">Nombre</label>
@@ -171,7 +118,6 @@ export default function Signup() {
                   className="input"
                   type="first_name"
                   name="first_name"
-                  /*  ref={emailRef} */
                   onChange={handleInputChange}
                 ></input>
               </div>
@@ -181,7 +127,6 @@ export default function Signup() {
                   className="input"
                   type="last_name"
                   name="last_name"
-                  /*  ref={emailRef} */
                   onChange={handleInputChange}
                 ></input>
               </div>
@@ -191,7 +136,6 @@ export default function Signup() {
                   className="input"
                   type="country"
                   name="country"
-                  /*  ref={emailRef} */
                   onChange={handleInputChange}
                 ></input>
               </div>
@@ -201,7 +145,6 @@ export default function Signup() {
                   className="input"
                   type="city"
                   name="city"
-                  /*  ref={emailRef} */
                   onChange={handleInputChange}
                 ></input>
               </div>
@@ -211,7 +154,6 @@ export default function Signup() {
                   className="input"
                   type="email"
                   name="email"
-                  ref={emailRef}
                   onChange={handleInputChange}
                 ></input>
               </div>
@@ -221,7 +163,6 @@ export default function Signup() {
                 <input
                   className="input"
                   type="password"
-                  ref={passwordRef}
                   onChange={handleInputChange}
                   name="password"
                 ></input>
@@ -234,19 +175,8 @@ export default function Signup() {
                 <input
                   className="input"
                   type="password"
-                  ref={passwordConfirmRef}
+                  name="passwordConf"
                 ></input>
-              </div>
-
-              <div className="field">
-                <div className="control">
-                  <label className="checkbox">
-                    <input type="checkbox" onChange={changeState} />
-                    <a href="#" className="font_family">
-                      Acepto los términos y condiciones
-                    </a>
-                  </label>
-                </div>
               </div>
 
               <div className="buttons has-text-centered">
@@ -262,21 +192,10 @@ export default function Signup() {
               </div>
             </form>
             <br />
-
-            <p
-              className="button is-warning font_family"
-              type="submit"
-              onClick={googleSubmit}
-            >
-              Registrarse con Google
-            </p>
-            <div className="font_family " style={{ marginTop: "20px" }}>
-              ¿Ya tiene una cuenta con nosotros?
-              <Link to="/login">Iniciar Sesión</Link>
-            </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+export default GoogleRegister;
