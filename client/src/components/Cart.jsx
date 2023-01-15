@@ -1,17 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import RenderProducts from './RenderProducts.jsx'
-import { useDispatch } from 'react-redux'
-import { getProduct } from '../redux/slices/productsActions.js'
+import RenderProducts from './RenderProducts'
 import { useNavigate } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
 const Cart = () => {
 
     const selected = useSelector(state => state.users.user.purchased)
     const currentPage = useSelector((state) => state.products.currentPage);
-    const products = useSelector((state) => state.products.products)
-
-    const dispatch = useDispatch()
+    const user = useSelector((state) => state.users.user)
 
     // const currentPage = useSelector((state) => state.products.currentPage);
   
@@ -31,8 +28,14 @@ const Cart = () => {
     };
     return (
         <div>
-            <RenderProducts slicedProducts={slicedProducts} />
-            <button onClick={() => handlePayment()}>Proceder a la compra</button>
+          {
+            selected ? 
+            <div><RenderProducts slicedProducts={slicedProducts} />
+            <button onClick={() => handlePayment()}>Proceder a la compra</button></div>
+            : <div><p>No hay productos seleccionados.</p>
+              <NavLink to='/'><button>Agregar productos</button></NavLink>
+            </div>
+          }
         </div>
     )
 }
