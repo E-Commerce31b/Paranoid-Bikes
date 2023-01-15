@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
-import { getUser } from "../redux/slices/usersActions.js"
+import { getUser } from "../redux/slices/usersActions.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -21,7 +21,7 @@ export const validate = (input) => {
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, googleSignUp } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,8 +36,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const users = useSelector(state => state.users.users)
-  const dispatch = useDispatch()
+  const users = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -48,8 +48,8 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const user = await users.find(u => u.email === emailRef.current.value)
-      dispatch(getUser(user._id))
+      // const user = await users.find(u => u.email === emailRef.current.value)
+      // dispatch(getUser(user._id))
       setError("");
       setLoading(true);
 
@@ -59,6 +59,18 @@ const Login = () => {
       setError("Error al inicial sesion, intente nuevamente");
     }
     setLoading(false);
+  }
+
+  async function googleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      setLoading(true);
+      await googleSignUp();
+      navigate("/"); /// cambiar a ruta user
+    } catch {
+      setError("Error al crear la cuenta, intente nuevamente por favor");
+    }
   }
   return (
     <div className=" mb-5">
@@ -73,7 +85,7 @@ const Login = () => {
           width: "50%",
           marginTop: "20px",
           marginBottom: "20px",
-          height: "315px",
+          height: "530px",
         }}
       >
         {error && <p className="notification is-danger is-light">{error}</p>}
@@ -113,6 +125,15 @@ const Login = () => {
             </button>
           </div>
         </form>
+
+        <br />
+        <p
+          className="button is-warning font_family"
+          type="submit"
+          onClick={googleSubmit}
+        >
+          Iniciar sesión con Google con Google
+        </p>
 
         <div className="m-2 font_family">
           <Link to="/forgot-password">¿Olvido la contraseña?</Link>

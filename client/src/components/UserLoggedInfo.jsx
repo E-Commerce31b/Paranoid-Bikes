@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext.js";
+import logoProfile from "../assets/logoProfile.png";
+import { Link } from "react-router-dom";
 
 export default function UserLoggedInfo() {
   const navigate = useNavigate();
@@ -24,6 +26,14 @@ export default function UserLoggedInfo() {
           <div className="buttons">
             <p className="m-5">Usuario: {currentUser.email}</p>
 
+            <Link to="/home">
+              <img
+                src={logoProfile}
+                alt="logpProfile"
+                className="mr-2 buttonProfile"
+                style={{ height: "45px" }}
+              />
+            </Link>
             <button
               className="button is-warning is-small"
               type="submit"
