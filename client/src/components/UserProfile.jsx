@@ -23,7 +23,6 @@ const UserProfile = () => {
         .then((res) => {
           return res.data;
         });
-      console.log(dataUser);
       const userData = dataUser.filter(
         (element) => element.email === currentUser.email
       );

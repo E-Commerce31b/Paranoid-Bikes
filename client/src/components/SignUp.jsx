@@ -7,6 +7,7 @@ import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions"
 
+
 export const validate = (input) => {
   let errors = {};
 
@@ -90,6 +91,8 @@ export default function Signup() {
         passwordConfirmRef.current.value
       );
 
+     
+
       dispatch(postUser(input));
       alert("Usuario creado con exito!");
       // setInput({
@@ -114,7 +117,6 @@ export default function Signup() {
           }
         );
 
-      e.target.reset();
       setBoxState(false);
       navigate("/user"); /// cambiar a ruta user
     } catch {

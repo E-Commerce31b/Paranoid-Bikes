@@ -21,6 +21,7 @@
     "firebase": "^9.15.0",
     "framer-motion": "^6.2.9",
     "fs": "^0.0.1-security",
+    "jwt-decode": "^3.1.2",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -40,7 +41,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "type":"module",
+  "type": "module",
   "eslintConfig": {
     "extends": [
       "react-app",
