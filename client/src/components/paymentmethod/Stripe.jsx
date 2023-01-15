@@ -10,7 +10,7 @@ import axios from "axios";
 import "./paymentmethod.css";
 import { useState } from 'react'; 
 import { useDispatch } from 'react-redux';
-import { reduceStock, count } from '../../redux/slices/productsActions';
+import { reduceStock, count } from '../../redux/slices/productsActions.js';
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 

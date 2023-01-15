@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "E-Commerce de bicis",
   "main": "index.js",
-    "dependencies": {
-   "dotenv": "^16.0.3",
-   "path-browserify": "^1.0.1"
- },
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "dotenv": "^16.0.3",
+    "path-browserify": "^1.0.1"
+  },
   "scripts": {
      "build": "cd api && npm install && cd ../client && npm install && npm run build",
      "start": "node client/src/index.js && node api/app.js"

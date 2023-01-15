@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import style from "./Pagination.module.css";
-import { pagination } from "../../redux/slices/products";
-import { cleanCurrentPage } from "../../redux/slices/products";
+import { pagination } from "../../redux/slices/products.js";
+import { cleanCurrentPage } from "../../redux/slices/products.js";
 
 export default function Pagination({ currentPage, filtered }) {
   const [pages, setPages] = useState([]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { sortByName, sortByPrice } from '../redux/slices/products'
+import { sortByName, sortByPrice } from '../redux/slices/products.js'
 
 export default function Sorters () {
 

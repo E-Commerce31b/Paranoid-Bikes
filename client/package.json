@@ -40,6 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "type":"module",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -61,7 +62,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "node-sass": "^7.0.3",
-    "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4"
+    "postcss": "^8.4.20"
   }
 }
