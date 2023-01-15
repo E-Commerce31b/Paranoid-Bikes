@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { getUser } from "../redux/slices/usersActions.js";
+import { getAdmin } from "../redux/slices/adminActions.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -68,12 +69,12 @@ const Login = () => {
       console.log(decoded.data.id);
       console.log(decoded.data.type);
 
-      if (decoded.data.type === "User") {
-        dispatch(getUser(decoded.data.id));
-        // } else {
-        //   dispatch(getAdmin(decoded.data.id));
+      if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
+        dispatch(getAdmin(decoded.data.id));
+        return navigate("/panel");
       }
 
+      dispatch(getUser(decoded.data.id));
       e.target.reset();
       navigate("/user"); /// cambiar a ruta user
     } catch {
