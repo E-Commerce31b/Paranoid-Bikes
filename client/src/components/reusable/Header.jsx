@@ -19,7 +19,7 @@ export default function Header() {
       >
         <div className="navbar-brand ">
           <div className="navbar-item ">
-            <NavLink to="/home " className="textDecoration">
+            <NavLink to="/" className="textDecoration">
               <img src={logo} width="112" height="80" />
               <div className=" is-size-4 has-text-weight-bold font_family is-pulled-right">
                 <h1 className="flex has-text-right ">

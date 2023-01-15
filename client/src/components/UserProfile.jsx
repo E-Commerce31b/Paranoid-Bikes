@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logoProfile from "../assets/logoProfile.png";
-import { useAuth } from "../context/AuthContext.js";
-import { useDispatch } from "react-redux";
-import { getUsers } from "../redux/slices/usersActions.js";
+import { useAuth } from "../context/AuthContext";
+// import { useDispatch } from "react-redux";
+// import { getUsers } from "../redux/slices/usersActions";
+import axios from "axios";
 
 const UserProfile = () => {
-  const dispatch = useDispatch();
   const { currentUser } = useAuth();
   const [user, setUser] = useState([""]);
   const [loading, setLoading] = useState(false);
 
-  console.log(user[0].email);
-
   useEffect(() => {
     const data = async () => {
       setLoading(true);
-      const data = await dispatch(getUsers());
-      const userData = data.payload.filter(
+      const dataUser = await axios
+        .get("https://paranoid-bikes-backend.onrender.com/api/users", {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiU3VwZXJBZG1pbiIsImlhdCI6MTY3MzcwMDQyMSwiZXhwIjoxOTg5Mjc2NDIxfQ.ItOa1EHW-SrPkN0T_61-42J0uMgMuG8IMLwkX-KrqOI`,
+          },
+        })
+        .then((res) => {
+          return res.data;
+        });
+      console.log(dataUser);
+      const userData = dataUser.filter(
         (element) => element.email === currentUser.email
       );
+
+      console.log(userData);
       setUser(userData);
       setLoading(false);
     };
@@ -48,8 +57,7 @@ const UserProfile = () => {
         <p className="m-3">Direccion: {user[0].address}</p>
         <p className="m-3">Pais: {user[0].country}</p>
         <p className="m-3">Ciudad: {user[0].city}</p>
-        <p className="m-3">Estado: {user[0].state}</p>
-        <p className="m-3">Fecha de nacimiento: {user[0].birthday}</p>
+        <p className="m-3">Estado: Activo</p>
         <p className="m-3">Correo: {user[0].email}</p>
 
         <Link to="/update-profile" className="m-3">
