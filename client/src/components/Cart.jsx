@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import RenderProducts from './RenderProducts'
 import { useNavigate } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
 const Cart = () => {
 
@@ -28,10 +29,12 @@ const Cart = () => {
     return (
         <div>
           {
-          user ? 
+            selected ? 
             <div><RenderProducts slicedProducts={slicedProducts} />
             <button onClick={() => handlePayment()}>Proceder a la compra</button></div>
-                : navigate('/login')
+            : <div><p>No hay productos seleccionados.</p>
+              <NavLink to='/'><button>Agregar productos</button></NavLink>
+            </div>
           }
         </div>
     )
