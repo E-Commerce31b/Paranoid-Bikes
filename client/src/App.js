@@ -1,35 +1,37 @@
 import { Routes, Route } from "react-router-dom";
-import Stripe from "./components/paymentmethod/Stripe";
-import ProductDetail from "./components/ProductDetail";
-import ProductsList from "./components/ProductsList";
-import Landing from "./components/Landing";
-import BestSellers from "./components/BestSellers";
-import Offers from "./components/Offers";
-import AboutUs from "./components/AboutUs";
-import Record from "./components/Record";
-import LogIn from "./components/LogIn";
-import SignUp from "./components/SignUp";
-import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
-import { AuthProvider } from "./context/AuthContext";
-import Header from "./components/reusable/Header";
-import PaymentMethod from "./components/paymentmethod/PaymentMethod";
-import Profile from "./components/Profile";
-import Orders from "./components/Orders";
+import Stripe from "./components/paymentmethod/Stripe.jsx";
+import ProductDetail from "./components/ProductDetail.jsx";
+import ProductsList from "./components/ProductsList.jsx";
+import Landing from "./components/Landing.jsx";
+import BestSellers from "./components/BestSellers.jsx";
+import Offers from "./components/Offers.jsx";
+import AboutUs from "./components/AboutUs.jsx";
+import Record from "./components/Record.jsx";
+import LogIn from "./components/LogIn.jsx";
+import SignUp from "./components/SignUp.jsx";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
+import { AuthProvider } from "./context/AuthContext.js";
+import Header from "./components/reusable/Header.jsx";
+import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
+import Profile from "./components/Profile.jsx";
+import Orders from "./components/Orders.jsx";
 import "./App.js";
-import Cart from "./components/Cart";
-import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes";
-import UserHome from "./components/UserHome";
-import UserProfile from "./components/UserProfile";
-import Footer from "./components/reusable/imagecarousel/Footer";
-import ConfirmPurchase from "./components/ConfirmPurchase";
-import Error404 from "./components/Error404";
-import PanelAdmin from "./components/panelAdmin/PanelAdmin";
-import MainDash from "./components/panelAdmin/MainDash/MainDash";
-import Products from "./components/panelAdmin/PanelProducts/Products";
-import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins";
-import Analytics from "./components/panelAdmin/Analitics/Analytics";
-import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins";
+import Cart from "./components/Cart.jsx";
+import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes.js";
+import UserHome from "./components/UserHome.jsx";
+import UserProfile from "./components/UserProfile.jsx";
+// import Payment from "./payment";
+// import Completion from "./completion";
+import Footer from "./components/reusable/imagecarousel/Footer.jsx";
+import ConfirmPurchase from "./components/ConfirmPurchase.jsx";
+import Error404 from "./components/Error404.jsx";
+import PanelAdmin from "./components/panelAdmin/PanelAdmin.jsx";
+import MainDash from "./components/panelAdmin/MainDash/MainDash.jsx";
+import Products from "./components/panelAdmin/PanelProducts/Products.jsx";
+import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.jsx";
+import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
+import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins.jsx";
 
 function App() {
   return (
@@ -50,14 +52,11 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/confirmpurchase" element={<ConfirmPurchase />} />
         <Route path="/panel" element={<PanelAdmin />} />
-        <Route path="/dashboard" element={<MainDash />} />
         <Route path="/productos" element={<Products />} />
+        <Route path="/FormAdmins" element={<FormAdmins />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
-        <Route path="/analiticas" element={<Analytics />} />
-        <Route path="/formularioadmin" element={<FormAdmins />} />
+        <Route path="/dashboard" element={<MainDash />} />
         <Route
           path="/user"
           element={

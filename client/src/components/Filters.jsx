@@ -4,8 +4,8 @@ import {
   addFilter,
   removeFilter,
   filtersSelectors,
-} from "../redux/slices/filters";
-import { filterProducts } from "../redux/slices/products";
+} from "../redux/slices/filters.js";
+import { filterProducts } from "../redux/slices/products.js";
 
 const Filters = () => {
   // const [price, setPrice] = useState("");

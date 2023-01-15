@@ -1,6 +1,6 @@
 import React from "react";
 import ImageDiscounts from "../assets/Imagedescuentos.png";
-import CategoryCard from "./CategoryCard";
+import CategoryCard from "./CategoryCard.jsx";
 import { useSelector } from "react-redux";
 
 export default function Landing() {

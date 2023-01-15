@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Pagination from "./pagination/Pagination";
-import RenderProducts from "./RenderProducts";
+import Pagination from "./pagination/Pagination.jsx";
+import RenderProducts from "./RenderProducts.jsx";
 
 
 export default function BestSellers() {

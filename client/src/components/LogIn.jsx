@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.js";
+import { getUser } from "../redux/slices/usersActions.js"
 
 export const validate = (input) => {
   let errors = {};
@@ -34,6 +36,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const users = useSelector(state => state.users.users)
+  const dispatch = useDispatch()
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     const property = e.target.name;
@@ -42,8 +47,9 @@ const Login = () => {
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("clickboton");
     try {
+      const user = await users.find(u => u.email === emailRef.current.value)
+      dispatch(getUser(user._id))
       setError("");
       setLoading(true);
 

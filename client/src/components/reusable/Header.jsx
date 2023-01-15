@@ -1,10 +1,9 @@
 import React from "react";
 import logo from "../../assets/Logo.png";
 import { NavLink, useLocation } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import UserLoggedInfo from "../UserLoggedInfo";
-import SearchBar from "../SearchBar";
-import { useEffect } from "react";
+import { useAuth } from "../../context/AuthContext.js";
+import UserLoggedInfo from "../UserLoggedInfo.jsx";
+import SearchBar from "../SearchBar.jsx";
 
 export default function Header() {
   const { currentUser, logout } = useAuth();

@@ -3,10 +3,10 @@ const {userModel} = require('../models/index')
 const router = express();
 const jwt = require('jsonwebtoken')
 const authenticateToken = require('../validators/tokenValidator')
-const { getUsersValidator } = require('../validators/bikeValidator')
+// const { getUsersValidator } = require('../validators/bikeValidator')
 // 
 
-router.get('/',authenticateToken, async(req, res) => {
+router.get('/', async(req, res) => {
     const {first_name, last_name} = req.query
     try {
         const AllUsers = await userModel.find({})

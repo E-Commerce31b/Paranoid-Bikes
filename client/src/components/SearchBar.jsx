@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../redux/slices/products";
+import { getProduct } from "../redux/slices/products.js";
 // import style from '../../assets/styles/SearchBar.module.css';
 // import logo from '../../assets/images/lupa.png'
 import { Link, useNavigate } from "react-router-dom";
