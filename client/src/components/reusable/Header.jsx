@@ -4,11 +4,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import UserLoggedInfo from "../UserLoggedInfo";
 import SearchBar from "../SearchBar";
+import { useEffect } from "react";
 
 export default function Header() {
   const { currentUser, logout } = useAuth();
   const params = useLocation();
   console.log(params.pathname);
+
   return (
     <div>
       <nav

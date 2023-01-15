@@ -11,8 +11,8 @@ const RenderProducts = ({ slicedProducts }) => {
         flexWrap: "wrap",
         alignItems: "center",
         gap: "10px",
-        padding:'10px',
-        justifyContent: 'space-around'
+        padding: "10px",
+        justifyContent: "space-around",
       }}
     >
       {slicedProducts().map((p, i) => {

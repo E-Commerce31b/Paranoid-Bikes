@@ -22,6 +22,8 @@ export default function Landing() {
           style={{
             display: "flex",
             flexDirection: "row",
+            justifyContent: "space-evenly",
+            flexWrap: "wrap",
             // backgroundColor: `${color}`,
           }}
         >
