@@ -27,7 +27,8 @@ const Cart = () => {
   };
   return (
     <div>
-      {selected.length > 0 ? (
+
+      {selected?.length > 0 ? (
         <div>
           <RenderProducts slicedProducts={slicedProducts} />
           <div className="columns is-centered mb-3 mt-2">
@@ -38,6 +39,7 @@ const Cart = () => {
               Proceder a la compra
             </p>
           </div>
+
         </div>
       ) : (
         <div>
