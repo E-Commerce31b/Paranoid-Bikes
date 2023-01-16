@@ -62,6 +62,7 @@ const Login = () => {
           password: passwordRef.current.value,
         })
         .then((res) => {
+          console.log('hola')
           return res.data;
         });
       var decoded = jwt_decode(dataUser.accessToken);
@@ -79,7 +80,7 @@ const Login = () => {
       e.target.reset();
       navigate("/user"); /// cambiar a ruta user
     } catch {
-      setError("Error al inicial sesion, intente nuevamente");
+      setError("Error al iniciar sesion, intente nuevamente");
     }
     setLoading(false);
   }
