@@ -15,10 +15,11 @@ export const adminSlice = createSlice({
     loggedAdmin: (state, { payload }) => {
       state.logged = payload;
     },
-  },
+
     resetAdmin: (state) => {
       state.admins = initialState.admins;
-      state.admin = initialState.admin
+      state.admin = initialState.admin;
+    },
   },
   extraReducers(builder) {
     builder
