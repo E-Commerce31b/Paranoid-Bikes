@@ -62,7 +62,7 @@ const Login = () => {
           password: passwordRef.current.value,
         })
         .then((res) => {
-          console.log('hola')
+          console.log("hola");
           return res.data;
         });
       var decoded = jwt_decode(dataUser.accessToken);
@@ -78,24 +78,13 @@ const Login = () => {
 
       dispatch(getUser(decoded.data.id));
       e.target.reset();
-      navigate("/user"); /// cambiar a ruta user
+      navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al iniciar sesion, intente nuevamente");
     }
     setLoading(false);
   }
 
-  async function googleSubmit(e) {
-    e.preventDefault();
-    try {
-      setError("");
-      setLoading(true);
-      await googleSignUp();
-      navigate("/"); /// cambiar a ruta user
-    } catch {
-      setError("Error al crear la cuenta, intente nuevamente por favor");
-    }
-  }
   return (
     <div className=" mb-5">
       <div>
@@ -151,13 +140,6 @@ const Login = () => {
         </form>
 
         <br />
-        <p
-          className="button is-warning font_family"
-          type="submit"
-          onClick={googleSubmit}
-        >
-          Iniciar sesión con Google con Google
-        </p>
 
         <div className="m-2 font_family">
           <Link to="/forgot-password">¿Olvido la contraseña?</Link>

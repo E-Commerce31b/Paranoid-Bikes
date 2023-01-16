@@ -23,6 +23,10 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
+  function deleteUser() {
+    return currentUser.delete();
+  }
+
   function logout() {
     return auth.signOut();
   }
@@ -56,6 +60,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     googleSignUp,
+    deleteUser,
   };
   return (
     <AuthContext.Provider value={value}>
