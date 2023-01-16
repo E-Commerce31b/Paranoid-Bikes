@@ -22,12 +22,10 @@ const Cart = () => {
     if (selected) {
       // return filtered.slice(currentPage, currentPage ? currentPage + 16 : 0);
       return selected;
-      // .slice(currentPage, currentPage + 16);
     }
   };
   return (
     <div>
-
       {selected?.length > 0 ? (
         <div>
           <RenderProducts slicedProducts={slicedProducts} />
@@ -39,7 +37,6 @@ const Cart = () => {
               Proceder a la compra
             </p>
           </div>
-
         </div>
       ) : (
         <div>
