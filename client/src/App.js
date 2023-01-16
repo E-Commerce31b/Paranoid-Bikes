@@ -57,6 +57,7 @@ function App() {
         <Route path="/FormAdmins" element={<FormAdmins />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
         <Route path="/dashboard" element={<MainDash />} />
+        <Route path="/cart" element={<Cart />} />
         <Route
           path="/user"
           element={

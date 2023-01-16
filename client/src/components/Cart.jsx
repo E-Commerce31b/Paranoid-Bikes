@@ -29,10 +29,15 @@ const Cart = () => {
     return (
         <div>
           {
-            selected ? 
-            <div><RenderProducts slicedProducts={slicedProducts} />
-            <button onClick={() => handlePayment()}>Proceder a la compra</button></div>
-            : <div><p>No hay productos seleccionados.</p>
+            (selected.length > 0) 
+            ? 
+            <div>
+              <RenderProducts slicedProducts={slicedProducts} />
+              <button onClick={() => handlePayment()}>Proceder a la compra</button>
+            </div>
+            : 
+            <div>
+              <p>No hay productos seleccionados.</p>
               <NavLink to='/'><button>Agregar productos</button></NavLink>
             </div>
           }

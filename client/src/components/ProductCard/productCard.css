@@ -38,6 +38,9 @@
     font:"Audiowide";
     font-size:20;
     width:200px;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .botones{
     gap:10px
