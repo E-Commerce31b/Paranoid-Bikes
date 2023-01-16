@@ -27,27 +27,27 @@ const Cart = () => {
   };
   return (
     <div>
-
-      {selected?.length > 0 ? (
-        <div>
-          <RenderProducts slicedProducts={slicedProducts} />
-          <div className="columns is-centered mb-3 mt-2">
-            <p
-              className="button is-primary font_family"
-              onClick={() => handlePayment()}
-            >
-              Proceder a la compra
-            </p>
-          </div>
-
-        </div>
-      ) : (
-        <div>
-          <p>No hay productos seleccionados.</p>
-          <NavLink to="/">
-            <button>Agregar productos</button>
-          </NavLink>
-        </div>
+      {
+            (selected?.length > 0) 
+            ? 
+            <div>
+                <RenderProducts slicedProducts={slicedProducts} />
+                <div className="columns is-centered mb-3 mt-2">
+                  <p
+                    className="button is-primary font_family"
+                    onClick={() => handlePayment()}
+                  >
+                    Proceder a la compra
+                  </p>
+                </div>
+            </div>
+            : 
+            <div>
+              <p>No hay productos seleccionados.</p>
+              <NavLink to="/">
+                <button>Agregar productos</button>
+              </NavLink>
+            </div>
       )}
     </div>
   );
