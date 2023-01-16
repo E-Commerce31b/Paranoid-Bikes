@@ -16,7 +16,7 @@ export const adminSlice = createSlice({
       state.logged = payload;
     },
   },
-    resetUser: (state) => {
+    resetAdmin: (state) => {
       state.admins = []
       state.admin = {}
   },
@@ -82,6 +82,6 @@ export const adminSlice = createSlice({
 // export const pacientStatus = (state) => state.status;
 // export const pacientError = (state) => state.error;
 
-// export const { loggedUser } = adminSlice.actions;
+export const { resetAdmin } = adminSlice.actions;
 
 export default adminSlice.reducer;
