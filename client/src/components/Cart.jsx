@@ -26,6 +26,7 @@ const Cart = () => {
   };
   return (
     <div>
+
       {selected?.length > 0 ? (
         <div>
           <RenderProducts slicedProducts={slicedProducts} />
@@ -45,6 +46,7 @@ const Cart = () => {
             <button>Agregar productos</button>
           </NavLink>
         </div>
+
       )}
     </div>
   );
