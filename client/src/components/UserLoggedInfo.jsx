@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useAuth } from "../context/AuthContext.js";
 import logoProfile from "../assets/logoProfile.png";
 import { Link } from "react-router-dom";
 import { resetUser } from '../redux/slices/users';
+import { resetAdmin } from '../redux/slices/admin';
 
 export default function UserLoggedInfo() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState("");
 
+  const admin = useSelector((state) => state.admins.admins)
   const dispatch = useDispatch()
   async function handleLogout() {
     setError("");
     try {
-      dispatch(resetUser())
+      if(admin?.length) {
+        dispatch(resetAdmin())
+      } else {
+        dispatch(resetUser())
+      }
       await logout();
       navigate("/");
     } catch (error) {
