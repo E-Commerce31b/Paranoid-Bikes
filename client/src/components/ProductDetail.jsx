@@ -29,18 +29,11 @@ const ProductDetail = (props) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-
-  const sendToCart = () => {
-    dispatch(managePurchased({ id, products }));
-    // .then((user) => {
-    //   if (Object.keys(user).length) {
-    //     navigate("/cart");
-    //   } else {
-    //     navigate("/login");
-    //   }
-    //   console.log(user);
-    // dispatch(putUser(user._id, user))}
-  };
+    const sendToCart = () => {
+    if(user) {
+      dispatch(managePurchased({id, products}))
+      }
+    }
 
   return (
     <>

@@ -19,11 +19,17 @@ export default function UserLoggedInfo() {
     try {
       if(admin?.length) {
         dispatch(resetAdmin())
+        console.log("adminReset")
+        await logout();
+        navigate("/");
       } else {
         dispatch(resetUser())
+        console.log("usuarioReset")
+        await logout();
+        navigate("/");
       }
-      await logout();
-      navigate("/");
+      // await logout();
+      // navigate("/");
     } catch (error) {
       setError(error);
     }
