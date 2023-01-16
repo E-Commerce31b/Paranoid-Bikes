@@ -27,10 +27,19 @@ const Cart = () => {
   };
   return (
     <div>
+
       {selected?.length > 0 ? (
-        <div className="">
+        <div>
           <RenderProducts slicedProducts={slicedProducts} />
-          <button onClick={() => handlePayment()}>Proceder a la compra</button>
+          <div className="columns is-centered mb-3 mt-2">
+            <p
+              className="button is-primary font_family"
+              onClick={() => handlePayment()}
+            >
+              Proceder a la compra
+            </p>
+          </div>
+
         </div>
       ) : (
         <div>
