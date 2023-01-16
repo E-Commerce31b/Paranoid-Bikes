@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import logo from "../../assets/Logo.png";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
@@ -11,15 +11,20 @@ export default function Header() {
   const params = useLocation();
   console.log(params.pathname);
 
-  const user = useSelector((state) => state.users.user)
-  const navigate = useNavigate()
+  const admin = useSelector((state) => state.admins.admins);
+  console.log("admin", admin);
+
+  const user = useSelector((state) => state.users.user);
+
+  const navigate = useNavigate();
   const handleCart = () => {
-    if(Object.keys(user).length) {
-      navigate('/cart')
+    if (Object.keys(user).length) {
+      navigate("/cart");
     } else {
-      navigate('/login')
+      navigate("/login");
     }
-  }
+  };
+  useEffect(() => {}, [admin, currentUser]);
   return (
     <div>
       <nav
@@ -54,9 +59,6 @@ export default function Header() {
         {params.pathname !== "/signup" && params.pathname !== "/login" ? (
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <NavLink to="/" className="navbar-item">
-                <div>Inicio</div>
-              </NavLink>
               <NavLink to="/BestSellers" className="navbar-item">
                 <div>Más vendidos</div>
               </NavLink>
@@ -74,9 +76,13 @@ export default function Header() {
                   </NavLink>
                   <a className="navbar-item">Contactarnos</a>
                   <hr className="navbar-divider" />
-                  <NavLink to="/panel">
-                    <a className="navbar-item">Panel Admin</a>
-                  </NavLink>
+                  {admin.length && admin.length ? (
+                    <NavLink to="/panel">
+                      <a className="navbar-item">Panel Admin</a>
+                    </NavLink>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               <div className="navbar-item">
@@ -87,9 +93,14 @@ export default function Header() {
               </div>
               <div className="navbar-item">
                 {/* <NavLink to="/cart"> */}
-                  <p className="control pl-6">
-                    <button className="button is-small" onClick={() => handleCart()}>🛒</button>
-                  </p>
+                <p className="control pl-6">
+                  <button
+                    className="button is-small"
+                    onClick={() => handleCart()}
+                  >
+                    🛒
+                  </button>
+                </p>
                 {/* </NavLink> */}
               </div>
             </div>

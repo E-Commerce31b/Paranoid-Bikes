@@ -18,4 +18,3 @@ export const store = configureStore({
 });
 
 store.dispatch(getProducts());
-store.dispatch(getUsers());
