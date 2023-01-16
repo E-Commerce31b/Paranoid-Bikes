@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { getUser } from "../redux/slices/usersActions.js";
-import { getAdmin } from "../redux/slices/adminActions.js";
+import { getAdmins } from "../redux/slices/adminActions.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -70,7 +70,8 @@ const Login = () => {
       console.log(decoded.data.type);
 
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
-        dispatch(getAdmin(decoded.data.id));
+        dispatch(getAdmins(dataUser.accessToken));
+
         return navigate("/panel");
       }
 
