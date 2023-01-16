@@ -23,6 +23,9 @@ export const usersSlice = createSlice({
         state.user.purchased.push(selected)
       }
     },
+    resetUser: (state) => {
+      state.user = {}
+    },
   },
   extraReducers(builder) {
     builder
@@ -86,6 +89,6 @@ export const pacient = (state) => state.user;
 export const pacientStatus = (state) => state.status;
 export const pacientError = (state) => state.error;
 
-export const { loggedUser, managePurchased } = usersSlice.actions;
+export const { loggedUser, managePurchased, resetUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
