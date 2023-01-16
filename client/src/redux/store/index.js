@@ -5,7 +5,6 @@ import reviews from "../slices/reviews.js";
 import filters from "../slices/filters.js";
 import admins from "../slices/admin.js";
 import { getProducts } from "../slices/productsActions.js";
-import { getUsers } from "../slices/usersActions.js";
 
 export const store = configureStore({
   reducer: {
