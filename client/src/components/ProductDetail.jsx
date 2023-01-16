@@ -32,8 +32,6 @@ const ProductDetail = (props) => {
     const sendToCart = () => {
     if(user) {
       dispatch(managePurchased({id, products}))
-      console.log(user)
-      // dispatch(putUser(user._id, user))}
       }
     }
 

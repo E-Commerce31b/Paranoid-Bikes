@@ -29,7 +29,7 @@ const Cart = () => {
     return (
         <div>
           {
-            (selected.length > 0) 
+            (selected?.length > 0) 
             ? 
             <div>
               <RenderProducts slicedProducts={slicedProducts} />
