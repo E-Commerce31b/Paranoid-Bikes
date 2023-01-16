@@ -16,6 +16,10 @@ export const adminSlice = createSlice({
       state.logged = payload;
     },
   },
+    resetUser: (state) => {
+      state.admins = []
+      state.admin = {}
+  },
   extraReducers(builder) {
     builder
       .addMatcher(
