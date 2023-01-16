@@ -19,6 +19,10 @@ const RenderProducts = ({ slicedProducts }) => {
         return (
           <div key={i}>
             <ProductCard product={p} />
+            <button>-</button>
+            {/* <p>{p.}</p> */}
+            <button>+</button>
+            <p>{p.price}</p>
           </div>
         );
       })}

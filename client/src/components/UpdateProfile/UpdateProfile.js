@@ -47,10 +47,7 @@ const UpdateProfile = () => {
         </h1>
       </div>
 
-      <div
-        className="container box "
-        style={{ width: "50%", height: "340px" }}
-      >
+      <div className="container box " style={{ width: "50%", height: "340px" }}>
         {error && <p>{error}</p>}
 
         <form onSubmit={handleSubmit}>
@@ -76,9 +73,9 @@ const UpdateProfile = () => {
           </div>
 
           <div className="buttons has-text-centered">
-            <p className="button is-primary" type="submit">
+            <button className="button is-primary" type="submit">
               Actualizar
-            </p>
+            </button>
 
             <Link to="/user-profile">
               <p

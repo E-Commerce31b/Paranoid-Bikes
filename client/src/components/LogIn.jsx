@@ -2,7 +2,10 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
 import { getUser } from "../redux/slices/usersActions.js";
+import { getAdmins } from "../redux/slices/adminActions.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -19,6 +22,7 @@ export const validate = (input) => {
   return errors;
 };
 const Login = () => {
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login, googleSignUp } = useAuth();
@@ -36,9 +40,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const users = useSelector((state) => state.users.users);
-  const dispatch = useDispatch();
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     const property = e.target.name;
@@ -54,6 +55,28 @@ const Login = () => {
       setLoading(true);
 
       await login(emailRef.current.value, passwordRef.current.value);
+
+      const dataUser = await axios
+        .post("https://paranoid-bikes-backend.onrender.com/api/users/login", {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+        .then((res) => {
+          return res.data;
+        });
+      var decoded = jwt_decode(dataUser.accessToken);
+      console.log(dataUser.accessToken);
+      console.log(decoded.data.id);
+      console.log(decoded.data.type);
+
+      if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
+        dispatch(getAdmins(dataUser.accessToken));
+
+        return navigate("/panel");
+      }
+
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
       navigate("/user"); /// cambiar a ruta user
     } catch {
       setError("Error al inicial sesion, intente nuevamente");

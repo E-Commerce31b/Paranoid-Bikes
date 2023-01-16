@@ -89,7 +89,6 @@ const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confi
 export default function Stripe() {
   
   const { state } = useLocation();
-  console.log(state)
 
   return (
     <div className="container_stripe font_family">
