@@ -4,7 +4,6 @@ import products from "../slices/products.js";
 import reviews from "../slices/reviews.js";
 import filters from "../slices/filters.js";
 import admins from "../slices/admin.js";
-import auth from "../slices/auth.js"
 import { getProducts } from "../slices/productsActions.js";
 
 
@@ -15,7 +14,7 @@ const localStorageMiddleware  = ({getState}) => {
     return result;
   }
 };
-HOLA
+
 const reHydrateStore = () => {
   if (localStorage.getItem('applicationState') !== null) {
     return JSON.parse(localStorage.getItem('applicationState')); // re-hydrate the store
@@ -29,8 +28,7 @@ export const store = configureStore({
     products,
     reviews,
     filters,
-    admins,
-    auth
+    admins
   },
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
