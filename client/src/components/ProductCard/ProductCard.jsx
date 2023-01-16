@@ -61,9 +61,9 @@ const ProductCard = ({ product }) => {
               <h1 fontSize="30">Ver más</h1>
             </Button>
           </Link>
-          <Button onClick={() => sendToCart()}>
+          {/* <Button onClick={() => sendToCart()}>
             <h1 fontSize="30">🛒</h1>
-          </Button>
+          </Button> */}
         </ButtonGroup>
       </div>
     </>
