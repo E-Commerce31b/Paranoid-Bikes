@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import "./paymentmethod.css";
 import { useState } from 'react'; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { reduceStock, count } from '../../redux/slices/productsActions.js';
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
@@ -20,6 +20,7 @@ const stripePromise = loadStripe(
 
 const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confirmar compra" y que le pase amount 
   
+  const email = useSelector(state=> state.users.user.email)
   const [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(() => {
@@ -59,10 +60,11 @@ const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confi
     if (!error) {
       const { id } = paymentMethod;
       const { data } = await axios.post(
-        "http://localhost:3001/api/stripe/checkout",
+        `${process.env.REACT_APP_URL}/api/stripe/checkout`,
         {
           id,
           amount: totalPrice,
+          email : email
         }
       );
     }
