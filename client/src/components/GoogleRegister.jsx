@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
+import { useAuth } from "../context/AuthContext.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -27,6 +28,7 @@ export const validate = (input) => {
   return errors;
 };
 const GoogleRegister = () => {
+  const { logout, signup, deleteUser } = useAuth();
   const form = useRef();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -53,15 +55,17 @@ const GoogleRegister = () => {
     setInput({ ...input, [property]: value });
     setFormErrors(validate({ ...input, [property]: value }));
   };
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("click");
     // if (input.password !== input.passwordConf)
     //   return setError("Contraseña no coincide");
 
+    await deleteUser();
+    await signup(input.email, input.password);
     setError("");
     dispatch(postUser(input));
     alert("Usuario creado con exito!");
+    await logout();
     emailjs
       .sendForm(
         "service_ev9mv2j",
@@ -80,7 +84,7 @@ const GoogleRegister = () => {
       );
 
     e.target.reset();
-    navigate("/user");
+    navigate("/login");
   }
   return (
     <div className=" mb-6 ">
