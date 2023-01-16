@@ -36,7 +36,7 @@ export const adminSlice = createSlice({
       )
       .addMatcher(
         (action) =>
-          action.type.startsWith("admin/getAdmin/") &&
+          action.type.startsWith("admin/getAdmins/") &&
           action.type.endsWith("fulfilled"),
         (state, action) => {
           state.status = "succeeded";

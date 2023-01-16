@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
   useEffect(() => {
     const data = async () => {
       setLoading(true);
-      const data = await dispatch(getProduct(id));
+      //const data = await dispatch(getProduct(id));
       setBike(data.payload);
       setLoading(false);
     };

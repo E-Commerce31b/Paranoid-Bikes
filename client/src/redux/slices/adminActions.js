@@ -1,12 +1,19 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getAdmins = createAsyncThunk("admin/getAdmins", async () => {
-
+export const getAdmins = createAsyncThunk("admin/getAdmin", async (token) => {
   try {
     // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/users')
     // const response = await axios.get("http://localhost:3001/api/users");
-    const response = await axios.get(`${process.env.REACT_APP_URL}/api/admin`);
+    const response = await axios.get(
+      "https://paranoid-bikes-backend.onrender.com/api/admin",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
     const data = response.data;
     // .sort(function(a, b) {
     //     if(a.first_name < b.first_name) return -1;
@@ -23,27 +30,32 @@ export const getAdmin = createAsyncThunk("admin/getAdmin", async (id) => {
   try {
     // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/users/${id}`)
     // const response = await axios.get(`http://localhost:3001/api/users/${id}`);
-    const response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/${id}`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_URL}/api/admin/${id}`
+    );
     return response.data;
   } catch (error) {
     return error.message;
   }
 });
 
-export const postAdmin = createAsyncThunk("admin/postAdmin", async (newUser) => {
-  try {
-    const response = await axios({
-      method: "post",
-      // url: "https://api-paranoid-bikes-production.up.railway.app/api/users",
-      // url: "http://localhost:3001/api/users",
-      url: `${process.env.REACT_APP_URL}/api/admin`,
-      data: newUser,
-    });
-    return response.data;
-  } catch (error) {
-    return error.message;
+export const postAdmin = createAsyncThunk(
+  "admin/postAdmin",
+  async (newUser) => {
+    try {
+      const response = await axios({
+        method: "post",
+        // url: "https://api-paranoid-bikes-production.up.railway.app/api/users",
+        // url: "http://localhost:3001/api/users",
+        url: `${process.env.REACT_APP_URL}/api/admin`,
+        data: newUser,
+      });
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   }
-});
+);
 
 export const putAdmin = createAsyncThunk(
   "admin/putAdmin",
