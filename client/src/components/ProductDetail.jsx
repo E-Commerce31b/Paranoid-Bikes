@@ -29,11 +29,11 @@ const ProductDetail = (props) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-    const sendToCart = () => {
-    if(user) {
-      dispatch(managePurchased({id, products}))
-      }
+  const sendToCart = () => {
+    if (user) {
+      dispatch(managePurchased({ id, products }));
     }
+  };
 
   return (
     <>
@@ -87,9 +87,12 @@ const ProductDetail = (props) => {
                 <img src={bike.image} alt="not found" />
                 <Box sx={{ p: 2 }}>
                   <NavLink to="/cart">
-                    <Button onClick={() => sendToCart()}>
+                    <p
+                      className="button is-primary font_family"
+                      onClick={() => sendToCart()}
+                    >
                       Agregar al carrito
-                    </Button>
+                    </p>
                   </NavLink>
                 </Box>
               </figure>

@@ -25,44 +25,52 @@ export default function Products() {
   return (
     <div>
       <div className="Table">
-        <h3>Recent Orders</h3>
-        <TableContainer
-          component={Paper}
-          style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Bicicletas</TableCell>
-                <TableCell align="left">Id Bicicletas</TableCell>
-                <TableCell align="left">Stock Bicicletas</TableCell>
-                <TableCell align="left">Detalle de la bicicleta</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody style={{ color: "white" }}>
-              {slicedProducts().map((bike) => (
-                <TableRow
-                  key={bike.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {bike.name}
-                  </TableCell>
-                  <TableCell align="left">{bike.id}</TableCell>
-                  <TableCell align="left">
-                    <Stock />
-                  </TableCell>
-                  <TableCell align="left" className="Details">
-                    <NavLink to={`/details/${bike.id}`}>Detalle</NavLink>
-                  </TableCell>
-                  {/* <TableCell align="left"></TableCell> */}
+        <div className="column has-text-centered">
+          <h1 className="title is-3 font_family mt-3 mb-4">Recent Orders</h1>
+        </div>
+        <div className="columns">
+          <div className="column is-1"></div>
+          <TableContainer
+            component={Paper}
+            style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
+          >
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Bicicletas</TableCell>
+                  <TableCell align="left">Id Bicicletas</TableCell>
+                  <TableCell align="left">Stock Bicicletas</TableCell>
+                  <TableCell align="left">Detalle de la bicicleta</TableCell>
+                  <TableCell align="left"></TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Pagination currentPage={currentPage} filtered={bikes} />
+              </TableHead>
+              <TableBody style={{ color: "white" }}>
+                {slicedProducts().map((bike) => (
+                  <TableRow
+                    key={bike.name}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {bike.name}
+                    </TableCell>
+                    <TableCell align="left">{bike.id}</TableCell>
+                    <TableCell align="left">
+                      <Stock />
+                    </TableCell>
+                    <TableCell align="left" className="Details">
+                      <NavLink to={`/details/${bike.id}`}>Detalle</NavLink>
+                    </TableCell>
+                    {/* <TableCell align="left"></TableCell> */}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <div className="column is-1"></div>
+        </div>
+        <div className="columns is-centered mb-4">
+          <Pagination currentPage={currentPage} filtered={bikes} />
+        </div>
       </div>
     </div>
   );
