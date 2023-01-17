@@ -57,9 +57,7 @@ const ProductCard = ({ product }) => {
         </div>
         <ButtonGroup className="botones">
           <Link to={`/details/${product.id}`}>
-            <Button>
-              <h1 fontSize="30">Ver más</h1>
-            </Button>
+            <p className="button is-primary font_family">Ver más</p>
           </Link>
           {/* <Button onClick={() => sendToCart()}>
             <h1 fontSize="30">🛒</h1>

@@ -45,45 +45,53 @@ const makeStyle = (status) => {
 export default function TableProducts() {
   return (
     <div className="Table">
-      <h3>Recent Orders</h3>
-      <TableContainer
-        component={Paper}
-        style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align="left">Tracking ID</TableCell>
-              <TableCell align="left">Date</TableCell>
-              <TableCell align="left">Status</TableCell>
-              <TableCell align="left"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody style={{ color: "white" }}>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="left">{row.trackingId}</TableCell>
-                <TableCell align="left">{row.date}</TableCell>
-                <TableCell align="left">
-                  <span className="status" style={makeStyle(row.status)}>
-                    {row.status}
-                  </span>
-                </TableCell>
-                <TableCell align="left" className="Details">
-                  Details
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className="column has-text-centered">
+        <h1 className="title is-4 font_family mt-3 mb-3">Recent Orders</h1>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-10 mb-4">
+          <TableContainer
+            component={Paper}
+            style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
+          >
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Product</TableCell>
+                  <TableCell align="left">Tracking ID</TableCell>
+                  <TableCell align="left">Date</TableCell>
+                  <TableCell align="left">Status</TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody style={{ color: "white" }}>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.name}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="left">{row.trackingId}</TableCell>
+                    <TableCell align="left">{row.date}</TableCell>
+                    <TableCell align="left">
+                      <span className="status" style={makeStyle(row.status)}>
+                        {row.status}
+                      </span>
+                    </TableCell>
+                    <TableCell align="left" className="Details">
+                      Details
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div className="column is-1"></div>
+      </div>
     </div>
   );
 }
