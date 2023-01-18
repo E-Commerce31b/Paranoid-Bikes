@@ -5,8 +5,12 @@ import { Button, ButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../redux/slices/productsActions";
 import { managePurchased } from "../../redux/slices/users";
+import Counter from '../Counter'
 
 const ProductCard = ({ product }) => {
+
+    const [counter, setCounter] = useState(0)
+
   let { id } = useParams();
   const dispatch = useDispatch();
 
@@ -63,6 +67,7 @@ const ProductCard = ({ product }) => {
             <h1 fontSize="30">🛒</h1>
           </Button> */}
         </ButtonGroup>
+        <Counter counter={counter} setCounter={setCounter}/>
       </div>
     </>
   );
