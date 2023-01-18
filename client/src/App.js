@@ -33,7 +33,7 @@ import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
 import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins.jsx";
 import GoogleRegister from "./components/GoogleRegister.jsx";
-
+import BikeCreate from "./components/panelAdmin/BikeCreate/BikeCreate.jsx"
 function App() {
   return (
     <AuthProvider>
@@ -57,6 +57,7 @@ function App() {
         <Route path="/FormAdmins" element={<FormAdmins />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
         <Route path="/dashboard" element={<MainDash />} />
+        <Route path="/creacionbicis" element={<BikeCreate/>} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/user"
