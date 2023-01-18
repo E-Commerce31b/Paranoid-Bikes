@@ -40,15 +40,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="box">
+      <div className="box cardBike">
         <div className="box-image">
           <img src={product.image} alt="Not found" />
         </div>
         <div className="maker">
           <strong>Marca:</strong> {product.maker}
         </div>
-        <div className="name-price">
-          <p>
+        <div title={product.name}>
+          <p className="name-price">
             <strong>Nombre:</strong> {product.name}
           </p>
           <p>
