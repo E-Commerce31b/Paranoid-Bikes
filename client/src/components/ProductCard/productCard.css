@@ -11,6 +11,10 @@
     height:300; 
     width:250;
 } */
+
+.cardBike {
+    height: 300px;
+}
 .boxCard {
     display: flex;
     flex-direction: column;

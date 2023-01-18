@@ -12,7 +12,7 @@ export default function AboutUs() {
         <div className="column is-1"></div>
         <div className="column is-5 mt-5 mb-3">
           {/* <div className="card"> */}
-          <div className="content is-small has-text-white">
+          <div className="content is-size-6 has-text-white is-family-sans-serif ">
             <div className="has-text-justified">
               <p>
                 Bienvenido a{" "}
@@ -51,7 +51,7 @@ export default function AboutUs() {
           </div>
           {/* </div> */}
         </div>
-        <div className="column is-5 mt-5 mb-3">
+        <div className="column is-5 mt-5 mb-3 ">
           <figure class="image is-16by9">
             <img
               src={require(`../assets/tienda-bici.jpeg`)}
@@ -70,19 +70,9 @@ export default function AboutUs() {
             />
           </figure>
         </div>
-        <div className="column is-5 mt-3 mb-3">
+        <div className="column is-5 mt-3 mb-3 ">
           <div className="content is-small has-text-white">
-            <div className="has-text-justified">
-              <p>
-                En 2020 los estudiantes de la cohorte 31B crearon esta compañía
-                como pionera del ciclismo en el país. El objetivo de nuestra
-                empresa es entregar al mercado una amplia variedad en las
-                mejores marcas de bicicletas y accesorios, para la práctica del
-                ciclismo en sus diferentes modalidades tales como: Montaña, Ruta
-                y BMX. Atendiendo y desarrollando estrategias enfocadas las
-                necesidades de sus clientes de acuerdo a las distintas etapas de
-                su vida.
-              </p>
+            <div className="has-text-justified is-size-6 is-family-sans-serif">
               <p>
                 Finalizando el 2020, la empresa se consolidó como una de las
                 mejores marcas en el país, posicionándose entre los cinco
