@@ -32,7 +32,6 @@ import Products from "./components/panelAdmin/PanelProducts/Products.jsx";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.jsx";
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
 import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins.jsx";
-import GoogleRegister from "./components/GoogleRegister.jsx";
 
 function App() {
   return (
@@ -67,14 +66,6 @@ function App() {
           }
         ></Route>
 
-        <Route
-          path="/googleForm"
-          element={
-            <PrivateRoutes>
-              <GoogleRegister />
-            </PrivateRoutes>
-          }
-        ></Route>
         <Route
           path="/user-profile"
           element={

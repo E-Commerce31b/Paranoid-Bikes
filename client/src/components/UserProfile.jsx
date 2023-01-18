@@ -14,7 +14,6 @@ const UserProfile = () => {
 
 
   const counter = useSelector((state) => state.users.user);
-  console.log(user);
   useEffect(() => {
     setUser(counter);
   }, []);

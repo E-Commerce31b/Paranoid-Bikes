@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
+import { auth } from "../firebase.js";
+import jwt_decode from "jwt-decode";
 import "../index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions";
+import axios from "axios";
 
 export const validate = (input) => {
   let errors = {};
@@ -47,7 +50,6 @@ export default function Signup() {
     last_name: "",
     country: "",
     city: "",
-
     email: "",
     password: "",
   });
@@ -59,7 +61,7 @@ export default function Signup() {
   });
   const navigate = useNavigate();
 
-  const users = useSelector((state) => state.users.users);
+  //const users = useSelector((state) => state.users.users);
 
   const changeState = () => {
     setBoxState(true);
@@ -90,7 +92,7 @@ export default function Signup() {
         passwordConfirmRef.current.value
       );
 
-      dispatch(postUser(input));
+      //dispatch(postUser(input));
       alert("Usuario creado con exito!");
       // setInput({
       //   /*   email: "",
@@ -114,8 +116,30 @@ export default function Signup() {
           }
         );
 
+      await axios
+        .post(`${process.env.REACT_APP_URL}/api/users`, input)
+        .then((res) => {
+          console.log("hola");
+          return res.data;
+        });
+
+      const dataUser = await axios
+        .post(`${process.env.REACT_APP_URL}/api/users/login`, {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+        .then((res) => {
+          console.log("hola");
+          return res.data;
+        });
+
+      console.log(dataUser);
+      var decoded = jwt_decode(dataUser.accessToken);
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
+
       setBoxState(false);
-      navigate("/user"); /// cambiar a ruta user
+      navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -127,8 +151,22 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await googleSignUp();
-      navigate("/googleForm"); /// cambiar a ruta user
+      const data = await googleSignUp();
+      const dataUser = await axios
+        .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
+          email: auth.currentUser.email,
+          token: data.credential.idToken,
+        })
+        .then((res) => {
+          console.log("hola");
+          return res.data;
+        });
+
+      console.log(dataUser.accessToken);
+      var decoded = jwt_decode(dataUser.accessToken);
+      navigate("/");
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
     } catch {
       setError("Error al crear la cuenta, intente nuevamente por favor");
     }
