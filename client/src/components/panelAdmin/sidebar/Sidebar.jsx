@@ -34,7 +34,7 @@ const Sidebar = () => {
           return (
             <NavLink to={item.a}>
               <div
-                className={selected === index ? "menuItem active" : "menuItem"}
+                className={selected === index ? "menuItem actives" : "menuItem"}
                 key={index}
                 onClick={() => setSelected(index)}
               >
