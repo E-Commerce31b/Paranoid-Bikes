@@ -68,6 +68,7 @@ export const getProduct = createAsyncThunk(
 export const postProduct = createAsyncThunk(
   "products/postProduct",
   async (newBike) => {
+    console.log(newBike)
     try {
         // const response = await axios.post('https://api-paranoid-bikes-production.up.railway.app/api/bikes', newBike)
         // const response = await axios.post('http://localhost:3001/api/bikes', newBike)
