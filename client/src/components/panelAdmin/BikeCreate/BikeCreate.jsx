@@ -11,14 +11,16 @@ export const validate = (input) => {
   }
   return errors;
 };
+
+
 export default function BikeCreate() {
   const form = useRef();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [input, setInput] = useState({
     name: "",
-    gender: "",
-    category: "",
+    gender: [],
+    category:[],
     maker: "",
     image: "",
     priceAmount: "",
@@ -26,13 +28,22 @@ export default function BikeCreate() {
   });
   const [formErrors, setFormErrors] = useState({
     name: "",
-    gender: "",
-    category: "",
+    gender: [],
+    category: [],
     maker: "",
     image: "",
     priceAmount: "",
     year:"",
   });
+  const allGenders = useSelector((state) => state.products.genders);
+  const allCategories = useSelector((state) => state.products.categories)
+  function handleDeleteGender(el) {
+    setInput({
+        ...input,
+        gender: allGenders.filter(param => param !== el)
+    })
+}
+ 
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -117,7 +128,7 @@ export default function BikeCreate() {
               onChange={handleInputChange}
             ></input>
           </div>
-          <div className="field">
+         {/*  <div className="field">
             <label className="label font_family">Genero</label>
             <input
               className="input"
@@ -126,17 +137,47 @@ export default function BikeCreate() {
             
               onChange={handleInputChange}
             ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Categoria</label>
-            <input
-              className="input"
-              type="category"
-              name="category"
-              
-              onChange={handleInputChange}
-            ></input>
-          </div>
+          </div> */}
+
+                 <div className="field">
+                 <label className="label font_family">Genero: </label>
+                    <select name='gender' onChange={(e) => handleInputChange(e)}>
+                        <option hidden value="gender">Genero</option>
+                        {
+                           allGenders.map((e, i) => (
+                                <option key={i} value={e}>{e}</option>
+                            ))
+                        }
+                    </select>
+                 </div>
+                 <div className="field">
+                 <label className="label font_family">Categoria: </label>
+                    <select name='category' onChange={(e) => handleInputChange(e)}>
+                        <option hidden value="category">Categoria</option>
+                        {
+                           allCategories.map((e, i) => (
+                                <option key={i} value={e}>{e}</option>
+                            ))
+                        }
+                    </select>
+                 </div>
+                   {/*  <div className="field">
+                        {allGenders.map((e,i) =>
+                            <div key={e} className="field">
+                               
+                                <div key={e}>
+                                    {e}
+                                </div>
+                                <div key={i}  type="button"  onClick={() => {
+                                    handleDeleteGender(e)
+                                }}>x</div>
+                            </div>)}
+                    </div> */}
+                  
+                  
+          
+            
+        
           <div className="field">
             <label className="label font_family">Marca</label>
             <input
