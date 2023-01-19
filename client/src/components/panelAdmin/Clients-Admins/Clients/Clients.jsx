@@ -34,7 +34,7 @@ const makeStyle = (status) => {
 export default function Clients() {
   const users = useSelector((state) => state.users.users);
   const currentPage = useSelector((state) => state.products.currentPage);
-  console.log("currentPage", currentPage);
+
   const slicedProducts = () => {
     if (users) {
       return users.slice(currentPage, currentPage + 15);
@@ -69,7 +69,7 @@ export default function Clients() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {user.first_name}
+                    {user.last_name} {user.first_name}
                     </TableCell>
                     <TableCell align="left">
                       {user.email}
