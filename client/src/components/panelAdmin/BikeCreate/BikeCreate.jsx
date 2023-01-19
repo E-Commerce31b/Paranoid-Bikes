@@ -21,8 +21,8 @@ export default function BikeCreate() {
     category: "",
     maker: "",
     image: "",
-    priceAmount: 0,
-    year:0,
+    priceAmount: "",
+    year:"",
   });
   const [formErrors, setFormErrors] = useState({
     name: "",
@@ -30,8 +30,8 @@ export default function BikeCreate() {
     category: "",
     maker: "",
     image: "",
-    priceAmount: 0,
-    year:0,
+    priceAmount: "",
+    year:"",
   });
   const token = useSelector((state) => state.users.token)
   const navigate = useNavigate();
@@ -79,7 +79,6 @@ export default function BikeCreate() {
         console.log(err);
       });
   };
-  console.log("input", input);
 
   return ( 
      <div className=" mb-6 ">
@@ -179,7 +178,7 @@ export default function BikeCreate() {
           name="image"
           onChange={(e) => setImage(e.target.files[0])}
         />
-        <button type='button' onClick={submitImage}>Subir Imagen</button>
+        <button onClick={submitImage} type="button">Subir Imagen</button>
         </div>
           
 
