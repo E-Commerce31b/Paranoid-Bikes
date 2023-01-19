@@ -4,6 +4,7 @@ const initialState = {
   users: [],
   user: {},
   logged: {},
+  token:[],
   status: "",
   error: "",
 };
@@ -14,6 +15,9 @@ export const usersSlice = createSlice({
   reducers: {
     loggedUser: (state, { payload }) => {
       state.logged = payload;
+    },
+    saveToken : (state, {payload}) => {
+      state.token= payload
     },
     addPurchased: (state, { payload }) => {
       const selected = payload.products.find(p => p.id === payload.id)
@@ -96,6 +100,6 @@ export const pacient = (state) => state.user;
 export const pacientStatus = (state) => state.status;
 export const pacientError = (state) => state.error;
 
-export const { loggedUser, addPurchased, removePurchased, incrementPurchased, decrementPurchased, resetUser } = usersSlice.actions;
+export const { loggedUser, addPurchased, removePurchased, incrementPurchased, decrementPurchased, resetUser, saveToken } = usersSlice.actions;
 
 export default usersSlice.reducer;

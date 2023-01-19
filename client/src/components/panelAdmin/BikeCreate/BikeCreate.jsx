@@ -20,19 +20,20 @@ export default function BikeCreate() {
     gender: "",
     category: "",
     maker: "",
-    img: "",
-    priceAmount: "",
-    year:"",
+    image: "",
+    priceAmount: 0,
+    year:0,
   });
   const [formErrors, setFormErrors] = useState({
     name: "",
     gender: "",
     category: "",
     maker: "",
-    img: "",
-    priceAmount: "",
-    year:"",
+    image: "",
+    priceAmount: 0,
+    year:0,
   });
+  const token = useSelector((state) => state.users.token)
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -45,7 +46,9 @@ export default function BikeCreate() {
 
     try {
       setError("");
-      dispatch(postProduct(input));
+      console.log(input)
+      console.log(token)
+      dispatch(postProduct(input,token));
       alert("Bicicleta creada con exito!");
 
       navigate("/"); /// cambiar a ruta user
@@ -69,7 +72,7 @@ export default function BikeCreate() {
         console.log(data);
         setInput({
           ...input,
-          img: data.url,
+          image: data.url,
         });
       })
       .catch((err) => {
@@ -151,7 +154,7 @@ export default function BikeCreate() {
           <div className="field">
             <label className="label font_family">Precio</label>
             <input
-              className="input"
+              className="number"
               type="priceAmount"
               name="priceAmount"
              
@@ -162,7 +165,7 @@ export default function BikeCreate() {
           <div className="field">
             <label className="label font_family">Fecha de lanzamiento</label>
             <input
-              className="input"
+              className="text-area"
               type="year"
             
               onChange={handleInputChange}
@@ -173,10 +176,10 @@ export default function BikeCreate() {
         <input
           type="file"
           className="input"
-          name="img"
+          name="image"
           onChange={(e) => setImage(e.target.files[0])}
         />
-        <button onClick={submitImage}>Subir Imagen</button>
+        <button type='button' onClick={submitImage}>Subir Imagen</button>
         </div>
           
 
@@ -200,7 +203,7 @@ export default function BikeCreate() {
       </div>
     </div>
     </div>
-        </div>
+    </div>
      
     
   );

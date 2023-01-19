@@ -63,12 +63,20 @@ export const getProduct = createAsyncThunk(
 
 export const postProduct = createAsyncThunk(
   "products/postProduct",
-  async (token, newBike) => {
+  async (myData) => {
+    const {token,newBike} = myData
+    console.log(newBike)
+    
+    
     try {
       const config = {
-        headers: {Authorization: `Bearer ${token}`}
+        method:'POST',
+        headers: {  'Content-Type': 'application/json','authorization': `Bearer ${token}`}
       }
-        const response = await axios.post(`${process.env.REACT_APP_URL}/api/bikes`, config, newBike)
+     /*  const data = {
+        data : {newBike}
+      } */
+        const response = await axios.post(`${process.env.REACT_APP_URL}/api/admin/bikes`, myData, config)
         return response.data
     } catch (error) {
       return error.message;

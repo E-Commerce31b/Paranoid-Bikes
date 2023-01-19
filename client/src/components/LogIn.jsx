@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { getUser } from "../redux/slices/usersActions.js";
 import { getAdmins } from "../redux/slices/adminActions.js";
-
+import {saveToken} from "../redux/slices/users.js"
 export const validate = (input) => {
   let errors = {};
 
@@ -65,11 +65,12 @@ const Login = () => {
           console.log("hola");
           return res.data;
         });
+    
       var decoded = jwt_decode(dataUser.accessToken);
       console.log(dataUser.accessToken);
       console.log(decoded.data.id);
       console.log(decoded.data.type);
-
+      dispatch(saveToken(dataUser.accessToken))
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
         dispatch(getAdmins(dataUser.accessToken));
 
