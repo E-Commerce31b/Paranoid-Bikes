@@ -22,7 +22,7 @@ export default function BikeCreate() {
     maker: "",
     image: "",
     priceAmount: "",
-    year:"",
+    year: "",
   });
   const [formErrors, setFormErrors] = useState({
     name: "",
@@ -31,7 +31,7 @@ export default function BikeCreate() {
     maker: "",
     image: "",
     priceAmount: "",
-    year:"",
+    year: "",
   });
   const navigate = useNavigate();
   const handleInputChange = (e) => {
@@ -77,131 +77,114 @@ export default function BikeCreate() {
       });
   };
 
-  return ( 
-     <div className=" mb-6 ">
-  <div style={{ backgroundColor: "white" }}>
-    <div className="navbar-brand "></div>
-  </div>
+  return (
+    <div className=" mb-6 ">
+      <div style={{ backgroundColor: "white" }}>
+        <div className="navbar-brand "></div>
+      </div>
 
-  <div className="column has-text-centered">
-    <h1 className="title is-3 font_family mt-5">Agregar bicicletas</h1>
-  </div>
-  <div className="columns">
-    <div className="column is-3"></div>
-    <div
-      className="column is-6 mt-5 has-background-white"
-      style={{ borderRadius: "10px" }}
-    >
-      <div>
-        {error && (
-          <p className="notification is-danger is-light ">{error}</p>
-        )}
-        {formErrors.name && (
-          <p className="is-size-7-desktop notification is-danger is-light ">
-            {formErrors.name}
-          </p>
-        )}
-        {formErrors.gender && (
-          <p className="is-size-7-desktop notification is-danger is-light">
-            {formErrors.gender}
-          </p>
-        )}
-        <form ref={form} onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label font_family">Nombre</label>
-            <input
-              className="input"
-              type="name"
-              name="name"
-             
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Genero</label>
-            <input
-              className="input"
-              type="gender"
-              name="gender"
-            
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Categoria</label>
-            <input
-              className="input"
-              type="category"
-              name="category"
-              
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Marca</label>
-            <input
-              className="input"
-              type="maker"
-              name="maker"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Precio</label>
-            <input
-              className="input"
-              type="priceAmount"
-              name="priceAmount"
-             
-              onChange={handleInputChange}
-            ></input>
-          </div>
-
-          <div className="field">
-            <label className="label font_family">Fecha de lanzamiento</label>
-            <input
-              className="input"
-              type="year"
-            
-              onChange={handleInputChange}
-              name="year"
-            ></input>
-          </div>
+      <div className="column has-text-centered">
+        <h1 className="title is-3 font_family mt-5">Agregar bicicletas</h1>
+      </div>
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div
+          className="column is-6 mt-5 has-background-white"
+          style={{ borderRadius: "10px" }}
+        >
           <div>
-        <input
-          type="file"
-          className="input"
-          name="image"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <button onClick={submitImage} type="button">Subir Imagen</button>
-        </div>
-          
-
-         
-
-          <div className="buttons has-text-centered">
-            <button className="button is-primary font_family" type="submit">
-              Agregar Bici
-            </button>
-
-            <Link to="/">
-              <p className="button is-light font_family" type="submit">
-                Cancelar
+            {formErrors.gender && (
+              <p className="is-size-7-desktop notification is-danger is-light">
+                {formErrors.gender}
               </p>
-            </Link>
+            )}
+            <form ref={form} onSubmit={handleSubmit}>
+              <div className="field">
+                <label className="label font_family">Nombre</label>
+                <input
+                  className="input"
+                  type="name"
+                  name="name"
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Genero</label>
+                <input
+                  className="input"
+                  type="gender"
+                  name="gender"
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Categoria</label>
+                <input
+                  className="input"
+                  type="category"
+                  name="category"
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Marca</label>
+                <input
+                  className="input"
+                  type="maker"
+                  name="maker"
+                  /*  ref={emailRef} */
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+              <div className="field">
+                <label className="label font_family">Precio</label>
+                <input
+                  className="input"
+                  type="priceAmount"
+                  name="priceAmount"
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+
+              <div className="field">
+                <label className="label font_family">
+                  Fecha de lanzamiento
+                </label>
+                <input
+                  className="input"
+                  type="year"
+                  onChange={handleInputChange}
+                  name="year"
+                ></input>
+              </div>
+              <div>
+                <input
+                  type="file"
+                  className=""
+                  name="imge"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+                <button onClick={submitImage} type="button">
+                  Subir Imagen
+                </button>
+              </div>
+
+              <div className="buttons has-text-centered">
+                <button className="button is-primary font_family" type="submit">
+                  Agregar Bici
+                </button>
+
+                <Link to="/">
+                  <p className="button is-light font_family" type="submit">
+                    Cancelar
+                  </p>
+                </Link>
+              </div>
+            </form>
+            <br />
           </div>
-         
-        </form>
-        <br />
-      
+        </div>
       </div>
     </div>
-    </div>
-        </div>
-     
-    
   );
 }
-
