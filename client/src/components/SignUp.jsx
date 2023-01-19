@@ -9,11 +9,7 @@ import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions";
 import axios from "axios";
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from "react-country-region-selector";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 export const validate = (input) => {
   let errors = {};
@@ -45,7 +41,7 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { signup, googleSignUp } = useAuth();
+  const { signup, googleSignUp, currentUser } = useAuth();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -127,7 +123,6 @@ export default function Signup() {
       await axios
         .post(`${process.env.REACT_APP_URL}/api/users`, input)
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
 
@@ -161,7 +156,16 @@ export default function Signup() {
       setLoading(true);
       const data = await googleSignUp();
 
-      console.log(data.credential.idToken);
+      console.log(currentUser.email);
+
+      await axios
+        .post(`${process.env.REACT_APP_URL}/api/users`, {
+          email: `${currentUser.email}`,
+        })
+        .then((res) => {
+          return res.data;
+        });
+
       const dataUser = await axios
         .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
           email: auth.currentUser.email,

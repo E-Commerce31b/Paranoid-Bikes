@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext.js";
 import { useSelector, useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { getUser } from "../../redux/slices/usersActions.js";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 export const validate = (input) => {
   let errors = {};
@@ -40,6 +41,8 @@ const UpdateProfile = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [formErrors, setFormErrors] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
 
   const counter = useSelector((state) => state.users.user);
   console.log(counter._id);
@@ -129,23 +132,27 @@ const UpdateProfile = () => {
           </div>
           <div className="field">
             <label className="label font_family">Pais</label>
-            <input
-              className="input"
-              type="country"
+            <CountryDropdown
+              defaultOptionLabel="Seleccione País"
+              classes="dropdown-content input"
+              value={country}
               name="country"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
+              onClick={handleInputChange}
+              onChange={(val) => setCountry(val)}
+            />
           </div>
           <div className="field">
             <label className="label font_family">Ciudad</label>
-            <input
-              className="input"
-              type="city"
+
+            <RegionDropdown
+              defaultOptionLabel="Seleccione Ciudad"
+              classes="dropdown-content input"
+              country={country}
+              value={region}
               name="city"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
+              onClick={handleInputChange}
+              onChange={(val) => setRegion(val)}
+            />
           </div>
           <div className="field">
             <label className="label font_family">
