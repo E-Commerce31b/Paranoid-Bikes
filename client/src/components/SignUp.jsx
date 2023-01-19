@@ -9,6 +9,11 @@ import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions";
 import axios from "axios";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 
 export const validate = (input) => {
   let errors = {};
@@ -53,6 +58,9 @@ export default function Signup() {
     email: "",
     password: "",
   });
+
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
   const [formErrors, setFormErrors] = useState({
     first_name: "",
     last_name: "",
@@ -73,7 +81,7 @@ export default function Signup() {
     setInput({ ...input, [property]: value });
     setFormErrors(validate({ ...input, [property]: value }));
   };
-
+  console.log(input);
   async function handleSubmit(e) {
     e.preventDefault();
     // const user = await users.find(u => u.email === emailRef.current.value)
@@ -152,17 +160,16 @@ export default function Signup() {
       setError("");
       setLoading(true);
       const data = await googleSignUp();
+
+      console.log(data.credential.idToken);
       const dataUser = await axios
         .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
           email: auth.currentUser.email,
           token: data.credential.idToken,
         })
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
-
-      console.log(dataUser.accessToken);
       var decoded = jwt_decode(dataUser.accessToken);
       navigate("/");
       dispatch(getUser(decoded.data.id));
@@ -222,26 +229,32 @@ export default function Signup() {
                   onChange={handleInputChange}
                 ></input>
               </div>
+
               <div className="field">
                 <label className="label font_family">Pais</label>
-                <input
-                  className="input"
-                  type="country"
+                <CountryDropdown
+                  defaultOptionLabel="Seleccione País"
+                  classes="dropdown-content input"
+                  value={country}
                   name="country"
-                  /*  ref={emailRef} */
-                  onChange={handleInputChange}
-                ></input>
+                  onClick={handleInputChange}
+                  onChange={(val) => setCountry(val)}
+                />
               </div>
               <div className="field">
                 <label className="label font_family">Ciudad</label>
-                <input
-                  className="input"
-                  type="city"
+
+                <RegionDropdown
+                  defaultOptionLabel="Seleccione Ciudad"
+                  classes="dropdown-content input"
+                  country={country}
+                  value={region}
                   name="city"
-                  /*  ref={emailRef} */
-                  onChange={handleInputChange}
-                ></input>
+                  onClick={handleInputChange}
+                  onChange={(val) => setRegion(val)}
+                />
               </div>
+
               <div className="field">
                 <label className="label font_family">Correo electrónico</label>
                 <input
