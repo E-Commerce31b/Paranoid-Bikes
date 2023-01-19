@@ -1,6 +1,4 @@
-import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useForm, Controller, set } from "react-hook-form";
 import { postProduct } from "../../../../src/redux/slices/productsActions";
 
@@ -120,3 +118,4 @@ export default function BikeCreate() {
     </div>
   );
 }
+
