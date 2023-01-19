@@ -20,7 +20,7 @@ export default function BikeCreate() {
     gender: "",
     category: "",
     maker: "",
-    img: "",
+    image: "",
     priceAmount: "",
     year:"",
   });
@@ -29,7 +29,7 @@ export default function BikeCreate() {
     gender: "",
     category: "",
     maker: "",
-    img: "",
+    image: "",
     priceAmount: "",
     year:"",
   });
@@ -69,14 +69,13 @@ export default function BikeCreate() {
         console.log(data);
         setInput({
           ...input,
-          img: data.url,
+          image: data.url,
         });
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log("input", input);
 
   return ( 
      <div className=" mb-6 ">
@@ -173,10 +172,10 @@ export default function BikeCreate() {
         <input
           type="file"
           className="input"
-          name="img"
+          name="image"
           onChange={(e) => setImage(e.target.files[0])}
         />
-        <button onClick={submitImage}>Subir Imagen</button>
+        <button onClick={submitImage} type="button">Subir Imagen</button>
         </div>
           
 
