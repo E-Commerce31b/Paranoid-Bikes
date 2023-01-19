@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { getUser } from "../redux/slices/usersActions.js";
+import { getUser, getUsers } from "../redux/slices/usersActions.js";
 import { getAdmins } from "../redux/slices/adminActions.js";
 
 export const validate = (input) => {
@@ -72,7 +72,7 @@ const Login = () => {
 
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
         dispatch(getAdmins(dataUser.accessToken));
-
+        dispatch(getUsers(dataUser.accessToken));
         return navigate("/panel");
       }
 

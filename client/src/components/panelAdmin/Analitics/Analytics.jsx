@@ -1,11 +1,12 @@
+import { Experimental_CssVarsProvider } from "@mui/material";
 
 
 export function salesValue (props) {
       if(props) {
         let total = props.reduce(function(accumulator, currentValue) {
-          let pre = parseInt(currentValue.price)
-          return accumulator + (pre * currentValue.count);
+          return accumulator + (currentValue.priceAmount * currentValue.count);
         }, 0);
+        console.log(total);
         return total
       }}
 
