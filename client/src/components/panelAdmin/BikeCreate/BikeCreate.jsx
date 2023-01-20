@@ -12,7 +12,6 @@ export const validate = (input) => {
   return errors;
 };
 
-
 export default function BikeCreate() {
   const form = useRef();
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export default function BikeCreate() {
   const [input, setInput] = useState({
     name: "",
     gender: [],
-    category:[],
+    category: [],
     maker: "",
     image: "",
     priceAmount: "",
@@ -36,14 +35,14 @@ export default function BikeCreate() {
     year: "",
   });
   const allGenders = useSelector((state) => state.products.genders);
-  const allCategories = useSelector((state) => state.products.categories)
+  const allCategories = useSelector((state) => state.products.categories);
   function handleDeleteGender(el) {
     setInput({
-        ...input,
-        gender: allGenders.filter(param => param !== el)
-    })
-}
- 
+      ...input,
+      gender: allGenders.filter((param) => param !== el),
+    });
+  }
+
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -87,117 +86,12 @@ export default function BikeCreate() {
         console.log(err);
       });
   };
-  
-  return ( 
-     <div className=" mb-6 ">
-  <div style={{ backgroundColor: "white" }}>
-    <div className="navbar-brand "></div>
-  </div>
 
-  <div className="column has-text-centered">
-    <h1 className="title is-3 font_family mt-5">Agregar bicicletas</h1>
-  </div>
-  <div className="columns">
-    <div className="column is-3"></div>
-    <div
-      className="column is-6 mt-5 has-background-white"
-      style={{ borderRadius: "10px" }}
-    >
-      <div>
-        {error && (
-          <p className="notification is-danger is-light ">{error}</p>
-        )}
-        {formErrors.name && (
-          <p className="is-size-7-desktop notification is-danger is-light ">
-            {formErrors.name}
-          </p>
-        )}
-        {formErrors.gender && (
-          <p className="is-size-7-desktop notification is-danger is-light">
-            {formErrors.gender}
-          </p>
-        )}
-        <form ref={form} onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label font_family">Nombre</label>
-            <input
-              className="input"
-              type="name"
-              name="name"
-             
-              onChange={handleInputChange}
-            ></input>
-          </div>
-         {/*  <div className="field">
-            <label className="label font_family">Genero</label>
-            <input
-              className="input"
-              type="gender"
-              name="gender"
-            
-              onChange={handleInputChange}
-            ></input>
-          </div> */}
-
-                 <div className="field">
-                 <label className="label font_family">Genero: </label>
-                    <select name='gender' onChange={(e) => handleInputChange(e)}>
-                        <option hidden value="gender">Genero</option>
-                        {
-                           allGenders.map((e, i) => (
-                                <option key={i} value={e}>{e}</option>
-                            ))
-                        }
-                    </select>
-                 </div>
-                 <div className="field">
-                 <label className="label font_family">Categoria: </label>
-                    <select name='category' onChange={(e) => handleInputChange(e)}>
-                        <option hidden value="category">Categoria</option>
-                        {
-                           allCategories.map((e, i) => (
-                                <option key={i} value={e}>{e}</option>
-                            ))
-                        }
-                    </select>
-                 </div>
-                   {/*  <div className="field">
-                        {allGenders.map((e,i) =>
-                            <div key={e} className="field">
-                               
-                                <div key={e}>
-                                    {e}
-                                </div>
-                                <div key={i}  type="button"  onClick={() => {
-                                    handleDeleteGender(e)
-                                }}>x</div>
-                            </div>)}
-                    </div> */}
-                  
-                  
-          
-            
-        
-          <div className="field">
-            <label className="label font_family">Marca</label>
-            <input
-              className="input"
-              type="maker"
-              name="maker"
-              /*  ref={emailRef} */
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div className="field">
-            <label className="label font_family">Precio</label>
-            <input
-              className="input"
-              type="priceAmount"
-              name="priceAmount"
-             
-              onChange={handleInputChange}
-            ></input>
-          </div>
+  return (
+    <div className=" mb-6 ">
+      <div style={{ backgroundColor: "white" }}>
+        <div className="navbar-brand "></div>
+      </div>
 
       <div className="column has-text-centered">
         <h1 className="title is-3 font_family mt-5">Agregar bicicletas</h1>
@@ -209,6 +103,14 @@ export default function BikeCreate() {
           style={{ borderRadius: "10px" }}
         >
           <div>
+            {error && (
+              <p className="notification is-danger is-light ">{error}</p>
+            )}
+            {formErrors.name && (
+              <p className="is-size-7-desktop notification is-danger is-light ">
+                {formErrors.name}
+              </p>
+            )}
             {formErrors.gender && (
               <p className="is-size-7-desktop notification is-danger is-light">
                 {formErrors.gender}
@@ -224,24 +126,56 @@ export default function BikeCreate() {
                   onChange={handleInputChange}
                 ></input>
               </div>
+              {/*  <div className="field">
+            <label className="label font_family">Genero</label>
+            <input
+              className="input"
+              type="gender"
+              name="gender"
+            
+              onChange={handleInputChange}
+            ></input>
+          </div> */}
+
               <div className="field">
-                <label className="label font_family">Genero</label>
-                <input
-                  className="input"
-                  type="gender"
-                  name="gender"
-                  onChange={handleInputChange}
-                ></input>
+                <label className="label font_family">Genero: </label>
+                <select name="gender" onChange={(e) => handleInputChange(e)}>
+                  <option hidden value="gender">
+                    Genero
+                  </option>
+                  {allGenders.map((e, i) => (
+                    <option key={i} value={e}>
+                      {e}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="field">
-                <label className="label font_family">Categoria</label>
-                <input
-                  className="input"
-                  type="category"
-                  name="category"
-                  onChange={handleInputChange}
-                ></input>
+                <label className="label font_family">Categoria: </label>
+                <select name="category" onChange={(e) => handleInputChange(e)}>
+                  <option hidden value="category">
+                    Categoria
+                  </option>
+                  {allCategories.map((e, i) => (
+                    <option key={i} value={e}>
+                      {e}
+                    </option>
+                  ))}
+                </select>
               </div>
+              {/*  <div className="field">
+                        {allGenders.map((e,i) =>
+                            <div key={e} className="field">
+                               
+                                <div key={e}>
+                                    {e}
+                                </div>
+                                <div key={i}  type="button"  onClick={() => {
+                                    handleDeleteGender(e)
+                                }}>x</div>
+                            </div>)}
+                    </div> */}
+
               <div className="field">
                 <label className="label font_family">Marca</label>
                 <input
@@ -276,8 +210,8 @@ export default function BikeCreate() {
               <div>
                 <input
                   type="file"
-                  className=""
-                  name="imge"
+                  className="input"
+                  name="image"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
                 <button onClick={submitImage} type="button">
