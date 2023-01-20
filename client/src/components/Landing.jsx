@@ -10,31 +10,30 @@ export default function Landing() {
 
   return (
     <div>
-      <div>
-        <div className="overlay">
-          <img
-            className="widthImageLanding"
-            src={ImageDiscounts}
-            alt="not found"
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            flexWrap: "wrap",
-            // backgroundColor: `${color}`,
-          }}
-        >
-          {categories?.map((c, i) => {
-            return (
-              <div key={i}>
-                <CategoryCard category={c} />
-              </div>
-            );
-          })}
-        </div>
+      <div className="overlay">
+        <img
+          className="widthImageLanding"
+          src={ImageDiscounts}
+          alt="not found"
+        />
+      </div>
+      <h2 className="is-size-3 py-6">Categorías</h2>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          flexWrap: "wrap",
+          // backgroundColor: `${color}`,
+        }}
+      >
+        {categories?.map((c, i) => {
+          return (
+            <div key={i}>
+              <CategoryCard category={c} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

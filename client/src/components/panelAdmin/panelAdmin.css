@@ -3,18 +3,20 @@
   color: var(--black);
   background: linear-gradient(
     106.37deg,
-    #2b3999 29.63%,
+    #1d286a 29.63%,
     #16206d 51.55%,
-    #39fbdec3 90.85%
+    #186c60c3 90.85%
   );
-  height: 100vh;
   display: flex;
-  font-family: 'Inter', sans-serif;
   color: white;
+  height: 100%;
+  padding: 0px 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .AppGlass {
-  display: grid;
+  display: flex;
+  justify-content: space-between;
   height: 97%;
   width: 97%;
   background: var(--glass);
