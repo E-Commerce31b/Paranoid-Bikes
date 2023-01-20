@@ -1,12 +1,15 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getUsers = createAsyncThunk("users/getUsers", async () => {
-
+export const getUsers = createAsyncThunk("users/getUsers", async (token) => {
   try {
     // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/users')
     // const response = await axios.get("http://localhost:3001/api/users");
-    const response = await axios.get(`${process.env.REACT_APP_URL}/api/users`);
+    const response = await axios.get(`${process.env.REACT_APP_URL}/api/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = response.data;
     // .sort(function(a, b) {
     //     if(a.first_name < b.first_name) return -1;
@@ -23,7 +26,9 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
   try {
     // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/users/${id}`)
     // const response = await axios.get(`http://localhost:3001/api/users/${id}`);
-    const response = await axios.get(`${process.env.REACT_APP_URL}/api/users/${id}`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_URL}/api/users/${id}`
+    );
     return response.data;
   } catch (error) {
     return error.message;
