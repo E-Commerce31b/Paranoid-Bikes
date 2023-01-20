@@ -1,54 +1,43 @@
 import React, { useEffect, useState } from "react";
 import "./productCard.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/slices/productsActions";
-import { managePurchased } from "../../redux/slices/users";
+import { addPurchased, incrementPurchased, decrementPurchased } from "../../redux/slices/users";
+import Counter from '../Counter'
 
 const ProductCard = ({ product }) => {
+
+    const [counter, setCounter] = useState(1)
+
   let { id } = useParams();
   const dispatch = useDispatch();
 
-  const [bike, setBike] = useState({});
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   const user = useSelector((state) => state.users.user);
   const products = useSelector((state) => state.products.products);
 
-  useEffect(() => {
-    const data = async () => {
-      setLoading(true);
-      //const data = await dispatch(getProduct(id));
-      setBike(data.payload);
-      setLoading(false);
-    };
-    data();
-  }, [dispatch, id]);
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-
   const sendToCart = () => {
-    if (user) {
-      dispatch(managePurchased({ id, products }));
-      console.log(user);
-      // dispatch(putUser(user._id, user))}
+    if (Object.keys(user).length) {
+      dispatch(addPurchased({ id, counter, products }));
+      return navigate('/cart');
+    } else {
+      return navigate('/login')
     }
   };
 
   return (
     <>
-      <div className="box">
+      <div className="box cardBike">
         <div className="box-image">
           <img src={product.image} alt="Not found" />
         </div>
         <div className="maker">
           <strong>Marca:</strong> {product.maker}
         </div>
-        <div className="name-price">
-          <p>
+        <div title={product.name}>
+          <p className="name-price">
             <strong>Nombre:</strong> {product.name}
           </p>
           <p>
@@ -57,14 +46,14 @@ const ProductCard = ({ product }) => {
         </div>
         <ButtonGroup className="botones">
           <Link to={`/details/${product.id}`}>
-            <Button>
-              <h1 fontSize="30">Ver más</h1>
-            </Button>
+            <p className="button is-primary font_family">Ver más</p>
           </Link>
           {/* <Button onClick={() => sendToCart()}>
             <h1 fontSize="30">🛒</h1>
           </Button> */}
         </ButtonGroup>
+        <Counter counter={counter} setCounter={setCounter} stock={product.stock}/>
+        <div><button onClick={() => sendToCart()}>Agregar al carrito</button></div>
       </div>
     </>
   );

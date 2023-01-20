@@ -28,10 +28,12 @@
     "react-circular-progressbar": "^2.0.4",
     "react-country-region-selector": "^3.6.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.42.1",
     "react-redux": "^8.0.5",
     "react-router": "^6.4.5",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.0",
     "reactstrap": "^9.1.5",
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"

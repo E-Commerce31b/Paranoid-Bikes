@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
-import { managePurchased } from "../redux/slices/users.js";
+import { addPurchased, removePurchased, incrementPurchased, decrementPurchased } from "../redux/slices/users.js";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import "../index.css";
@@ -9,6 +9,8 @@ const ProductDetail = (props) => {
   const dispatch = useDispatch();
   let { id } = useParams();
   const navigate = useNavigate();
+
+  const [counter, setCounter] = useState(1)
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
@@ -29,11 +31,16 @@ const ProductDetail = (props) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-    const sendToCart = () => {
-    if(user) {
-      dispatch(managePurchased({id, products}))
-      }
+  const sendToCart = () => {
+    if (Object.keys(user).length) {
+      console.log('entramos')
+      dispatch(addPurchased({ id, counter, products }));
+      return navigate('/cart');
+    } else {
+      console.log('entramos2')
+      return navigate('/login')
     }
+  };
 
   return (
     <>
@@ -86,11 +93,14 @@ const ProductDetail = (props) => {
               >
                 <img src={bike.image} alt="not found" />
                 <Box sx={{ p: 2 }}>
-                  <NavLink to="/cart">
-                    <Button onClick={() => sendToCart()}>
+                  {/* <NavLink to="/cart"> */}
+                    <p
+                      className="button is-primary font_family"
+                      onClick={() => sendToCart()}
+                    >
                       Agregar al carrito
-                    </Button>
-                  </NavLink>
+                    </p>
+                  {/* </NavLink> */}
                 </Box>
               </figure>
             </div>

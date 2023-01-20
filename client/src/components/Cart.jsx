@@ -26,7 +26,6 @@ const Cart = () => {
   };
   return (
     <div>
-
       {selected?.length > 0 ? (
         <div>
           <RenderProducts slicedProducts={slicedProducts} />
@@ -41,12 +40,15 @@ const Cart = () => {
         </div>
       ) : (
         <div>
-          <p>No hay productos seleccionados.</p>
-          <NavLink to="/">
-            <button>Agregar productos</button>
-          </NavLink>
+          <div className="columns is-centered mt-4 mb-4 has-text-white">
+            <p>No hay productos seleccionados.</p>
+          </div>
+          <div className="columns is-centered mb-4 mt-4">
+            <NavLink to="/">
+              <p className="button is-primary font_family">Agregar productos</p>
+            </NavLink>
+          </div>
         </div>
-
       )}
     </div>
   );

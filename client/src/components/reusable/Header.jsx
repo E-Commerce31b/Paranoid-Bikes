@@ -9,26 +9,13 @@ import SearchBar from "../SearchBar.jsx";
 export default function Header() {
   const { currentUser, logout } = useAuth();
   const params = useLocation();
-  console.log(params.pathname);
 
   const admin = useSelector((state) => state.admins.admins);
-  console.log("admin", admin);
 
-  const user = useSelector((state) => state.users.user);
-
-  const navigate = useNavigate();
-  const handleCart = () => {
-    if (Object.keys(user).length) {
-      navigate("/cart");
-    } else {
-      navigate("/login");
-    }
-  };
-  useEffect(() => {}, [admin, currentUser]);
   return (
     <div>
       <nav
-        className="navbar font_family is-size-7"
+        className="navbar font_family is-size-7 is-flex-wrap-nowrap"
         role="navigation"
         aria-label="main navigation"
       >
@@ -90,18 +77,6 @@ export default function Header() {
                 <SearchBar />
                 {/* </div> */}
                 <div />
-              </div>
-              <div className="navbar-item">
-                {/* <NavLink to="/cart"> */}
-                <p className="control pl-6">
-                  <button
-                    className="button is-small"
-                    onClick={() => handleCart()}
-                  >
-                    🛒
-                  </button>
-                </p>
-                {/* </NavLink> */}
               </div>
             </div>
             {currentUser && currentUser.email ? (
