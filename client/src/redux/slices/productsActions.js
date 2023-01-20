@@ -5,7 +5,9 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes`
+      );
 
       const data = response.data.sort(function (a, b) {
         if (a.name < b.name) return -1;
@@ -39,7 +41,9 @@ export const getProduct = createAsyncThunk(
   "products/getProductById",
   async (id) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`
+      );
       const data = response.data;
 
       return {
@@ -64,14 +68,17 @@ export const getProduct = createAsyncThunk(
 export const postProduct = createAsyncThunk(
   "products/postProduct",
   async (newBike) => {
-    console.log(newBike)
+    console.log(newBike);
     try {
       // const config = {
       //   headers: {Authorization: `Bearer ${token}`}
       // }
-        const response = await axios.post(`${process.env.REACT_APP_URL}/api/admin/bikes`, newBike)
-        console.log(response.data)
-        return response.data
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/api/admin/bikes`,
+        newBike
+      );
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       return error.message;
     }
@@ -82,8 +89,11 @@ export const putProduct = createAsyncThunk(
   "products/putProduct",
   async ({ id, ...product }) => {
     try {
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, product)
-        return response.data
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        product
+      );
+      return response.data;
     } catch (error) {
       return error.message;
     }
@@ -91,12 +101,15 @@ export const putProduct = createAsyncThunk(
 );
 export const count = createAsyncThunk(
   "products/count",
-  async ({id, ...product}) => {
+  async ({ id, ...product }) => {
     try {
-      product.count = product.count + 2
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {count: product.count})
-        console.log(response)
-        return response.data
+      product.count = product.count + 2;
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        { count: product.count }
+      );
+      console.log(response);
+      return response.data;
     } catch (error) {
       return error.message;
     }
@@ -105,11 +118,14 @@ export const count = createAsyncThunk(
 export const reduceStock = createAsyncThunk(
   "products/reduceStock",
   // async ({ _id, ...product }) => {
-  async ({id, ...product }) => {
+  async ({ id, ...product }) => {
     try {
-      product.stock = product.stock - 2
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {stock: product.stock})
-        return response.data
+      product.stock = product.stock - 2;
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        { stock: product.stock }
+      );
+      return response.data;
     } catch (error) {
       return error.message;
     }
@@ -120,8 +136,10 @@ export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (id) => {
     try {
-        const response = axios.delete(`${process.env.REACT_APP_URL}/api/bikes/${id}`) 
-        return response.data
+      const response = axios.delete(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`
+      );
+      return response.data;
     } catch (error) {
       return error.message;
     }

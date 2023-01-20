@@ -86,3 +86,20 @@ export const deleteAdmin = createAsyncThunk("admin/deleteAdmin", async (id) => {
     return error.message;
   }
 });
+
+export const deleteProduct = createAsyncThunk(
+  "admin/deleteProduct",
+  async (product) => {
+    try {
+      product.softDelete = true;
+      console.log(product);
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/admin/bikes/${product.id}`,
+        product
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
