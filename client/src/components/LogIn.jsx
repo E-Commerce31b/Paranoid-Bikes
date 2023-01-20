@@ -63,13 +63,9 @@ const Login = () => {
           password: passwordRef.current.value,
         })
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
       var decoded = jwt_decode(dataUser.accessToken);
-      console.log(dataUser.accessToken);
-      console.log(decoded.data.id);
-      console.log(decoded.data.type);
 
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
         dispatch(getAdmins(dataUser.accessToken));
@@ -92,8 +88,6 @@ const Login = () => {
       setError("");
       setLoading(true);
       const data = await googleSignUp();
-      console.log(auth.currentUser.email);
-      console.log(data.credential.idToken);
 
       const dataUser = await axios
         .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
@@ -101,11 +95,9 @@ const Login = () => {
           token: data.credential.idToken,
         })
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
 
-      console.log(dataUser.accessToken);
       var decoded = jwt_decode(dataUser.accessToken);
       navigate("/");
       dispatch(getUser(decoded.data.id));

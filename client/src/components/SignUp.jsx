@@ -41,7 +41,7 @@ export default function Signup() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { signup, googleSignUp, currentUser } = useAuth();
+  const { signup, googleSignUp } = useAuth();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -77,7 +77,7 @@ export default function Signup() {
     setInput({ ...input, [property]: value });
     setFormErrors(validate({ ...input, [property]: value }));
   };
-  console.log(input);
+
   async function handleSubmit(e) {
     e.preventDefault();
     // const user = await users.find(u => u.email === emailRef.current.value)
@@ -103,22 +103,12 @@ export default function Signup() {
       //     password: "", */
       // });
 
-      emailjs
-        .sendForm(
-          "service_ev9mv2j",
-          "template_hzyfavr",
-          form.current,
-          "gYTIZ320UzKrK9phD"
-        )
-
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      emailjs.sendForm(
+        "service_ev9mv2j",
+        "template_hzyfavr",
+        form.current,
+        "gYTIZ320UzKrK9phD"
+      );
 
       await axios
         .post(`${process.env.REACT_APP_URL}/api/users`, input)
@@ -132,11 +122,9 @@ export default function Signup() {
           password: passwordRef.current.value,
         })
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
 
-      console.log(dataUser);
       var decoded = jwt_decode(dataUser.accessToken);
       dispatch(getUser(decoded.data.id));
       e.target.reset();
@@ -155,12 +143,10 @@ export default function Signup() {
       setError("");
       setLoading(true);
       const data = await googleSignUp();
-
-      console.log(currentUser.email);
-
       await axios
         .post(`${process.env.REACT_APP_URL}/api/users`, {
-          email: `${currentUser.email}`,
+          email: auth.currentUser.email,
+          password: data.user.uid,
         })
         .then((res) => {
           return res.data;
@@ -317,13 +303,13 @@ export default function Signup() {
             </form>
             <br />
 
-            <p
+            <button
               className="button is-warning font_family"
               type="submit"
               onClick={googleSubmit}
             >
               Registrarse con Google
-            </p>
+            </button>
             <div className="font_family " style={{ marginTop: "20px" }}>
               ¿Ya tiene una cuenta con nosotros?
               <Link to="/login">Iniciar Sesión</Link>
