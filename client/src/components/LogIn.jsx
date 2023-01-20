@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { getUser } from "../redux/slices/usersActions.js";
+import { getUser, getUsers } from "../redux/slices/usersActions.js";
 import { getAdmins } from "../redux/slices/adminActions.js";
-import {saveToken} from "../redux/slices/users.js"
+import { auth } from "../firebase.js";
+
 export const validate = (input) => {
   let errors = {};
 
@@ -57,23 +58,18 @@ const Login = () => {
       await login(emailRef.current.value, passwordRef.current.value);
 
       const dataUser = await axios
-        .post("https://paranoid-bikes-backend.onrender.com/api/users/login", {
+        .post(`${process.env.REACT_APP_URL}/api/users/login`, {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         })
         .then((res) => {
-          console.log("hola");
           return res.data;
         });
     
       var decoded = jwt_decode(dataUser.accessToken);
-      console.log(dataUser.accessToken);
-      console.log(decoded.data.id);
-      console.log(decoded.data.type);
-      dispatch(saveToken(dataUser.accessToken))
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
         dispatch(getAdmins(dataUser.accessToken));
-
+        dispatch(getUsers(dataUser.accessToken));
         return navigate("/panel");
       }
 
@@ -84,6 +80,31 @@ const Login = () => {
       setError("Error al iniciar sesion, intente nuevamente");
     }
     setLoading(false);
+  }
+
+  async function googleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      setLoading(true);
+      const data = await googleSignUp();
+
+      const dataUser = await axios
+        .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
+          email: auth.currentUser.email,
+          token: data.credential.idToken,
+        })
+        .then((res) => {
+          return res.data;
+        });
+
+      var decoded = jwt_decode(dataUser.accessToken);
+      navigate("/");
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
+    } catch {
+      setError("Error al crear la cuenta, intente nuevamente por favor");
+    }
   }
 
   return (
@@ -141,10 +162,18 @@ const Login = () => {
         </form>
 
         <br />
+        <p
+          className="button is-warning font_family"
+          type="submit"
+          onClick={googleSubmit}
+        >
+          Iniciar sesión con Google
+        </p>
 
         <div className="m-2 font_family">
           <Link to="/forgot-password">¿Olvido la contraseña?</Link>
         </div>
+
         <div className="m-2 font_family">
           Crear cuenta nueva <Link to="/signup">Registrarse</Link>
         </div>

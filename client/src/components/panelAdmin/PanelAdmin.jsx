@@ -15,8 +15,13 @@ export default function PanelAdmin() {
     return (
       <div className="panel">
         <div className="AppGlass">
-          <Sidebar />
-          <MainDash />
+          <div className="py-3 ">
+            <Sidebar />
+          </div>
+          <div className="py-6">
+            <MainDash />
+          </div>
+          <div></div>
         </div>
       </div>
     );
