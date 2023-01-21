@@ -8,51 +8,53 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "./paymentmethod.css";
-import { useState } from 'react'; 
-import { useDispatch, useSelector } from 'react-redux';
-import { reduceStock, count } from '../../redux/slices/productsActions.js';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { reduceStock, count } from "../../redux/slices/productsActions.js";
 import { useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe(
   "pk_test_51MEv4bIJKT77FNwAfDu9uVLRiTpAaVatrh4lOfZHkKKWES4BBbfgJt7LToCRgH75zkbApxJB8tHPeoLq0mkLi5Vx00wG3er93H"
 );
 
-const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confirmar compra" y que le pase amount 
-  
-  const email = useSelector(state=> state.users.user.email)
-  const [totalPrice, setTotalPrice] = useState(0)
+const CheckoutForm = ({ selected }) => {
+  //agregar pantalla intermedia "confirmar compra" y que le pase amount
+
+  const user = useSelector((state) => state.users.user);
+  console.log(user);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     let amount = 0;
-    for(let product of selected) {
-      console.log(product.price)
-      console.log(product)
-      console.log(product.priceAmount)
-      console.log(amount)
-      amount += product.priceAmount
+    for (let product of selected) {
+      console.log(product.price);
+      console.log(product);
+      console.log(product.priceAmount);
+      console.log(amount);
+      amount += product.priceAmount;
     }
-      setTotalPrice(amount)
-  }, [selected])
+    setTotalPrice(amount);
+  }, [selected]);
 
   const stripe = useStripe();
   const elements = useElements();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let promises = []
+    let promises = [];
     // let amount = 0;
-    for(let product of selected) {
-      console.log(product)
-      promises.push(dispatch(reduceStock(product)))
-      promises.push(dispatch(count(product)))
+    for (let product of selected) {
+      console.log(product);
+      promises.push(dispatch(reduceStock(product)));
+      promises.push(dispatch(count(product)));
       // amount += product.priceAmount
     }
-    const responses = await Promise.all(promises)
-    console.log('hola')
-    console.log(responses)
+    const responses = await Promise.all(promises);
+    console.log("hola");
+    console.log(responses);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -64,7 +66,10 @@ const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confi
         {
           id,
           amount: totalPrice,
-          email : email
+          // email: email,
+          // country: country,
+          // city: city,
+          // address: address,
         }
       );
     }
@@ -89,22 +94,37 @@ const CheckoutForm = ({ selected }) => {    //agregar pantalla intermedia "confi
 };
 
 export default function Stripe() {
-  
   const { state } = useLocation();
 
   return (
-    <div className="container_stripe font_family">
-      <div className="p-4 has-text-centered has-text-black-bis ">
-        <h1 className="pb-4 is-size-3">Datos de Pago</h1>
-      </div>
-      <div>
-        <p>Nombre del titular</p>
-        <input type="text" className="input is-normal" />
-      </div>
-      <div className="pt-4  ">
-        <Elements stripe={stripePromise}>
-          <CheckoutForm selected={state.selected}/>
-        </Elements>
+    <div className="columns is-centered">
+      <div className="column is-5 mt-5 has-background-white">
+        <div className="font_family">
+          <div className="p-4 has-text-centered has-text-black-bis ">
+            <h1 className="pb-4 is-size-3">Datos de Pago</h1>
+          </div>
+          <div>
+            <p>Nombre del titular</p>
+            <input type="text" className="input is-normal" />
+          </div>
+          <div className="mt-5">
+            <p>Email</p>
+            <input type="text" className="input is-normal" />
+          </div>
+          <div className="mt-5">
+            <p>País</p>
+            <input type="text" className="input is-normal" />
+          </div>
+          <div className="mt-5">
+            <p>Ciudad</p>
+            <input type="text" className="input is-normal" />
+          </div>
+          <div className="pt-4  ">
+            <Elements stripe={stripePromise}>
+              <CheckoutForm selected={state.selected} />
+            </Elements>
+          </div>
+        </div>
       </div>
     </div>
   );
