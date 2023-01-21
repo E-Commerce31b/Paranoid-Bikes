@@ -132,10 +132,6 @@ export default function FormAdmins() {
 
   return (
     <div className=" mb-6 ">
-      <div style={{ backgroundColor: "white" }}>
-        <div className="navbar-brand "></div>
-      </div>
-
       <div className="column has-text-centered">
         <h1 className="title is-3 font_family mt-5">Crear Administrador</h1>
       </div>

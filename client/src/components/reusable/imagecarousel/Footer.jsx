@@ -8,10 +8,10 @@ export default function Footer() {
     <div className="position_footer">
       <footer class="footer p-1">
         <div className="container">
-          <div className="columns">
+          <div className="columns pt-5 ">
             <div className="column is-two-fifths"></div>
             <div className="column is-one-fifth is-justify-content-center">
-              <div className="flex is-justify-content-space-between is-flex-direction-row">
+              <div className="flex is-justify-content-space-between is-flex-direction-row ">
                 <a href="https://www.facebook.com/profile.php?id=100089168906445&mibextid=ZbWKwL">
                   <img src={facebook} width="20" height="20" />
                 </a>

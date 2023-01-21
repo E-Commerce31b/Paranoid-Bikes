@@ -103,3 +103,31 @@ export const deleteProduct = createAsyncThunk(
     }
   }
 );
+
+export const updateStock = createAsyncThunk(
+  "admin/updateStock",
+  async (data) => {
+    try {
+      const { count, id, token } = data;
+      const config = {
+        headers: { authorization: "Bearer " + token },
+      };
+      const payload = {
+        stock: count,
+      };
+      console.log(id.id);
+      console.log(count);
+      console.log(token);
+      console.log(config);
+      console.log(payload);
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/admin/bikes/${id.id}`,
+        payload,
+        config
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);

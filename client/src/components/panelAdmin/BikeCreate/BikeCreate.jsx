@@ -86,7 +86,7 @@ export default function BikeCreate() {
         console.log(err);
       });
   };
-
+  console.log("input", input);
   return (
     <div className=" mb-6 ">
       <div style={{ backgroundColor: "white" }}>
