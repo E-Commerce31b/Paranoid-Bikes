@@ -30,9 +30,12 @@ export default function Products() {
 
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
-      <div className="">
+      <div className="panel">
+        <div className="AppGlass">
+          <div className="py-3">
         {params?.pathname === "/productos" ? <Sidebar /> : <></>}
-      </div>
+          </div>
+      <div className="py-6">
       <div className="Table">
         {params?.pathname === "/panel" ? (
           <div className="column has-text-centered my-6">
@@ -55,7 +58,7 @@ export default function Products() {
               boxShadow: "0px 13px 20px 0px #80808029",
               padding: "30px",
             }}
-          >
+            >
             <Table
               sx={{ minWidth: 650 }}
               aria-label="simple table"
@@ -178,7 +181,10 @@ export default function Products() {
           </div>
         ) : (
           <></>
-        )}
+          )}
+          </div>
+          </div>
+            </div>
       </div>
       <div></div>
     </div>
