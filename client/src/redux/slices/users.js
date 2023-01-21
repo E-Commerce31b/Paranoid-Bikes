@@ -1,8 +1,10 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { putUserCart } from './usersActions.js';
 
 const initialState = {
   users: [],
   user: {},
+  token: "",
   logged: {},
   status: "",
   error: "",
@@ -15,23 +17,25 @@ export const usersSlice = createSlice({
     loggedUser: (state, { payload }) => {
       state.logged = payload;
     },
-    addPurchased: (state, { payload }) => {
-      const selected = payload.products.find((p) => p.id === payload.id);
-      console.log("selected", payload);
-      state.user.purchased.push(selected);
-    },
-    removePurchased: (state, { payload }) => {
-      state.user.purchased = state.user.purchased.filter(
-        (p) => p.id !== payload.id
-      );
-    },
-    incrementPurchased: (state, { payload }) => {
-      const selected = state.user.purchased.find((p) => p.id === payload.id);
-      selected.amount = selected.amount + payload.counter;
-    },
-    decrementPurchased: (state, { payload }) => {
-      const selected = state.user.purchased.find((p) => p.id === payload.id);
-      selected.amount = selected.amount - payload.counter;
+    manageCart: (state, { payload }) => {
+      let selected = {}
+      if(payload.action === 'increment' && state.user.purchased.find(p => p.id === payload.id)) {
+        selected = state.user.purchased.find(p => p.id === payload.id)
+        selected.amount = selected.amount + payload.counter
+      } else if(payload.action === 'increment') {
+        selected = payload.products.find(p => p.id === payload.id)
+        state.user.purchased.push({selected})
+      } else if(payload.action === 'decrement' && payload.counter > 0) {
+        selected = state.user.purchased.find(p => p.id === payload.id)
+        selected.amount = selected.amount - payload.counter
+      } else if(payload.action === 'decrement') {
+        state.user.purchased = state.user.purchased.filter(p => p.id !== payload.id);
+      }
+      const userId = state.user.id
+      const idBike = selected.id
+      const userCart = state.user.purchased
+      const data = { userId, idBike, userCart }
+      putUserCart(data)
     },
     resetUser: (state) => {
       state.user = {};
@@ -101,10 +105,7 @@ export const pacientError = (state) => state.error;
 
 export const {
   loggedUser,
-  addPurchased,
-  removePurchased,
-  incrementPurchased,
-  decrementPurchased,
+  manageCart,
   resetUser,
 } = usersSlice.actions;
 
