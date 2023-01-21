@@ -27,11 +27,12 @@ export default function Products() {
   const productsSlice = () => {
     return bikes.slice(0, 9);
   };
+  console.log("bikes", bikes);
 
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
       <div className="">
-        {params?.pathname === "/productos" ? <Sidebar /> : <></>}
+        <div>{params?.pathname === "/productos" ? <Sidebar /> : <></>}</div>
       </div>
       <div className="Table">
         {params?.pathname === "/panel" ? (
@@ -161,7 +162,7 @@ export default function Products() {
                           </div>
                         </TableCell>
                         <TableCell component="th" scope="row">
-                          {bike.createdAt}
+                          {bike.createdAt.substring(0, 9)}
                         </TableCell>
                         <TableCell component="th" scope="row">
                           {bike.count}

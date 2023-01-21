@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import RenderProducts from "./RenderProducts";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
+import Counter from "./Counter";
 
 const Cart = () => {
   const selected = useSelector((state) => state.users.user.purchased);
@@ -24,18 +25,28 @@ const Cart = () => {
       return selected;
     }
   };
+  console.log("hola", selected);
   return (
     <div>
       {selected?.length > 0 ? (
         <div>
           <RenderProducts slicedProducts={slicedProducts} />
-          <div className="columns is-centered mb-3 mt-2">
-            <p
-              className="button is-primary font_family"
-              onClick={() => handlePayment()}
-            >
-              Proceder a la compra
-            </p>
+          <div className="columns is-centered mb-3 mt-2 flex is-flex-direction-row ">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <p
+                className="button is-primary font_family"
+                onClick={() => handlePayment()}
+              >
+                Proceder a la compra
+              </p>
+            </div>
+            <div></div>
+            <div className="is-justify-content-flex-start">
+              <p style={{ color: "white" }}>{selected[0].price}</p>
+            </div>
           </div>
         </div>
       ) : (

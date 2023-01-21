@@ -19,7 +19,6 @@ const RenderProducts = ({ slicedProducts }) => {
         return (
           <div key={i}>
             <ProductCard product={p} />
-            <p style={{color:'white'}}>{p.price}</p>
           </div>
         );
       })}

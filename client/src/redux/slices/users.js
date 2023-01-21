@@ -16,22 +16,25 @@ export const usersSlice = createSlice({
       state.logged = payload;
     },
     addPurchased: (state, { payload }) => {
-      const selected = payload.products.find(p => p.id === payload.id)
-      state.user.purchased.push({selected})
+      const selected = payload.products.find((p) => p.id === payload.id);
+      console.log("selected", payload);
+      state.user.purchased.push(selected);
     },
     removePurchased: (state, { payload }) => {
-      state.user.purchased = state.user.purchased.filter(p => p.id !== payload.id);
+      state.user.purchased = state.user.purchased.filter(
+        (p) => p.id !== payload.id
+      );
     },
     incrementPurchased: (state, { payload }) => {
-      const selected = state.user.purchased.find(p => p.id === payload.id)
-      selected.amount = selected.amount + payload.counter
+      const selected = state.user.purchased.find((p) => p.id === payload.id);
+      selected.amount = selected.amount + payload.counter;
     },
     decrementPurchased: (state, { payload }) => {
-      const selected = state.user.purchased.find(p => p.id === payload.id)
-      selected.amount = selected.amount - payload.counter
+      const selected = state.user.purchased.find((p) => p.id === payload.id);
+      selected.amount = selected.amount - payload.counter;
     },
     resetUser: (state) => {
-      state.user = {}
+      state.user = {};
     },
   },
   extraReducers(builder) {
@@ -96,6 +99,13 @@ export const pacient = (state) => state.user;
 export const pacientStatus = (state) => state.status;
 export const pacientError = (state) => state.error;
 
-export const { loggedUser, addPurchased, removePurchased, incrementPurchased, decrementPurchased, resetUser } = usersSlice.actions;
+export const {
+  loggedUser,
+  addPurchased,
+  removePurchased,
+  incrementPurchased,
+  decrementPurchased,
+  resetUser,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;

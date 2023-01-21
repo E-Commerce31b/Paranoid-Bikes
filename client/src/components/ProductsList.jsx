@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from '../redux/slices/productsActions';
+import { getProducts } from "../redux/slices/productsActions";
 import Filters from "./Filters.jsx";
 import Sorters from "./Sorters.jsx";
 import RenderProducts from "./RenderProducts.jsx";
@@ -10,11 +10,11 @@ const ProductsList = () => {
   const filtered = useSelector((state) => state.products.filtered);
   const currentPage = useSelector((state) => state.products.currentPage);
 
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getProducts())
-  }, [])
+    dispatch(getProducts());
+  }, []);
   const slicedProducts = () => {
     // if(product) return product;
     if (filtered) {
@@ -22,7 +22,7 @@ const ProductsList = () => {
       return filtered.slice(currentPage, currentPage + 15);
     }
   };
-
+  console.log("filtered", filtered);
   return (
     <div>
       <div className="flex is-flex-direction-row  is-justify-content-space-evenly">
