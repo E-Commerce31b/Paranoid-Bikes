@@ -5,7 +5,10 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes`
+      );
+
       const data = response.data.sort(function (a, b) {
         if (a.name < b.name) return -1;
         if (a.name > b.name) return 1;
@@ -38,7 +41,9 @@ export const getProduct = createAsyncThunk(
   "products/getProductById",
   async (id) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`
+      );
       const data = response.data;
       return {
         id: data._id,
@@ -72,6 +77,7 @@ export const count = createAsyncThunk(
     }
   }
 );
+
 export const reduceStock = createAsyncThunk(
   "products/reduceStock",
   async (data) => {

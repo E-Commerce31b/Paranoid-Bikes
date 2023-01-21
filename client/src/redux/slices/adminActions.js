@@ -120,6 +120,19 @@ export const deleteProduct = createAsyncThunk("admin/deleteProduct", async (prod
   }
 });
 
+export const deleteUser = createAsyncThunk("admin/deleteUser", async (user) => {
+  try {
+    user.softDelete = true;
+    const response = await axios.put(
+      `${process.env.REACT_APP_URL}/api/admin/users/${user.id}`,
+      user
+    );
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
 export const getUsers = createAsyncThunk("admin/getUsers", async () => {
 
   try {

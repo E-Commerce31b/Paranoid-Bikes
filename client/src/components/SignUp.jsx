@@ -1,11 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
+import { auth } from "../firebase.js";
+import jwt_decode from "jwt-decode";
 import "../index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { postUser } from "../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions";
+import axios from "axios";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 export const validate = (input) => {
   let errors = {};
@@ -47,10 +51,12 @@ export default function Signup() {
     last_name: "",
     country: "",
     city: "",
-
     email: "",
     password: "",
   });
+
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
   const [formErrors, setFormErrors] = useState({
     first_name: "",
     last_name: "",
@@ -59,7 +65,7 @@ export default function Signup() {
   });
   const navigate = useNavigate();
 
-  const users = useSelector((state) => state.users.users);
+  //const users = useSelector((state) => state.users.users);
 
   const changeState = () => {
     setBoxState(true);
@@ -90,32 +96,41 @@ export default function Signup() {
         passwordConfirmRef.current.value
       );
 
-      dispatch(postUser(input));
+      //dispatch(postUser(input));
       alert("Usuario creado con exito!");
       // setInput({
       //   /*   email: "",
       //     password: "", */
       // });
 
-      emailjs
-        .sendForm(
-          "service_ev9mv2j",
-          "template_hzyfavr",
-          form.current,
-          "gYTIZ320UzKrK9phD"
-        )
+      emailjs.sendForm(
+        "service_ev9mv2j",
+        "template_hzyfavr",
+        form.current,
+        "gYTIZ320UzKrK9phD"
+      );
 
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      await axios
+        .post(`${process.env.REACT_APP_URL}/api/users`, input)
+        .then((res) => {
+          return res.data;
+        });
+
+      const dataUser = await axios
+        .post(`${process.env.REACT_APP_URL}/api/users/login`, {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+        .then((res) => {
+          return res.data;
+        });
+
+      var decoded = jwt_decode(dataUser.accessToken);
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
 
       setBoxState(false);
-      navigate("/user"); /// cambiar a ruta user
+      navigate("/"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
     }
@@ -127,8 +142,28 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await googleSignUp();
-      navigate("/googleForm"); /// cambiar a ruta user
+      const data = await googleSignUp();
+      await axios
+        .post(`${process.env.REACT_APP_URL}/api/users`, {
+          email: auth.currentUser.email,
+          password: data.user.uid,
+        })
+        .then((res) => {
+          return res.data;
+        });
+
+      const dataUser = await axios
+        .post(`${process.env.REACT_APP_URL}/api/users/firebase-login`, {
+          email: auth.currentUser.email,
+          token: data.credential.idToken,
+        })
+        .then((res) => {
+          return res.data;
+        });
+      var decoded = jwt_decode(dataUser.accessToken);
+      navigate("/");
+      dispatch(getUser(decoded.data.id));
+      e.target.reset();
     } catch {
       setError("Error al crear la cuenta, intente nuevamente por favor");
     }
@@ -184,26 +219,32 @@ export default function Signup() {
                   onChange={handleInputChange}
                 ></input>
               </div>
+
               <div className="field">
                 <label className="label font_family">Pais</label>
-                <input
-                  className="input"
-                  type="country"
+                <CountryDropdown
+                  defaultOptionLabel="Seleccione País"
+                  classes="dropdown-content input"
+                  value={country}
                   name="country"
-                  /*  ref={emailRef} */
-                  onChange={handleInputChange}
-                ></input>
+                  onClick={handleInputChange}
+                  onChange={(val) => setCountry(val)}
+                />
               </div>
               <div className="field">
                 <label className="label font_family">Ciudad</label>
-                <input
-                  className="input"
-                  type="city"
+
+                <RegionDropdown
+                  defaultOptionLabel="Seleccione Ciudad"
+                  classes="dropdown-content input"
+                  country={country}
+                  value={region}
                   name="city"
-                  /*  ref={emailRef} */
-                  onChange={handleInputChange}
-                ></input>
+                  onClick={handleInputChange}
+                  onChange={(val) => setRegion(val)}
+                />
               </div>
+
               <div className="field">
                 <label className="label font_family">Correo electrónico</label>
                 <input
@@ -262,13 +303,13 @@ export default function Signup() {
             </form>
             <br />
 
-            <p
+            <button
               className="button is-warning font_family"
               type="submit"
               onClick={googleSubmit}
             >
               Registrarse con Google
-            </p>
+            </button>
             <div className="font_family " style={{ marginTop: "20px" }}>
               ¿Ya tiene una cuenta con nosotros?
               <Link to="/login">Iniciar Sesión</Link>

@@ -1,7 +1,8 @@
+
 import React from "react";
 import "./Cards.css";
 import { cardsData } from "../Data/Data";
-import { salesBarValue, salesValue } from "../Analitics/Analytics";
+import { salesBarValue, salesValue, usersBarValue } from "../Analitics/Analytics";
 import { useSelector } from "react-redux";
 import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
 
@@ -9,7 +10,9 @@ import Card from "../Card/Card";
 
 const Cards = () => {
   const products = useSelector((state) => state.products.products);
-  console.log(products);
+  const users = useSelector((state) => state.users.users)
+  console.log(users);
+  
 
   const colorSales = [
     {
@@ -41,16 +44,16 @@ const Cards = () => {
                 series={serieSales}
               />
             </div>
-            {/* <div className="parentContainer" key={'sales'} >
+            <div className="parentContainer" key={'users'} >
             <Card
-              title={'Sales'}
+              title={'Users'}
               color={`${colorSales}`}
-              barValue={salesBarValue(products)}
-              value={salesValue(products)}
+              barValue={usersBarValue(users)}
+              value={users.length}
               png={UilMoneyWithdrawal}
               series={serieSales}
             />
-          </div> */}
+          </div>
           </div>
         </div>
       </div>
@@ -59,3 +62,4 @@ const Cards = () => {
 };
 
 export default Cards;
+

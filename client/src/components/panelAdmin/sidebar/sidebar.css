@@ -16,8 +16,6 @@
   font-weight: bold;
   font-size: 22px;
   gap: 1rem;
-
-  height: 4%;
 }
 .logo > span > span {
   color: var(--pink);

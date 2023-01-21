@@ -14,7 +14,7 @@ export const SidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
-    a: "/dashboard",
+    a: "/panel",
   },
   {
     icon: UilClipboardAlt,
@@ -33,13 +33,8 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: "Analyticas",
-    a: "/analiticas",
-  },
-  {
-    icon: UilUsdSquare,
     heading: "Creación de bicis",
-    a:"/creacionbicis",
+    a: "/creacionbicis",
   },
 ];
 

@@ -26,7 +26,7 @@ export const store = configureStore({
     products,
     reviews,
     filters,
-    admins
+    admins,
   },
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
