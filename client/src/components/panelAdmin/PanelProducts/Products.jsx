@@ -11,6 +11,7 @@ import Pagination from "../../pagination/Pagination.jsx";
 import Stock from "./Stock.jsx";
 import { NavLink, useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.jsx";
+import detalle from "../../../assets/Detalle.png";
 
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
@@ -113,6 +114,11 @@ export default function Products() {
                         )}
 
                         <TableCell className="Details">
+                          <NavLink to={`/details/${product.id}`}>
+                            <img src={detalle} alt="Not found" width={30} />
+                          </NavLink>
+                        </TableCell>
+                        <TableCell className="Details">
                           <div className="">
                             <img
                               src={product.image}
@@ -121,12 +127,6 @@ export default function Products() {
                             />
                           </div>
                         </TableCell>
-                        <TableCell className="Details">
-                          <NavLink to={`/details/${product.id}`}>
-                            Detalle
-                          </NavLink>
-                        </TableCell>
-                        {/* <TableCell align="left"></TableCell> */}
                       </TableRow>
                     ))
                   : slicedProducts().map((bike) => (
@@ -141,10 +141,12 @@ export default function Products() {
                         </TableCell>
                         <TableCell align="left">{bike.id}</TableCell>
                         <TableCell align="left">
-                          <Stock />
+                          <Stock id={bike.id} />
                         </TableCell>
                         <TableCell align="left" className="Details">
-                          <NavLink to={`/details/${bike.id}`}>Detalle</NavLink>
+                          <NavLink to={`/details/${bike.id}`}>
+                            <img src={detalle} alt="Not found" width={30} />
+                          </NavLink>
                         </TableCell>
                         <TableCell component="th" scope="row">
                           <div className="">

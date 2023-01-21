@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { getUser, getUsers } from "../redux/slices/usersActions.js";
+import { saveToken } from "../redux/slices/admin.js";
 import { getAdmins } from "../redux/slices/adminActions.js";
 import { auth } from "../firebase.js";
 
@@ -68,6 +69,9 @@ const Login = () => {
       var decoded = jwt_decode(dataUser.accessToken);
 
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
+        console.log("hola admin");
+        console.log(dataUser.accesToken);
+        dispatch(saveToken(dataUser.accessToken));
         dispatch(getAdmins(dataUser.accessToken));
         dispatch(getUsers(dataUser.accessToken));
         return navigate("/panel");

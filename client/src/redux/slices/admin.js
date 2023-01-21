@@ -3,6 +3,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const initialState = {
   admins: [],
   admin: {},
+  token: "",
   logged: {},
   status: "",
   error: "",
@@ -15,10 +16,12 @@ export const adminSlice = createSlice({
     loggedAdmin: (state, { payload }) => {
       state.logged = payload;
     },
-
     resetAdmin: (state) => {
       state.admins = initialState.admins;
       state.admin = initialState.admin;
+    },
+    saveToken: (state, { payload }) => {
+      state.token = payload;
     },
   },
   extraReducers(builder) {
@@ -83,6 +86,6 @@ export const adminSlice = createSlice({
 // export const pacientStatus = (state) => state.status;
 // export const pacientError = (state) => state.error;
 
-export const { resetAdmin } = adminSlice.actions;
+export const { resetAdmin, saveToken } = adminSlice.actions;
 
 export default adminSlice.reducer;

@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateStock } from "../../../redux/slices/adminActions";
 
-export default function Stock() {
+export default function Stock(id) {
   const [count, setCount] = useState(0);
-
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.admins.token);
+  console.log("id", id);
+  console.log("token", token.length);
+  const data = { count, id, token: token };
   const decrease = () => {
     setCount(count - 1);
   };
   const increase = () => {
     setCount(count + 1);
+  };
+
+  const handlesubmit = () => {
+    console.log(count, id);
+    dispatch(updateStock(data));
   };
 
   return (
@@ -28,6 +39,7 @@ export default function Stock() {
       >
         <span className="is-size-4 pb-2">+</span>
       </button>
+      <button onClick={handlesubmit}>Guardar cambios</button>
     </div>
   );
 }
