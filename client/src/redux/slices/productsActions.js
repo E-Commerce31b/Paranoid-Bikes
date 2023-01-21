@@ -31,7 +31,6 @@ export const getProducts = createAsyncThunk(
           createdAt: q.createdAt,
         };
       });
-      console.log(mapeo);
       return mapeo;
     } catch (error) {
       return error.message;
@@ -58,7 +57,6 @@ export const getProduct = createAsyncThunk(
         stock: data.stock,
         price: data.priceAmount,
         image: data.image,
-        // isExpanded: false,
       };
     } catch (error) {
       return error.message;
@@ -66,40 +64,6 @@ export const getProduct = createAsyncThunk(
   }
 );
 
-export const postProduct = createAsyncThunk(
-  "products/postProduct",
-  async (newBike) => {
-    console.log(newBike);
-    try {
-      // const config = {
-      //   headers: {Authorization: `Bearer ${token}`}
-      // }
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL}/api/admin/bikes`,
-        newBike
-      );
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
-export const putProduct = createAsyncThunk(
-  "products/putProduct",
-  async ({ id, ...product }) => {
-    try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
-        product
-      );
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
 export const count = createAsyncThunk(
   "products/count",
   async ({ id, ...product }) => {
@@ -116,29 +80,15 @@ export const count = createAsyncThunk(
     }
   }
 );
+
 export const reduceStock = createAsyncThunk(
   "products/reduceStock",
-  // async ({ _id, ...product }) => {
   async ({ id, ...product }) => {
     try {
       product.stock = product.stock - 2;
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/bikes/${id}`,
         { stock: product.stock }
-      );
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
-export const deleteProduct = createAsyncThunk(
-  "products/deleteProduct",
-  async (id) => {
-    try {
-      const response = axios.delete(
-        `${process.env.REACT_APP_URL}/api/bikes/${id}`
       );
       return response.data;
     } catch (error) {
