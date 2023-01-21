@@ -28,6 +28,7 @@ export const getProducts = createAsyncThunk(
           stock: q.stock,
           image: q.image,
           isEBike: q.isEBike,
+          createdAt: q.createdAt,
         };
       });
       console.log(mapeo);

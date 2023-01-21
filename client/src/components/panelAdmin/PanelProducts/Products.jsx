@@ -16,7 +16,6 @@ import detalle from "../../../assets/Detalle.png";
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
   const currentPage = useSelector((state) => state.products.currentPage);
-  console.log("currentPage", currentPage);
   const params = useLocation();
   const slicedProducts = () => {
     // if(product) return product;
@@ -28,7 +27,7 @@ export default function Products() {
   const productsSlice = () => {
     return bikes.slice(0, 9);
   };
-  console.log("bikes", bikes);
+
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
       <div className="">
@@ -84,9 +83,14 @@ export default function Products() {
                   <TableCell className="is-size-4 has-text-weight-bold">
                     Imagen
                   </TableCell>
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    Fecha de Posteo
-                  </TableCell>
+                  {params?.pathname === "/productos" ? (
+                    <TableCell className="is-size-4 has-text-weight-bold">
+                      Fecha de Posteo
+                    </TableCell>
+                  ) : (
+                    <></>
+                  )}
+
                   <TableCell className="is-size-4 has-text-weight-bold">
                     # Vendidas
                   </TableCell>
@@ -127,6 +131,9 @@ export default function Products() {
                             />
                           </div>
                         </TableCell>
+                        <TableCell component="th" scope="row">
+                          {product.count}
+                        </TableCell>
                       </TableRow>
                     ))
                   : slicedProducts().map((bike) => (
@@ -152,6 +159,12 @@ export default function Products() {
                           <div className="">
                             <img src={bike.image} alt="Not found" width={80} />
                           </div>
+                        </TableCell>
+                        <TableCell component="th" scope="row">
+                          {bike.createdAt}
+                        </TableCell>
+                        <TableCell component="th" scope="row">
+                          {bike.count}
                         </TableCell>
                       </TableRow>
                     ))}
