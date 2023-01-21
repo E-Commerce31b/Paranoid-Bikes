@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./productCard.css";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import { Button, ButtonGroup } from "@mui/material";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addPurchased } from "../../redux/slices/users";
+import { manageCart } from "../../redux/slices/users";
 import Counter from "../Counter";
-import Cart from "../Cart";
 
 const ProductCard = ({ product }) => {
+
   const [counter, setCounter] = useState(1);
   const dispatch = useDispatch();
   const id = product.id;
@@ -15,13 +15,10 @@ const ProductCard = ({ product }) => {
   const params = useLocation();
 
   const user = useSelector((state) => state.users.user);
-  const products = useSelector((state) => state.products.products);
 
-  const sendToCart = (product) => {
-    console.log("algoooo", product);
-
+  const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(addPurchased({ id, counter, products }));
+      dispatch(manageCart({ id, counter, action: 'increment'}));
       return navigate("/cart");
     } else {
       return navigate("/login");
@@ -50,7 +47,7 @@ const ProductCard = ({ product }) => {
             <Link to={`/details/${product.id}`}>
               <Button variant="outlined">Ver más</Button>
             </Link>
-            <Button variant="outlined" onClick={() => sendToCart(product)}>
+            <Button variant="outlined" onClick={() => sendToCart()}>
               🛒
             </Button>
           </div>

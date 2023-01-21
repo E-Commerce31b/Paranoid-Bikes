@@ -39,3 +39,21 @@ export const putUser = createAsyncThunk(
     }
   }
 );
+
+export const putUserCart = createAsyncThunk(
+  "users/putUser",
+  async (data) => {
+    try {
+      const {idUser, idBike, userCart} = data
+      console.log(idUser, idBike, userCart)
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/users/${idUser}`,
+        idBike,
+        userCart
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
