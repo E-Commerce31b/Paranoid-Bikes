@@ -1,20 +1,18 @@
 import React from 'react'
 import { Button, ButtonGroup} from "@mui/material";
 
-const Counter = ({counter, setCounter, stock}) => {
+const Counter = ({decrement, increment, counter}) => {
 
-    const decrement = () => {
-        console.log(counter > 0)
-        console.log(counter)
-        if(counter > 0) {
-            setCounter(counter - 1)
-        }
-    }
-    const increment = () => {
-        if (counter < stock) {
-            setCounter(counter + 1)
-        }
-    }
+    // const decrement = () => {
+    //     if(counter > 0) {
+    //         setCounter(counter - 1)
+    //     }
+    // }
+    // const increment = () => {
+    //     if (counter < stock) {
+    //         setCounter(counter + 1)
+    //     }
+    // }
     return (
         <div>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useForm, Controller, set } from "react-hook-form";
-import { postProduct } from "../../../../src/redux/slices/productsActions";
+import { postProduct } from "../../../../src/redux/slices/adminActions";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 

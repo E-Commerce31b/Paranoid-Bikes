@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
-import { addPurchased, removePurchased, incrementPurchased, decrementPurchased } from "../redux/slices/users.js";
+import { managePurchased } from "../redux/slices/users.js";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import "../index.css";
+import { useCounter } from './CustomHooks/useCounter';
+import Counter from './Counter';
+
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
   let { id } = useParams();
   const navigate = useNavigate();
-
-  const [counter, setCounter] = useState(1)
-
+  const {decrement, increment, counter } = useCounter()
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -31,13 +32,11 @@ const ProductDetail = (props) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-  const sendToCart = () => {
+  const sendToCart = (action) => {
     if (Object.keys(user).length) {
-      console.log('entramos')
-      dispatch(addPurchased({ id, counter, products }));
+      dispatch(managePurchased({ id, counter, action }));
       return navigate('/cart');
     } else {
-      console.log('entramos2')
       return navigate('/login')
     }
   };
@@ -93,10 +92,11 @@ const ProductDetail = (props) => {
               >
                 <img src={bike.image} alt="not found" />
                 <Box sx={{ p: 2 }}>
+                <Counter increment={increment} decrement={decrement} counter={counter}/>
                   {/* <NavLink to="/cart"> */}
                     <p
                       className="button is-primary font_family"
-                      onClick={() => sendToCart()}
+                      onClick={() => sendToCart('increment')}
                     >
                       Agregar al carrito
                     </p>

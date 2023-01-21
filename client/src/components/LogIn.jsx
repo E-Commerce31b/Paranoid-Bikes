@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { getUser, getUsers } from "../redux/slices/usersActions.js";
-import { getAdmins } from "../redux/slices/adminActions.js";
+import { getUser } from "../redux/slices/usersActions.js";
+import { getAdmins, getUsers } from "../redux/slices/adminActions.js";
 
 export const validate = (input) => {
   let errors = {};

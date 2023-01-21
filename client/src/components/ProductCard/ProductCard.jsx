@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./productCard.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addPurchased, incrementPurchased, decrementPurchased } from "../../redux/slices/users";
+import { managePurchased } from "../../redux/slices/users";
 import Counter from '../Counter'
+import { useCounter } from '../CustomHooks/useCounter.jsx'
 
 const ProductCard = ({ product }) => {
 
-    const [counter, setCounter] = useState(1)
-
+  const {decrement, increment, counter } = useCounter()
   let { id } = useParams();
   const dispatch = useDispatch();
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const user = useSelector((state) => state.users.user);
-  const products = useSelector((state) => state.products.products);
 
-  const sendToCart = () => {
+  const sendToCart = (action) => {
     if (Object.keys(user).length) {
-      dispatch(addPurchased({ id, counter, products }));
+      dispatch(managePurchased({ id, counter, action }));
       return navigate('/cart');
     } else {
       return navigate('/login')
@@ -52,8 +49,8 @@ const ProductCard = ({ product }) => {
             <h1 fontSize="30">🛒</h1>
           </Button> */}
         </ButtonGroup>
-        <Counter counter={counter} setCounter={setCounter} stock={product.stock}/>
-        <div><button onClick={() => sendToCart()}>Agregar al carrito</button></div>
+        <Counter increment={increment} decrement={decrement} counter={counter}/>
+        <div><button onClick={() => sendToCart('increment')}>Agregar al carrito</button></div>
       </div>
     </>
   );
