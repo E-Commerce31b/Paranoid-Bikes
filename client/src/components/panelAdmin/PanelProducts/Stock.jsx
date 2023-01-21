@@ -6,8 +6,6 @@ export default function Stock(id) {
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.admins.token);
-  console.log("id", id);
-  console.log("token", token.length);
   const data = { count, id, token: token };
   const decrease = () => {
     setCount(count - 1);
@@ -17,7 +15,6 @@ export default function Stock(id) {
   };
 
   const handlesubmit = () => {
-    console.log(count, id);
     dispatch(updateStock(data));
   };
 
