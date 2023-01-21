@@ -18,6 +18,7 @@ const initialState = {
   bestSellers: [],
   status: "",
   error: "",
+  priceTotal: "",
 };
 
 const handleFavourites = (state, payload) => {
@@ -35,6 +36,9 @@ export const productsSlice = createSlice({
   name: "productsSlice",
   initialState: initialState,
   reducers: {
+    setPrice: (state, action) => {
+      state.priceTotal = action.payload;
+    },
     setFiltered: (state, action) => {
       state.filtered = action.payload;
     },

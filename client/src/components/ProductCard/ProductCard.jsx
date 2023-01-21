@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "./productCard.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addPurchased, incrementPurchased, decrementPurchased } from "../../redux/slices/users";
-import Counter from '../Counter'
+import { addPurchased } from "../../redux/slices/users";
+import Counter from "../Counter";
+import Cart from "../Cart";
 
 const ProductCard = ({ product }) => {
-
-    const [counter, setCounter] = useState(1)
-
-  let { id } = useParams();
+  const [counter, setCounter] = useState(1);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate()
+  const id = product.id;
+  const navigate = useNavigate();
+  const params = useLocation();
 
   const user = useSelector((state) => state.users.user);
   const products = useSelector((state) => state.products.products);
 
-  const sendToCart = () => {
+  const sendToCart = (product) => {
+    console.log("algoooo", product);
+
     if (Object.keys(user).length) {
       dispatch(addPurchased({ id, counter, products }));
-      return navigate('/cart');
+      return navigate("/cart");
     } else {
-      return navigate('/login')
+      return navigate("/login");
     }
   };
 
   return (
     <>
-      <div className="box cardBike">
+      <div className="box  flex is-justify-content-center">
         <div className="box-image">
           <img src={product.image} alt="Not found" />
         </div>
@@ -44,16 +45,17 @@ const ProductCard = ({ product }) => {
             <strong>Precio:</strong> $ {product.price}
           </p>
         </div>
-        <ButtonGroup className="botones">
-          <Link to={`/details/${product.id}`}>
-            <p className="button is-primary font_family">Ver más</p>
-          </Link>
-          {/* <Button onClick={() => sendToCart()}>
-            <h1 fontSize="30">🛒</h1>
-          </Button> */}
-        </ButtonGroup>
-        <Counter counter={counter} setCounter={setCounter} stock={product.stock}/>
-        <div><button onClick={() => sendToCart()}>Agregar al carrito</button></div>
+        <div className="pt-5 flex   ">
+          <div className="flex is-flex-direction-row is-justify-content-space-evenly p-3">
+            <Link to={`/details/${product.id}`}>
+              <Button variant="outlined">Ver más</Button>
+            </Link>
+            <Button variant="outlined" onClick={() => sendToCart(product)}>
+              🛒
+            </Button>
+          </div>
+          <div>{params?.pathname === "/cart" ? <Counter /> : <></>}</div>
+        </div>
       </div>
     </>
   );

@@ -27,15 +27,18 @@ export default function Products() {
   const productsSlice = () => {
     return bikes.slice(0, 9);
   };
+  console.log("bikes", bikes);
 
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
+
       <div className="panel">
         <div className="AppGlass">
           <div className="py-3">
         {params?.pathname === "/productos" ? <Sidebar /> : <></>}
           </div>
       <div className="py-6">
+
       <div className="Table">
         {params?.pathname === "/panel" ? (
           <div className="column has-text-centered my-6">
@@ -164,7 +167,7 @@ export default function Products() {
                           </div>
                         </TableCell>
                         <TableCell component="th" scope="row">
-                          {bike.createdAt}
+                          {bike.createdAt.substring(0, 9)}
                         </TableCell>
                         <TableCell component="th" scope="row">
                           {bike.count}
