@@ -10,8 +10,8 @@ const RenderProducts = ({ slicedProducts }) => {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: "10px",
-        padding: "10px",
+        gap: "40px",
+        padding: "60px",
         justifyContent: "space-around",
       }}
     >

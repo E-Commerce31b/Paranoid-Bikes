@@ -17,7 +17,7 @@ import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";
 import Orders from "./components/Orders.jsx";
 import "./App.js";
-import Cart from "./components/Cart.jsx";
+import Cart from "./components/cart/Cart.jsx";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes.js";
 import UserHome from "./components/UserHome.jsx";
 import UserProfile from "./components/UserProfile.jsx";
