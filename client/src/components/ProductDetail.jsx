@@ -5,6 +5,8 @@ import { manageCart } from "../redux/slices/users.js";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import "../index.css";
+import "./ProductDetail.css";
+
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -51,12 +53,10 @@ const ProductDetail = (props) => {
         <div className="column is-3"></div>
         <div className="column is-6 has-background-white">
           <div className="columns">
-            <div className="column is-6">
-              <div>
-                <figure className="image is-3by2 mt-6">
-                  <img src={bike.image} alt="not found" />
-                </figure>
-              </div>
+            <div className="column is-6 columna">
+              <figure className="image is-3by2 mt-6">
+                <img src={bike.image} alt="not found" />
+              </figure>
             </div>
             <div className="column is-6">
               <div className="card-header-title">
