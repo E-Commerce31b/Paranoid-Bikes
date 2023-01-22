@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import RenderProducts from "./RenderProducts";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
-import Counter from "./Counter";
+import RenderProducts from "../RenderProducts.jsx";
+import "./cart.css";
 
 const Cart = () => {
   const selected = useSelector((state) => state.users.user.purchased);
@@ -29,23 +29,20 @@ const Cart = () => {
   return (
     <div>
       {selected?.length > 0 ? (
-        <div>
+        <div className="pt-6">
           <RenderProducts slicedProducts={slicedProducts} />
-          <div className="columns is-centered mb-3 mt-2 flex is-flex-direction-row ">
-            <div></div>
-            <div></div>
-            <div></div>
+          <div className="cart_container">
+            <div className="flex is-flex-direction-row ">
+              <p className="is-size-3 px-6 has-text-primary">TOTAL A PAGAR =</p>
+              <p className="is-size-3 has-text-primary"> {selected[0].price}</p>
+            </div>
             <div>
-              <p
-                className="button is-primary font_family"
+              <button
+                className="button is-primary  is-medium"
                 onClick={() => handlePayment()}
               >
-                Proceder a la compra
-              </p>
-            </div>
-            <div></div>
-            <div className="is-justify-content-flex-start">
-              <p style={{ color: "white" }}>{selected[0].price}</p>
+                <p className="font-family">Proceder a la compra</p>
+              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,11 @@
+.cart_container {
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  margin: 60px;
+  
+}
+
+.cart_container p {
+  font-family: "Audiowide", cursive !important;
+}
