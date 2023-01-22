@@ -9,21 +9,21 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../../pagination/Pagination";
-// import { deleteUser } from '../../../../redux/slices/adminActions'
-import { Switch } from "@mui/material";
+import { getUsers, softDeleteUser } from '../../../../redux/slices/adminActions'
+import { Button, Switch } from "@mui/material";
+import { useState } from "react";
 
 
 
 const makeStyle = (status) => {
   if (status === false) {
-    return { 
-      status:'online',
-      background: "rgb(0, 128, 0)",
+    return {
+      background: "rgb(0, 159, 0)",
       color: "green",
     };
   } else if (status === true) {
     return {
-      background: "#ffadad8f",
+      background: "rgb(150, 0,0)",
       color: "red",
     };
   } else {
@@ -38,12 +38,18 @@ export default function Clients() {
   const users = useSelector((state) => state.users.users);
   const currentPage = useSelector((state) => state.products.currentPage);
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.users.token)
+  const token = useSelector((state) => state.admins.token)
+  const [boolean, setBoolean] = useState(false)
+
+  React.useEffect(()=>{
+    dispatch(getUsers(token))
+  },[boolean])
 
   const handleSoftDelete = (user) => {
-    const data = {user}
-    console.log(data);
-    // dispatch(deleteUser(data))
+    const data = {user,token}
+    console.log('component',data);
+    dispatch(softDeleteUser(data))
+    setBoolean(!boolean)
   }
 
   const slicedProducts = () => {
@@ -90,9 +96,8 @@ export default function Clients() {
                     <span className="status" style={makeStyle(user.softDelete)}>
                         {user.softDelete}</span>
                     </TableCell>
-                    <TableCell align="left">
-                    <Switch  onClick={() => handleSoftDelete(user)} />       
-
+                    <TableCell align="left">      
+                    <Button onClick={() => handleSoftDelete(user)}>Banear</Button>
                     </TableCell>
                   </TableRow>
                 ))}
