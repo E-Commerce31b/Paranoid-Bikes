@@ -33,11 +33,6 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: "Analyticas",
-    a: "/analiticas",
-  },
-  {
-    icon: UilUsdSquare,
     heading: "Creación de bicis",
     a: "/creacionbicis",
   },

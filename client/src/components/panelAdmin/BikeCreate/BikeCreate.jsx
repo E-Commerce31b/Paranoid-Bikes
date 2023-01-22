@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-
-import { postProduct } from "../../../../src/redux/slices/productsActions";
+import { postProduct } from "../../../../src/redux/slices/adminActions";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -12,7 +11,6 @@ export const validate = (input) => {
   return errors;
 };
 
-
 export default function BikeCreate() {
   const form = useRef();
   const dispatch = useDispatch();
@@ -20,7 +18,7 @@ export default function BikeCreate() {
   const [input, setInput] = useState({
     name: "",
     gender: [],
-    category:[],
+    category: [],
     maker: "",
     image: "",
     priceAmount: "",
@@ -36,14 +34,14 @@ export default function BikeCreate() {
     year:"",
   });
   const allGenders = useSelector((state) => state.products.genders);
-  const allCategories = useSelector((state) => state.products.categories)
+  const allCategories = useSelector((state) => state.products.categories);
   function handleDeleteGender(el) {
     setInput({
-        ...input,
-        gender: allGenders.filter(param => param !== el)
-    })
-}
- 
+      ...input,
+      gender: allGenders.filter((param) => param !== el),
+    });
+  }
+
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -142,7 +140,7 @@ export default function BikeCreate() {
                  <div className="field">
                  <label className="label font_family">Genero: </label>
                     <select name='gender' onChange={(e) => handleInputChange(e)}>
-                        <option hidden value="gender">Genero</option>
+                        <option hidden value="gender">---</option>
                         {
                            allGenders.map((e, i) => (
                                 <option key={i} value={e}>{e}</option>
@@ -153,7 +151,7 @@ export default function BikeCreate() {
                  <div className="field">
                  <label className="label font_family">Categoria: </label>
                     <select name='category' onChange={(e) => handleInputChange(e)}>
-                        <option hidden value="category">Categoria</option>
+                        <option hidden value="category">---</option>
                         {
                            allCategories.map((e, i) => (
                                 <option key={i} value={e}>{e}</option>

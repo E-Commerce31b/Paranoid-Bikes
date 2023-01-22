@@ -22,13 +22,14 @@ export default function ContactComponent(props) {
 
 
 
-  const dispatch=useDispatch();
+  
   const form = useRef();
   const emailRef = useRef();
 
   
 
   return (
+    
     <div className=" mb-6 ">
     <div style={{ backgroundColor: "white" }}>
       <div className="navbar-brand "></div>
@@ -38,15 +39,15 @@ export default function ContactComponent(props) {
       <h1 className="title is-3 font_family mt-5">Contactate con nosotros</h1>
     </div>
    
-          <form ref={form} onSubmit="">
+          <form action="https://formsubmit.co/el/jugizu" method="POST">
             <div className="field">
               <label className="label font_family">Nombre</label>
               <input
+                type="text"
                 className="input"
-                type="name"
+                
                 name="name"
-               
-                onChange=""
+               required
               ></input>
             </div>
         
@@ -57,28 +58,20 @@ export default function ContactComponent(props) {
                   type="email"
                   name="email"
                   ref={emailRef}
-                  onChange=""
+                  
+                  required
                 ></input>
               </div>
-  
-                  
-          
-            
-           
-  
+
             <div className="field">
               <label className="label font_family">Tu mensaje</label>
              <br />
              <textarea name= "message" required></textarea>
              <br />
             </div>
-           
-            
-  
-           
-  
+
             <div className="buttons has-text-centered">
-              <button className="button is-primary font_family" type="submit">
+              <button className="button is-primary font_family" type="submit" >
                 Agregar Comentario
               </button>
   

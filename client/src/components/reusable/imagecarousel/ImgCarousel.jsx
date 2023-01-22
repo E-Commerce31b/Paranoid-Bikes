@@ -10,19 +10,22 @@ import "./imgCarousel.css";
 
 const items = [
   {
-    src: require("../../../assets/publicidad1.jpeg"),
+    src: require("../../../assets/ban1.jpg"),
     altText: "Slide 1",
     caption: "Slide 1",
+    a: "https://publicidadenbicicletas.com/",
   },
   {
-    src: require("../../../assets/publicidad2.jpeg"),
+    src: require("../../../assets/ban2.jpg"),
     altText: "Slide 2",
     caption: "Slide 2",
+    a: "https://www.comunicare.es/publicidad-para-bicicletas/",
   },
   {
     src: require("../../../assets/publicidad3.png"),
     altText: "Slide 3",
     caption: "Slide 3",
+    a: "https://listado.mercadolibre.com.co/bicicletas-para-publicidad",
   },
 ];
 
@@ -80,8 +83,10 @@ class ImgCarousel extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <div className="img_container">
-            <img src={item.src} alt={item.altText} className="img" />
+          <div className="">
+            <a href={item.a} className="img_container">
+              <img src={item.src} alt={item.altText} className="img" />
+            </a>
           </div>
         </CarouselItem>
       );

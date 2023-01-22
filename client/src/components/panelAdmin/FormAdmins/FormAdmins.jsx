@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext.js";
 import { useDispatch } from "react-redux";
-import { postUser } from "../../../redux/slices/usersActions.js";
 import emailjs from "emailjs-com";
+import { postAdmin } from "../../../redux/slices/adminActions.js";
 
 export const validate = (input) => {
   let errors = {};
@@ -84,7 +84,7 @@ export default function FormAdmins() {
         passwordConfirmRef.current.value
       );
       {
-        dispatch(postUser(input));
+        dispatch(postAdmin(input));
         alert("Usuario creado con exito!");
         setInput({
           /*   email: "",
@@ -132,10 +132,6 @@ export default function FormAdmins() {
 
   return (
     <div className=" mb-6 ">
-      <div style={{ backgroundColor: "white" }}>
-        <div className="navbar-brand "></div>
-      </div>
-
       <div className="column has-text-centered">
         <h1 className="title is-3 font_family mt-5">Crear Administrador</h1>
       </div>

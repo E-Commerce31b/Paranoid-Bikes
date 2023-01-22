@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateStock } from "../../../redux/slices/adminActions";
+import Button from "@mui/material/Button";
 
-export default function Stock() {
+export default function Stock(id) {
   const [count, setCount] = useState(0);
-
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.admins.token);
+  const data = { count, id, token: token };
   const decrease = () => {
     setCount(count - 1);
   };
@@ -10,8 +15,12 @@ export default function Stock() {
     setCount(count + 1);
   };
 
+  const handlesubmit = () => {
+    dispatch(updateStock(data));
+  };
+
   return (
-    <div className="buttons are-small flex is-align-content-center is-flex-direction-row">
+    <div className="buttons are-small flex is-align-content-center is-flex-direction-row is-flex-wrap-nowrap">
       <button
         disabled={count <= 0}
         onClick={decrease}
@@ -28,6 +37,11 @@ export default function Stock() {
       >
         <span className="is-size-4 pb-2">+</span>
       </button>
+      <div>
+        <Button variant="contained" disableElevation onClick={handlesubmit}>
+          Guardar cambios
+        </Button>
+      </div>
     </div>
   );
 }

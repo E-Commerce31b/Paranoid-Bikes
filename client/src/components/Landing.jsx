@@ -6,8 +6,6 @@ import { useSelector } from "react-redux";
 export default function Landing() {
   const categories = useSelector((state) => state.products.categories);
 
-  const color = `#0e0476`;
-
   return (
     <div>
       <div className="overlay">
@@ -17,16 +15,10 @@ export default function Landing() {
           alt="not found"
         />
       </div>
-      <h2 className="is-size-3 py-6">Categorías</h2>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          flexWrap: "wrap",
-          // backgroundColor: `${color}`,
-        }}
-      >
+      <h2 className="is-size-3 py-6 has-text-centered has-text-white">
+        Categorías
+      </h2>
+      <div className="flex is-flex-direction-row is-justify-content-space-evenly is-flex-wrap-wrap pb-6">
         {categories?.map((c, i) => {
           return (
             <div key={i}>

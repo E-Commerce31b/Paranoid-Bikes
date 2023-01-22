@@ -12,24 +12,23 @@
     width:250;
 } */
 
-.cardBike {
-    height: 300px;
-}
+
 .boxCard {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 300;
-    height: 300px;
+    height: 100%;
     background: rgba(255, 255, 255, 1);
     border-radius: 24px;
     padding: 25px;
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
     position: relative;
+    padding: 40px;
 }
 .box-image img{
-    width: 200px;
-    height: 60%;
+    width: 190px;
+    height: 120px;
 }
 .maker {
     font:"Audiowide"; 
@@ -48,4 +47,10 @@
 }
 .botones{
     gap:10px
+}
+
+.icon_container {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
