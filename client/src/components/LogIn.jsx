@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { getUser, getUsers } from "../redux/slices/usersActions.js";
+import { getUser } from "../redux/slices/usersActions.js";
 import { saveToken } from "../redux/slices/admin.js";
-import { getAdmins } from "../redux/slices/adminActions.js";
+import { getAdmins, getUsers } from "../redux/slices/adminActions.js";
 import { auth } from "../firebase.js";
 
 export const validate = (input) => {
