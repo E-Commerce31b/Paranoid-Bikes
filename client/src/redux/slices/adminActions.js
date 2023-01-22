@@ -180,3 +180,50 @@ export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
     return error.message;
   }
 });
+
+export const softDeleteUser = createAsyncThunk(
+  "users/softDeleteUser",
+  async (data) => {
+    try {
+      const { user, token } = data;
+
+      const config = {
+        headers: { authorization: "Bearer " + token },
+      };
+      const payload = {...user, softDelete: !user.softDelete};
+      console.log('USERSOFT', payload);
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/users/${user._id}`,
+        payload,
+        config
+        );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const softDeleteAdmin = createAsyncThunk(
+  "admins/softDeleteAdmin",
+  async (data) => {
+    try {
+      const { admin, token } = data;
+
+      const config = {
+        headers: { authorization: "Bearer " + token },
+      };
+      const payload = {...admin, softDelete: !admin.softDelete};
+      console.log('AdminSOFT', payload);
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/admin/${admin._id}`,
+        payload,
+        config
+        );
+      console.log('2AdminSOFT', response.data)
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
