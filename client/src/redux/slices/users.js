@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   token: "",
   logged: {},
+  token:[],
   status: "",
   error: "",
 };

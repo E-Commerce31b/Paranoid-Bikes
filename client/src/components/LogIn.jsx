@@ -66,8 +66,8 @@ const Login = () => {
         .then((res) => {
           return res.data;
         });
+    
       var decoded = jwt_decode(dataUser.accessToken);
-
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
         console.log("hola admin");
         console.log(dataUser.accesToken);
