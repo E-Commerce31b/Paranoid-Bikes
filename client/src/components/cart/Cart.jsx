@@ -23,8 +23,6 @@ const Cart = () => {
     navigate("/stripe", { state: { selected: selected } });
   };
   const [total, setTotal] = useState(0)
-  let totalAmount = useRef(total)
-  // let totalAmount = 0
   useEffect(() => {
     let sum = 0;
     if(selected) {
