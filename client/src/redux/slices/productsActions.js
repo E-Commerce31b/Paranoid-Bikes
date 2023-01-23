@@ -5,9 +5,9 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
     try {
-      // const response = await axios.get('https://api-paranoid-bikes-production.up.railway.app/api/bikes')
-      // const response = await axios.get("http://localhost:3001/api/bikes");
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes`
+      );
 
       const data = response.data.sort(function (a, b) {
         if (a.name < b.name) return -1;
@@ -28,9 +28,9 @@ export const getProducts = createAsyncThunk(
           stock: q.stock,
           image: q.image,
           isEBike: q.isEBike,
+          createdAt: q.createdAt,
         };
       });
-      console.log(mapeo);
       return mapeo;
     } catch (error) {
       return error.message;
@@ -41,9 +41,9 @@ export const getProduct = createAsyncThunk(
   "products/getProductById",
   async (id) => {
     try {
-      // const response = await axios.get(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`)
-      // const response = await axios.get(`http://localhost:3001/api/bikes/${id}`);
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/bikes/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`
+      );
       const data = response.data;
 
       return {
@@ -57,7 +57,6 @@ export const getProduct = createAsyncThunk(
         stock: data.stock,
         price: data.priceAmount,
         image: data.image,
-        // isExpanded: false,
       };
     } catch (error) {
       return error.message;
@@ -65,78 +64,33 @@ export const getProduct = createAsyncThunk(
   }
 );
 
-export const postProduct = createAsyncThunk(
-  "products/postProduct",
-  async (newBike) => {
-    try {
-        // const response = await axios.post('https://api-paranoid-bikes-production.up.railway.app/api/bikes', newBike)
-        // const response = await axios.post('http://localhost:3001/api/bikes', newBike)
-        const response = await axios.post(`${process.env.REACT_APP_URL}/api/bikes`, newBike)
-        return response.data
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
-export const putProduct = createAsyncThunk(
-  "products/putProduct",
-  async ({ id, ...product }) => {
-    try {
-        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        // const response = await axios.put(`http://localhost:3001/api/bikes/${_id}`, product)
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, product)
-        return response.data
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
 export const count = createAsyncThunk(
   "products/count",
-  async ({id, ...product}) => {
+  async ({ id, ...product }) => {
     try {
-      product.count = product.count + 2
-      console.log(product)
-      console.log(product.count)
-      console.log(id)
-        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        // const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {count: product.count})
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {count: product.count})
-        console.log(response)
-        return response.data
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-export const reduceStock = createAsyncThunk(
-  "products/reduceStock",
-  // async ({ _id, ...product }) => {
-  async ({id, ...product }) => {
-    try {
-      product.stock = product.stock - 2
-      console.log(product)
-      console.log(product.stock)
-      console.log(id)
-        // const response = await axios.put(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${_id}`, product)
-        // const response = await axios.put(`http://localhost:3001/api/bikes/${id}`, {stock: product.stock})
-        const response = await axios.put(`${process.env.REACT_APP_URL}/api/bikes/${id}`, {stock: product.stock})
-        return response.data
+      product.count = product.count + 2;
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        { count: product.count }
+      );
+      console.log(response);
+      return response.data;
     } catch (error) {
       return error.message;
     }
   }
 );
 
-export const deleteProduct = createAsyncThunk(
-  "products/deleteProduct",
-  async (id) => {
+export const reduceStock = createAsyncThunk(
+  "products/reduceStock",
+  async ({ id, ...product }) => {
     try {
-        // const response = axios.delete(`https://api-paranoid-bikes-production.up.railway.app/api/bikes/${id}`) 
-        // const response = axios.delete(`http://localhost:3001/api/bikes/${id}`) 
-        const response = axios.delete(`${process.env.REACT_APP_URL}/api/bikes/${id}`) 
-        return response.data
+      product.stock = product.stock - 2;
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        { stock: product.stock }
+      );
+      return response.data;
     } catch (error) {
       return error.message;
     }

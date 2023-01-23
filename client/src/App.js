@@ -17,7 +17,7 @@ import PaymentMethod from "./components/paymentmethod/PaymentMethod.jsx";
 import Profile from "./components/Profile.jsx";
 import Orders from "./components/Orders.jsx";
 import "./App.js";
-import Cart from "./components/Cart.jsx";
+import Cart from "./components/cart/Cart.jsx";
 import PrivateRoutes from "./components/PrivateRoutes/PrivateRoutes.js";
 import UserHome from "./components/UserHome.jsx";
 import UserProfile from "./components/UserProfile.jsx";
@@ -31,9 +31,9 @@ import MainDash from "./components/panelAdmin/MainDash/MainDash.jsx";
 import Products from "./components/panelAdmin/PanelProducts/Products.jsx";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.jsx";
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
-import FormAdmins from "./components/panelAdmin/Clients-Admins/FormAdmins/FormAdmins.jsx";
-import GoogleRegister from "./components/GoogleRegister.jsx";
-
+import FormAdmins from "./components/panelAdmin/FormAdmins/FormAdmins.jsx";
+import BikeCreate from "./components/panelAdmin/BikeCreate/BikeCreate.jsx";
+import ContactComponent from "./components/ContactComponent/ContactComponent.jsx";
 function App() {
   return (
     <AuthProvider>
@@ -54,9 +54,9 @@ function App() {
         <Route path="/list/:category" element={<ProductsList />} />
         <Route path="/list/:name" element={<ProductsList />} />
         <Route path="/productos" element={<Products />} />
-        <Route path="/FormAdmins" element={<FormAdmins />} />
+        <Route path="/formularioadmin" element={<FormAdmins />} />
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
-        <Route path="/dashboard" element={<MainDash />} />
+        <Route path="/creacionbicis" element={<BikeCreate />} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/user"
@@ -67,14 +67,6 @@ function App() {
           }
         ></Route>
 
-        <Route
-          path="/googleForm"
-          element={
-            <PrivateRoutes>
-              <GoogleRegister />
-            </PrivateRoutes>
-          }
-        ></Route>
         <Route
           path="/user-profile"
           element={
@@ -96,6 +88,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="*" element={<Error404 />} />
+        <Route path="/contactarnos" element={<ContactComponent/>} />
       </Routes>
       <Footer />
     </AuthProvider>

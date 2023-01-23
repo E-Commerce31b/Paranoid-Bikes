@@ -18,6 +18,7 @@ const initialState = {
   bestSellers: [],
   status: "",
   error: "",
+  priceTotal: "",
 };
 
 const handleFavourites = (state, payload) => {
@@ -35,6 +36,9 @@ export const productsSlice = createSlice({
   name: "productsSlice",
   initialState: initialState,
   reducers: {
+    setPrice: (state, action) => {
+      state.priceTotal = action.payload;
+    },
     setFiltered: (state, action) => {
       state.filtered = action.payload;
     },
@@ -167,7 +171,11 @@ export const productsSlice = createSlice({
           state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
           state.genders = [...new Set(genders)];
-          let sellers = state.products
+          let sellers = []
+          // // const products = clone(state.products)
+          // // for(let i = 0, state.products.length; i++) {
+
+          // // }
             .sort(function (a, b) {
               if (a < b) return -1;
               if (a > b) return 1;
