@@ -35,7 +35,7 @@ export default function SearchBar() {
     <div class="navbar-item">
       <div className="field is-grouped has-icons-left is-expanded">
         <input
-          className="input is-small"
+          className="input is-normal"
           type="text"
           placeholder="Search by name or id..."
           value={newProduct}
@@ -43,14 +43,14 @@ export default function SearchBar() {
         />
         <div className="flex is-flex-direction-row">
           <div
-            className="button is-right is-small"
+            className="button is-right is-normal"
             onClick={(e) => handleSubmit(e)}
             alt="not found"
           >
             🔍
           </div>
           <div
-            className="button is-small is-right"
+            className="button is-normal is-right"
             onClick={() => handleCart()}
           >
             🛒
