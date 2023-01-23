@@ -53,7 +53,7 @@ const ProductDetail = (props) => {
           <div className="columns">
             <div className="column is-6 columna">
               <figure className="image is-3by2 mt-6">
-                <img src={bike.image} alt="not found" />
+                <img className="img_detail" src={bike.image} alt="not found" />
               </figure>
             </div>
             <div className="column is-6">

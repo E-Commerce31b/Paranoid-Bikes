@@ -1,5 +1,5 @@
 import React from "react";
-import ImageDiscounts from "../assets/Imagedescuentos.png";
+import ImageDiscount from "../assets/Imagedescuentos.png";
 import CategoryCard from "./CategoryCard.jsx";
 import { useSelector } from "react-redux";
 
@@ -9,11 +9,7 @@ export default function Landing() {
   return (
     <div>
       <div className="overlay">
-        <img
-          className="widthImageLanding"
-          src={ImageDiscounts}
-          alt="not found"
-        />
+        <img src={ImageDiscount} alt="not found" />
       </div>
       <h2 className="is-size-3 py-6 has-text-centered has-text-white">
         Categorías
