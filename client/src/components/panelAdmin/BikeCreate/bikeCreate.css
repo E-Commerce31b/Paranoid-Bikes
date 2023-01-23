@@ -1,0 +1,29 @@
+input[type="file"] {
+  display: none;
+}
+
+.label_image {
+  padding: 8px 10px;
+  background-color: hsl(171, 100%, 41%);
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  border-radius: 6px;
+  margin-right: 40px;
+}
+
+.label_image:hover {
+  -webkit-transform:scale(.9);
+  transform:scale(.9);
+}
+
+.container_image_bike_create {
+  width: 100px;
+  height: 100px;
+
+}
+
+.padding_container_create_bikes {
+  padding: 60px;
+}

@@ -59,9 +59,11 @@ export default function Header() {
                 <a className="navbar-link">Ver Más</a>
                 <div className="navbar-dropdown">
                   <NavLink to="/about" className="navbar-item">
-                    <a className="navbar-item">Sobre Nosotros</a>
+                    <a className="navbar-item pl-1 pb-3">Sobre Nosotros</a>
                   </NavLink>
-                  <a className="navbar-item">Contactarnos</a>
+                  <NavLink to="/contactarnos">
+                    <a className="navbar-item pl-4">Contactarnos</a>
+                  </NavLink>
                   <hr className="navbar-divider" />
                   {admin.length && admin.length ? (
                     <NavLink to="/panel">
