@@ -54,6 +54,7 @@ router.put("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const { ...body } = req.body;
+    console.log(body);
     const data = await userModel.findByIdAndUpdate(id, body);
     res.status(200).send(data);
   } catch (err) {

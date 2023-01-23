@@ -171,7 +171,11 @@ export const productsSlice = createSlice({
           state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
           state.genders = [...new Set(genders)];
-          let sellers = state.products
+          let sellers = []
+          // // const products = clone(state.products)
+          // // for(let i = 0, state.products.length; i++) {
+
+          // // }
             .sort(function (a, b) {
               if (a < b) return -1;
               if (a > b) return 1;
