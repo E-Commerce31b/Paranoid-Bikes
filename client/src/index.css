@@ -2,7 +2,7 @@
 body {
   display: flex;
   flex-direction: column;
-  font-family: "Audiowide", cursive !important;
+ 
   background-color: #000952 !important;
 }
 .flex {
@@ -12,6 +12,10 @@ body {
 
 .flex_direction {
   flex-direction: row;
+}
+
+.font_family{
+  font-family: "Audiowide", cursive !important;
 }
 
 .paddingTop {
@@ -40,9 +44,11 @@ body {
   height: 100%;
   opacity: 0.6;
   background-size: 50%;
+
 }
 .overlay img {
   width: 100%;
+  mix-blend-mode: none !important;
 }
 
 .position_footer {
@@ -83,4 +89,8 @@ body {
 
 .cardstyles:active {
   transform: scale(0.95) rotateZ(1.7deg);
+}
+
+img {
+
 }

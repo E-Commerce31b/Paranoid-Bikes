@@ -4,7 +4,7 @@
   width: 200px;
 }
 
-img {
+.img_detail {
   position: relative;
   mix-blend-mode: multiply;
 }

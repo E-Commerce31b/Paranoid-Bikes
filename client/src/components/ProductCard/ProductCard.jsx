@@ -9,9 +9,7 @@ import Counter from "../Counter";
 import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
-
 const ProductCard = ({ product }) => {
-
   const [counter, setCounter] = useState(1);
   const dispatch = useDispatch();
   const id = product.id;
@@ -22,7 +20,7 @@ const ProductCard = ({ product }) => {
 
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(manageCart({ id, counter, action: 'increment'}));
+      dispatch(manageCart({ id, counter, action: "increment" }));
       return navigate("/cart");
     } else {
       return navigate("/login");
@@ -38,7 +36,7 @@ const ProductCard = ({ product }) => {
           </IconButton>
         </div>
         <div className="box-image py-5">
-          <img src={product.image} alt="Not found" />
+          <img className="imagen" src={product.image} alt="Not found" />
         </div>
         <div className="maker">
           <strong>Marca:</strong> {product.maker}

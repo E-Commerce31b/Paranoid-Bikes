@@ -97,8 +97,14 @@ export const productsSlice = createSlice({
 
     getProduct: (state, { payload }) => {
       if (/\d+/.test(payload)) {
-        state.product = state.products.find((p) => p.id === payload);
-        state.filtered = state.products.find((p) => p.id === payload);
+        state.someProducts = state.products.filter((p) =>
+          p.maker.includes(payload)
+        );
+        state.filtered = state.products.filter((p) =>
+          p.maker.includes(payload)
+        );
+        /*   state.product = state.products.includes((p) => p.maker === payload);
+        state.filtered = state.products.includes((p) => p.maker === payload); */
       } else {
         state.someProducts = state.products.filter((p) =>
           p.name.includes(payload)

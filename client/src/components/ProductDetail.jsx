@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { manageCart } from "../redux/slices/users.js";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Button, Box } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
 
@@ -55,7 +55,7 @@ const ProductDetail = (props) => {
           <div className="columns">
             <div className="column is-6 columna">
               <figure className="image is-3by2 mt-6">
-                <img src={bike.image} alt="not found" />
+                <img className="img_detail" src={bike.image} alt="not found" />
               </figure>
             </div>
             <div className="column is-6">
