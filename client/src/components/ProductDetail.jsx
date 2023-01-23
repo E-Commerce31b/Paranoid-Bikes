@@ -35,10 +35,10 @@ const ProductDetail = (props) => {
   }
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(manageCart({ id, counter, action: 'increment' }));
-      return navigate('/cart');
+      dispatch(manageCart({ id, counter, action: "increment" }));
+      return navigate("/cart");
     } else {
-      return navigate('/login')
+      return navigate("/login");
     }
   };
 
@@ -58,18 +58,22 @@ const ProductDetail = (props) => {
             </div>
             <div className="column is-6">
               <div className="card-header-title">
-                <p>
+                <p className="p_detail">
                   {bike.name} - {bike.maker}
                 </p>
               </div>
               <div className="card-content">
-                <p>Modelo: {bike.created} </p>
-                <p>Fabricante: {bike.maker} </p>
-                <p>Genero: {bike.genre ? bike.genre : "Sin Genero"}</p>
-                <p>
+                <p className="p_detail">Modelo: {bike.created} </p>
+                <p className="p_detail">Fabricante: {bike.maker} </p>
+                <p className="p_detail">
+                  Genero: {bike.genre ? bike.genre : "Sin Genero"}
+                </p>
+                <p className="p_detail">
                   Precio: {bike.price} {bike.priceCurrency}
                 </p>
-                <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
+                <p className="p_detail">
+                  eBike: {bike.type ? "Si es eBike" : "No es eBike"}
+                </p>
               </div>
               <Box sx={{ p: 2 }}>
                 {/* <NavLink to="/cart"> */}

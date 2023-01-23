@@ -22,10 +22,7 @@ const ProductCard = ({ product }) => {
 
   const sendToCart = (action) => {
     if (Object.keys(user).length) {
-
-
       dispatch(putUserCart({ product, user, action: 'increment'}));
-
       return navigate("/cart");
     } else {
       return navigate("/login");
@@ -39,6 +36,7 @@ const ProductCard = ({ product }) => {
           <div className="icon_container">
             <div onClick={() => dispatch(removeFromCart({ product, user }))}>
               <IconButton aria-label="delete" size="small">
+
                 <img
                   className="imagen"
                   src={iconDelete}
@@ -47,24 +45,23 @@ const ProductCard = ({ product }) => {
                 />
               </IconButton>
             </div>
-
           </div>
         ) : (
           <></>
         )}
         <div className="box-image py-5 contenedor">
-
           <img className="imagen" src={product.image} alt="Not found" />
         </div>
         <div className="maker">
-          <strong>Marca:</strong> {product.maker}
+          <strong className="p_detail">Marca:</strong> {product.maker}
         </div>
         <div title={product.name}>
           <p className="name-price">
-            <strong>Nombre:</strong> {product.name}
+            <strong className="p_detail">Nombre:</strong> {product.name}
           </p>
           <p>
-            <strong>Precio:</strong> $ {product.priceAmount}
+            <strong className="p_detail">Precio:</strong> ${" "}
+            {product.priceAmount}
           </p>
           {params?.pathname === "/cart" ? (
             <p>
@@ -82,18 +79,15 @@ const ProductCard = ({ product }) => {
               </Link>
             </div>
           </div>
-
-          ) : (
-            <div className="pt-5 flex   ">
-              <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-                <Link to={`/details/${product.id}`}>
-                  <Button variant="outlined">Ver más</Button>
-                </Link>
-                <Button variant="outlined" onClick={() => sendToCart()}>
-                  🛒
-                </Button>
-              </div>
-
+        ) : (
+          <div className="pt-5 flex   ">
+            <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
+              <Link to={`/details/${product.id}`}>
+                <Button variant="outlined">Ver más</Button>
+              </Link>
+              <Button variant="outlined" onClick={() => sendToCart()}>
+                🛒
+              </Button>
             </div>
           </div>
         )}
