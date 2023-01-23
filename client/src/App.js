@@ -30,11 +30,10 @@ import PanelAdmin from "./components/panelAdmin/PanelAdmin.jsx";
 import MainDash from "./components/panelAdmin/MainDash/MainDash.jsx";
 import Products from "./components/panelAdmin/PanelProducts/Products.jsx";
 import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.jsx";
-
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
 import FormAdmins from "./components/panelAdmin/FormAdmins/FormAdmins.jsx";
 import BikeCreate from "./components/panelAdmin/BikeCreate/BikeCreate.jsx";
-
+import ContactComponent from "./components/ContactComponent/ContactComponent.jsx";
 function App() {
   return (
     <AuthProvider>
@@ -89,6 +88,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="*" element={<Error404 />} />
+        <Route path="/contactarnos" element={<ContactComponent/>} />
       </Routes>
       <Footer />
     </AuthProvider>

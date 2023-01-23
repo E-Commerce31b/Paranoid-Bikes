@@ -6,10 +6,11 @@
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "dotenv": "^16.0.3",
+    "just-clone": "^6.2.0",
     "path-browserify": "^1.0.1"
   },
   "scripts": {
-     "build": "cd api && npm install && cd ../client && npm install && npm run build",
-     "start": "node client/src/index.js && node api/app.js"
+    "build": "cd api && npm install && cd ../client && npm install && npm run build",
+    "start": "node client/src/index.js && node api/app.js"
   }
 }

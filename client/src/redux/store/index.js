@@ -31,6 +31,8 @@ export const store = configureStore({
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
+
+
 });
 
 store.dispatch(getProducts());
