@@ -35,12 +35,10 @@ const ProductDetail = (props) => {
   }
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      console.log("entramos");
-      dispatch(manageCart({ id, counter, products }));
-      return navigate("/cart");
+      dispatch(manageCart({ id, counter, action: 'increment' }));
+      return navigate('/cart');
     } else {
-      console.log("entramos2");
-      return navigate("/login");
+      return navigate('/login')
     }
   };
 
