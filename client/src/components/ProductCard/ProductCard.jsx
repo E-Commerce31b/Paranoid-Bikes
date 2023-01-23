@@ -13,9 +13,6 @@ import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
 const ProductCard = ({ product }) => {
-  const [counter, setCounter] = useState(1);
-
-  const [counter, setCounter] = useState(1);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
