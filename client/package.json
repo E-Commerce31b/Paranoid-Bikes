@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run build",
+    "build": "npm install; npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
