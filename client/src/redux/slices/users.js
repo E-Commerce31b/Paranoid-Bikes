@@ -1,6 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { putUserCart } from './usersActions.js';
-import clone from 'just-clone'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   users: [],
@@ -18,27 +16,6 @@ export const usersSlice = createSlice({
     loggedUser: (state, { payload }) => {
       state.logged = payload;
     },
-    // manageCart: (state, { payload }) => {
-    //   let selected = state.user.purchased.find(p => p.id === payload.id)
-    //   if(payload.action === 'increment' && selected) {
-    //     selected.count += + 1
-    //   } else if(payload.action === 'increment') {
-    //     selected = clone(payload.product)
-    //     selected.count += 1
-    //     state.user.purchased.push(selected)
-    //   } else if(payload.action === 'decrement' && selected.count > 1) {
-    //     selected.count -= 1
-    //   }
-    //     const userId = state.user.id
-    //     const idBike = selected.id
-    //     const userCart = state.user.purchased
-    //     const data = { userId, idBike, userCart }
-    //     putUserCart(data)
-    //   },
-    // // removeFromCart(state, {payload}) {
-    // //     state.user.purchased = state.user.purchased.filter(p => p.id !== payload.id);
-    //   // }
-    // // },
     resetUser: (state) => {
       state.user = {};
     },
