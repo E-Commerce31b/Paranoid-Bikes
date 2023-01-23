@@ -15,6 +15,8 @@ import iconDelete from "../../assets/iconDelete.png";
 const ProductCard = ({ product }) => {
   const [counter, setCounter] = useState(1);
 
+  const [counter, setCounter] = useState(1);
+
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const navigate = useNavigate();
@@ -23,7 +25,9 @@ const ProductCard = ({ product }) => {
 
   const sendToCart = (action) => {
     if (Object.keys(user).length) {
-      dispatch(putUserCart({ product, user, action: "increment" }));
+
+
+      dispatch(putUserCart({ product, user, action: 'increment'}));
 
       return navigate("/cart");
     } else {
@@ -46,11 +50,13 @@ const ProductCard = ({ product }) => {
                 />
               </IconButton>
             </div>
+
           </div>
         ) : (
           <></>
         )}
         <div className="box-image py-5 contenedor">
+
           <img className="imagen" src={product.image} alt="Not found" />
         </div>
         <div className="maker">
@@ -79,15 +85,18 @@ const ProductCard = ({ product }) => {
               </Link>
             </div>
           </div>
-        ) : (
-          <div className="pt-5 flex   ">
-            <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-              <Link to={`/details/${product.id}`}>
-                <Button variant="outlined">Ver más</Button>
-              </Link>
-              <Button variant="outlined" onClick={() => sendToCart()}>
-                🛒
-              </Button>
+
+          ) : (
+            <div className="pt-5 flex   ">
+              <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
+                <Link to={`/details/${product.id}`}>
+                  <Button variant="outlined">Ver más</Button>
+                </Link>
+                <Button variant="outlined" onClick={() => sendToCart()}>
+                  🛒
+                </Button>
+              </div>
+
             </div>
           </div>
         )}

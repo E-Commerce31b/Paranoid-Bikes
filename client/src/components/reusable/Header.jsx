@@ -87,12 +87,16 @@ export default function Header() {
                   <div className="px-5">
                     <NavLink to="/login">
                       <button className="button is-primary is-normal px-5 mx-4">
-                        <strong>Ingresar</strong>
+
+                        <strong className="font_family">Ingresar</strong>
+
                       </button>
                     </NavLink>
                     <NavLink to="/signup">
                       <button className="button is-warning is-normal">
-                        <strong>Registrarse</strong>
+
+                        <strong className="font_family">Registrarse</strong>
+
                       </button>
                     </NavLink>
                   </div>

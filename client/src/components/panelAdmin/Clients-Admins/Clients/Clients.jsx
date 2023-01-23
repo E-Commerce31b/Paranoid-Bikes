@@ -43,6 +43,7 @@ export default function Clients() {
   const token = useSelector((state) => state.admins.token);
   const [boolean, setBoolean] = useState(false);
 
+
   React.useEffect(() => {
     dispatch(getUsers(token));
   }, [boolean]);
@@ -50,6 +51,7 @@ export default function Clients() {
   const handleSoftDelete = async (user) => {
     const data = { user, token };
     console.log(user.email);
+
     console.log("component", data);
     dispatch(softDeleteUser(data));
     setBoolean(!boolean);
