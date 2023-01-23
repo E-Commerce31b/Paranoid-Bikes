@@ -67,6 +67,8 @@ export const putUserCart = createAsyncThunk(
         for(let bike of cart) {
           newCart.push({bike: bike['_id'], count: bike['count']})
         }
+      } else if(action === 'decrement' && selected.count > 1) {
+        return
       }
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/users/${user._id}`,

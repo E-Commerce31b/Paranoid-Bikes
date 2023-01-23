@@ -13,7 +13,6 @@ import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
 const ProductCard = ({ product }) => {
-  const [counter, setCounter] = useState(1);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -23,7 +22,7 @@ const ProductCard = ({ product }) => {
 
   const sendToCart = (action) => {
     if (Object.keys(user).length) {
-      dispatch(putUserCart({ product, user, action: "increment" }));
+      dispatch(putUserCart({ product, user, action: 'increment'}));
       return navigate("/cart");
     } else {
       return navigate("/login");
@@ -37,14 +36,20 @@ const ProductCard = ({ product }) => {
           <div className="icon_container">
             <div onClick={() => dispatch(removeFromCart({ product, user }))}>
               <IconButton aria-label="delete" size="small">
-                <img src={iconDelete} alt="iconDelete" width={21} />
+
+                <img
+                  className="imagen"
+                  src={iconDelete}
+                  alt="iconDelete"
+                  width={21}
+                />
               </IconButton>
             </div>
           </div>
         ) : (
           <></>
         )}
-        <div className="box-image py-5">
+        <div className="box-image py-5 contenedor">
           <img className="imagen" src={product.image} alt="Not found" />
         </div>
         <div className="maker">
