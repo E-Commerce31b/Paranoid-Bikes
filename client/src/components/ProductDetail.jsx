@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { manageCart } from "../redux/slices/users.js";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Button, Box } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box } from "@mui/material";
 import "../index.css";
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -34,10 +34,9 @@ const ProductDetail = (props) => {
   const sendToCart = () => {
     if (Object.keys(user).length) {
       console.log('entramos')
-      dispatch(manageCart({ id, counter, products }));
+      dispatch(manageCart({ id, counter, action: 'increment' }));
       return navigate('/cart');
     } else {
-      console.log('entramos2')
       return navigate('/login')
     }
   };
