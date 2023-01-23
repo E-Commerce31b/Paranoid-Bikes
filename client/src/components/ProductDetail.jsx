@@ -5,12 +5,14 @@ import { manageCart } from "../redux/slices/users.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import "../index.css";
+import "./ProductDetail.css";
+
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
   let { id } = useParams();
   const navigate = useNavigate();
 
-  const [counter, setCounter] = useState(1)
+  const [counter, setCounter] = useState(1);
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
@@ -33,7 +35,6 @@ const ProductDetail = (props) => {
   }
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      console.log('entramos')
       dispatch(manageCart({ id, counter, action: 'increment' }));
       return navigate('/cart');
     } else {
@@ -43,65 +44,43 @@ const ProductDetail = (props) => {
 
   return (
     <>
-      <div
-        style={{
-          color: "white",
-          textAlign: "center",
-          fontSize: 28,
-          paddingTop: 10,
-        }}
-      >
-        Detalles del Producto
+      <div className="column has-text-centered">
+        <h1 className="title is-4 mb-3">Detalles del Producto</h1>
       </div>
-      <div
-        className="container"
-        style={{
-          background: "white",
-          borderRadius: 25,
-          width: 800,
-          padding: 10,
-          marginBottom: 70,
-        }}
-      >
-        <div className="columns is is-align-items-center">
-          <div className="column is-align-items-center">
-            <div className="card-header-title is-align-content-flex-start">
-              <p className="card-">
-                {bike.name} - {bike.maker}
-              </p>
-            </div>
-            <div className="card-content">
-              <p>Modelo: {bike.created} </p>
-              <p>Fabricante: {bike.maker} </p>
-              <p>Genero: {bike.genre ? bike.genre : "Sin Genero"}</p>
-              <p>
-                Precio: {bike.price} {bike.priceCurrency}
-              </p>
-              <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
-            </div>
-          </div>
-          <div className="column is is-align-items-center">
-            <div style={{ width: "280px", height: "auto" }}>
-              <figure
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div className="column is-6 has-background-white">
+          <div className="columns">
+            <div className="column is-6 columna">
+              <figure className="image is-3by2 mt-6">
                 <img src={bike.image} alt="not found" />
-                <Box sx={{ p: 2 }}>
-                  {/* <NavLink to="/cart"> */}
-                    <p
-                      className="button is-primary font_family"
-                      onClick={() => sendToCart()}
-                    >
-                      Agregar al carrito
-                    </p>
-                  {/* </NavLink> */}
-                </Box>
               </figure>
+            </div>
+            <div className="column is-6">
+              <div className="card-header-title">
+                <p>
+                  {bike.name} - {bike.maker}
+                </p>
+              </div>
+              <div className="card-content">
+                <p>Modelo: {bike.created} </p>
+                <p>Fabricante: {bike.maker} </p>
+                <p>Genero: {bike.genre ? bike.genre : "Sin Genero"}</p>
+                <p>
+                  Precio: {bike.price} {bike.priceCurrency}
+                </p>
+                <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
+              </div>
+              <Box sx={{ p: 2 }}>
+                {/* <NavLink to="/cart"> */}
+                <p
+                  className="button is-primary font_family"
+                  onClick={() => sendToCart()}
+                >
+                  Agregar al carrito
+                </p>
+                {/* </NavLink> */}
+              </Box>
             </div>
           </div>
         </div>

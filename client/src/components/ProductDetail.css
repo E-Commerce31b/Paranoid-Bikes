@@ -1,0 +1,10 @@
+.columna {
+  /* background-color: lightblue; */
+  background: linear-gradient(to left, white 60%, #e4f0ff 25% 50%);
+  width: 200px;
+}
+
+img {
+  position: relative;
+  mix-blend-mode: multiply;
+}

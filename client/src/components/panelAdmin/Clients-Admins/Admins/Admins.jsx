@@ -9,19 +9,22 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../../pagination/Pagination";
+import { Button } from "@mui/material";
+import { getAdmins, softDeleteAdmin } from "../../../../redux/slices/adminActions";
+import { useEffect } from "react";
+import { useState } from "react";
 
 
 
 const makeStyle = (status) => {
   if (status === false) {
-    return { 
-      status:'online',
-      background: "rgb(0, 128, 0)",
+    return {
+      background: "rgb(0, 159, 0)",
       color: "green",
     };
   } else if (status === true) {
     return {
-      background: "#ffadad8f",
+      background: "rgb(150, 0,0)",
       color: "red",
     };
   } else {
@@ -33,23 +36,32 @@ const makeStyle = (status) => {
 };
 
 
+
 export default function Admins() {
   const admins = useSelector((state) => state.admins.admins);
   const currentPage = useSelector((state) => state.products.currentPage);
-  const dispatch = useDispatch;
-console.log(admins);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.admins.token)
+  const [boolean, setBoolean] = useState(false)
+  
+  useEffect(() => {
+    dispatch(getAdmins(token))
+  },[boolean])
+
+
   const slicedProducts = () => {
     if (admins) {
       return admins.slice(currentPage, currentPage + 15);
     }
   };
 
-
+  
   const handleSoftDelete = (admin) => {
-    // admins.map(item)
-    // dispatch(deleteAdmin(admin))
-  console.log(admin);
-  }
+    const data = { admin, token }
+    console.log('component',data);
+    dispatch(softDeleteAdmin(data))
+    setBoolean(!boolean)
+  }  
 
 
   return (
@@ -90,7 +102,7 @@ console.log(admins);
                     <TableCell align="left" className="Details">
                     <span className="status" style={makeStyle(admin.softDelete)}>
                         {admin.softDelete}</span>
-                        <button onClick={() => handleSoftDelete(admin)}>Cambiar estado</button>
+                        <Button onClick={() => handleSoftDelete(admin)}>Banear</Button>
                     </TableCell>
                     {/* <TableCell align="left"></TableCell> */}
                   </TableRow>
