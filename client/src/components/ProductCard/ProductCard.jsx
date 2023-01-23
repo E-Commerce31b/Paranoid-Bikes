@@ -30,13 +30,17 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <div className="box flex is-justify-content-center px-6 boxCard">
-        <div className="icon_container">
+      {params?.pathname === "/cart" ? 
+          <div className="icon_container">
             <div onClick={() => dispatch(removeFromCart({ product, user }))}>
-          <IconButton aria-label="delete" size="small">
-              <img src={iconDelete} alt="iconDelete" width={21} />
-          </IconButton>
+              <IconButton aria-label="delete" size="small">
+                  <img src={iconDelete} alt="iconDelete" width={21} />
+              </IconButton>
             </div>
         </div>
+            : 
+            <></>
+          }
         <div className="box-image py-5">
           <img src={product.image} alt="Not found" />
         </div>
@@ -50,20 +54,34 @@ const ProductCard = ({ product }) => {
           <p>
             <strong>Precio:</strong> $ {product.priceAmount}
           </p>
-          <p>
-            <strong>Subtotal:</strong> $ {product.priceAmount * product.count}
-          </p>
+          {params?.pathname === "/cart" ? 
+            <p>
+              <strong>Subtotal:</strong> $ {product.priceAmount * product.count}
+            </p>
+            : 
+            <></>
+          }
         </div>
-        <div className="pt-5 flex   ">
-          <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-            <Link to={`/details/${product.id}`}>
-              <Button variant="outlined">Ver más</Button>
-            </Link>
-            <Button variant="outlined" onClick={() => sendToCart()}>
-              🛒
-            </Button>
+        {params?.pathname === "/cart" ? (
+            <div className="pt-5 flex   ">
+            <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
+              <Link to={`/details/${product._id}`}>
+                <Button variant="outlined">Ver más</Button>
+              </Link>
+            </div>
           </div>
-        </div>
+          ) : (
+            <div className="pt-5 flex   ">
+              <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
+                <Link to={`/details/${product._id}`}>
+                  <Button variant="outlined">Ver más</Button>
+                </Link>
+                <Button variant="outlined" onClick={() => sendToCart()}>
+                  🛒
+                </Button>
+              </div>
+            </div>
+          )}
         <div className="flex is-justify-content-space-around is-flex-direction-row py-5">
           {params?.pathname === "/cart" ? (
             <Counter
