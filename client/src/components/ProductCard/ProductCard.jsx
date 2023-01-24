@@ -9,9 +9,7 @@ import Counter from "../Counter";
 import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
-
 const ProductCard = ({ product }) => {
-
   const [counter, setCounter] = useState(1);
   const dispatch = useDispatch();
   const id = product.id;
@@ -20,9 +18,11 @@ const ProductCard = ({ product }) => {
 
   const user = useSelector((state) => state.users.user);
 
+  console.log(user);
+
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(manageCart({ id, counter, action: 'increment'}));
+      dispatch(manageCart({ id, counter, action: "increment" }));
       return navigate("/cart");
     } else {
       return navigate("/login");

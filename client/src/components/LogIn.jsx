@@ -56,8 +56,6 @@ const Login = () => {
       setError("");
       setLoading(true);
 
-      await login(emailRef.current.value, passwordRef.current.value);
-
       const dataUser = await axios
         .post(`${process.env.REACT_APP_URL}/api/users/login`, {
           email: emailRef.current.value,
@@ -66,6 +64,8 @@ const Login = () => {
         .then((res) => {
           return res.data;
         });
+
+      await login(emailRef.current.value, passwordRef.current.value);
       var decoded = jwt_decode(dataUser.accessToken);
 
       if (decoded.data.type === "Admin" || decoded.data.type === "SuperAdmin") {
@@ -76,7 +76,7 @@ const Login = () => {
         dispatch(getUsers(dataUser.accessToken));
         return navigate("/panel");
       }
-
+      console.log(decoded.data.id);
       dispatch(getUser(decoded.data.id));
       e.target.reset();
       navigate("/"); /// cambiar a ruta user

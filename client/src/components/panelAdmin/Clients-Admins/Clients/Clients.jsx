@@ -1,5 +1,5 @@
 import * as React from "react";
-import './table.css'
+import "./table.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,11 +9,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../../pagination/Pagination";
-import { getUsers, softDeleteUser } from '../../../../redux/slices/adminActions'
+import {
+  getUsers,
+  softDeleteUser,
+} from "../../../../redux/slices/adminActions";
 import { Button, Switch } from "@mui/material";
 import { useState } from "react";
-
-
+//import { useAuth } from "../../../../context/AuthContextAdmin";
 
 const makeStyle = (status) => {
   if (status === false) {
@@ -37,20 +39,23 @@ const makeStyle = (status) => {
 export default function Clients() {
   const users = useSelector((state) => state.users.users);
   const currentPage = useSelector((state) => state.products.currentPage);
-  const dispatch = useDispatch()
-  const token = useSelector((state) => state.admins.token)
-  const [boolean, setBoolean] = useState(false)
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.admins.token);
+  const [boolean, setBoolean] = useState(false);
+  //const { getUser } = useAuth();
+  React.useEffect(() => {
+    dispatch(getUsers(token));
+  }, [boolean]);
 
-  React.useEffect(()=>{
-    dispatch(getUsers(token))
-  },[boolean])
+  const handleSoftDelete = async (user) => {
+    const data = { user, token };
 
-  const handleSoftDelete = (user) => {
-    const data = {user,token}
-    console.log('component',data);
-    dispatch(softDeleteUser(data))
-    setBoolean(!boolean)
-  }
+    //const userInfo = await getUser(user.email);
+    //console.log(userInfo);
+    console.log("component", data);
+    dispatch(softDeleteUser(data));
+    setBoolean(!boolean);
+  };
 
   const slicedProducts = () => {
     if (users) {
@@ -86,18 +91,22 @@ export default function Clients() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                    {user.last_name} {user.first_name}
+                      {user.last_name} {user.first_name}
                     </TableCell>
-                    <TableCell align="left">
-                      {user.email}
-                    </TableCell>
+                    <TableCell align="left">{user.email}</TableCell>
                     <TableCell align="left">{user._id}</TableCell>
                     <TableCell align="left" className="Details">
-                    <span className="status" style={makeStyle(user.softDelete)}>
-                        {user.softDelete}</span>
+                      <span
+                        className="status"
+                        style={makeStyle(user.softDelete)}
+                      >
+                        {user.softDelete}
+                      </span>
                     </TableCell>
-                    <TableCell align="left">      
-                    <Button onClick={() => handleSoftDelete(user)}>Banear</Button>
+                    <TableCell align="left">
+                      <Button onClick={() => handleSoftDelete(user)}>
+                        Banear
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
