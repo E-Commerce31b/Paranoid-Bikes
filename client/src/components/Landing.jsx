@@ -1,13 +1,17 @@
 import React from "react";
 import ImageDiscount from "../assets/Imagedescuentos.png";
 import CategoryCard from "./CategoryCard.jsx";
+import Loader from "./Loader";
 import { useSelector } from "react-redux";
 
 export default function Landing() {
   const categories = useSelector((state) => state.products.categories);
+  const status = useSelector((state) => state.products.status);
 
   return (
     <div>
+      <Loader loading={status}></Loader>
+
       <div className="overlay">
         <img src={ImageDiscount} alt="not found" />
       </div>
