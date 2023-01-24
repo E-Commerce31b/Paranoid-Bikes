@@ -23,6 +23,9 @@ export const adminSlice = createSlice({
     saveToken: (state, { payload }) => {
       state.token = payload;
     },
+    cleanAdmins: (state, {payload}) => {
+      state.admins = initialState.admins;
+    }
   },
   extraReducers(builder) {
     builder
@@ -86,6 +89,6 @@ export const adminSlice = createSlice({
 // export const pacientStatus = (state) => state.status;
 // export const pacientError = (state) => state.error;
 
-export const { resetAdmin, saveToken } = adminSlice.actions;
+export const { resetAdmin, saveToken, cleanAdmins } = adminSlice.actions;
 
 export default adminSlice.reducer;
