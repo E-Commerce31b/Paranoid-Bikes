@@ -50,8 +50,6 @@ export default function Clients() {
 
   const handleSoftDelete = async (user) => {
     const data = { user, token };
-    console.log(user.email);
-
     console.log("component", data);
     dispatch(softDeleteUser(data));
     setBoolean(!boolean);
