@@ -22,6 +22,7 @@
     "firebase-admin": "^11.5.0",
     "framer-motion": "^6.2.9",
     "fs": "^0.0.1-security",
+    "just-clone": "^6.2.0",
     "jwt-decode": "^3.1.2",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -35,6 +36,7 @@
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
+    "react-toastify": "^9.1.1",
     "reactstrap": "^9.1.5",
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"

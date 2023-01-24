@@ -97,8 +97,14 @@ export const productsSlice = createSlice({
 
     getProduct: (state, { payload }) => {
       if (/\d+/.test(payload)) {
-        state.product = state.products.find((p) => p.id === payload);
-        state.filtered = state.products.find((p) => p.id === payload);
+        state.someProducts = state.products.filter((p) =>
+          p.maker.includes(payload)
+        );
+        state.filtered = state.products.filter((p) =>
+          p.maker.includes(payload)
+        );
+        /*   state.product = state.products.includes((p) => p.maker === payload);
+        state.filtered = state.products.includes((p) => p.maker === payload); */
       } else {
         state.someProducts = state.products.filter((p) =>
           p.name.includes(payload)
@@ -171,7 +177,11 @@ export const productsSlice = createSlice({
           state.makers = [...new Set(makers)];
           let genders = state.products.map((p) => p.gender);
           state.genders = [...new Set(genders)];
-          let sellers = state.products
+          let sellers = []
+          // // const products = clone(state.products)
+          // // for(let i = 0, state.products.length; i++) {
+
+          // // }
             .sort(function (a, b) {
               if (a < b) return -1;
               if (a > b) return 1;

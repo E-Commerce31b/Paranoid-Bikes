@@ -7,6 +7,7 @@ import logo from "../assets/logoProfile.png";
 
 const BikesSells = () => {
   const counter = useSelector((state) => state.products.products);
+  console.log(counter);
   const usersArray = useSelector((state) => state.users.users);
   const adminsArray = useSelector((state) => state.admins.admins);
   console.log(counter);

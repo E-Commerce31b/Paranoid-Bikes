@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { manageCart } from "../redux/slices/users.js";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Button, Box } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
+import Loader from "./Loader";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ProductDetail = (props) => {
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
+  const status = useSelector((state) => state.products.status);
 
   const user = useSelector((state) => state.users.user);
   const products = useSelector((state) => state.products.products);
@@ -30,22 +32,18 @@ const ProductDetail = (props) => {
     data();
   }, [dispatch, id]);
 
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      console.log("entramos");
-      dispatch(manageCart({ id, counter, products }));
+      dispatch(manageCart({ id, counter, action: "increment" }));
       return navigate("/cart");
     } else {
-      console.log("entramos2");
       return navigate("/login");
     }
   };
 
   return (
     <>
+      <Loader loading={status}></Loader>
       <div className="column has-text-centered">
         <h1 className="title is-4 mb-3">Detalles del Producto</h1>
       </div>
@@ -55,23 +53,27 @@ const ProductDetail = (props) => {
           <div className="columns">
             <div className="column is-6 columna">
               <figure className="image is-3by2 mt-6">
-                <img src={bike.image} alt="not found" />
+                <img className="img_detail" src={bike.image} alt="not found" />
               </figure>
             </div>
             <div className="column is-6">
               <div className="card-header-title">
-                <p>
+                <p className="p_detail">
                   {bike.name} - {bike.maker}
                 </p>
               </div>
               <div className="card-content">
-                <p>Modelo: {bike.created} </p>
-                <p>Fabricante: {bike.maker} </p>
-                <p>Genero: {bike.genre ? bike.genre : "Sin Genero"}</p>
-                <p>
+                <p className="p_detail">Modelo: {bike.created} </p>
+                <p className="p_detail">Fabricante: {bike.maker} </p>
+                <p className="p_detail">
+                  Genero: {bike.genre ? bike.genre : "Sin Genero"}
+                </p>
+                <p className="p_detail">
                   Precio: {bike.price} {bike.priceCurrency}
                 </p>
-                <p>eBike: {bike.type ? "Si es eBike" : "No es eBike"}</p>
+                <p className="p_detail">
+                  eBike: {bike.type ? "Si es eBike" : "No es eBike"}
+                </p>
               </div>
               <Box sx={{ p: 2 }}>
                 {/* <NavLink to="/cart"> */}

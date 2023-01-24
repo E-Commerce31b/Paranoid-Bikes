@@ -15,7 +15,8 @@ import {
 } from "../../../../redux/slices/adminActions";
 import { Button, Switch } from "@mui/material";
 import { useState } from "react";
-//import { useAuth } from "../../../../context/AuthContextAdmin";
+
+import { useAuth } from "../../../../context/AuthContext.js";
 
 const makeStyle = (status) => {
   if (status === false) {
@@ -42,7 +43,12 @@ export default function Clients() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.admins.token);
   const [boolean, setBoolean] = useState(false);
-  //const { getUser } = useAuth();
+
+  const { getUser } = useAuth();
+  React.useEffect(() => {
+    dispatch(getUsers(token));
+  }, [boolean]);
+
   React.useEffect(() => {
     dispatch(getUsers(token));
   }, [boolean]);
@@ -50,8 +56,6 @@ export default function Clients() {
   const handleSoftDelete = async (user) => {
     const data = { user, token };
 
-    //const userInfo = await getUser(user.email);
-    //console.log(userInfo);
     console.log("component", data);
     dispatch(softDeleteUser(data));
     setBoolean(!boolean);

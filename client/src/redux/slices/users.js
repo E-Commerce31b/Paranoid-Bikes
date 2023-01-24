@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { putUserCart } from './usersActions.js';
 
 const initialState = {
   users: [],
@@ -17,26 +16,6 @@ export const usersSlice = createSlice({
     loggedUser: (state, { payload }) => {
       state.logged = payload;
     },
-    manageCart: (state, { payload }) => {
-      let selected = {}
-      if(payload.action === 'increment' && state.user.purchased.find(p => p.id === payload.id)) {
-        selected = state.user.purchased.find(p => p.id === payload.id)
-        selected.amount = selected.amount + payload.counter
-      } else if(payload.action === 'increment') {
-        selected = payload.products.find(p => p.id === payload.id)
-        state.user.purchased.push({selected})
-      } else if(payload.action === 'decrement' && payload.counter > 0) {
-        selected = state.user.purchased.find(p => p.id === payload.id)
-        selected.amount = selected.amount - payload.counter
-      } else if(payload.action === 'decrement') {
-        state.user.purchased = state.user.purchased.filter(p => p.id !== payload.id);
-      }
-      const userId = state.user.id
-      const idBike = selected.id
-      const userCart = state.user.purchased
-      const data = { userId, idBike, userCart }
-      putUserCart(data)
-    },
     resetUser: (state) => {
       state.user = {};
     },
@@ -47,6 +26,7 @@ export const usersSlice = createSlice({
         (action) =>
           action.type.startsWith("users/") && action.type.endsWith("/pending"),
         (state) => {
+          console.log('hola')
           state.status = "loading";
         }
       )
@@ -70,10 +50,21 @@ export const usersSlice = createSlice({
       )
       .addMatcher(
         (action) =>
-          action.type.startsWith("users/postUser" || "users/putUser") &&
+          action.type.startsWith("users/putUser") &&
           action.type.endsWith("/fulfilled"),
-        (state) => {
+        (state, action) => {
+          console.log(action.payload)
           state.status = "succeeded";
+          state.user = action.payload;
+        }
+      )
+      .addMatcher(
+        (action) =>
+          action.type.startsWith("users/postUser") &&
+          action.type.endsWith("/fulfilled"),
+        (state, action) => {
+          state.status = "succeeded";
+          state.user = action.payload;
         }
       )
       .addMatcher(
@@ -96,12 +87,12 @@ export const usersSlice = createSlice({
   },
 });
 
-export const pacients = (state) => state.users;
-export const pacientsStatus = (state) => state.status;
-export const pacientsError = (state) => state.error;
-export const pacient = (state) => state.user;
-export const pacientStatus = (state) => state.status;
-export const pacientError = (state) => state.error;
+export const users = (state) => state.users;
+export const usersStatus = (state) => state.status;
+export const usersError = (state) => state.error;
+export const user = (state) => state.user;
+export const userStatus = (state) => state.status;
+export const userError = (state) => state.error;
 
 export const {
   loggedUser,

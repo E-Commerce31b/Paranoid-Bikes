@@ -4,7 +4,23 @@
   width: 200px;
 }
 
-img {
+.img_detail {
   position: relative;
   mix-blend-mode: multiply;
+}
+
+.p_detail {
+  animation-duration: 5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

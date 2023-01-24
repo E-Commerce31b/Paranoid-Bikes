@@ -45,9 +45,9 @@ export default function Header() {
         </div>
         {params.pathname !== "/signup" && params.pathname !== "/login" ? (
           <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-start">
+            <div className="navbar-start is-size-5">
               <NavLink to="/BestSellers" className="navbar-item">
-                <div>Más vendidos</div>
+                <div className="">Más vendidos</div>
               </NavLink>
               <NavLink to="/Offers" className="navbar-item">
                 <div>Ofertas</div>
@@ -61,7 +61,9 @@ export default function Header() {
                   <NavLink to="/about" className="navbar-item">
                     <a className="navbar-item">Sobre Nosotros</a>
                   </NavLink>
-                  <a className="navbar-item">Contactarnos</a>
+                  <NavLink to= "/contactarnos" className="navbar-item">
+                    <a className="navbar-item">Contactarnos</a>
+                  </NavLink>
                   <hr className="navbar-divider" />
                   {admin.length && admin.length ? (
                     <NavLink to="/panel">
@@ -69,8 +71,8 @@ export default function Header() {
                     </NavLink>
                   ) : (
                     <></>
-                  )}
-                </div>
+                    )}
+                    </div>
               </div>
               <div className="navbar-item">
                 {/* <div className="field has-addons paddingTop"> */}
@@ -84,14 +86,20 @@ export default function Header() {
             ) : (
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <div className="buttons">
+                  <div className="px-5">
                     <NavLink to="/login">
-                      <p className="button is-primary is-small">
-                        <strong>Ingresar</strong>
-                      </p>
+                      <button className="button is-primary is-normal px-5 mx-4">
+
+                        <strong className="font_family">Ingresar</strong>
+
+                      </button>
                     </NavLink>
                     <NavLink to="/signup">
-                      <p className="button is-warning is-small">Registrarse</p>
+                      <button className="button is-warning is-normal">
+
+                        <strong className="font_family">Registrarse</strong>
+
+                      </button>
                     </NavLink>
                   </div>
                 </div>
