@@ -37,7 +37,7 @@ export default function SearchBar() {
         <input
           className="input is-normal"
           type="text"
-          placeholder="Search by name or id..."
+          placeholder="Buscar por nombre o marca..."
           value={newProduct}
           onChange={(e) => setNewProduct(e.target.value)}
         />

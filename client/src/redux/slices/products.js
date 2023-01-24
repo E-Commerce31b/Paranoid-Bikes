@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
@@ -71,7 +71,10 @@ export const productsSlice = createSlice({
       }
     },
     cleanProduct: (state) => {
-      state.professional = {};
+      state.someProducts = [];
+      state.filtered = [];
+      state.filters = [];
+      state.product = [];
     },
     pagination: (state, { payload }) => {
       if (
@@ -96,21 +99,23 @@ export const productsSlice = createSlice({
     // product | products
 
     getProduct: (state, { payload }) => {
-      if (/\d+/.test(payload)) {
+      // if (/\d+/.test(payload)) {
         state.someProducts = state.products.filter((p) =>
           p.maker.includes(payload)
         );
         state.filtered = state.products.filter((p) =>
           p.maker.includes(payload)
         );
-        /*   state.product = state.products.includes((p) => p.maker === payload);
-        state.filtered = state.products.includes((p) => p.maker === payload); */
-      } else {
-        state.someProducts = state.products.filter((p) =>
+        if(state.filtered.length === 0) {
+          console.log('entramos2')
+          console.log(current(state.filtered))
+          state.someProducts = state.products.filter((p) =>
           p.name.includes(payload)
         );
         state.filtered = state.products.filter((p) => p.name.includes(payload));
-      }
+        }
+        // state.product = state.products.includes((p) => p.maker === payload);
+        // state.filtered = state.products.includes((p) => p.maker === payload);
     },
     getProductsByCategory: (state, { payload }) => {
       state.someProducts = state.products.filter((p) => p.category === payload);

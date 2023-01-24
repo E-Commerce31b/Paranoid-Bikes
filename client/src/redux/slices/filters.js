@@ -9,9 +9,10 @@ const filtersSlice = createSlice({
     reducers: {
     addFilter: filtersAdapter.upsertOne,
     removeFilter: filtersAdapter.removeOne,
+    removeAll: filtersAdapter.removeAll
     }
 });
 
-export const { addFilter, removeFilter } = filtersSlice.actions
+export const { addFilter, removeFilter, removeAll } = filtersSlice.actions
 
 export default filtersSlice.reducer

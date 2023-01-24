@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
+import { cleanProduct } from "../redux/slices/products.js";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ const ProductDetail = (props) => {
       setLoading(false);
     };
     data();
+    return () => {
+      dispatch(cleanProduct())
+    }
   }, [dispatch, id]);
 
   if (loading) {

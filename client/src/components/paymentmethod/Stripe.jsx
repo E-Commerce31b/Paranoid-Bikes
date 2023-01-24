@@ -46,32 +46,36 @@ const CheckoutForm = ({ selected }) => {
     e.preventDefault();
     let promises = [];
     // let amount = 0;
-    for (let product of selected) {
-      console.log(product);
-      promises.push(dispatch(reduceStock(product)));
-      promises.push(dispatch(count(product)));
-      // amount += product.priceAmount
-    }
-    const responses = await Promise.all(promises);
-    console.log("hola");
-    console.log(responses);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-    if (!error) {
-      const { id } = paymentMethod;
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_URL}/api/stripe/checkout`,
-        {
-          id,
-          amount: totalPrice,
-          // email: email,
-          // country: country,
-          // city: city,
-          // address: address,
-        }
-      );
+    try {
+      for (let product of selected) {
+        console.log(product);
+        promises.push(dispatch(reduceStock(product)));
+        promises.push(dispatch(count(product)));
+        // amount += product.priceAmount
+      }
+      const responses = await Promise.all(promises);
+      console.log("hola");
+      console.log(responses);
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+      });
+      if (!error) {
+        const { id } = paymentMethod;
+        const { data } = await axios.post(
+          `${process.env.REACT_APP_URL}/api/stripe/checkout`,
+          {
+            id,
+            amount: totalPrice,
+            // email: email,
+            // country: country,
+            // city: city,
+            // address: address,
+          }
+        );
+      }
+    } catch (error) {
+      
     }
   };
 

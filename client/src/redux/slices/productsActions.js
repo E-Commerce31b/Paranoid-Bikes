@@ -66,11 +66,11 @@ export const getProduct = createAsyncThunk(
 
 export const count = createAsyncThunk(
   "products/count",
-  async ({ id, ...product }) => {
+  async ({ _id, count, ...product }) => {
     try {
-      product.count = product.count + 2;
+      product.count += count;
       const response = await axios.put(
-        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        `${process.env.REACT_APP_URL}/api/admin/bikes/${_id}`,
         { count: product.count }
       );
       console.log(response);
@@ -83,11 +83,11 @@ export const count = createAsyncThunk(
 
 export const reduceStock = createAsyncThunk(
   "products/reduceStock",
-  async ({ id, ...product }) => {
+  async ({ _id, ...product }) => {
     try {
-      product.stock = product.stock - 2;
+      product.stock = product.stock - product.count;
       const response = await axios.put(
-        `${process.env.REACT_APP_URL}/api/bikes/${id}`,
+        `${process.env.REACT_APP_URL}/api/admin/bikes/${_id}`,
         { stock: product.stock }
       );
       return response.data;
