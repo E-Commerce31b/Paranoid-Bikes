@@ -10,6 +10,7 @@ import { cleanProduct } from "../redux/slices/products.js";
 import { putUserCart } from "../redux/slices/usersActions.js";
 
 import Loader from "./Loader";
+import Reviews from "./Reviews.jsx";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -92,6 +93,7 @@ const ProductDetail = (props) => {
                   </button>
                 </NavLink>
               </Box>
+              <Reviews/>
             </div>
           </div>
         </div>
