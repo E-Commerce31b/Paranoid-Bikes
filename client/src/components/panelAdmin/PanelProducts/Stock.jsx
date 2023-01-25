@@ -4,7 +4,8 @@ import { updateStock } from "../../../redux/slices/adminActions";
 import Button from "@mui/material/Button";
 import Swal from "sweetalert2";
 
-export default function Stock(id) {
+export default function Stock({ id }) {
+  console.log("mi id", id);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.admins.token);
