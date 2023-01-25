@@ -12,13 +12,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceStock, count } from "../../redux/slices/productsActions.js";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe(
   "pk_test_51MEv4bIJKT77FNwAfDu9uVLRiTpAaVatrh4lOfZHkKKWES4BBbfgJt7LToCRgH75zkbApxJB8tHPeoLq0mkLi5Vx00wG3er93H"
 );
 
-const CheckoutForm = ({ selected, token, input}) => {
+const CheckoutForm = ({ selected, token, input }) => {
   //agregar pantalla intermedia "confirmar compra" y que le pase amount
 
   const user = useSelector((state) => state.users.user);
@@ -30,7 +30,7 @@ const CheckoutForm = ({ selected, token, input}) => {
 
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.products.products)
+  const products = useSelector((state) => state.products.products);
   useEffect(() => {
     let amount = 0;
     for (let product of selected) {
@@ -44,27 +44,27 @@ const CheckoutForm = ({ selected, token, input}) => {
     let promises = [];
     let bikes = [];
 
-    for(let bike of selected) {
-      for(let product of products) {
-        if(bike._id === product._id) bikes.push(product)
+    for (let bike of selected) {
+      for (let product of products) {
+        if (bike._id === product._id) bikes.push(product);
       }
     }
     let amount = 0;
-    console.log(selected)
-    console.log(bikes)
+    console.log(selected);
+    console.log(bikes);
     for (let product of selected) {
-      console.log(selected)
+      console.log(selected);
       for (let bike of bikes) {
-        console.log(bikes)
-        console.log(bike._id)
-        if(product._id === bike._id) {
+        console.log(bikes);
+        console.log(bike._id);
+        if (product._id === bike._id) {
           console.log(product._id);
           console.log(product);
-          console.log(bike._id)
-          console.log(bike)
-          const data = {product, bike}
-          promises.push(dispatch(count(data)))
-          promises.push(dispatch(reduceStock(product)))
+          console.log(bike._id);
+          console.log(bike);
+          const data = { product, bike };
+          promises.push(dispatch(count(data)));
+          promises.push(dispatch(reduceStock(product)));
         }
       }
     }
@@ -76,9 +76,8 @@ const CheckoutForm = ({ selected, token, input}) => {
       card: elements.getElement(CardElement),
     });
     if (!error) {
-      const {email, country,city, address} = input
-      console.log(email)
-
+      const { email, country, city, address } = input;
+      console.log(email);
 
       const { id } = paymentMethod;
       const { data } = await axios.post(
@@ -93,7 +92,7 @@ const CheckoutForm = ({ selected, token, input}) => {
         }
       );
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -105,9 +104,11 @@ const CheckoutForm = ({ selected, token, input}) => {
         <h3 className="is-size-3 has-text-primary ">$ {totalPrice} usd</h3>
       </div>
       <div className="container pt-5">
-        <button className="button is-primary btn_stripe flex is-align-items-flex-center">
-          Comprar
-        </button>
+        <NavLink to="/">
+          <button className="button is-primary btn_stripe flex is-align-items-flex-center">
+            Comprar
+          </button>
+        </NavLink>
       </div>
     </form>
   );
@@ -138,7 +139,7 @@ const CheckoutForm = ({ selected, token, input}) => {
 
 export default function Stripe() {
   const { state } = useLocation();
-  const token = useSelector((state) => state.admins.token)
+  const token = useSelector((state) => state.admins.token);
   const [error, setError] = useState("");
   const [input, setInput] = useState({
     // name: "",
@@ -148,7 +149,7 @@ export default function Stripe() {
     address: "",
   });
 
-  console.log(state)
+  console.log(state);
   const [formErrors, setFormErrors] = useState({
     // name: "",
     email: "",
@@ -177,23 +178,47 @@ export default function Stripe() {
           </div> */}
           <div className="mt-5">
             <p>Email</p>
-            <input type="text" name="email" className="input is-normal" onChange={handleInputChange}/>
+            <input
+              type="text"
+              name="email"
+              className="input is-normal"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="mt-5">
             <p>País</p>
-            <input type="text" name="country" className="input is-normal" onChange={handleInputChange}/>
+            <input
+              type="text"
+              name="country"
+              className="input is-normal"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="mt-5">
             <p>Ciudad</p>
-            <input type="text" name="city" className="input is-normal" onChange={handleInputChange}/>
+            <input
+              type="text"
+              name="city"
+              className="input is-normal"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="mt-5">
             <p>Dirección</p>
-            <input type="text" name="address" className="input is-normal" onChange={handleInputChange}/>
+            <input
+              type="text"
+              name="address"
+              className="input is-normal"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="pt-4  ">
             <Elements stripe={stripePromise}>
-              <CheckoutForm token={token} selected={state.selected} input={input} />
+              <CheckoutForm
+                token={token}
+                selected={state.selected}
+                input={input}
+              />
             </Elements>
           </div>
         </div>
