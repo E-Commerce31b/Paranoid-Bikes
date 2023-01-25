@@ -23,8 +23,8 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
-  function deleteUser() {
-    return currentUser.delete();
+  function deleteUser(email) {
+    return auth.delete(email);
   }
 
   function logout() {

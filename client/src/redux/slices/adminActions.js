@@ -190,13 +190,13 @@ export const softDeleteUser = createAsyncThunk(
       const config = {
         headers: { authorization: "Bearer " + token },
       };
-      const payload = {...user, softDelete: !user.softDelete};
+      const payload = { ...user, softDelete: !user.softDelete };
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/users/panel/${user._id}`,
         payload,
         config
-        );
-        console.log('Cambio', response.data);
+      );
+      console.log("Cambio", response.data);
       return response.data;
     } catch (error) {
       return error.message;
@@ -213,14 +213,14 @@ export const softDeleteAdmin = createAsyncThunk(
       const config = {
         headers: { authorization: "Bearer " + token },
       };
-      const payload = {...admin, softDelete: !admin.softDelete};
-      console.log('AdminSOFT', payload);
+      const payload = { ...admin, softDelete: !admin.softDelete };
+      console.log("AdminSOFT", payload);
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/admin/${admin._id}`,
         payload,
         config
-        );
-      console.log('2AdminSOFT', response.data)
+      );
+      console.log("2AdminSOFT", response.data);
       return response.data;
     } catch (error) {
       return error.message;

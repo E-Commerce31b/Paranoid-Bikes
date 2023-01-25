@@ -15,12 +15,12 @@ import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
 const ProductCard = ({ product }) => {
-
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const navigate = useNavigate();
   const params = useLocation();
   const user = useSelector((state) => state.users.user);
+
 
   const notifySuccess = () => {
     toast.success("¡Agregado al carrito!", {
@@ -42,6 +42,7 @@ const ProductCard = ({ product }) => {
       notifySuccess()
       // return navigate("/cart");
     } else if(!Object.keys(user).length) {
+
       return navigate("/login");
     } else if (product.stock === 0) {
       notifyError()
