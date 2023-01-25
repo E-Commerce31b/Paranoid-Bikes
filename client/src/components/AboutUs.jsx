@@ -25,7 +25,7 @@ export default function AboutUs() {
             <div className="has-text-justified">
               <p>
                 Ella es <strong className="has-text-white">Andrea</strong> y
-                después de obtener su título en liecenciatura en Inglés y
+                después de obtener su título en licenciatura en Inglés y
                 trabajar como profesora por 10 años, decidió seguir su sueño de
                 convertirse en desarrolladora web. Para ello comenzó (y
                 actualmente está culminando) sus estudios en desarrollo web en
@@ -152,9 +152,9 @@ export default function AboutUs() {
                 Toolkit, hizo los filtros combinados, la SearchBar, las listas
                 de productos, el carrito (incluyendo la librería
                 react-toastify), la lógica de "Más Vendidos", y de "Historial".
-                Colaboró con la U.I. aportando ideas y usó . Coordinó al equipo,
-                armó la estructura del Figma (sin estilos), y realizó la demo
-                final del proyecto para aprobar la etapa de Proyecto Final del
+                Colaboró con la U.I. aportando ideas. Coordinó al equipo, armó
+                la estructura del Figma (sin estilos), y realizó la demo final
+                del proyecto para aprobar la etapa de Proyecto Final del
                 bootcamp SoyHenry.
               </p>
             </div>
@@ -172,12 +172,14 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Amadeo Moreno</strong> 
-                Visitador medico y front-end developer. Ideó el nombre de la marca y 
-                su logo, apuntó a crear un e-commerce con venta de bicicletas que es un nicho
-                de mercado ecologico.Armó la estructura en Trello. En un principio encargó de
-                el SignUp y luego de los formularios de creacion de bicicletas y de el manejo
-                de errores, Ademas del componente "ContactUs" , y ayudando a debugear la aplicacion.
+                Él es <strong className="has-text-white">Amadeo Moreno.</strong>{" "}
+                Visitador medico y front-end developer. Ideó el nombre de la
+                marca y su logo, apuntó a crear un e-commerce con venta de
+                bicicletas que es un nicho de mercado ecologico. Armó la
+                estructura en Trello. En un principio encargó de el SignUp y
+                luego de los formularios de creacion de bicicletas y de el
+                manejo de errores, además del componente "ContactUs", y ayudando
+                a debugear la aplicacion.
               </p>
             </div>
           </div>
@@ -290,9 +292,8 @@ export default function AboutUs() {
                 Desarrollador Back-End. Responsable de la creación y
                 mantenimiento de las rutas y modelos usando ExpressJS y
                 mongoose. Responsable de la validacion de Tokens y de la
-                implementación de los baneos de usuarios y
-                administradores.También colaboró con el debugging de componentes
-                del front-end.
+                implementación de los baneos de usuarios y administradores.
+                También colaboró con el debugging de componentes del front-end.
               </p>
             </div>
           </div>

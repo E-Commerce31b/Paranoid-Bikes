@@ -102,7 +102,7 @@ export default function Signup() {
       //dispatch(postUser(input));
       Swal.fire({
         title: 'Listo!',
-        text: 'Bicicleta creada con exito',
+        text: 'Usuario creado con exito',
         icon: 'success',
         confirmButtonText: 'Continuar'
       })
