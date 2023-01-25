@@ -110,7 +110,7 @@ export default function Clients() {
                     </TableCell>
                     <TableCell align="left">
                       <Button onClick={() => handleSoftDelete(user)}>
-                        Banear
+                        {user.softDelete ? "Desbloquear" : "Bloquear"}
                       </Button>
                     </TableCell>
                   </TableRow>
