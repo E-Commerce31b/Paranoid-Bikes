@@ -8,8 +8,10 @@ import {
   removeFromCart,
 } from "../../redux/slices/usersActions.js";
 import Counter from "../Counter";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
@@ -20,30 +22,31 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const params = useLocation();
   const user = useSelector((state) => state.users.user);
-
+  
   const notifySuccess = () => {
     toast.success("¡Agregado al carrito!", {
       position: toast.POSITION.TOP_CENTER,
       // className: 'foo-bar'
     });
-  };
+  }
   const notifyError = () => {
     toast.error("¡No hay stock del producto!", {
       position: toast.POSITION.TOP_CENTER,
       // className: 'foo-bar'
     });
-  };
+  }
 
   const sendToCart = () => {
-    // agregar stock > count (traer estado de cart)
+      // agregar stock > count (traer estado de cart)
     if (Object.keys(user).length && product.stock > 0) {
-      dispatch(putUserCart({ product, user, action: "increment" }));
-      notifySuccess();
+      dispatch(putUserCart({ product, user, action: 'increment'}));
+      notifySuccess()
       // return navigate("/cart");
-    } else if (!Object.keys(user).length) {
+    } else if(!Object.keys(user).length) {
+
       return navigate("/login");
     } else if (product.stock === 0) {
-      notifyError();
+      notifyError()
     }
   };
 
@@ -54,6 +57,7 @@ const ProductCard = ({ product }) => {
           <div className="icon_container">
             <div onClick={() => dispatch(removeFromCart({ product, user }))}>
               <IconButton aria-label="delete" size="small">
+
                 <img
                   className="imagen"
                   src={iconDelete}
@@ -125,6 +129,7 @@ const ProductCard = ({ product }) => {
             )}
           </div>
         </div>
+
         {params?.pathname === "/cart" ? (
           <div className="has-text-primary">
             {product.stock === 0 ? <p>Sin stock</p> : <p>Hay stock</p>}
@@ -132,6 +137,7 @@ const ProductCard = ({ product }) => {
         ) : (
           <></>
         )}
+
       </div>
     </>
   );

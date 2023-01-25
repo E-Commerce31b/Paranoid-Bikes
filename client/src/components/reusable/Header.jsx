@@ -71,8 +71,8 @@ export default function Header() {
                     </NavLink>
                   ) : (
                     <></>
-                  )}
-                </div>
+                    )}
+                    </div>
               </div>
               <div className="navbar-item">
                 {/* <div className="field has-addons paddingTop"> */}

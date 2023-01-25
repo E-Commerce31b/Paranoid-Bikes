@@ -35,6 +35,7 @@ const ProductDetail = (props) => {
   const sendToCart = () => {
     if (Object.keys(user).length) {
       dispatch(manageCart({ id, counter, action: "increment" }));
+
     } else {
       return navigate("/login");
     }

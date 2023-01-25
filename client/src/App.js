@@ -33,7 +33,9 @@ import ClientsAdmins from "./components/panelAdmin/Clients-Admins/ClientsAdmins.
 import Analytics from "./components/panelAdmin/Analitics/Analytics.jsx";
 import FormAdmins from "./components/panelAdmin/FormAdmins/FormAdmins.jsx";
 import BikeCreate from "./components/panelAdmin/BikeCreate/BikeCreate.jsx";
+import BikesSells from "./components/BikesSells.jsx";
 import ContactComponent from "./components/ContactComponent/ContactComponent.jsx";
+
 function App() {
   return (
     <AuthProvider>
@@ -58,6 +60,7 @@ function App() {
         <Route path="/clientesadmins" element={<ClientsAdmins />} />
         <Route path="/creacionbicis" element={<BikeCreate />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/sellings" element={<BikesSells />} />
         <Route
           path="/user"
           element={
