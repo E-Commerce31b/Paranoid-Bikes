@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateStock } from "../../../redux/slices/adminActions";
 import Button from "@mui/material/Button";
 
-export default function Stock(id) {
+export default function Stock({ id }) {
+  console.log("mi id", id);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.admins.token);
