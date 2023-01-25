@@ -10,6 +10,9 @@ import emailjs from "emailjs-com";
 import { getUser } from "../redux/slices/usersActions";
 import axios from "axios";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import Swal from "sweetalert2";
+
+
 
 export const validate = (input) => {
   let errors = {};
@@ -97,7 +100,12 @@ export default function Signup() {
       );
 
       //dispatch(postUser(input));
-      alert("Usuario creado con exito!");
+      Swal.fire({
+        title: 'Listo!',
+        text: 'Bicicleta creada con exito',
+        icon: 'success',
+        confirmButtonText: 'Continuar'
+      })
       // setInput({
       //   /*   email: "",
       //     password: "", */
