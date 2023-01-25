@@ -101,6 +101,9 @@ const BikesSells = () => {
 
   return (
     <>
+      <div className="column has-text-centered has-text-white">
+        <h1 className="title is-2 font_family mt-5">Analiticas</h1>
+      </div>
       <div className="is-flex is-justify-content-center">
         <div class="card m-4" style={{ width: "300px" }}>
           <div class="card-image mt-3 has-text-centered">
@@ -169,12 +172,20 @@ const BikesSells = () => {
         </h1>
       </div>
 
-      <Chart
-        options={state.options}
-        series={state.series}
-        type="bar"
-        width="500"
-      />
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div
+          className="is-flex is-justify-content-center column is-6 has-background-white mt-5 mb-5"
+          style={{ borderRadius: "10px" }}
+        >
+          <Chart
+            options={state.options}
+            series={state.series}
+            type="bar"
+            width="500"
+          />
+        </div>
+      </div>
     </>
   );
 };
