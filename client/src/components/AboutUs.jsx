@@ -7,92 +7,294 @@ export default function AboutUs() {
         <div className="column has-text-centered">
           <h1 className="title is-3 font_family mt-5">Paranoid Bikes</h1>
         </div>
+        <div className="column has-text-centered">
+          <h1 className="title is-4 font_family mt-5">
+            Nuestros Desarrolladores:
+          </h1>
+        </div>
       </div>
       <div className="columns">
         <div className="column is-1"></div>
         <div className="column is-5 mt-5 mb-3">
-          {/* <div className="card"> */}
-          <div className="content is-size-6 has-text-white is-family-sans-serif ">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Andrea Barrera
+              </h1>
+            </div>
             <div className="has-text-justified">
               <p>
-                Bienvenido a{" "}
-                <strong className="has-text-white">Paranoid Bikes</strong> , la
-                red más relevante del mundo para todo lo relacionado con la
-                bicicleta y el ciclismo, somos un Marketplace en línea fundado
-                en 2020 en Buenos Aires (Argentina) por los los estudiantes de
-                la cohorte 31B, quienes se embarcaron en la misión de crear un
-                sitio en línea para todo lo relacionado con las bicicletas.
-                Mucho ha sucedido en los últimos años, y esa pequeña idea se ha
-                convertido en una compañía internacional con más de 100
-                empleados en nueve países como: Nueva Zelanda, Alemania,
-                Bélgica, Luxemburgo, Estados Unidos, Inglaterra, Irlanda y ahora
-                Colombia.
+                Ella es <strong className="has-text-white">Andrea</strong> y
+                después de obtener su título en liecenciatura en Inglés y
+                trabajar como profesora por 10 años, decidió seguir su sueño de
+                convertirse en desarrolladora web. Para ello comenzó (y
+                actualmente está culminando) sus estudios en desarrollo web en
+                Soy Henry.
               </p>
               <p>
-                ¡En <strong className="has-text-white">Paranoid Bikes</strong>{" "}
-                amamos tu pasión! Las mejores marcas de ciclismo del mundo en un
-                solo lugar desde 2022. La bicicleta es el medio de transporte
-                más eficiente que existe, ayuda a combatir el cambio climático,
-                alivia el tráfico urbano, te permite estar en forma y descubrir
-                lugares que de otra forma jamás hubieras conocido, nos une y al
-                mismo tiempo nos sirve de vía de escape.
-              </p>
-              <p>
-                En 2020 los estudiantes de la cohorte 31B crearon esta compañía
-                como pionera del ciclismo en el país. El objetivo de nuestra
-                empresa es entregar al mercado una amplia variedad en las
-                mejores marcas de bicicletas y accesorios, para la práctica del
-                ciclismo en sus diferentes modalidades tales como: Montaña, Ruta
-                y BMX. Atendiendo y desarrollando estrategias enfocadas las
-                necesidades de sus clientes de acuerdo a las distintas etapas de
-                su vida.
+                <strong className="has-text-white">Licenciada en Inglés</strong>{" "}
+                y{" "}
+                <strong className="has-text-white">
+                  Desarrolladora Web Front-End.
+                </strong>{" "}
+                Es la responsable del diseño y la mayoría de los estilos y
+                animaciones de la página.
               </p>
             </div>
           </div>
-          {/* </div> */}
         </div>
-        <div className="column is-5 mt-5 mb-3 ">
-          <figure class="image is-16by9">
-            <img
-              src={require(`../assets/tienda-bici.jpeg`)}
-              alt="Img not found"
-            />
-          </figure>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Andrea.jpeg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
         </div>
       </div>
-      <div className="columns mb-6">
+      <div className="columns">
         <div className="column is-1"></div>
-        <div className="column is-5 mt-3 mb-3">
-          <figure class="image is-16by9">
-            <img
-              src={require(`../assets/tienda-bici2.jpg`)}
-              alt="Img not found"
-            />
-          </figure>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Andres.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
         </div>
-        <div className="column is-5 mt-3 mb-3 ">
-          <div className="content is-small has-text-white">
-            <div className="has-text-justified is-size-6 is-family-sans-serif">
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Andrés Garzón
+              </h1>
+            </div>
+            <div className="has-text-justified">
               <p>
-                Finalizando el 2020, la empresa se consolidó como una de las
-                mejores marcas en el país, posicionándose entre los cinco
-                primeros puestos gracias a su versatilidad y (pensando siempre
-                en el bienestar de sus clientes) la importación de grandes
-                marcas en el mercado mundial.
+                Él es <strong className="has-text-white">Andres.</strong>{" "}
+                Desarrollador Front-end, encargado de las validaciones de
+                autentication y autorizacion con Firebase y JWT (user-admin)
+                desde el front. Baneo logico de perfiles. Autenticacion de
+                terceros (Google / Gmail). Actualizacion de datos desde el
+                front. Desarrollo de componentes para el analisis de datos del
+                dashboard de administrador.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Facundo Lopez
+              </h1>
+            </div>
+            <div className="has-text-justified">
               <p>
-                Paranoid Bikes reúne en un solo lugar todo lo relacionado con la
-                bicicleta, sus componentes, accesorios, ropa, nutrición, eventos
-                y servicios, permitiéndote la oportunidad de explorar todas las
-                opciones imaginables de productos, a los mejores precios,
-                facilidad y conveniencia.
+                Él es <strong className="has-text-white">Facundo</strong> Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Facundo.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/German.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Germán Horianski
+              </h1>
+            </div>
+            <div className="has-text-justified">
               <p>
-                En un mundo de ventas que cambia rápidamente, ofrecemos una
-                solución que ayudara a los distribuidores, marcas y tiendas a
-                hacer su transición al mundo digital y ventas en línea, además
-                facilitando un canal altamente segmentado donde los consumidores
-                están comprando activamente.
+                Él es <strong className="has-text-white">Germán.</strong>{" "}
+                Abogado y front-end developer. Realizó la integración completa
+                de del front con el back de Paranoid-bikes mediante Redux
+                Toolkit, hizo los filtros combinados, la SearchBar, las listas
+                de productos, el carrito (incluyendo la librería
+                react-toastify), la lógica de "Más Vendidos", y de "Historial".
+                Colaboró con la U.I. aportando ideas y usó . Coordinó al equipo,
+                armó la estructura del Figma (sin estilos), y realizó la demo
+                final del proyecto para aprobar la etapa de Proyecto Final del
+                bootcamp SoyHenry.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Amadeo Moreno
+              </h1>
+            </div>
+            <div className="has-text-justified">
+              <p>
+                Él es <strong className="has-text-white">Amadeo</strong> Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Amadeo.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Juan.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Juan Lopez
+              </h1>
+            </div>
+            <div className="has-text-justified">
+              <p>
+                Él es <strong className="has-text-white">Juan.</strong> Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Rodrigo Santesteban
+              </h1>
+            </div>
+            <div className="has-text-justified">
+              <p>
+                Él es <strong className="has-text-white">Rodrigo</strong> Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Rodrigo.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column is-1"></div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="level-item has-text-centered">
+            <figure className="image mt-5">
+              <img
+                style={{ height: "400px", width: "auto" }}
+                src={require(`../assets/Sebastian.jpg`)}
+                alt="Img not found"
+              />
+            </figure>
+          </div>
+        </div>
+        <div className="column is-5 mt-5 mb-3">
+          <div className="content is-size-5 has-text-white is-family-sans-serif ">
+            <div className="column has-text-centered">
+              <h1 className="title is-5 font_family mt-5 has-text-white">
+                Sebastián Aguiar
+              </h1>
+            </div>
+            <div className="has-text-justified">
+              <p>
+                Él es <strong className="has-text-white">Sebastián.</strong>{" "}
+                Desarrollador Back-End. Responsable de la creación y
+                mantenimiento de las rutas y modelos usando ExpressJS y
+                mongoose. Responsable de la validacion de Tokens y de la
+                implementación de los baneos de usuarios y
+                administradores.También colaboró con el debugging de componentes
+                del front-end.
               </p>
             </div>
           </div>
