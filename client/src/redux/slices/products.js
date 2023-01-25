@@ -101,18 +101,18 @@ export const productsSlice = createSlice({
     getProduct: (state, { payload }) => {
       // if (/\d+/.test(payload)) {
         state.searched = state.products.filter((p) =>
-          p.maker.includes(payload)
+          p.maker.toLowerCase().includes(payload.toLowerCase())
         );
         state.filtered = state.products.filter((p) =>
-          p.maker.includes(payload)
+          p.maker.toLowerCase().includes(payload.toLowerCase())
         );
         if(state.filtered.length === 0) {
-          console.log('entramos2')
+          // console.log('entramos2')
           // console.log(current(state.filtered))
           state.searched = state.products.filter((p) =>
-          p.name.includes(payload)
+          p.name.toLowerCase().includes(payload.toLowerCase())
         );
-        state.filtered = state.products.filter((p) => p.name.includes(payload));
+        state.filtered = state.products.filter((p) => p.name.toLowerCase().includes(payload.toLowerCase()));
         }
         // state.product = state.products.includes((p) => p.maker === payload);
         // state.filtered = state.products.includes((p) => p.maker === payload);
