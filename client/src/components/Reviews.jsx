@@ -32,10 +32,13 @@ export default function Reviews() {
 
 
 const reviewsProduct = () => {
-    console.log('HOLA',id);
-    const commentBike = reviews.filter(item => item.bike._id === id)
-    console.log('',commentBike);
-    return commentBike
+    if(reviews.length){
+        console.log('HOLA',id);
+        const commentBike = reviews.filter(item => item.bike._id === id)
+        return commentBike
+    }else{
+        return [{text:'No hay comentarios.'}]
+    }
 }
 
 
@@ -47,9 +50,10 @@ const reviewsProduct = () => {
             <ul>
                 {/* {reviewsProduct().map()}
                 {console.log(reviewsProduct)} */}
-                {reviewsProduct().map((text, _id) => {
+                {reviewsProduct().map((bike, i) => {
+                    console.log('BIKE',bike);
                     return(
-                        <li key={_id}>{text}</li>
+                        <li key={i}>{bike.text}</li>
                         )
                     })}
                     </ul>
