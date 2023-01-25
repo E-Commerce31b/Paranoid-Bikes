@@ -101,7 +101,7 @@ export default function Admins() {
                         {admin.softDelete}
                       </span>
                       <Button onClick={() => handleSoftDelete(admin)}>
-                        {boolean ? "Bloquear" : "Desbloquear"}
+                        {admin.softDelete ? "Desbloquear" : "Bloquear"}
                       </Button>
                     </TableCell>
                     {/* <TableCell align="left"></TableCell> */}
