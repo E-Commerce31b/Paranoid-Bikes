@@ -40,14 +40,10 @@ const ProductDetail = (props) => {
 
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      console.log('entramos')
-      console.log(bike)
       const product = bike
-      console.log(product)
       dispatch(putUserCart({ product, user, action: 'increment'}));
       return navigate("/cart");
     } else if(!Object.keys(user).length) {
-      console.log('entramos')
       return navigate("/login");
     }
   };
