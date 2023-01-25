@@ -12,7 +12,7 @@ import Stock from "./Stock.jsx";
 import { NavLink, useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.jsx";
 import detalle from "../../../assets/Detalle.png";
-alert
+
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
   const currentPage = useSelector((state) => state.products.currentPage);
