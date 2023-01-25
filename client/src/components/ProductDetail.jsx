@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/slices/productsActions.js";
 import { manageCart } from "../redux/slices/users.js";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
@@ -35,7 +35,7 @@ const ProductDetail = (props) => {
   const sendToCart = () => {
     if (Object.keys(user).length) {
       dispatch(manageCart({ id, counter, action: "increment" }));
-      return navigate("/cart");
+
     } else {
       return navigate("/login");
     }
@@ -44,19 +44,19 @@ const ProductDetail = (props) => {
   return (
     <>
       <Loader loading={status}></Loader>
-      <div className="column has-text-centered">
+      <div className="column has-text-centered p-6">
         <h1 className="title is-4 mb-3">Detalles del Producto</h1>
       </div>
-      <div className="columns">
+      <div className="columns p-6 ">
         <div className="column is-3"></div>
-        <div className="column is-6 has-background-white">
+        <div className="column is-6 has-background-white border-radius">
           <div className="columns">
-            <div className="column is-6 columna">
-              <figure className="image is-3by2 mt-6">
+            <div className="column is-6 columna border-radius">
+              <figure className="image is-3by2 my-6">
                 <img className="img_detail" src={bike.image} alt="not found" />
               </figure>
             </div>
-            <div className="column is-6">
+            <div className="column is-6 px5">
               <div className="card-header-title">
                 <p className="p_detail">
                   {bike.name} - {bike.maker}
@@ -76,14 +76,14 @@ const ProductDetail = (props) => {
                 </p>
               </div>
               <Box sx={{ p: 2 }}>
-                {/* <NavLink to="/cart"> */}
-                <p
-                  className="button is-primary font_family"
-                  onClick={() => sendToCart()}
-                >
-                  Agregar al carrito
-                </p>
-                {/* </NavLink> */}
+                <NavLink to="/cart">
+                  <button
+                    className="button is-primary font_family"
+                    onClick={() => sendToCart()}
+                  >
+                    Agregar al carrito
+                  </button>
+                </NavLink>
               </Box>
             </div>
           </div>

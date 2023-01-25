@@ -91,6 +91,6 @@ body {
   transform: scale(0.95) rotateZ(1.7deg);
 }
 
-img {
-
+.border-radius {
+border-radius: 15px;
 }

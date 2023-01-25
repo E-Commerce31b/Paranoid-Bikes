@@ -190,13 +190,16 @@ export const softDeleteUser = createAsyncThunk(
       const config = {
         headers: { authorization: "Bearer " + token },
       };
+
       const payload = { ...user, softDelete: !user.softDelete };
+
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/users/panel/${user._id}`,
         payload,
         config
-      );
-      console.log("Cambio", response.data);
+
+        );
+        console.log('Cambio', response.data);
       return response.data;
     } catch (error) {
       return error.message;
