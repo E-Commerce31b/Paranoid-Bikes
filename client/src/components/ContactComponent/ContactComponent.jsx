@@ -39,7 +39,7 @@ export default function ContactComponent(props) {
       <h1 className="title is-3 font_family mt-5">Contactate con nosotros</h1>
     </div>
    
-          <form action="https://formsubmit.co/el/jugizu" method="POST">
+          <form action='https://formsubmit.co/ammadeomoreno@gmail.com' method="POST">
             <div className="field">
               <label className="label font_family">Nombre</label>
               <input

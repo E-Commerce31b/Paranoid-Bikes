@@ -9,34 +9,53 @@ import {
 } from "../../redux/slices/usersActions.js";
 import Counter from "../Counter";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
 
 const ProductCard = ({ product }) => {
-
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const navigate = useNavigate();
   const params = useLocation();
   const user = useSelector((state) => state.users.user);
 
-  const sendToCart = (action) => {
-    if (Object.keys(user).length) {
-      dispatch(putUserCart({ product, user, action: 'increment'}));
-      return navigate("/cart");
-    } else {
+  const notifySuccess = () => {
+    toast.success("¡Agregado al carrito!", {
+      position: toast.POSITION.TOP_CENTER,
+      // className: 'foo-bar'
+    });
+  };
+  const notifyError = () => {
+    toast.error("¡No hay stock del producto!", {
+      position: toast.POSITION.TOP_CENTER,
+      // className: 'foo-bar'
+    });
+  };
+
+  console.log(product);
+  const sendToCart = () => {
+    // agregar stock > count (traer estado de cart)
+    if (Object.keys(user).length && product.stock > 0) {
+      dispatch(putUserCart({ product, user, action: "increment" }));
+      notifySuccess();
+      // return navigate("/cart");
+    } else if (!Object.keys(user).length) {
       return navigate("/login");
+    } else if (product.stock === 0) {
+      notifyError();
     }
   };
 
   return (
     <>
-      <div className="box flex is-justify-content-center px-6 boxCard">
+      <div className="box flex is-justify-content-center  boxCard ">
         {params?.pathname === "/cart" ? (
           <div className="icon_container">
             <div onClick={() => dispatch(removeFromCart({ product, user }))}>
               <IconButton aria-label="delete" size="small">
-
                 <img
                   className="imagen"
                   src={iconDelete}
@@ -49,7 +68,7 @@ const ProductCard = ({ product }) => {
         ) : (
           <></>
         )}
-        <div className="box-image py-5 contenedor">
+        <div className="box-image py-5 container-productCard flex is-flex-direction-row is-justify-content-center">
           <img className="imagen" src={product.image} alt="Not found" />
         </div>
         <div className="maker">
@@ -71,38 +90,51 @@ const ProductCard = ({ product }) => {
             <></>
           )}
         </div>
-        {params?.pathname === "/cart" ? (
-          <div className="pt-5 flex   ">
-            <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-              <Link to={`/details/${product.id}`}>
-                <Button variant="outlined">Ver más</Button>
-              </Link>
+        <div className="flex is-flex-direction-row">
+          {params?.pathname === "/cart" ? (
+            <div className="flex is-justify-content-center is-align-items-center">
+              <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
+                <Link to={`/details/${product.id}`}>
+                  <Button className="mr-3" variant="outlined">
+                    Ver más
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="pt-5 flex   ">
-            <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-              <Link to={`/details/${product.id}`}>
-                <Button variant="outlined">Ver más</Button>
+          ) : (
+            <div className="flex is-flex-direction-row is-justify-content-space-between p-4">
+              <Link to={`/details/${product._id}`}>
+                <Button className="mr-6" variant="outlined">
+                  Ver más
+                </Button>
               </Link>
               <Button variant="outlined" onClick={() => sendToCart()}>
                 🛒
               </Button>
+              <ToastContainer autoClose={1500} />
             </div>
-          </div>
-        )}
-        <div className="flex is-justify-content-space-around is-flex-direction-row py-5">
-          {params?.pathname === "/cart" ? (
-            <Counter
-              count={product.count}
-              product={product}
-              putUserCart={putUserCart}
-              user={user}
-            />
-          ) : (
-            <></>
           )}
+          <div className="flex is-justify-content-space-around is-flex-direction-row py-5">
+            {params?.pathname === "/cart" ? (
+              <Counter
+                count={product.count}
+                product={product}
+                putUserCart={putUserCart}
+                user={user}
+              />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
+
+        {params?.pathname === "/cart" ? (
+          <div className="has-text-primary">
+            {product.stock === 0 ? <p>Sin stock</p> : <p>Hay stock</p>}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

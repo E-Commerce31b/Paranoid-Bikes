@@ -10,7 +10,7 @@
 }
 
 .p_detail {
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-name: slidein;
 }
 
@@ -24,3 +24,4 @@
     width: 100%;
   }
 }
+

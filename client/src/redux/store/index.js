@@ -6,7 +6,7 @@ import filters from "../slices/filters.js";
 import admins from "../slices/admin.js";
 import { getProducts } from "../slices/productsActions.js";
 
-const localStorageMiddleware = ({ getState }) => {
+/* const localStorageMiddleware = ({ getState }) => {
   return (next) => (action) => {
     const result = next(action);
     localStorage.setItem("applicationState", JSON.stringify(getState()));
@@ -18,7 +18,7 @@ const reHydrateStore = () => {
   if (localStorage.getItem("applicationState") !== null) {
     return JSON.parse(localStorage.getItem("applicationState")); // re-hydrate the store
   }
-};
+}; */
 
 export const store = configureStore({
   reducer: {
@@ -28,11 +28,9 @@ export const store = configureStore({
     filters,
     admins,
   },
-  preloadedState: reHydrateStore(),
+  /* preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware),
-
-
+    getDefaultMiddleware().concat(localStorageMiddleware), */
 });
 
 store.dispatch(getProducts());
