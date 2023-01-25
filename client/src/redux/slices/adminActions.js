@@ -191,12 +191,12 @@ export const softDeleteUser = createAsyncThunk(
         headers: { authorization: "Bearer " + token },
       };
       const payload = {...user, softDelete: !user.softDelete};
-      console.log('USERSOFT', payload);
       const response = await axios.put(
-        `${process.env.REACT_APP_URL}/api/users/${user._id}`,
+        `${process.env.REACT_APP_URL}/api/users/panel/${user._id}`,
         payload,
         config
         );
+        console.log('Cambio', response.data);
       return response.data;
     } catch (error) {
       return error.message;

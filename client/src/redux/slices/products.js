@@ -3,7 +3,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const initialState = {
   products: [],
   productsOffers: [],
-  someProducts: [],
+  searched: [],
   newProducts: [],
   product: {},
   // categories: ["road", "urban", "BMX", "mountain", "youth"],
@@ -71,7 +71,7 @@ export const productsSlice = createSlice({
       }
     },
     cleanProduct: (state) => {
-      state.someProducts = [];
+      state.searched = [];
       state.filtered = [];
       state.filters = [];
       state.product = [];
@@ -100,7 +100,7 @@ export const productsSlice = createSlice({
 
     getProduct: (state, { payload }) => {
       // if (/\d+/.test(payload)) {
-        state.someProducts = state.products.filter((p) =>
+        state.searched = state.products.filter((p) =>
           p.maker.includes(payload)
         );
         state.filtered = state.products.filter((p) =>
@@ -108,8 +108,8 @@ export const productsSlice = createSlice({
         );
         if(state.filtered.length === 0) {
           console.log('entramos2')
-          console.log(current(state.filtered))
-          state.someProducts = state.products.filter((p) =>
+          // console.log(current(state.filtered))
+          state.searched = state.products.filter((p) =>
           p.name.includes(payload)
         );
         state.filtered = state.products.filter((p) => p.name.includes(payload));
@@ -118,7 +118,7 @@ export const productsSlice = createSlice({
         // state.filtered = state.products.includes((p) => p.maker === payload);
     },
     getProductsByCategory: (state, { payload }) => {
-      state.someProducts = state.products.filter((p) => p.category === payload);
+      // state.someProducts = state.products.filter((p) => p.category === payload);
       state.filtered = state.products.filter((p) => p.category === payload);
     },
     sortByName: (state, { payload }) => {

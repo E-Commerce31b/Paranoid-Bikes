@@ -7,6 +7,9 @@ import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
 import { cleanProduct } from "../redux/slices/products.js";
+import { putUserCart } from "../redux/slices/usersActions.js";
+
+import Loader from "./Loader";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +20,7 @@ const ProductDetail = (props) => {
 
   const [bike, setBike] = useState({});
   const [loading, setLoading] = useState(false);
+  const status = useSelector((state) => state.products.status);
 
   const user = useSelector((state) => state.users.user);
   const products = useSelector((state) => state.products.products);
@@ -34,20 +38,23 @@ const ProductDetail = (props) => {
     }
   }, [dispatch, id]);
 
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(manageCart({ id, counter, action: "increment" }));
+      console.log('entramos')
+      console.log(bike)
+      const product = bike
+      console.log(product)
+      dispatch(putUserCart({ product, user, action: 'increment'}));
       return navigate("/cart");
-    } else {
+    } else if(!Object.keys(user).length) {
+      console.log('entramos')
       return navigate("/login");
     }
   };
 
   return (
     <>
+      <Loader loading={status}></Loader>
       <div className="column has-text-centered">
         <h1 className="title is-4 mb-3">Detalles del Producto</h1>
       </div>

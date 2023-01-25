@@ -20,6 +20,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
+    console.log(selected)
     navigate("/stripe", { state: { selected: selected } });
   };
   const [total, setTotal] = useState(0)
@@ -53,6 +54,9 @@ const Cart = () => {
           <RenderProducts slicedProducts={slicedProducts} />
           <div className="cart_container">
             <div className="flex is-flex-direction-row ">
+            <NavLink to='/'>
+                <p className="font-family">Agregar más productos al carrito</p>
+            </NavLink>
               <p className="is-size-3 px-6 has-text-primary">TOTAL A PAGAR =</p>
               <p className="is-size-3 has-text-primary"> {total}</p>
             </div>

@@ -8,6 +8,8 @@ import {
   removeFromCart,
 } from "../../redux/slices/usersActions.js";
 import Counter from "../Counter";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import IconButton from "@mui/material/IconButton";
 import iconDelete from "../../assets/iconDelete.png";
@@ -20,12 +22,30 @@ const ProductCard = ({ product }) => {
   const params = useLocation();
   const user = useSelector((state) => state.users.user);
 
-  const sendToCart = (action) => {
-    if (Object.keys(user).length) {
+  const notifySuccess = () => {
+    toast.success("¡Agregado al carrito!", {
+      position: toast.POSITION.TOP_CENTER,
+      // className: 'foo-bar'
+    });
+  }
+  const notifyError = () => {
+    toast.error("¡No hay stock del producto!", {
+      position: toast.POSITION.TOP_CENTER,
+      // className: 'foo-bar'
+    });
+  }
+
+  console.log(product)
+  const sendToCart = () => {
+      // agregar stock > count (traer estado de cart)
+    if (Object.keys(user).length && product.stock > 0) {
       dispatch(putUserCart({ product, user, action: 'increment'}));
-      return navigate("/cart");
-    } else {
+      notifySuccess()
+      // return navigate("/cart");
+    } else if(!Object.keys(user).length) {
       return navigate("/login");
+    } else if (product.stock === 0) {
+      notifyError()
     }
   };
 
@@ -74,7 +94,7 @@ const ProductCard = ({ product }) => {
         {params?.pathname === "/cart" ? (
           <div className="pt-5 flex   ">
             <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-              <Link to={`/details/${product.id}`}>
+              <Link to={`/details/${product._id}`}>
                 <Button variant="outlined">Ver más</Button>
               </Link>
             </div>
@@ -82,12 +102,13 @@ const ProductCard = ({ product }) => {
         ) : (
           <div className="pt-5 flex   ">
             <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-              <Link to={`/details/${product.id}`}>
+              <Link to={`/details/${product._id}`}>
                 <Button variant="outlined">Ver más</Button>
               </Link>
               <Button variant="outlined" onClick={() => sendToCart()}>
                 🛒
               </Button>
+              <ToastContainer autoClose={1500}/>
             </div>
           </div>
         )}
@@ -103,6 +124,14 @@ const ProductCard = ({ product }) => {
             <></>
           )}
         </div>
+        <div>
+          { product.stock === 0 ?
+          <p>Sin stock</p>
+            :
+          <p>Hay stock</p>
+          }
+        </div>
+
       </div>
     </>
   );

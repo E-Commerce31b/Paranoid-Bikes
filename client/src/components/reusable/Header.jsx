@@ -61,7 +61,9 @@ export default function Header() {
                   <NavLink to="/about" className="navbar-item">
                     <a className="navbar-item">Sobre Nosotros</a>
                   </NavLink>
-                  <a className="navbar-item">Contactarnos</a>
+                  <NavLink to= "/contactarnos" className="navbar-item">
+                    <a className="navbar-item">Contactarnos</a>
+                  </NavLink>
                   <hr className="navbar-divider" />
                   {admin.length && admin.length ? (
                     <NavLink to="/panel">
@@ -69,8 +71,8 @@ export default function Header() {
                     </NavLink>
                   ) : (
                     <></>
-                  )}
-                </div>
+                    )}
+                    </div>
               </div>
               <div className="navbar-item">
                 {/* <div className="field has-addons paddingTop"> */}
