@@ -114,17 +114,17 @@ export default function Products() {
                               <TableCell component="th" scope="row">
                                 {product.name}
                               </TableCell>
-                              <TableCell>{product.id}</TableCell>
+                              <TableCell>{product._id}</TableCell>
                               {params?.pathname === "/productos" ? (
                                 <TableCell>
-                                  <Stock />
+                                  <Stock id={product._id} />
                                 </TableCell>
                               ) : (
                                 <></>
                               )}
 
                               <TableCell className="Details">
-                                <NavLink to={`/details/${product.id}`}>
+                                <NavLink to={`/details/${product._id}`}>
                                   <img
                                     src={detalle}
                                     alt="Not found"
@@ -158,12 +158,12 @@ export default function Products() {
                               <TableCell component="th" scope="row">
                                 {bike.name}
                               </TableCell>
-                              <TableCell align="left">{bike.id}</TableCell>
+                              <TableCell align="left">{bike._id}</TableCell>
                               <TableCell align="left">
-                                <Stock id={bike.id} />
+                                <Stock id={bike._id} />
                               </TableCell>
                               <TableCell align="left" className="Details">
-                                <NavLink to={`/details/${bike.id}`}>
+                                <NavLink to={`/details/${bike._id}`}>
                                   <img
                                     src={detalle}
                                     alt="Not found"

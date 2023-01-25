@@ -131,6 +131,7 @@ export const deleteProduct = createAsyncThunk(
 export const updateStock = createAsyncThunk(
   "admin/updateStock",
   async (data) => {
+    console.log("data", data.id);
     try {
       const { count, id, token } = data;
       const config = {
@@ -140,10 +141,11 @@ export const updateStock = createAsyncThunk(
         stock: count,
       };
       const response = await axios.put(
-        `${process.env.REACT_APP_URL}/api/admin/bikes/${id.id}`,
+        `${process.env.REACT_APP_URL}/api/admin/bikes/${id}`,
         payload,
         config
       );
+      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
       return error.message;
@@ -197,9 +199,8 @@ export const softDeleteUser = createAsyncThunk(
         `${process.env.REACT_APP_URL}/api/users/panel/${user._id}`,
         payload,
         config
-
-        );
-        console.log('Cambio', response.data);
+      );
+      console.log("Cambio", response.data);
       return response.data;
     } catch (error) {
       return error.message;
