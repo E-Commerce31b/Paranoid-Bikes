@@ -11,7 +11,6 @@ export default function Landing() {
   return (
     <div>
       <Loader loading={status}></Loader>
-
       <div className="overlay">
         <img src={ImageDiscount} alt="not found" />
       </div>

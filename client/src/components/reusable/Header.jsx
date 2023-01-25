@@ -59,10 +59,10 @@ export default function Header() {
                 <a className="navbar-link">Ver Más</a>
                 <div className="navbar-dropdown">
                   <NavLink to="/about" className="navbar-item">
-                    <a className="navbar-item">Sobre Nosotros</a>
+                    <a className="navbar-item pl-1 pb-3">Sobre Nosotros</a>
                   </NavLink>
-                  <NavLink to= "/contactarnos" className="navbar-item">
-                    <a className="navbar-item">Contactarnos</a>
+                  <NavLink to="/contactarnos">
+                    <a className="navbar-item pl-4">Contactarnos</a>
                   </NavLink>
                   <hr className="navbar-divider" />
                   {admin.length && admin.length ? (
@@ -89,16 +89,12 @@ export default function Header() {
                   <div className="px-5">
                     <NavLink to="/login">
                       <button className="button is-primary is-normal px-5 mx-4">
-
                         <strong className="font_family">Ingresar</strong>
-
                       </button>
                     </NavLink>
                     <NavLink to="/signup">
                       <button className="button is-warning is-normal">
-
                         <strong className="font_family">Registrarse</strong>
-
                       </button>
                     </NavLink>
                   </div>

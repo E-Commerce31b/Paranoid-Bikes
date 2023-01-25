@@ -4,6 +4,7 @@ import { useAuth } from "../../../context/AuthContext.js";
 import { useDispatch } from "react-redux";
 import emailjs from "emailjs-com";
 import { postAdmin } from "../../../redux/slices/adminActions.js";
+import Swal from "sweetalert2";
 
 export const validate = (input) => {
   let errors = {};
@@ -85,7 +86,13 @@ export default function FormAdmins() {
       );
       {
         dispatch(postAdmin(input));
-        alert("Usuario creado con exito!");
+        Swal.fire({
+          title: 'Listo!',
+          text: 'Usuario Admin creado con exito',
+          icon: 'success',
+          confirmButtonText: 'Continuar'
+        })
+        navigate("/panel"); 
         setInput({
           /*   email: "",
           password: "", */
