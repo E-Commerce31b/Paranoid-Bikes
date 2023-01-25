@@ -22,7 +22,6 @@ const CheckoutForm = ({ selected, token, input }) => {
   //agregar pantalla intermedia "confirmar compra" y que le pase amount
 
   const user = useSelector((state) => state.users.user);
-  console.log(user);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const stripe = useStripe();
@@ -34,7 +33,7 @@ const CheckoutForm = ({ selected, token, input }) => {
   useEffect(() => {
     let amount = 0;
     for (let product of selected) {
-      amount += product.priceAmount;
+      amount += product.priceAmount * product.count;
     }
     setTotalPrice(amount);
   }, [selected]);
@@ -49,19 +48,9 @@ const CheckoutForm = ({ selected, token, input }) => {
         if (bike._id === product._id) bikes.push(product);
       }
     }
-    let amount = 0;
-    console.log(selected);
-    console.log(bikes);
     for (let product of selected) {
-      console.log(selected);
       for (let bike of bikes) {
-        console.log(bikes);
-        console.log(bike._id);
         if (product._id === bike._id) {
-          console.log(product._id);
-          console.log(product);
-          console.log(bike._id);
-          console.log(bike);
           const data = { product, bike };
           promises.push(dispatch(count(data)));
           promises.push(dispatch(reduceStock(product)));
@@ -69,8 +58,6 @@ const CheckoutForm = ({ selected, token, input }) => {
       }
     }
     const responses = await Promise.all(promises);
-    console.log("hola");
-    console.log(responses);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -88,7 +75,7 @@ const CheckoutForm = ({ selected, token, input }) => {
           email: email,
           country: country,
           city: city,
-          // address: address,
+          address: address,
         }
       );
     }
@@ -208,6 +195,15 @@ export default function Stripe() {
             <input
               type="text"
               name="address"
+              className="input is-normal"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mt-5">
+            <p>City</p>
+            <input
+              type="text"
+              name="city"
               className="input is-normal"
               onChange={handleInputChange}
             />
