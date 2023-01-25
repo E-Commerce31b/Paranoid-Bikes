@@ -1,8 +1,30 @@
 import React from "react";
 import ProductCard from "./ProductCard/ProductCard.jsx";
+import { useNavigate } from "react-router-dom"
+import { useSelector, useDispatch  } from 'react-redux';
+import { useEffect } from "react";
+// import { cleanProduct } from "../redux/slices/products.js";
+import { removeAll } from "../redux/slices/filters.js";
+import { cleanCurrentPage } from "../redux/slices/products.js";
 
 const RenderProducts = ({ slicedProducts }) => {
+
+  const someProducts = useSelector((state) => state.products.someProducts)
+  const filters = useSelector((state) => state.products.filters)
+
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(filters.length > 0) {
+      console.log('entramos')
+      dispatch(cleanCurrentPage())
+    }
+    return () => dispatch(removeAll())
+  }, [dispatch, filters])
+
   const color = `#000952`;
+  
   return (
     <div
       style={{
@@ -22,6 +44,12 @@ const RenderProducts = ({ slicedProducts }) => {
           </div>
         );
       })}
+      {
+        someProducts ? 
+        <button onClick={() => navigate(-1)}>Regresar</button>
+        :
+        <></>
+      }
     </div>
   );
 };

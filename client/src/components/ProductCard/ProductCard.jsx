@@ -36,6 +36,7 @@ const ProductCard = ({ product }) => {
     });
   }
 
+  console.log(product)
   const sendToCart = () => {
       // agregar stock > count (traer estado de cart)
     if (Object.keys(user).length && product.stock > 0) {

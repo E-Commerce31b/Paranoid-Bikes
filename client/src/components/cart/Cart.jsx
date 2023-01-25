@@ -22,6 +22,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
+    console.log(selected)
     navigate("/stripe", { state: { selected: selected } });
   };
   const [total, setTotal] = useState(0);

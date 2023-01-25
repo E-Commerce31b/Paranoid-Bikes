@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../redux/slices/products.js";
+import { getProduct, cleanProduct } from "../redux/slices/products.js";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [newProduct, setNewProduct] = useState("");
   const user = useSelector((state) => state.users.user);
-
+  const searched = useSelector((state) => state.products.searched)
+  
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getProduct(newProduct));
-    if (/\d+/.test(newProduct)) {
-      navigate(`details/${newProduct}`);
-    } else {
-      navigate(`/list/${newProduct}`);
-    }
-    setNewProduct("");
+    dispatch(getProduct(newProduct))
+          console.log(searched)
+      if (searched.length === 1) {
+        console.log('navegamos')
+        navigate(`details/${searched[0]._id}`);
+      } else {
+        const categoryOfSearched = searched[0].category
+        navigate(`/list/${categoryOfSearched}`);
+      }
+      setNewProduct("");
   };
+
   /*    //uso un mismo estado product para detail y para searchbar (y en el back
         es dsitinto: una misma función para all y para searchbar) //puedo filtrar
         products como un filtro más //puedo pisar products, y desmontar al volver
@@ -37,7 +43,7 @@ export default function SearchBar() {
         <input
           className="input is-normal"
           type="text"
-          placeholder="Search by name or id..."
+          placeholder="Buscar por nombre o marca..."
           value={newProduct}
           onChange={(e) => setNewProduct(e.target.value)}
         />

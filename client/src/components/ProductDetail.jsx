@@ -6,6 +6,9 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
+import { cleanProduct } from "../redux/slices/products.js";
+import { putUserCart } from "../redux/slices/usersActions.js";
+
 import Loader from "./Loader";
 
 const ProductDetail = (props) => {
@@ -30,13 +33,17 @@ const ProductDetail = (props) => {
       setLoading(false);
     };
     data();
+    return () => {
+      dispatch(cleanProduct())
+    }
   }, [dispatch, id]);
 
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      dispatch(manageCart({ id, counter, action: "increment" }));
-
-    } else {
+      const product = bike
+      dispatch(putUserCart({ product, user, action: 'increment'}));
+      return navigate("/cart");
+    } else if(!Object.keys(user).length) {
       return navigate("/login");
     }
   };

@@ -46,6 +46,7 @@ export const putUserCart = createAsyncThunk(
   async (data) => {
     try {
       const { product, user, action} = data
+      console.log(product, user, action)
       let cart = clone(user.cart)
       let newCart = [];
       let selected = cart.find(p => p._id === product._id)
@@ -55,21 +56,26 @@ export const putUserCart = createAsyncThunk(
         for(let bike of cart) {
           newCart.push({bike: bike['_id'], count: bike['count']})
         }
+        console.log(newCart)
       } else if(action === 'increment') {
         selected = clone(product)
         selected.count = 1
+        console.log(selected)
         for(let bike of cart) {
           newCart.push({bike: bike['_id'], count: bike['count']})
         }
-        newCart.push({bike: selected.id, count: selected.count})
+        console.log(newCart)
+        newCart.push({bike: selected._id, count: selected.count})
+        console.log(newCart)
       } else if(action === 'decrement' && selected.count > 1) {
         selected.count -= 1
         for(let bike of cart) {
           newCart.push({bike: bike['_id'], count: bike['count']})
         }
-      } else if(action === 'decrement' && selected.count > 1) {
+      } else if(action === 'decrement' && selected.count === 0) {
         return
       }
+      console.log(newCart)
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/users/${user._id}`,
         {

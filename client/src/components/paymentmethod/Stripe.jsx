@@ -25,6 +25,12 @@ const CheckoutForm = ({ selected, token, input}) => {
   console.log(user);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.products)
   useEffect(() => {
     let amount = 0;
     for (let product of selected) {
@@ -33,22 +39,34 @@ const CheckoutForm = ({ selected, token, input}) => {
     setTotalPrice(amount);
   }, [selected]);
 
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const dispatch = useDispatch();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let promises = [];
-    // let amount = 0;
+    let bikes = [];
+
+    for(let bike of selected) {
+      for(let product of products) {
+        if(bike._id === product._id) bikes.push(product)
+      }
+    }
+    let amount = 0;
     console.log(selected)
+    console.log(bikes)
     for (let product of selected) {
-      console.log(product);
-      // console.log(token)
-      promises.push(dispatch(reduceStock(product)));
-      promises.push(dispatch(count(product)));
-      // amount += product.priceAmount
+      console.log(selected)
+      for (let bike of bikes) {
+        console.log(bikes)
+        console.log(bike._id)
+        if(product._id === bike._id) {
+          console.log(product._id);
+          console.log(product);
+          console.log(bike._id)
+          console.log(bike)
+          const data = {product, bike}
+          promises.push(dispatch(count(data)))
+          promises.push(dispatch(reduceStock(product)))
+        }
+      }
     }
     const responses = await Promise.all(promises);
     console.log("hola");
@@ -75,7 +93,7 @@ const CheckoutForm = ({ selected, token, input}) => {
         }
       );
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -121,7 +139,6 @@ const CheckoutForm = ({ selected, token, input}) => {
 export default function Stripe() {
   const { state } = useLocation();
   const token = useSelector((state) => state.admins.token)
-
   const [error, setError] = useState("");
   const [input, setInput] = useState({
     // name: "",
@@ -131,6 +148,7 @@ export default function Stripe() {
     address: "",
   });
 
+  console.log(state)
   const [formErrors, setFormErrors] = useState({
     // name: "",
     email: "",
@@ -146,7 +164,6 @@ export default function Stripe() {
     // setFormErrors(validate({ ...input, [property]: value }));
   };
 
-  console.log(input)
   return (
     <div className="columns is-centered">
       <div className="column is-5 mt-5 has-background-white">
