@@ -5,14 +5,31 @@ import { useSelector, useDispatch } from "react-redux";
 import "./bikeCreate.css";
 import Swal from "sweetalert2";
 
-export const validate = (input) => {
-  let errors = {};
-  if (!input.name) {
-    errors.name = "ingrese nombre de bici";
+
+function validate(input) {
+  var errors = {};
+  if(!input.name){
+      errors.name = 'El nombre es requerido';
+  } else if (input.name.length > 100 ){
+      errors.name = "Nombre demasiado largo (Max = 100 caracteres)"
+  }
+  if(!input.category) {
+      errors.description = 'Requiere Descripcion';
+  }if(!input.year){
+      errors.year = 'Requiere año'
+  }if(!input.gender[0]) {
+      errors.gender = "Genero es requerido"
+  }if(!input.image) {
+      errors.image = "Requiere una imagen"
+  }  if (!input.priceAmount){
+      errors.priceAmount = 'Precio es requerido'
+  }if (!input.maker){
+    errors.maker='Requiere una marca'
+  }if(!input.category[0]) {
+    errors.category = "Categoria es requerida"
   }
   return errors;
 };
-
 export default function BikeCreate() {
   const form = useRef();
   const dispatch = useDispatch();
@@ -59,6 +76,12 @@ export default function BikeCreate() {
       setError("");
 
       dispatch(postProduct(input));
+      Swal.fire({
+        title: 'Listo!',
+        text: 'Bicicleta creada con exito',
+        icon: 'success',
+        confirmButtonText: 'Continuar'
+      })
       navigate("/panel"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
@@ -118,88 +141,138 @@ export default function BikeCreate() {
             {error && (
               <p className="notification is-danger is-light ">{error}</p>
             )}
-            {formErrors.name && (
+           
+            <form ref={form} onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="label font_family" >Nombre</label>
+      
+            <input
+              className="input"
+              type="text"
+              name="name"
+              required
+              onChange={handleInputChange}
+            ></input>
+                  {formErrors.name && (
               <p className="is-size-7-desktop notification is-danger is-light ">
                 {formErrors.name}
               </p>
             )}
-            {formErrors.gender && (
+          </div>
+         {/*  <div className="field">
+            <label className="label font_family">Genero</label>
+            <input
+              className="input"
+              type="gender"
+              name="gender"
+            
+              onChange={handleInputChange}
+            ></input>
+          </div> */}
+
+                 <div className="field">
+                  
+                 <label className="label font_family" >Genero: </label>
+                    <select name='gender' onChange={(e) => handleInputChange(e)} required>
+                        <option hidden value="gender" >---</option>
+                        {
+                           allGenders.map((e, i) => (
+                                <option key={i} value={e}>{e}</option>
+                            ))
+                        }
+                    </select>
+                    {formErrors.gender && (
               <p className="is-size-7-desktop notification is-danger is-light">
                 {formErrors.gender}
               </p>
             )}
-            <form ref={form} onSubmit={handleSubmit}>
-              <div className="field">
-                <label className="label font_family">Nombre</label>
-                <input
-                  className="input"
-                  type="name"
-                  name="name"
-                  onChange={handleInputChange}
-                ></input>
-              </div>
-              <div className="flex is-flex-direction-row">
-                <div className="field pr-6">
-                  <label className="label font_family">Genero: </label>
-                  <select name="gender" onChange={(e) => handleInputChange(e)}>
-                    <option hidden value="gender">
-                      ---
-                    </option>
-                    {allGenders.map((e, i) => (
-                      <option key={i} value={e}>
-                        {e}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="field">
-                  <label className="label font_family">Categoria: </label>
-                  <select
-                    name="category"
-                    onChange={(e) => handleInputChange(e)}
-                  >
-                    <option hidden value="category">
-                      ---
-                    </option>
-                    {allCategories.map((e, i) => (
-                      <option key={i} value={e}>
-                        {e}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="field">
-                <label className="label font_family">Marca</label>
-                <input
-                  className="input"
-                  type="maker"
-                  name="maker"
-                  /*  ref={emailRef} */
-                  onChange={handleInputChange}
-                ></input>
-              </div>
-              <div className="field">
-                <label className="label font_family">Precio</label>
-                <input
-                  className="input"
-                  type="priceAmount"
-                  name="priceAmount"
-                  onChange={handleInputChange}
-                ></input>
-              </div>
+                 </div>
+                 <div className="field">
+                 <label className="label font_family">Categoria: </label>
+                    <select name='category' onChange={(e) => handleInputChange(e)} required>
+                        <option hidden value="category">---</option>
+                        {
+                           allCategories.map((e, i) => (
+                                <option key={i} value={e}>{e}</option>
+                            ))
+                        }
+                    </select>
+                    {formErrors.category && (
+              <p className="is-size-7-desktop notification is-danger is-light">
+                {formErrors.category}
+              </p>
+            )}
+                 </div>
+                   {/*  <div className="field">
+                        {allGenders.map((e,i) =>
+                            <div key={e} className="field">
+                               
+                                <div key={e}>
+                                    {e}
+                                </div>
+                                <div key={i}  type="button"  onClick={() => {
+                                    handleDeleteGender(e)
+                                }}>x</div>
+                            </div>)}
+                    </div> */}
+                  
+                  
+          
+            
+        
+          <div className="field">
+            <label className="label font_family">Marca</label>
+            <input
+              className="input"
+              type="maker"
+              name="maker"
+              /*  ref={emailRef} */
+              onChange={handleInputChange}
+              required
+            ></input>
+             
+             {formErrors.maker && (
+              <p className="is-size-7-desktop notification is-danger is-light">
+                {formErrors.maker}
+              </p>
+            )}
+          </div>
+          <div className="field">
+            <label className="label font_family">Precio</label>
+            <input
+              className="input"
+              type="priceAmount"
+              name="priceAmount"
+             required
+              onChange={handleInputChange}
+            ></input>
+              
+              {formErrors.priceAmount && (
+              <p className="is-size-7-desktop notification is-danger is-light">
+                {formErrors.priceAmount}
+              </p>
+            )}
+          </div>
 
-              <div className="field">
-                <label className="label font_family">
-                  Fecha de lanzamiento
-                </label>
-                <input
-                  className="input"
-                  type="year"
-                  onChange={handleInputChange}
-                  name="year"
-                ></input>
-              </div>
+
+          <div className="field">
+            <label className="label font_family">Año de lanzamiento</label>
+            <input
+              className="input"
+              type="year"
+            required
+              onChange={handleInputChange}
+              placeholder="ej: 2021"
+              name="year"
+            ></input>
+ 
+               {formErrors.year && (
+                  <p className="is-size-7-desktop notification is-danger is-light">
+                    {formErrors.year}
+                  </p>
+                )}
+            
+          </div>
               <div className="pb-6 flex is-flex-direction-row">
                 <div>
                   <label className="label_image" for="imagen">
