@@ -5,10 +5,12 @@ import Filters from "./Filters.jsx";
 import Sorters from "./Sorters.jsx";
 import RenderProducts from "./RenderProducts.jsx";
 import Pagination from "../components/pagination/Pagination.jsx";
+import Loader from "../components/Loader";
 
 const ProductsList = () => {
   const filtered = useSelector((state) => state.products.filtered);
   const currentPage = useSelector((state) => state.products.currentPage);
+  const status = useSelector((state) => state.products.status);
 
   const dispatch = useDispatch();
 
@@ -25,6 +27,7 @@ const ProductsList = () => {
   console.log("filtered", filtered);
   return (
     <div>
+      <Loader loading={status}></Loader>
       <div className="flex is-flex-direction-row  is-justify-content-space-evenly">
         <div>
           <Filters />
