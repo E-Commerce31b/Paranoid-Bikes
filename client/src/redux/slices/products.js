@@ -135,7 +135,7 @@ export const productsSlice = createSlice({
           return 0;
         });
       }
-    },
+    },//
     sortByPrice: (state, { payload }) => {
       if (payload === "asc") {
         state.filtered = state.filtered.sort(function (a, b) {
