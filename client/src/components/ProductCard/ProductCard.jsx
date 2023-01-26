@@ -94,7 +94,7 @@ const ProductCard = ({ product }) => {
           {params?.pathname === "/cart" ? (
             <div className="flex is-justify-content-center is-align-items-center">
               <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-                <Link to={`/details/${product.id}`}>
+                <Link to={`/details/${product._id}`}>
                   <Button className="mr-3" variant="outlined">
                     Ver más
                   </Button>

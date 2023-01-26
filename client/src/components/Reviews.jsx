@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { TextField, Button } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,29 +11,29 @@ export default function Reviews() {
     const reviews = useSelector(state => state.reviews.reviews);
     const { id } = useParams();
     const [commentText, setCommentText] = useState('');
+    const [submited, setSubmited] = useState(false);
     const dispatch = useDispatch();
     console.log('ID',id);
     
 
-    useEffect(()=>{
-        dispatch(getReviews())
-    },[])
+    
 
     const handleSubmit = (e) => {
+    setSubmited(!submited)
     e.preventDefault();
     const bike = id
     const author = user._id
     const text = commentText
     const data = { text, author, bike }
-    console.log(data);
     dispatch(postReview(data));
     setCommentText('');
 }
-
+useEffect(() => {
+        dispatch(getReviews());        
+}, [submited])
 
 const reviewsProduct = () => {
     if(reviews.length){
-        console.log('HOLA',id);
         const commentBike = reviews.filter(item => item.bike._id === id)
         return commentBike
     }else{
@@ -46,14 +46,14 @@ const reviewsProduct = () => {
 
     return (
         <>
-            <h2>Comentarios del producto</h2>
+            <h1>Comentarios del producto</h1>
             <ul>
                 {/* {reviewsProduct().map()}
                 {console.log(reviewsProduct)} */}
-                {reviewsProduct().map((bike, i) => {
-                    console.log('BIKE',bike);
+                {reviewsProduct().map((bike) => {
+                    console.log(bike);
                     return(
-                        <li key={i}>{bike.text}</li>
+                        <li ><p><strong>{bike.text}</strong>  {bike.author.email}</p></li>
                         )
                     })}
                     </ul>
@@ -64,7 +64,7 @@ const reviewsProduct = () => {
                     value={commentText}
                     onChange={e => setCommentText(e.target.value)}
                 />
-                <button type="submit">Submit Comment</button>
+                <Button type="submit" >Submit Comment</Button>
             </form>
         </>
     )
