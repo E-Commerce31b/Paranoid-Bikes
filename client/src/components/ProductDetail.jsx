@@ -94,11 +94,11 @@ const ProductDetail = (props) => {
                   </button>
                 </NavLink>
               </Box>
-              {Object.keys(user).length ? <Reviews /> : <></>}
             </div>
           </div>
         </div>
       </div>
+              {Object.keys(user).length ? <Reviews /> : <></>}
     </>
   );
 };

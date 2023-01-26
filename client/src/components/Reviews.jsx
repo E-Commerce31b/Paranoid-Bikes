@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, ListItem, ListItemText, List, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,34 +39,41 @@ export default function Reviews() {
   };
   return (
     <>
-      <h1>Comentarios del producto</h1>
-      <ul>
-        {/* {reviewsProduct().map()}
-                {console.log(reviewsProduct)} */}
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div className="column is-6 has-background-white border-radius">
+      <h1 className="title is-5 has-text-black has-text-centered mt-3 mb-3">Comentarios del producto</h1>
+      <List>
         {reviewsProduct().length ? (
           reviewsProduct().map((bike) => {
-            console.log(bike);
+            console.log(bike.author.email);
             return (
-              <li>
-                <p>
-                  <strong>{bike.text}</strong> {bike.author.email}
-                </p>
-              </li>
+              <div style={{fontFamily:'sans-serif', fontSize:18}}>
+                <div>
+                  <p><strong>{bike.author.email} :</strong> </p>
+                  <ul style={{marginLeft:20}}>{" "}{bike.text}</ul>
+                  <br />
+                </div>
+              </div>
             );
           })
-        ) : (
-          <div>No hay comentarios para este producto</div>
-        )}
-      </ul>
+          ) : (
+            <div>No hay comentarios para este producto</div>
+            )}
+      </List>
+      <div>
       <form onSubmit={handleSubmit}>
-        <TextField
+        <textarea className="textarea is-small"
           label="Deje su comentario"
           variant="outlined"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-        />
-        <Button type="submit">Submit Comment</Button>
+          />
+        <Button className='mt-3 mb-3' variant='contained' type="submit">Enviar comentario</Button>
       </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
