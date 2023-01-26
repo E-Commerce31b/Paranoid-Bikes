@@ -75,7 +75,7 @@ const ProductDetail = (props) => {
                 </p>
               </div>
               <div className="card-content">
-                <p className="p_detail">Modelo: {bike.created} </p>
+                <p className="p_detail">Modelo: {bike.createdAt} </p>
                 <p className="p_detail">Fabricante: {bike.maker} </p>
                 <p className="p_detail">
                   Genero: {bike.genre ? bike.genre : "Sin Genero"}
