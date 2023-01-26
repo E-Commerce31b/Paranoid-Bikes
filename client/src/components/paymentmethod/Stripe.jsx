@@ -14,6 +14,7 @@ import { reduceStock, count } from "../../redux/slices/productsActions.js";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cleanCart } from "../../redux/slices/usersActions.js";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(
   "pk_test_51MEv4bIJKT77FNwAfDu9uVLRiTpAaVatrh4lOfZHkKKWES4BBbfgJt7LToCRgH75zkbApxJB8tHPeoLq0mkLi5Vx00wG3er93H"
@@ -65,7 +66,7 @@ const CheckoutForm = ({ selected, token, input }) => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    console.log(!error)
+    console.log(!error);
     if (!error) {
       const { email, country, city, address } = input;
       const { id } = paymentMethod;
@@ -84,6 +85,11 @@ const CheckoutForm = ({ selected, token, input }) => {
 
     dispatch(cleanCart(user));
     navigate("/orders");
+    Swal.fire({
+      title: "Listo!",
+      text: `Compra exitosa`,
+      confirmButtonText: "Aceptar",
+    });
   };
 
   return (
@@ -96,9 +102,6 @@ const CheckoutForm = ({ selected, token, input }) => {
         <h3 className="is-size-3 has-text-primary ">$ {totalPrice} usd</h3>
       </div>
       <div className="container pt-5">
-         <button className="button is-primary btn_stripe flex is-align-items-flex-center">
-            Comprar
-          </button>
         <button className="button is-primary btn_stripe flex is-align-items-flex-center">
           Comprar
         </button>
