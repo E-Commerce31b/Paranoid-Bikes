@@ -75,16 +75,17 @@ const ProductDetail = (props) => {
                 </p>
               </div>
               <div className="card-content">
-                <p className="p_detail">Modelo: {bike.created} </p>
+                <p className="p_detail">Modelo: {bike.year} </p>
                 <p className="p_detail">Fabricante: {bike.maker} </p>
+                <p className="p_detail">Categoría: {bike.category} </p>
                 <p className="p_detail">
-                  Genero: {bike.genre ? bike.genre : "Sin Genero"}
+                  Genero: {bike.gender ? bike.gender : "Sin Genero"}
                 </p>
                 <p className="p_detail">
                   Precio: {bike.priceAmount} {bike.priceCurrency}
                 </p>
                 <p className="p_detail">
-                  eBike: {bike.type ? "Si es eBike" : "No es eBike"}
+                  eBike: {bike.isEBike ? "Si es eBike" : "No es eBike"}
                 </p>
               </div>
               <Box sx={{ p: 2 }}>
