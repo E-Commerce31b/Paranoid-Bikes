@@ -35,7 +35,7 @@ export default function ContactComponent(props) {
           style={{ borderRadius: "10px" }}
         >
           <form
-            action="https://formsubmit.co/ammadeomoreno@gmail.com"
+            action="https://formsubmit.co/germanezequielhorianski@gmail.com"
             method="POST"
           >
             <div className="field">

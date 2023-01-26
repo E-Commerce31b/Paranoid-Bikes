@@ -100,14 +100,11 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Facundo</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es <strong className="has-text-white">Facundo</strong>{" "}
+                Desarrollador Frondtend. De Buenos Aires, Argentina.
+                conociminetos de React js, Javascript, CSS y Redux. Se encargo
+                de Estilos, cards y listado de productos, y ayudó en el
+                dashboard Y las reviews
               </p>
             </div>
           </div>
@@ -218,14 +215,15 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Juan.</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es <strong className="has-text-white">Juan.</strong> Mecánico
+                industrial apasionado por el desarrollo front end. Se encargó de
+                la navegación entre componentes, aportando tanto en la parte de
+                la UI/UX comno en la diligencia del proyecto, tuvo aportes en el
+                debug de la página y participó en en la realización del panel
+                admin tanto como en la estructura como en la lógica tuvo
+                colaboración general con todos los compañeros del proyecto. Hizo
+                la lógica del guardado en la nube de las imagenes por medio de
+                la plataforma Cloudinary.
               </p>
             </div>
           </div>
@@ -242,14 +240,11 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Rodrigo</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es{" "}
+                <strong className="has-text-white">Rodrigo Santesteban</strong>
+                El es Rodrigo. Desarrollador Back-End, responsable de la
+                creación de la base de datos y del servidor, de la pasarella de
+                pagos y del deploy de back.
               </p>
             </div>
           </div>
