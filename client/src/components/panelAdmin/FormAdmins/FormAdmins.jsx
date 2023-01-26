@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import emailjs from "emailjs-com";
 import { postAdmin } from "../../../redux/slices/adminActions.js";
 import Swal from "sweetalert2";
@@ -37,7 +37,8 @@ export default function FormAdmins() {
   const passwordConfirmRef = useRef();
 
   const { signup, googleSignUp } = useAuth();
-
+  const token = useSelector((state) => state.admins.token);
+  console.log("token", token);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [boxState, setBoxState] = useState(false);
@@ -46,7 +47,6 @@ export default function FormAdmins() {
     last_name: "",
     country: "",
     city: "",
-
     email: "",
     password: "",
   });
@@ -70,11 +70,11 @@ export default function FormAdmins() {
   };
 
   async function handleSubmit(e) {
+    console.log("entraaaaaaaaaaa");
     e.preventDefault();
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
       return setError("Contraseña no coincide");
 
-    if (!boxState) return setError("Por favor aceptar términos y condiciones");
     try {
       setError("");
       setLoading(true);
@@ -84,15 +84,16 @@ export default function FormAdmins() {
         passwordRef.current.value,
         passwordConfirmRef.current.value
       );
+      const data = { input, token };
       {
-        dispatch(postAdmin(input));
+        dispatch(postAdmin(data));
         Swal.fire({
-          title: 'Listo!',
-          text: 'Usuario Admin creado con exito',
-          icon: 'success',
-          confirmButtonText: 'Continuar'
-        })
-        navigate("/panel"); 
+          title: "Listo!",
+          text: "Usuario Admin creado con exito",
+          icon: "success",
+          confirmButtonText: "Continuar",
+        });
+        navigate("/panel");
         setInput({
           /*   email: "",
           password: "", */
@@ -121,19 +122,6 @@ export default function FormAdmins() {
       navigate("/user"); /// cambiar a ruta user
     } catch {
       setError("Error al crear la cuenta");
-    }
-  }
-
-  async function googleSubmit(e) {
-    e.preventDefault();
-    if (!boxState) return setError("Por favor aceptar términos y condiciones");
-    try {
-      setError("");
-      setLoading(true);
-      await googleSignUp();
-      navigate("/user"); /// cambiar a ruta user
-    } catch {
-      setError("Error al crear la cuenta, intente nuevamente por favor");
     }
   }
 
@@ -214,15 +202,13 @@ export default function FormAdmins() {
                 ></input>
               </div>
               <div className="buttons has-text-centered">
-                <p className="button is-primary font_family" type="submit">
+                <button className="button is-primary font_family" type="submit">
                   Crear
-                </p>
+                </button>
 
-                <Link to="/">
-                  <p className="button font_family is-warning" type="submit">
-                    Cancelar
-                  </p>
-                </Link>
+                <p className="button font_family is-warning" type="submit">
+                  Cancelar
+                </p>
               </div>
             </form>
             <br />

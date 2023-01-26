@@ -6,17 +6,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../pagination/Pagination.jsx";
 import Stock from "./Stock.jsx";
 import { NavLink, useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.jsx";
 import detalle from "../../../assets/Detalle.png";
+import { getProducts } from "../../../redux/slices/productsActions.js";
 
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
   const currentPage = useSelector((state) => state.products.currentPage);
   const params = useLocation();
+  const dispatch = useDispatch();
   const slicedProducts = () => {
     // if(product) return product;
     if (bikes) {
@@ -28,166 +30,183 @@ export default function Products() {
     return bikes.slice(0, 9);
   };
   console.log("bikes", bikes);
+  React.useEffect(() => {
+    dispatch(getProducts());
+  }, [bikes]);
 
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
-
       <div className="panel">
         <div className="AppGlass">
           <div className="py-3">
-        {params?.pathname === "/productos" ? <Sidebar /> : <></>}
+            {params?.pathname === "/productos" ? <Sidebar /> : <></>}
           </div>
-      <div className="py-6">
+          <div className="py-6">
+            <div className="Table">
+              {params?.pathname === "/panel" ? (
+                <div className="column has-text-centered my-6">
+                  <h1 className="title is-3 font_family  mb-4">
+                    Vista Previa Productos
+                  </h1>
+                </div>
+              ) : (
+                <div className="column has-text-centered">
+                  <h1 className="title is-3 font_family my-3 mb-4 ">
+                    Lista de Bicicletas
+                  </h1>
+                </div>
+              )}
 
-      <div className="Table">
-        {params?.pathname === "/panel" ? (
-          <div className="column has-text-centered my-6">
-            <h1 className="title is-3 font_family  mb-4">
-              Vista Previa Productos
-            </h1>
-          </div>
-        ) : (
-          <div className="column has-text-centered">
-            <h1 className="title is-3 font_family my-3 mb-4 ">
-              Lista de Bicicletas
-            </h1>
-          </div>
-        )}
-
-        <div className="columns">
-          <TableContainer
-            component={Paper}
-            style={{
-              boxShadow: "0px 13px 20px 0px #80808029",
-              padding: "30px",
-            }}
-            >
-            <Table
-              sx={{ minWidth: 650 }}
-              aria-label="simple table"
-              className="ml-4 mr-2"
-            >
-              <TableHead>
-                <TableRow className="is-size-4 has-text-weight-bold">
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    Nombre
-                  </TableCell>
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    Id
-                  </TableCell>
-                  {params?.pathname === "/productos" ? (
-                    <TableCell className="is-size-4 has-text-weight-bold">
-                      Stock
-                    </TableCell>
-                  ) : (
-                    <></>
-                  )}
-
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    Detalle
-                  </TableCell>
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    Imagen
-                  </TableCell>
-                  {params?.pathname === "/productos" ? (
-                    <TableCell className="is-size-4 has-text-weight-bold">
-                      Fecha de Posteo
-                    </TableCell>
-                  ) : (
-                    <></>
-                  )}
-
-                  <TableCell className="is-size-4 has-text-weight-bold">
-                    # Vendidas
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {params?.pathname === "/panel"
-                  ? productsSlice().map((product) => (
-                      <TableRow
-                        key={product.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {product.name}
+              <div className="columns">
+                <TableContainer
+                  component={Paper}
+                  style={{
+                    boxShadow: "0px 13px 20px 0px #80808029",
+                    padding: "30px",
+                  }}
+                >
+                  <Table
+                    sx={{ minWidth: 650 }}
+                    aria-label="simple table"
+                    className="ml-4 mr-2"
+                  >
+                    <TableHead>
+                      <TableRow className="is-size-4 has-text-weight-bold">
+                        <TableCell className="is-size-4 has-text-weight-bold">
+                          Nombre
                         </TableCell>
-                        <TableCell>{product.id}</TableCell>
+                        <TableCell className="is-size-4 has-text-weight-bold">
+                          Id
+                        </TableCell>
                         {params?.pathname === "/productos" ? (
-                          <TableCell>
-                            <Stock />
+                          <TableCell className="is-size-4 has-text-weight-bold">
+                            Stock
                           </TableCell>
                         ) : (
                           <></>
                         )}
 
-                        <TableCell className="Details">
-                          <NavLink to={`/details/${product.id}`}>
-                            <img src={detalle} alt="Not found" width={30} />
-                          </NavLink>
+                        <TableCell className="is-size-4 has-text-weight-bold">
+                          Detalle
                         </TableCell>
-                        <TableCell className="Details">
-                          <div className="">
-                            <img
-                              src={product.image}
-                              alt="Not found"
-                              width={80}
-                            />
-                          </div>
+                        <TableCell className="is-size-4 has-text-weight-bold">
+                          Imagen
                         </TableCell>
-                        <TableCell component="th" scope="row">
-                          {product.count}
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  : slicedProducts().map((bike) => (
-                      <TableRow
-                        key={bike.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {bike.name}
-                        </TableCell>
-                        <TableCell align="left">{bike.id}</TableCell>
-                        <TableCell align="left">
-                          <Stock id={bike.id} />
-                        </TableCell>
-                        <TableCell align="left" className="Details">
-                          <NavLink to={`/details/${bike.id}`}>
-                            <img src={detalle} alt="Not found" width={30} />
-                          </NavLink>
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          <div className="">
-                            <img src={bike.image} alt="Not found" width={80} />
-                          </div>
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          {bike.createdAt.substring(0, 9)}
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          {bike.count}
+                        {params?.pathname === "/productos" ? (
+                          <TableCell className="is-size-4 has-text-weight-bold">
+                            Stock
+                          </TableCell>
+                        ) : (
+                          <></>
+                        )}
+
+                        <TableCell className="is-size-4 has-text-weight-bold">
+                          # Vendidas
                         </TableCell>
                       </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-        {params?.pathname === "/productos" ? (
-          <div className="columns is-centered mb-4">
-            <Pagination currentPage={currentPage} filtered={bikes} />
-          </div>
-        ) : (
-          <></>
-          )}
-          </div>
-          </div>
+                    </TableHead>
+                    <TableBody>
+                      {params?.pathname === "/panel"
+                        ? productsSlice().map((product) => (
+                            <TableRow
+                              key={product.name}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {product.name}
+                              </TableCell>
+                              <TableCell>{product._id}</TableCell>
+                              {params?.pathname === "/productos" ? (
+                                <TableCell>
+                                  <Stock id={product._id} />
+                                </TableCell>
+                              ) : (
+                                <></>
+                              )}
+
+                              <TableCell className="Details">
+                                <NavLink to={`/details/${product._id}`}>
+                                  <img
+                                    src={detalle}
+                                    alt="Not found"
+                                    width={30}
+                                  />
+                                </NavLink>
+                              </TableCell>
+                              <TableCell className="Details">
+                                <div className="">
+                                  <img
+                                    src={product.image}
+                                    alt="Not found"
+                                    width={80}
+                                  />
+                                </div>
+                              </TableCell>
+                              <TableCell component="th" scope="row">
+                                {product.count}
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        : slicedProducts().map((bike) => (
+                            <TableRow
+                              key={bike.name}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {bike.name}
+                              </TableCell>
+                              <TableCell align="left">{bike._id}</TableCell>
+                              <TableCell align="left">
+                                <Stock id={bike._id} />
+                              </TableCell>
+                              <TableCell align="left" className="Details">
+                                <NavLink to={`/details/${bike._id}`}>
+                                  <img
+                                    src={detalle}
+                                    alt="Not found"
+                                    width={30}
+                                  />
+                                </NavLink>
+                              </TableCell>
+                              <TableCell component="th" scope="row">
+                                <div className="">
+                                  <img
+                                    src={bike.image}
+                                    alt="Not found"
+                                    width={80}
+                                  />
+                                </div>
+                              </TableCell>
+                              <TableCell component="th" scope="row">
+                                {bike.stock}
+                              </TableCell>
+                              <TableCell component="th" scope="row">
+                                {bike.count}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+              {params?.pathname === "/productos" ? (
+                <div className="columns is-centered mb-4">
+                  <Pagination currentPage={currentPage} filtered={bikes} />
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
+          </div>
+        </div>
       </div>
       <div></div>
     </div>

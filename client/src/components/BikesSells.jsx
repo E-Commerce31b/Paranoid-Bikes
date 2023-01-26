@@ -7,10 +7,8 @@ import logo from "../assets/logoProfile.png";
 
 const BikesSells = () => {
   const counter = useSelector((state) => state.products.products);
-  console.log(counter);
   const usersArray = useSelector((state) => state.users.users);
   const adminsArray = useSelector((state) => state.admins.admins);
-  console.log(counter);
   const [users, setUsers] = useState("");
   const [bikes, setBikes] = useState(0);
   const [admins, setAdmins] = useState("");
@@ -22,22 +20,48 @@ const BikesSells = () => {
       },
       plotOptions: {
         bar: {
-          horizontal: true,
+          horizontal: false,
         },
       },
       xaxis: {
-        categories: ["Road", "Mountain", "Urban"],
+        categories: [],
       },
     },
     series: [
       {
         name: "series-1",
-        data: [30, 40, 45],
+        data: [],
       },
     ],
   });
+  console.log(state);
+  function bestSellers() {
+    console.log(counter);
+    let arr = [];
+    let arrNames = [];
+    let arrCount = [];
+    let total = [];
+    for (let i = 0; i < counter.length; i++) {
+      if (counter[i].count > 0) {
+        arr.push(counter[i]);
+      }
+    }
+    console.log(arr);
 
+    const arrSorted = arr.sort((a, b) => a.count - b.count);
+    console.log(arrSorted);
+    for (let i = 0; i < arrSorted.length; i++) {
+      arrNames.push(arrSorted[i].name);
+      arrCount.push(arrSorted[i].count);
+    }
+    total.push(arrNames);
+    total.push(arrCount);
+    return total;
+  }
+  bestSellers();
   useEffect(() => {
+    const dataBikes = bestSellers();
+    console.log(dataBikes);
     function numberBikes() {
       const initialValue = 0;
       const counterBike = counter.reduce(
@@ -47,6 +71,28 @@ const BikesSells = () => {
       console.log(counterBike);
       return counterBike;
     }
+    console.log(dataBikes[0]);
+    setState({
+      options: {
+        chart: {
+          type: "bar",
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+          },
+        },
+        xaxis: {
+          categories: dataBikes[0],
+        },
+      },
+      series: [
+        {
+          name: "series-1",
+          data: dataBikes[1],
+        },
+      ],
+    });
 
     setUsers(usersArray);
     setBikes(numberBikes());
@@ -55,10 +101,13 @@ const BikesSells = () => {
 
   return (
     <>
+      <div className="column has-text-centered has-text-white">
+        <h1 className="title is-2 font_family mt-5">Analiticas</h1>
+      </div>
       <div className="is-flex is-justify-content-center">
         <div class="card m-4" style={{ width: "300px" }}>
-          <div class="card-image">
-            <figure class="image is-4by3">
+          <div class="card-image mt-3 has-text-centered">
+            <figure class="image is-96x96 is-inline-block">
               <img src={img} alt="Placeholder image" />
             </figure>
           </div>
@@ -77,8 +126,8 @@ const BikesSells = () => {
         </div>
 
         <div class="card m-4" style={{ width: "300px" }}>
-          <div class="card-image">
-            <figure class="image is-4by3">
+          <div class="card-image mt-3 has-text-centered">
+            <figure class="image is-96x96 is-inline-block">
               <img src={bikeImg} alt="Placeholder image" />
             </figure>
           </div>
@@ -97,8 +146,8 @@ const BikesSells = () => {
         </div>
 
         <div class="card m-4" style={{ width: "300px" }}>
-          <div class="card-image">
-            <figure class="image is-4by3">
+          <div class="card-image mt-3 has-text-centered">
+            <figure class="image is-96x96  is-inline-block">
               <img src={logo} alt="Placeholder image" />
             </figure>
           </div>
@@ -116,12 +165,27 @@ const BikesSells = () => {
           </div>
         </div>
       </div>
-      <Chart
-        options={state.options}
-        series={state.series}
-        type="bar"
-        width="500"
-      />
+
+      <div className="column has-text-centered has-text-white">
+        <h1 className="title is-3 font_family mt-5">
+          Las bicicletas mas vendidas
+        </h1>
+      </div>
+
+      <div className="columns">
+        <div className="column is-3"></div>
+        <div
+          className="is-flex is-justify-content-center column is-6 has-background-white mt-5 mb-5"
+          style={{ borderRadius: "10px" }}
+        >
+          <Chart
+            options={state.options}
+            series={state.series}
+            type="bar"
+            width="500"
+          />
+        </div>
+      </div>
     </>
   );
 };

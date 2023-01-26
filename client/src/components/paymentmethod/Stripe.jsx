@@ -12,7 +12,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceStock, count } from "../../redux/slices/productsActions.js";
 import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { cleanCart } from "../../redux/slices/usersActions.js";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(
   "pk_test_51MEv4bIJKT77FNwAfDu9uVLRiTpAaVatrh4lOfZHkKKWES4BBbfgJt7LToCRgH75zkbApxJB8tHPeoLq0mkLi5Vx00wG3er93H"
@@ -22,14 +24,15 @@ const CheckoutForm = ({ selected, token, input }) => {
   //agregar pantalla intermedia "confirmar compra" y que le pase amount
 
   const user = useSelector((state) => state.users.user);
+  const products = useSelector((state) => state.products.products);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const stripe = useStripe();
   const elements = useElements();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const products = useSelector((state) => state.products.products);
   useEffect(() => {
     let amount = 0;
     for (let product of selected) {
@@ -39,6 +42,7 @@ const CheckoutForm = ({ selected, token, input }) => {
   }, [selected]);
 
   const handleSubmit = async (e) => {
+    console.log("entrando handlesubmit");
     e.preventDefault();
     let promises = [];
     let bikes = [];
@@ -58,19 +62,14 @@ const CheckoutForm = ({ selected, token, input }) => {
       }
     }
     const responses = await Promise.all(promises);
-    console.log('hola')
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
-    console.log(!error)
+    console.log(!error);
     if (!error) {
       const { email, country, city, address } = input;
-      console.log(email);
-      console.log(input)
       const { id } = paymentMethod;
-      console.log(id)
-      // console.log(_id)
       const { data } = await axios.post(
         `${process.env.REACT_APP_URL}/api/stripe/checkout`,
         {
@@ -83,6 +82,14 @@ const CheckoutForm = ({ selected, token, input }) => {
         }
       );
     }
+
+    dispatch(cleanCart(user));
+    navigate("/");
+    Swal.fire({
+      title: "Listo!",
+      text: `Compra exitosa`,
+      confirmButtonText: "Aceptar",
+    });
   };
 
   return (
@@ -95,11 +102,9 @@ const CheckoutForm = ({ selected, token, input }) => {
         <h3 className="is-size-3 has-text-primary ">$ {totalPrice} usd</h3>
       </div>
       <div className="container pt-5">
-        {/* <NavLink to="/"> */}
-          <button className="button is-primary btn_stripe flex is-align-items-flex-center">
-            Comprar
-          </button>
-        {/* </NavLink> */}
+        <button className="button is-primary btn_stripe flex is-align-items-flex-center">
+          Comprar
+        </button>
       </div>
     </form>
   );

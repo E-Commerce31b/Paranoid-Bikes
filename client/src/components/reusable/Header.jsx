@@ -60,7 +60,6 @@ export default function Header() {
                   ) : (
                     <></>
                     )}
-              
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">Ver Más</a>
                 <div className="navbar-dropdown">
@@ -77,8 +76,8 @@ export default function Header() {
                     </NavLink>
                   ) : (
                     <></>
-                    )}
-                    </div>
+                  )}
+                </div>
               </div>
               <div className="navbar-item">
                 {/* <div className="field has-addons paddingTop"> */}

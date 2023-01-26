@@ -94,3 +94,7 @@ body {
 .border-radius {
 border-radius: 15px;
 }
+
+.font-button {
+  font-family: inherit;
+}

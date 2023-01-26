@@ -25,7 +25,7 @@ export default function AboutUs() {
             <div className="has-text-justified">
               <p>
                 Ella es <strong className="has-text-white">Andrea</strong> y
-                después de obtener su título en liecenciatura en Inglés y
+                después de obtener su título en licenciatura en Inglés y
                 trabajar como profesora por 10 años, decidió seguir su sueño de
                 convertirse en desarrolladora web. Para ello comenzó (y
                 actualmente está culminando) sus estudios en desarrollo web en
@@ -100,14 +100,11 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Facundo</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es <strong className="has-text-white">Facundo</strong>{" "}
+                Desarrollador Frondtend. De Buenos Aires, Argentina.
+                conociminetos de React js, Javascript, CSS y Redux. Se encargo
+                de Estilos, cards y listado de productos, y ayudó en el
+                dashboard Y las reviews
               </p>
             </div>
           </div>
@@ -152,9 +149,9 @@ export default function AboutUs() {
                 Toolkit, hizo los filtros combinados, la SearchBar, las listas
                 de productos, el carrito (incluyendo la librería
                 react-toastify), la lógica de "Más Vendidos", y de "Historial".
-                Colaboró con la U.I. aportando ideas y usó . Coordinó al equipo,
-                armó la estructura del Figma (sin estilos), y realizó la demo
-                final del proyecto para aprobar la etapa de Proyecto Final del
+                Colaboró con la U.I. aportando ideas. Coordinó al equipo, armó
+                la estructura del Figma (sin estilos), y realizó la demo final
+                del proyecto para aprobar la etapa de Proyecto Final del
                 bootcamp SoyHenry.
               </p>
             </div>
@@ -172,14 +169,14 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Amadeo</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es <strong className="has-text-white">Amadeo Moreno.</strong>{" "}
+                Visitador medico y front-end developer. Ideó el nombre de la
+                marca y su logo, apuntó a crear un e-commerce con venta de
+                bicicletas que es un nicho de mercado ecologico. Armó la
+                estructura en Trello. En un principio encargó de el SignUp y
+                luego de los formularios de creacion de bicicletas y de el
+                manejo de errores, además del componente "ContactUs", y ayudando
+                a debugear la aplicacion.
               </p>
             </div>
           </div>
@@ -218,14 +215,15 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Juan.</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es <strong className="has-text-white">Juan.</strong> Mecánico
+                industrial apasionado por el desarrollo front end. Se encargó de
+                la navegación entre componentes, aportando tanto en la parte de
+                la UI/UX comno en la diligencia del proyecto, tuvo aportes en el
+                debug de la página y participó en en la realización del panel
+                admin tanto como en la estructura como en la lógica tuvo
+                colaboración general con todos los compañeros del proyecto. Hizo
+                la lógica del guardado en la nube de las imagenes por medio de
+                la plataforma Cloudinary.
               </p>
             </div>
           </div>
@@ -242,14 +240,11 @@ export default function AboutUs() {
             </div>
             <div className="has-text-justified">
               <p>
-                Él es <strong className="has-text-white">Rodrigo</strong> Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Él es{" "}
+                <strong className="has-text-white">Rodrigo Santesteban</strong>
+                El es Rodrigo. Desarrollador Back-End, responsable de la
+                creación de la base de datos y del servidor, de la pasarella de
+                pagos y del deploy de back.
               </p>
             </div>
           </div>
@@ -292,9 +287,8 @@ export default function AboutUs() {
                 Desarrollador Back-End. Responsable de la creación y
                 mantenimiento de las rutas y modelos usando ExpressJS y
                 mongoose. Responsable de la validacion de Tokens y de la
-                implementación de los baneos de usuarios y
-                administradores.También colaboró con el debugging de componentes
-                del front-end.
+                implementación de los baneos de usuarios y administradores.
+                También colaboró con el debugging de componentes del front-end.
               </p>
             </div>
           </div>

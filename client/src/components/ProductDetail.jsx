@@ -9,6 +9,8 @@ import "./ProductDetail.css";
 import { cleanProduct } from "../redux/slices/products.js";
 import { putUserCart, putUserHistory } from "../redux/slices/usersActions.js";
 import Loader from "./Loader";
+import Reviews from "./Reviews.jsx";
+import { keys } from "@mui/system";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -37,16 +39,16 @@ const ProductDetail = (props) => {
     console.log(dataHistory)
     dispatch(putUserHistory(dataHistory))
     return () => {
-      dispatch(cleanProduct())
-    }
+      dispatch(cleanProduct());
+    };
   }, [dispatch, id]);
 
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      const product = bike
-      dispatch(putUserCart({ product, user, action: 'increment'}));
+      const product = bike;
+      dispatch(putUserCart({ product, user, action: "increment" }));
       return navigate("/cart");
-    } else if(!Object.keys(user).length) {
+    } else if (!Object.keys(user).length) {
       return navigate("/login");
     }
   };
@@ -99,6 +101,7 @@ const ProductDetail = (props) => {
           </div>
         </div>
       </div>
+              {Object.keys(user).length ? <Reviews /> : <></>}
     </>
   );
 };
