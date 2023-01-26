@@ -27,8 +27,8 @@ export default function Orders() {
 
   return (
     <div>
-      <div>
-        <h2>Pedidos</h2>
+      <div className="column has-text-centered mt-3">
+        <h1 className="title is-3">Tus pedidos</h1>
       </div>
       <div>
         <RenderProducts slicedProducts={slicedProducts} />
