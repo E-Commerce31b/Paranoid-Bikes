@@ -45,22 +45,22 @@ export const getProduct = createAsyncThunk(
         `${process.env.REACT_APP_URL}/api/bikes/${_id}`
       );
       // const data = response.data;
-      return response.data;
+      const bike = response.data;
 
       return {
-          _id: q._id,
-          name: q.name,
-          category: q.category,
-          maker: q.maker,
-          created: q.year,
-          gender: q.gender,
-          count: q.count,
-          price: `${q.priceAmount} ${q.priceCurrency}`,
-          priceAmount: q.priceAmount,
-          stock: q.stock,
-          image: q.image,
-          isEBike: q.isEBike,
-          createdAt: q.createdAt
+          _id: bike._id,
+          name: bike.name,
+          category: bike.category,
+          maker: bike.maker,
+          created: bike.year,
+          gender: bike.gender,
+          count: bike.count,
+          price: `${bike.priceAmount} ${bike.priceCurrency}`,
+          priceAmount: bike.priceAmount,
+          stock: bike.stock,
+          image: bike.image,
+          isEBike: bike.isEBike,
+          createdAt: bike.createdAt
        };
     } catch (error) {
       return error.message;
