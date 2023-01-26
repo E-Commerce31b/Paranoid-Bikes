@@ -86,21 +86,44 @@ export const putUserCart = createAsyncThunk(
     } catch (error) {
       return error.message;
     }
-  }
-);
-export const removeFromCart = createAsyncThunk(
-  "users/putUserCart",
-  async (data) => {
-    try {
-      const { product, user } = data;
-      let cart = clone(user.cart);
-      console.log("carttttttttttttttt", cart);
-      let newCart = [];
-      cart = cart.filter((b) => b._id !== product._id);
-      for (let bike of cart) {
-        newCart.push({ bike: bike["_id"], count: bike["count"] });
+  },
+  );
+
+  export const putUserHistory = createAsyncThunk(
+    "users/putUserHistory",
+    async (data) => {
+      try {
+        const {user, id} = data
+        let prevHistory = clone(user.history)
+        for(let bike of prevHistory) {
+          if(bike._id === id) {
+            return user
+          }
+        }
+        const response = await axios.put(
+          `${process.env.REACT_APP_URL}/api/users/${user._id}`,
+          {
+            "history": [...prevHistory, id]
+          }
+          );
+          return response.data
+      } catch (error) {
+        return {message:error}
       }
-      const response = await axios.put(
+    }
+  )
+  export const removeFromCart = createAsyncThunk(
+    "users/putUserCart",
+    async (data) => {
+      try {
+        const { product, user} = data
+        let cart = clone(user.cart)
+        let newCart = [];
+        cart = cart.filter(b => b._id !== product._id)
+        for(let bike of cart) {
+          newCart.push({bike: bike['_id'], count: bike['count']})
+        }
+        const response = await axios.put(
         `${process.env.REACT_APP_URL}/api/users/${user._id}`,
         {
           cart: newCart,
