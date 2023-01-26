@@ -53,7 +53,7 @@ export const putReview = createAsyncThunk(
     try {
       const response = axios.put(
         `${process.env.REACT_APP_URL}api/comments/${id}`,
-        review
+        reviewText
       );
       return response.data;
     } catch (error) {
