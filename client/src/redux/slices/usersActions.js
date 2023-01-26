@@ -95,11 +95,17 @@ export const putUserCart = createAsyncThunk(
     async (data) => {
       try {
         const {user, id} = data
+        console.log("USER", user, "ID", id)
         let prevHistory = clone(user.history)
+        console.log("prevHistory", prevHistory)
         // let newHistory = [new Set()]
-        for(let bike in prevHistory) {
+        for(let bike of prevHistory) {
+          console.log(id, bike._id)
+          console.log(bike, bike._id===id)
           if(bike._id === id) {
-            return
+            console.log("bike_id", bike._id)
+            console.log('entramos')
+            return user
           }
         }
         const response = await axios.put(
