@@ -58,19 +58,23 @@ const CheckoutForm = ({ selected, token, input }) => {
       }
     }
     const responses = await Promise.all(promises);
+    console.log('hola')
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
+    console.log(!error)
     if (!error) {
       const { email, country, city, address } = input;
       console.log(email);
-
+      console.log(input)
       const { id } = paymentMethod;
+      console.log(id)
+      // console.log(_id)
       const { data } = await axios.post(
         `${process.env.REACT_APP_URL}/api/stripe/checkout`,
         {
-          id,
+          id: id,
           amount: totalPrice,
           email: email,
           country: country,
@@ -91,11 +95,11 @@ const CheckoutForm = ({ selected, token, input }) => {
         <h3 className="is-size-3 has-text-primary ">$ {totalPrice} usd</h3>
       </div>
       <div className="container pt-5">
-        <NavLink to="/">
+        {/* <NavLink to="/"> */}
           <button className="button is-primary btn_stripe flex is-align-items-flex-center">
             Comprar
           </button>
-        </NavLink>
+        {/* </NavLink> */}
       </div>
     </form>
   );
@@ -138,7 +142,6 @@ export default function Stripe() {
 
   console.log(state);
   const [formErrors, setFormErrors] = useState({
-    // name: "",
     email: "",
     country: "",
     city: "",
@@ -195,15 +198,6 @@ export default function Stripe() {
             <input
               type="text"
               name="address"
-              className="input is-normal"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mt-5">
-            <p>City</p>
-            <input
-              type="text"
-              name="city"
               className="input is-normal"
               onChange={handleInputChange}
             />
