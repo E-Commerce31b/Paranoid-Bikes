@@ -7,8 +7,7 @@ import { Box } from "@mui/material";
 import "../index.css";
 import "./ProductDetail.css";
 import { cleanProduct } from "../redux/slices/products.js";
-import { putUserCart } from "../redux/slices/usersActions.js";
-
+import { putUserCart, putUserHistory } from "../redux/slices/usersActions.js";
 import Loader from "./Loader";
 
 const ProductDetail = (props) => {
@@ -33,6 +32,10 @@ const ProductDetail = (props) => {
       setLoading(false);
     };
     data();
+    console.log(user)
+    const dataHistory = {user, id}
+    console.log(dataHistory)
+    dispatch(putUserHistory(dataHistory))
     return () => {
       dispatch(cleanProduct())
     }

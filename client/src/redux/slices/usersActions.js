@@ -88,6 +88,34 @@ export const putUserCart = createAsyncThunk(
     }
   },
   );
+
+
+  export const putUserHistory = createAsyncThunk(
+    "users/putUserHistory",
+    async (data) => {
+      try {
+        const {user, id} = data
+        let prevHistory = clone(user.history)
+        // let newHistory = [new Set()]
+        for(let bike in prevHistory) {
+          if(bike._id === id) {
+            return
+          }
+        }
+        const response = await axios.put(
+          `${process.env.REACT_APP_URL}/api/users/${user._id}`,
+          {
+            "history": [...prevHistory, id]
+          }
+          );
+          console.log(response.data)
+          return response.data
+      } catch (error) {
+        console.log(error)
+        return {message:error}
+      }
+    }
+  )
   export const removeFromCart = createAsyncThunk(
     "users/putUserCart",
     async (data) => {

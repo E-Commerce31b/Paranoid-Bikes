@@ -11,6 +11,7 @@ export default function Header() {
   const params = useLocation();
 
   const admin = useSelector((state) => state.admins.admins);
+  const user = useSelector((state) => state.users.user);
 
   return (
     <div>
@@ -52,9 +53,14 @@ export default function Header() {
               <NavLink to="/Offers" className="navbar-item">
                 <div>Ofertas</div>
               </NavLink>
-              <NavLink to="/Record" className="navbar-item">
-                <div>Historial</div>
-              </NavLink>
+              {Object.keys(user).length ? (
+                    <NavLink to="/History" className="navbar-item">
+                    <div>Historial</div>
+                    </NavLink>
+                  ) : (
+                    <></>
+                    )}
+              
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">Ver Más</a>
                 <div className="navbar-dropdown">
