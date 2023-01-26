@@ -14,6 +14,7 @@ const initialState = {
   payments: ["Transferencia", "Tarjeta de crédito"],
   favourites: [],
   filtered: [],
+  filters: [],
   currentPage: [],
   bestSellers: [],
   status: "",

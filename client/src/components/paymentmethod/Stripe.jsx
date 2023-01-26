@@ -35,7 +35,7 @@ const CheckoutForm = ({ selected, token, input }) => {
   useEffect(() => {
     let amount = 0;
     for (let product of selected) {
-      amount += product.priceAmount;
+      amount += product.priceAmount * product.count;
     }
     setTotalPrice(amount);
   }, [selected]);
@@ -51,19 +51,9 @@ const CheckoutForm = ({ selected, token, input }) => {
         if (bike._id === product._id) bikes.push(product);
       }
     }
-    let amount = 0;
-    console.log(selected);
-    console.log(bikes);
     for (let product of selected) {
-      console.log(selected);
       for (let bike of bikes) {
-        console.log(bikes);
-        console.log(bike._id);
         if (product._id === bike._id) {
-          console.log(product._id);
-          console.log(product);
-          console.log(bike._id);
-          console.log(bike);
           const data = { product, bike };
           promises.push(dispatch(count(data)));
           promises.push(dispatch(reduceStock(product)));
@@ -71,26 +61,23 @@ const CheckoutForm = ({ selected, token, input }) => {
       }
     }
     const responses = await Promise.all(promises);
-    console.log("hola");
-    console.log("responses", responses);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
+    console.log(!error)
     if (!error) {
       const { email, country, city, address } = input;
-      console.log(email);
-
       const { id } = paymentMethod;
       const { data } = await axios.post(
         `${process.env.REACT_APP_URL}/api/stripe/checkout`,
         {
-          id,
+          id: id,
           amount: totalPrice,
           email: email,
           country: country,
           city: city,
-          // address: address,
+          address: address,
         }
       );
     }
@@ -109,6 +96,9 @@ const CheckoutForm = ({ selected, token, input }) => {
         <h3 className="is-size-3 has-text-primary ">$ {totalPrice} usd</h3>
       </div>
       <div className="container pt-5">
+         <button className="button is-primary btn_stripe flex is-align-items-flex-center">
+            Comprar
+          </button>
         <button className="button is-primary btn_stripe flex is-align-items-flex-center">
           Comprar
         </button>
@@ -154,7 +144,6 @@ export default function Stripe() {
 
   console.log(state);
   const [formErrors, setFormErrors] = useState({
-    // name: "",
     email: "",
     country: "",
     city: "",
