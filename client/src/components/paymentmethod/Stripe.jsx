@@ -84,7 +84,7 @@ const CheckoutForm = ({ selected, token, input }) => {
     }
 
     dispatch(cleanCart(user));
-    navigate("/orders");
+    navigate("/");
     Swal.fire({
       title: "Listo!",
       text: `Compra exitosa`,

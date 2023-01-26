@@ -6,17 +6,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../pagination/Pagination.jsx";
 import Stock from "./Stock.jsx";
 import { NavLink, useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.jsx";
 import detalle from "../../../assets/Detalle.png";
+import { getProducts } from "../../../redux/slices/productsActions.js";
 
 export default function Products() {
   const bikes = useSelector((state) => state.products.products);
   const currentPage = useSelector((state) => state.products.currentPage);
   const params = useLocation();
+  const dispatch = useDispatch();
   const slicedProducts = () => {
     // if(product) return product;
     if (bikes) {
@@ -28,6 +30,9 @@ export default function Products() {
     return bikes.slice(0, 9);
   };
   console.log("bikes", bikes);
+  React.useEffect(() => {
+    dispatch(getProducts());
+  }, [bikes]);
 
   return (
     <div className="flex is-flex-direction-row is-justify-content-space-between">
@@ -89,7 +94,7 @@ export default function Products() {
                         </TableCell>
                         {params?.pathname === "/productos" ? (
                           <TableCell className="is-size-4 has-text-weight-bold">
-                            Fecha de Posteo
+                            Stock
                           </TableCell>
                         ) : (
                           <></>
@@ -181,7 +186,7 @@ export default function Products() {
                                 </div>
                               </TableCell>
                               <TableCell component="th" scope="row">
-                                {bike.createdAt.substring(0, 9)}
+                                {bike.stock}
                               </TableCell>
                               <TableCell component="th" scope="row">
                                 {bike.count}
