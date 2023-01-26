@@ -39,13 +39,21 @@ export const postAdmin = createAsyncThunk(
   "admin/postAdmin",
   async (newUser) => {
     try {
-      const response = await axios({
-        method: "post",
-        url: `${process.env.REACT_APP_URL}/api/admin`,
-        data: newUser,
-      });
+      const { input, token } = newUser;
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      console.log("newUser", newUser);
+      console.log("token", token);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/api/admin`,
+        input,
+        config
+      );
+      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
+      console.log("error", error);
       return error.message;
     }
   }

@@ -49,9 +49,6 @@ export default function Header() {
               <NavLink to="/BestSellers" className="navbar-item">
                 <div className="">Más vendidos</div>
               </NavLink>
-              <NavLink to="/Offers" className="navbar-item">
-                <div>Ofertas</div>
-              </NavLink>
               <NavLink to="/Record" className="navbar-item">
                 <div>Historial</div>
               </NavLink>
@@ -71,8 +68,8 @@ export default function Header() {
                     </NavLink>
                   ) : (
                     <></>
-                    )}
-                    </div>
+                  )}
+                </div>
               </div>
               <div className="navbar-item">
                 {/* <div className="field has-addons paddingTop"> */}

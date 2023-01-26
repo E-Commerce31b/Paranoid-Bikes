@@ -11,6 +11,7 @@ import { putUserCart } from "../redux/slices/usersActions.js";
 
 import Loader from "./Loader";
 import Reviews from "./Reviews.jsx";
+import { keys } from "@mui/system";
 
 const ProductDetail = (props) => {
   const dispatch = useDispatch();
@@ -35,16 +36,16 @@ const ProductDetail = (props) => {
     };
     data();
     return () => {
-      dispatch(cleanProduct())
-    }
+      dispatch(cleanProduct());
+    };
   }, [dispatch, id]);
 
   const sendToCart = () => {
     if (Object.keys(user).length) {
-      const product = bike
-      dispatch(putUserCart({ product, user, action: 'increment'}));
+      const product = bike;
+      dispatch(putUserCart({ product, user, action: "increment" }));
       return navigate("/cart");
-    } else if(!Object.keys(user).length) {
+    } else if (!Object.keys(user).length) {
       return navigate("/login");
     }
   };
@@ -93,7 +94,7 @@ const ProductDetail = (props) => {
                   </button>
                 </NavLink>
               </Box>
-              <Reviews/>
+              {Object.keys(user).length ? <Reviews /> : <></>}
             </div>
           </div>
         </div>
