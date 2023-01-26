@@ -158,21 +158,23 @@ const Login = () => {
               onChange={handleInputChange}
             ></input>
           </div>
-          <div className="buttons has-text-centered">
-            <button className="button is-primary font_family" type="submit">
-              <p>Iniciar Sesión</p>
+          <div className="  font_family ">
+            <button className="button is-primary font-button" type="submit">
+              Iniciar Sesión
             </button>
           </div>
         </form>
 
         <br />
-        <p
-          className="button is-warning font_family"
-          type="submit"
-          onClick={googleSubmit}
-        >
-          Iniciar sesión con Google
-        </p>
+        <div className="font_family">
+          <button
+            className="button is-warning  font-button"
+            type="submit"
+            onClick={googleSubmit}
+          >
+            Iniciar sesión con Google
+          </button>
+        </div>
 
         <div className="m-2 font_family">
           <Link to="/forgot-password">¿Olvido la contraseña?</Link>

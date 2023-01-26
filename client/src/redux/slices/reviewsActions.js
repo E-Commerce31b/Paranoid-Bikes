@@ -6,6 +6,7 @@ export const getReviews = createAsyncThunk("reviews/getReviews", async () => {
     const response = await axios.get(`${process.env.REACT_APP_URL}/api/comments`);
     const data = response.data
     // .sort(function (a, b) {
+    // const data = response.data.sort(function (a, b) {
     //   if (a.author.first_name < b.author.first_name) return -1;
     //   if (a.author.first_name > b.author.first_name) return 1;
     //   return 0;
@@ -37,11 +38,7 @@ export const postReview = createAsyncThunk(
     try {
       const response = axios.post(
         `${process.env.REACT_APP_URL}/api/comments`,
-        {
-          text: newReview.text,
-          author: newReview.author,
-          bike: newReview.author
-        }
+        newReview
       );
       return response.data;
     } catch (error) {
@@ -56,9 +53,7 @@ export const putReview = createAsyncThunk(
     try {
       const response = axios.put(
         `${process.env.REACT_APP_URL}api/comments/${id}`,
-        {
-          text: reviewText
-        }
+        review
       );
       return response.data;
     } catch (error) {
@@ -75,6 +70,7 @@ export const deleteReview = createAsyncThunk(
       {
         softDelete: true
       });
+
       return response.data;
     } catch (error) {
       return error.message;

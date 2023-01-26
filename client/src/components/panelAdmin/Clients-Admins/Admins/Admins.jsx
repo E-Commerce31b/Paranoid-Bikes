@@ -1,5 +1,5 @@
 import * as React from "react";
-import '../Clients/table.css'
+import "../Clients/table.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,11 +10,12 @@ import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../../pagination/Pagination";
 import { Button } from "@mui/material";
-import { getAdmins, softDeleteAdmin } from "../../../../redux/slices/adminActions";
+import {
+  getAdmins,
+  softDeleteAdmin,
+} from "../../../../redux/slices/adminActions";
 import { useEffect } from "react";
 import { useState } from "react";
-
-
 
 const makeStyle = (status) => {
   if (status === false) {
@@ -35,19 +36,16 @@ const makeStyle = (status) => {
   }
 };
 
-
-
 export default function Admins() {
   const admins = useSelector((state) => state.admins.admins);
   const currentPage = useSelector((state) => state.products.currentPage);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.admins.token)
-  const [boolean, setBoolean] = useState(false)
-  
-  useEffect(() => {
-    dispatch(getAdmins(token))
-  },[boolean])
+  const token = useSelector((state) => state.admins.token);
+  const [boolean, setBoolean] = useState(false);
 
+  useEffect(() => {
+    dispatch(getAdmins(token));
+  }, [boolean]);
 
   const slicedProducts = () => {
     if (admins) {
@@ -55,14 +53,12 @@ export default function Admins() {
     }
   };
 
-  
   const handleSoftDelete = (admin) => {
-    const data = { admin, token }
-    console.log('component',data);
-    dispatch(softDeleteAdmin(data))
-    setBoolean(!boolean)
-  }  
-
+    const data = { admin, token };
+    console.log("component", data);
+    dispatch(softDeleteAdmin(data));
+    setBoolean(!boolean);
+  };
 
   return (
     <div>
@@ -93,16 +89,20 @@ export default function Admins() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                    {admin.last_name} {admin.first_name}
+                      {admin.last_name} {admin.first_name}
                     </TableCell>
-                    <TableCell align="left">
-                      {admin.email}
-                    </TableCell>
+                    <TableCell align="left">{admin.email}</TableCell>
                     <TableCell align="left">{admin._id}</TableCell>
                     <TableCell align="left" className="Details">
-                    <span className="status" style={makeStyle(admin.softDelete)}>
-                        {admin.softDelete}</span>
-                        <Button onClick={() => handleSoftDelete(admin)}>Banear</Button>
+                      <span
+                        className="status"
+                        style={makeStyle(admin.softDelete)}
+                      >
+                        {admin.softDelete}
+                      </span>
+                      <Button onClick={() => handleSoftDelete(admin)}>
+                        {admin.softDelete ? "Desbloquear" : "Bloquear"}
+                      </Button>
                     </TableCell>
                     {/* <TableCell align="left"></TableCell> */}
                   </TableRow>
@@ -119,4 +119,3 @@ export default function Admins() {
     </div>
   );
 }
-
