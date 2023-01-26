@@ -81,7 +81,7 @@ const ProductDetail = (props) => {
                   Genero: {bike.genre ? bike.genre : "Sin Genero"}
                 </p>
                 <p className="p_detail">
-                  Precio: {bike.price} {bike.priceCurrency}
+                  Precio: {bike.priceAmount} {bike.priceCurrency}
                 </p>
                 <p className="p_detail">
                   eBike: {bike.type ? "Si es eBike" : "No es eBike"}
