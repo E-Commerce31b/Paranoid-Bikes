@@ -47,19 +47,21 @@ export const getProduct = createAsyncThunk(
       // const data = response.data;
       return response.data;
 
-      // return {
-      //   id: data._id,
-      //   name: data.name,
-      //   type: data.type,
-      //   created: data.year,
-      //   genre: data.gender,
-      //   maker: data.maker,
-      //   size: data.size,
-      //   stock: data.stock,
-      //   price: data.priceAmount,
-      //   image: data.image,
-      //   count: data.count
-      // };
+      return {
+          _id: q._id,
+          name: q.name,
+          category: q.category,
+          maker: q.maker,
+          created: q.year,
+          gender: q.gender,
+          count: q.count,
+          price: `${q.priceAmount} ${q.priceCurrency}`,
+          priceAmount: q.priceAmount,
+          stock: q.stock,
+          image: q.image,
+          isEBike: q.isEBike,
+          createdAt: q.createdAt
+       };
     } catch (error) {
       return error.message;
     }
