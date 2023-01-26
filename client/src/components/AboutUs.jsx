@@ -241,8 +241,8 @@ export default function AboutUs() {
             <div className="has-text-justified">
               <p>
                 Él es{" "}
-                <strong className="has-text-white">Rodrigo Santesteban</strong>
-                El es Rodrigo. Desarrollador Back-End, responsable de la
+                <strong className="has-text-white">Rodrigo. </strong>
+                Desarrollador Back-End, responsable de la
                 creación de la base de datos y del servidor, de la pasarella de
                 pagos y del deploy de back.
               </p>
