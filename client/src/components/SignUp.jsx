@@ -16,7 +16,12 @@ import Swal from "sweetalert2";
 
 export const validate = (input) => {
   let errors = {};
-
+  if (!input.first_name) {
+    errors.first_name = "Ingrese nombre";
+  }
+  if (!input.last_name) {
+    errors.last_name = "Ingrese apellido";
+  }
   if (!input.email) {
     errors.email = "Ingrese email";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
@@ -57,7 +62,7 @@ export default function Signup() {
     email: "",
     password: "",
   });
-
+  console.log(input);
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
   const [formErrors, setFormErrors] = useState({
@@ -85,6 +90,7 @@ export default function Signup() {
     e.preventDefault();
     // const user = await users.find(u => u.email === emailRef.current.value)
     // dispatch(getUser(user._id))
+
     if (passwordConfirmRef.current.value !== passwordRef.current.value)
       return setError("Contraseña no coincide");
 
@@ -193,8 +199,15 @@ export default function Signup() {
           style={{ borderRadius: "10px" }}
         >
           <div>
-            {error && (
-              <p className="notification is-danger is-light ">{error}</p>
+            {formErrors.first_name && (
+              <p className="is-size-7-desktop notification is-danger is-light ">
+                {formErrors.first_name}
+              </p>
+            )}
+            {formErrors.last_name && (
+              <p className="is-size-7-desktop notification is-danger is-light ">
+                {formErrors.last_name}
+              </p>
             )}
             {formErrors.email && (
               <p className="is-size-7-desktop notification is-danger is-light ">
