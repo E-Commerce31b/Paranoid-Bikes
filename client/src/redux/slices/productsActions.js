@@ -45,21 +45,23 @@ export const getProduct = createAsyncThunk(
         `${process.env.REACT_APP_URL}/api/bikes/${_id}`
       );
       // const data = response.data;
-      return response.data;
+      const bike = response.data;
 
-      // return {
-      //   id: data._id,
-      //   name: data.name,
-      //   type: data.type,
-      //   created: data.year,
-      //   genre: data.gender,
-      //   maker: data.maker,
-      //   size: data.size,
-      //   stock: data.stock,
-      //   price: data.priceAmount,
-      //   image: data.image,
-      //   count: data.count
-      // };
+      return {
+          _id: bike._id,
+          name: bike.name,
+          category: bike.category,
+          maker: bike.maker,
+          created: bike.year,
+          gender: bike.gender,
+          count: bike.count,
+          price: `${bike.priceAmount} ${bike.priceCurrency}`,
+          priceAmount: bike.priceAmount,
+          stock: bike.stock,
+          image: bike.image,
+          isEBike: bike.isEBike,
+          createdAt: bike.createdAt
+       };
     } catch (error) {
       return error.message;
     }
