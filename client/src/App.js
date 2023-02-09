@@ -36,6 +36,7 @@ import BikeCreate from "./components/panelAdmin/BikeCreate/BikeCreate.jsx";
 import BikesSells from "./components/BikesSells.jsx";
 import ContactComponent from "./components/ContactComponent/ContactComponent.jsx";
 import Historial from "./components/Historial.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/sellings" element={<BikesSells />} />
         <Route path="/history" element={<Historial />} />
+        <Route path="/policy" element={<PrivacyPolicy />} />
         <Route
           path="/user"
           element={
@@ -93,7 +95,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="*" element={<Error404 />} />
-        <Route path="/contactarnos" element={<ContactComponent/>} />
+        <Route path="/contactarnos" element={<ContactComponent />} />
       </Routes>
       <Footer />
     </AuthProvider>
