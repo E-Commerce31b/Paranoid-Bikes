@@ -1,4 +1,4 @@
-<img src="./client/src/assets/Logo.png" alt="paranoid-bikes_logo" /># Paranoid-Bikes
+<img src="./client/src/assets/Logo.png" alt="paranoid-bikes_logo" height="200" width="150" /># Paranoid-Bikes
 
 Hello and welcome to the incredible world of Paranoid Bikes! 
 
