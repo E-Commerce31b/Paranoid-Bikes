@@ -7,13 +7,12 @@ import { getReviews, postReview } from "../redux/slices/reviewsActions";
 
 export default function Reviews() {
   const user = useSelector((state) => state.users.user);
-  const products = useSelector((state) => state.products.products);
   const reviews = useSelector((state) => state.reviews.reviews);
   const { id } = useParams();
   const [commentText, setCommentText] = useState("");
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
-  console.log("ID", id);
+  // console.log("ID", id);
 
   const handleSubmit = (e) => {
     setSubmited(!submited);
@@ -27,7 +26,7 @@ export default function Reviews() {
   };
   useEffect(() => {
     dispatch(getReviews());
-  }, [submited]);
+  }, [submited, dispatch]);
 
   const reviewsProduct = () => {
     if (reviews.length) {

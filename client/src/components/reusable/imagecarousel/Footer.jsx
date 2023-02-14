@@ -3,7 +3,6 @@ import instagram from "../../../assets/instagram-logo.png";
 import facebook from "../../../assets/facebook-logo.webp";
 import whatsapp from "../../../assets/whatsapp-logo.png";
 import IconButton from "@mui/material/IconButton";
-
 import { NavLink } from "react-router-dom";
 export default function Footer() {
   return (
@@ -11,7 +10,18 @@ export default function Footer() {
       <footer class="footer p-1">
         <div className="container">
           <div className="columns">
-            <div className="column is-two-fifths"></div>
+            <div
+              className="column is-two-fifths"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h3 className="has-text-centered">
+                <strong> © Paranoid Bikes 2023 | Site by Gr 9</strong>
+              </h3>
+            </div>
             <div className="column is-one-fifth is-justify-content-center">
               <div className="flex is-justify-content-space-between is-flex-direction-row">
                 <IconButton aria-label="delete">
@@ -36,7 +46,20 @@ export default function Footer() {
                 </p>
               </div>
             </div>
-            <div className="column is-two-fifths"></div>
+            <div
+              className="column is-two-fifths flex is-justify-content-center is-align-items-center"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <NavLink to="policy">
+                <h3 className="content has-text-centered mt-3 has-text-black">
+                  <strong>POLITICA DE PRIVACIDAD</strong>
+                </h3>
+              </NavLink>
+            </div>
           </div>
         </div>
       </footer>
