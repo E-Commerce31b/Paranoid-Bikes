@@ -69,7 +69,9 @@ const ProductCard = ({ product }) => {
           <></>
         )}
         <div className="box-image py-5 container-productCard flex is-flex-direction-row is-justify-content-center">
+          <Link to={`/details/${product._id}`}>
           <img className="imagen" src={product.image} alt="Not found" />
+          </Link>
         </div>
         <div className="maker">
           <strong className="p_detail">Marca:</strong> {product.maker}
@@ -92,22 +94,9 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex is-flex-direction-row">
           {params?.pathname === "/cart" ? (
-            <div className="flex is-justify-content-center is-align-items-center">
-              <div className="flex is-flex-direction-row is-justify-content-space-between p-3">
-                <Link to={`/details/${product._id}`}>
-                  <Button className="mr-3" variant="outlined">
-                    Ver más
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <></>
           ) : (
             <div className="flex is-flex-direction-row is-justify-content-space-between p-4">
-              <Link to={`/details/${product._id}`}>
-                <Button className="mr-6" variant="outlined">
-                  Ver más
-                </Button>
-              </Link>
               <Button variant="outlined" onClick={() => sendToCart()}>
                 🛒
               </Button>
