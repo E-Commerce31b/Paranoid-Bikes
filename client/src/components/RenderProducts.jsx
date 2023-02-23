@@ -31,9 +31,9 @@ const RenderProducts = ({ slicedProducts }) => {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: "40px",
-        padding: "60px",
-        justifyContent: "space-around",
+        // margin: "20px",
+        // padding: "20px",
+        justifyContent: "center",
       }}
     >
       {slicedProducts().map((p, i) => {
