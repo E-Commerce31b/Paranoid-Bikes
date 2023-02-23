@@ -24,7 +24,7 @@ export const CategoryCard = ({ category }) => {
           <button onClick={() => handleClick()} className='category_button road'>Road bikes</button>
         </div>
         <div className="category_image_container">
-          <img src={require(`../../assets/${category}_landscape.jpeg`)} alt='backgroundImage' className="category_image" />
+          <img src={require(`../../assets/${category}_landscape-min.jpeg`)} alt='backgroundImage' className="category_image" />
         </div>
       </div>
     : category === 'mountain' ?
@@ -49,7 +49,7 @@ export const CategoryCard = ({ category }) => {
       </div>
 
       <div className="category_image_container">
-        <img src={require(`../../assets/${category}_landscape.jpeg`)} alt='backgroundImage' className="category_image" />
+        <img src={require(`../../assets/${category}_landscape-min.jpeg`)} alt='backgroundImage' className="category_image" />
       </div>
     </div>}
     </>
