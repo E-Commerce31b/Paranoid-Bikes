@@ -4,6 +4,7 @@ import { getProducts } from "../redux/slices/productsActions";
 import Filters from "./Filters.jsx";
 import Sorters from "./Sorters.jsx";
 import RenderProducts from "./RenderProducts.jsx";
+import NotFound from './NotFound.jsx'
 import Pagination from "../components/pagination/Pagination.jsx";
 import Loader from "../components/Loader";
 
@@ -16,15 +17,18 @@ const ProductsList = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
   const slicedProducts = () => {
     // if(product) return product;
     if (filtered) {
       // return filtered.slice(currentPage, currentPage ? currentPage + 16 : 0);
-      return filtered.slice(currentPage, currentPage + 15);
+      const stockBike = filtered.filter((item)=>{
+        return item.stock > 0
+      })
+      return stockBike.slice(currentPage, currentPage + 15);
     }
   };
-  console.log("filtered", filtered);
+
   return (
     <div>
       <Loader loading={status}></Loader>
@@ -37,7 +41,11 @@ const ProductsList = () => {
         </div>
       </div>
       <div>
-        <RenderProducts slicedProducts={slicedProducts} />
+        { slicedProducts() && slicedProducts().length > 0
+          ? <RenderProducts slicedProducts={slicedProducts} />
+          : <NotFound/>
+        
+        }
       </div>
       <div className="p-6 flex is-justify-content-center is-flex-direction-row">
         <Pagination currentPage={currentPage} filtered={filtered} />

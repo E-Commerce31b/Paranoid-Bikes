@@ -1,0 +1,100 @@
+.category_container {
+    height: 1000px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-left:200px;
+    padding-right:200px;
+    background-repeat:no-repeat;
+    background-size:cover */
+}
+.category_description_container, .category_image_container {
+    height:100%;
+    width:50%;
+    overflow:hidden
+}
+
+.category_description_container {
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.category_description {
+    font-size: 32px;
+    color:white
+}
+
+.category_image:hover {
+    transition: all 0.6s ease; 
+    transform:scale(1.5);
+    opacity: 0.5;
+}
+
+button {
+    color: white;
+    height:80px;
+    width:150px;
+    border: solid #ffd700;
+    background-color: transparent;
+    position:relative;
+    z-index:1;
+    overflow: hidden;
+}
+
+button:hover {
+    font-weight: bold;
+    color: #000952;
+}
+
+button::before {
+    content: "";
+    background: #ffd700;
+    position: absolute;
+    z-index: -1;
+    transition: all 0.6s ease;
+    top: 50%;
+    left: 50%;
+}
+
+button.road::before {
+    width: 150%;
+    height: 0%;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+button.road:hover::before{
+    height: 380%;
+}
+button.mountain::before {
+    width: 150%;
+    height: 0%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+button.mountain:hover::before{
+    height: 380%;
+}
+button.urban::before {
+    width: 150%;
+    height: 0%;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+button.urban:hover::before{
+    height: 380%;
+}
+
+.category_image_container {
+    object-fit: cover;
+}
+.category_image {
+    object-fit: cover;
+}
+
+/* .category_image {
+    width:50%;
+    background-color: transparent;
+    border:none
+} */
