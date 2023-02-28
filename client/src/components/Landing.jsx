@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import BestSellers from "./BestSellers";
 import './Landing.css';
 import Categories from './Categories'
-import BikeAdvisorIntro from './BikeAdvisorIntro'
-import NewsLetter from './NewsLetter'
-import Discord from './Discord'
+//import BikeAdvisorIntro from './BikeAdvisorIntro'
+//import NewsLetter from './NewsLetter'
+//import Discord from './Discord'
 import LandingHeader from './LandingHeader'
 
 export default function Landing() {
