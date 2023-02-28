@@ -16,7 +16,6 @@ const RenderProducts = ({ slicedProducts }) => {
 
   useEffect(() => {
     if (filters.length > 0) {
-      console.log("entramos");
       dispatch(cleanCurrentPage());
     }
     return () => dispatch(removeAll());
