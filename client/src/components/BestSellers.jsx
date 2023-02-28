@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Pagination from "./pagination/Pagination.jsx";
 import RenderProducts from "./RenderProducts.jsx";
+import useNearScreen from './CustomHooks/useNearScreen.jsx';
 
-export default function BestSellers() {
+function BestSellers() {
   const counter = useSelector((state) => state.products.products);
   const [bikes, setBikes] = useState([]);
 
@@ -72,3 +73,15 @@ export default function BestSellers() {
     </div>
   );
 }
+
+const LazyBestSellers = () => {
+    const {isNearScreen, fromRef}  = useNearScreen()
+
+    return (
+        <div ref={fromRef}>
+            {isNearScreen ? <BestSellers/> : null}
+        </div>
+    )
+}
+
+export default LazyBestSellers
