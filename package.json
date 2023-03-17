@@ -11,6 +11,6 @@
   },
   "scripts": {
     "build": "cd client && npm install && npm run build",
-    "start": "node client/src/index.js && node api/app.js"
+    "start": "node client/src/index.js"
   }
 }
