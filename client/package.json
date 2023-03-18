@@ -42,6 +42,9 @@
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"
   },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
