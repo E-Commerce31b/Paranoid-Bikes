@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react'
-import useNearScreen from '../CustomHooks/useNearScreen.jsx';
+import useNearScreen from '../../CustomHooks/useNearScreen.jsx';
 import Loader from '../Loader'
 
 const Categories = React.lazy(
