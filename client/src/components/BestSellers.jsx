@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Pagination from "./pagination/Pagination.jsx";
 import RenderProducts from "./RenderProducts.jsx";
-import useNearScreen from './CustomHooks/useNearScreen.jsx';
+import useNearScreen from '../CustomHooks/useNearScreen.jsx';
 
 function BestSellers() {
   const counter = useSelector((state) => state.products.products);
